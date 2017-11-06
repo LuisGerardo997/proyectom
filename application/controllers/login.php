@@ -17,7 +17,7 @@ class Login extends CI_Controller {
                $usuario = $_POST['user'];
                $cargo = $this->Login_model->cargo($usuario);
                $datos = $this->Login_model->datospersonales($usuario);
-               $data = array(
+               $dat = array(
                  'username' => $usuario,
                  'cargo' => $cargo->cargo,
                  'cod_p' => $datos->cod_persona,
@@ -25,8 +25,9 @@ class Login extends CI_Controller {
                  'apellido_p' => $datos->apellido_paterno,
                  'apellido_m' => $datos->apellido_materno,
                  'email' => $datos->email,
+                 'foto_p' => $datos->foto_persona,
                );
-                 $this->session->set_userdata($data);
+                 $this->session->set_userdata($dat);
                  }
                  header("Location:home");
              }else{

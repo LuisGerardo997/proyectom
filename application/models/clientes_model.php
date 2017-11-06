@@ -8,7 +8,7 @@ class Clientes_model extends CI_Model{
     $this->db->select('p.cod_persona, p.nombres, p.apellido_paterno, p.apellido_materno, p.ruc, p.email, p.genero, p.tel_movil, u.ciudad');
     $this->db->where('p.estado','0');
     $this->db->from('persona p');
-    $this->db->join('ubigeo u','u.cod_ciudad = p.cod_ciudad_direccion');
+    $this->db->join('ubigeo u','u.cod_ciudad = p.cod_ciudad_direccion','left');
     $data = $this->db->get();
     return $data->result();
   }

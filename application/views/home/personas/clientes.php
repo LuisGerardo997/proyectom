@@ -198,7 +198,7 @@
                                     </div>
                                 </div>
                                 <div class="col-sm-6">
-                                    <select name="ciudad" id="ciudad_c" class="form-control">
+                                    <select name="ciudad" id="ciudad_c" class="form-control show-tick">
                                         <option value="">-- Please select --</option>
                                         <?php foreach($ciudad as $fila):?>
                                             <option value='<?= $fila["cod_ciudad"] ?>'><?= $fila['ciudad'] ?></option>

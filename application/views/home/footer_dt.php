@@ -1,5 +1,7 @@
 
-
+<!-- Select Plugin Js
+<script src="<?= base_url() ?>plugins/bootstrap-select/js/bootstrap-select.js"></script>
+-->
 <!-- Jquery DataTable Plugin Js -->
 <script src="<?= base_url() ?>plugins/jquery-datatable/jquery.dataTables.js"></script>
 <script src="<?= base_url() ?>plugins/jquery-datatable/skin/bootstrap/js/dataTables.bootstrap.js"></script>
@@ -14,9 +16,6 @@
 <!-- Bootstrap Core Js -->
 <script src="<?= base_url() ?>plugins/bootstrap/js/bootstrap.js"></script>
 
-<!-- Select Plugin Js
-<script src="<?= base_url() ?>plugins/bootstrap-select/js/bootstrap-select.js"></script>
- -->
 <!-- Slimscroll Plugin Js -->
 <script src="<?= base_url() ?>plugins/jquery-slimscroll/jquery.slimscroll.js"></script>
 
@@ -27,6 +26,30 @@
 <script src="<?= base_url() ?>js/admin.js"></script>
 <?php if($this->uri->segment(1)=='clientes') {?>
     <script src="<?= base_url() ?>js/clientes.js"></script>
+<?php };?>
+<?php if($this->uri->segment(1)=='cargo') {?>
+    <script src="<?= base_url() ?>js/cargo.js"></script>
+<?php };?>
+<?php if($this->uri->segment(1)=='tipo_producto') {?>
+    <script src="<?= base_url() ?>js/tipo_producto.js"></script>
+<?php };?>
+<?php if($this->uri->segment(1)=='tipo_movimiento') {?>
+    <script src="<?= base_url() ?>js/tipo_movimiento.js"></script>
+<?php };?>
+<?php if($this->uri->segment(1)=='tipo_documento') {?>
+    <script src="<?= base_url() ?>js/tipo_documento.js"></script>
+<?php };?>
+<?php if($this->uri->segment(1)=='marca') {?>
+    <script src="<?= base_url() ?>js/marca.js"></script>
+<?php };?>
+<?php if($this->uri->segment(1)=='productos') {?>
+    <script src="<?= base_url() ?>js/productos.js"></script>
+<?php };?>
+<?php if($this->uri->segment(1)=='proveedores') {?>
+    <script src="<?= base_url() ?>js/proveedores.js"></script>
+<?php };?>
+<?php if($this->uri->segment(1)=='forma_pago') {?>
+    <script src="<?= base_url() ?>js/forma_pago.js"></script>
 <?php };?>
 <script src="<?= base_url() ?>js/pages/tables/jquery-datatable.js"></script>
 

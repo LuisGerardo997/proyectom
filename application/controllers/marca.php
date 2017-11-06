@@ -1,0 +1,92 @@
+<?php
+defined('BASEPATH') OR exit('No direct script access allowed');
+
+class Marca extends CI_Controller {
+  function __construct(){
+    parent::__construct();
+    $this->load->model('Marca_model');
+  }
+
+
+  public function index()
+  {
+    if($this->session->userdata('username')){
+            $user = $this->session->userdata('username');
+            $nombre = $this->session->userdata('nombres');
+            $apellido_p = $this->session->userdata('apellido_p');
+            $apellido_m = $this->session->userdata('apellido_m');
+            $email = $this->session->userdata('email');
+            $foto_p = $this->session->userdata('foto_p');
+            $data = array(
+                'nombre' => $nombre,
+                'apellido_p' => $apellido_p,
+                'email' => $email,
+            );
+            $this->load->view('home/head',$data);
+            if (($this->session->userdata['cargo'] == 'Recepcionista')||($this->session->userdata['cargo'] == 'Administrador')){
+                $this->load->view('home/body1');
+            }
+            if (($this->session->userdata['cargo'] == 'Almacenero')||($this->session->userdata['cargo'] == 'Administrador')){
+                $this->load->view('home/body2');
+            }
+            if($this->session->userdata['cargo'] == 'Administrador'){
+                $this->load->view('home/body3');
+            }
+      $this->load->view('home/main');
+      $this->load->view('home/productos/marca');
+      $this->load->view('home/footer_dt');
+
+    }else{
+      header('Location:login');
+    }
+  }
+  public function consultar(){
+    //if ($this->input->is_ajax_request()){
+        echo json_encode($this->Marca_model->consultar());
+
+    //}
+  }
+  function actualizar(){
+      $selector = $this->input->post('cod_marca');
+      $cod_marca = $selector;
+      $marca = $this->input->post('marca');
+      $descripcion = $this->input->post('descripcion');
+      $data = array(
+        'cod_marca' => $cod_marca,
+        'marca' => $marca,
+        'descripcion' => $descripcion,
+      );
+      if($this->Marca_model->actualizar($selector, $data) == true){
+        echo '1';
+      }else{
+        echo '0';
+      }
+  }
+  function eliminar(){
+      $idselect = $this->input->post('cod_marca');
+      $data = array(
+        'estado' => '0',
+      );
+      if($this->Marca_model->eliminar($idselect, $data) == true){
+        echo '1';
+      }else{
+        echo '0';
+      }
+    }
+    function guardar(){
+      $cod_marca = $this->input->post('cod_marca');
+      $marca = $this->input->post('marca');
+      $descripcion = $this->input->post('descripcion');
+      $data = array(
+        'cod_marca' => $cod_marca,
+        'marca' => $marca,
+        'descripcion' => $descripcion,
+        'estado' => null,
+      );
+      if($this->Marca_model->guardar($data) == true){
+        echo '1';
+      }else{
+        echo '0';
+      }
+    }
+}

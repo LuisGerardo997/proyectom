@@ -27,7 +27,7 @@ class Login_model extends CI_Model{
 
       }
       public function datospersonales($user){
-          $this->db->select('cod_persona, nombres, apellido_paterno, apellido_materno, email');
+          $this->db->select('cod_persona, nombres, apellido_paterno, apellido_materno, email, foto_persona');
           $this->db->where('usuario',$user);
           $result = $this->db->get('persona');
           return $result->row();
