@@ -20,13 +20,13 @@
         </div>
         <div class="body">
           <div class="table-responsive">
-            <table id="dt_table" class="table table-bordered table-striped table-hover dataTable" width="100%">
+            <table id="dt_table" class="table table-bordered table-striped table-hover dataTable">
               <thead>
                 <tr>
-                  <th width="20%">Codigo</th>
+                  <th>Codigo de Área</th>
                   <th>Área</th>
                   <th>Descripción</th>
-                  <th width="1px">Acción</th>
+                  <th>Acción</th>
                 </tr>
               </thead>
               <tbody></tbody>
@@ -48,30 +48,30 @@
                                    <div class="col-md-4">
                                         <div class="form-group form-float">
                                             <div class="form-line focused">
-                                              <label class="form-label">Código</label>
-                                                <input disabled type="text" name="cod_area" id="cod_area" class="form-control">
+                                                <input disabled type="text" name="cod_area" id="cod_area" class="form-control" placeholder="Codigo">
+                                                <label class="form-label">Código</label>
+                                              </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group form-float">
+                                            <div class="form-line focused">
+                                                <input type="text" name="area" id="area" class="form-control" placeholder="Area">
+                                                <label class="form-label">Area</label>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col-md-4">
                                         <div class="form-group form-float">
                                             <div class="form-line focused">
-                                              <label class="form-label">Área</label>
-                                                <input type="text" name="area" id="area" class="form-control">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="form-group form-float">
-                                            <div class="form-line focused">
-                                              <label class="form-label">Descripción</label>
-                                                <input type="text" name="descripcion" id="descripcion" class="form-control">
+                                                <input type="text" name="descripcion" id="descripcion" class="form-control" placeholder="Descripcion">
+                                                <label class="form-label">Descripcion</label>
                                             </div>
                                         </div>
                                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-link waves-effect" onClick="enviar();">Guardar Cambios</button>
-                        <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">Cerrar</button>
+                        <button type="button" class="btn btn-link waves-effect" onClick="enviar();">"Guardar Cambios"</button>
+                        <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">"Cerrar"</button>
                     </div>
                 </div>
             </div>
@@ -91,7 +91,7 @@
                                 <div class="col-md-4">
                                     <div class="form-group form-float">
                                         <div class="form-line">
-                                          <label class="form-label">Código</label>
+                                            <label class="form-label">Código</label>
                                             <input type="number" name="cod_area_c" id="cod_area_c" class="form-control">
                                         </div>
                                     </div>
@@ -99,7 +99,7 @@
                                 <div class="col-md-4">
                                     <div class="form-group form-float">
                                         <div class="form-line">
-                                          <label class="form-label">Área</label>
+                                            <label class="form-label">Area</label>
                                             <input type="text" name="area_c" id="area_c" class="form-control">
                                         </div>
                                     </div>
@@ -107,7 +107,7 @@
                                 <div class="col-md-4">
                                     <div class="form-group form-float">
                                         <div class="form-line">
-                                          <label class="form-label">Descripción</label>
+                                            <label class="form-label">Descripcion</label>
                                             <input type="text" name="descripcion_c" id="descripcion_c" class="form-control">
                                         </div>
                                     </div>

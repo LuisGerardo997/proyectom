@@ -16,13 +16,13 @@
                     </div>
                     <div class="body">
                         <div class="table-responsive">
-                            <table id="dt_table" class="table table-bordered table-striped table-hover dataTable">
+                            <table id="dt_table" class="table table-bordered table-striped table-hover dataTable" width="100%">
                                 <thead>
                                     <tr>
-                                        <th>Código</th>
+                                        <th width="15%">Código</th>
                                         <th>Descripción</th>
                                         <th>Valor</th>
-                                        <th>Acción</th>
+                                        <th width="1px">Acción</th>
                                     </tr>
                                 </thead>
                             </table>
@@ -31,9 +31,9 @@
                 </div>
             </div>
         </div>
-        
+
         <!-- Edición -->
-        
+
         <div class="modal fade" id="editar" tabindex="-1" role="dialog">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
@@ -44,23 +44,26 @@
                         <div class="row clearfix">
                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                 <div class="col-md-4">
-                                    <div class="form-group">
-                                        <div class="form-line">
-                                            <input type="number" name="cod_parametro" id="cod_parametro" class="form-control" placeholder="Código">
+                                    <div class="form-group form-float">
+                                        <div class="form-line focused">
+                                          <label class="form-label">Código</label>
+                                            <input disabled type="text" name="cod_parametro" id="cod_parametro" class="form-control" >
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
-                                    <div class="form-group">
-                                        <div class="form-line">
-                                            <input type="text" name="descripcion" id="descripcion" class="form-control" placeholder="Descripción" maxlength="15">
+                                    <div class="form-group form-float">
+                                        <div class="form-line focused">
+                                          <label class="form-label">Descripción</label>
+                                            <input type="text" name="descripcion" id="descripcion" class="form-control" maxlength="15">
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
-                                    <div class="form-group">
-                                        <div class="form-line">
-                                            <input type="number" name="valor" id="valor" class="form-control" placeholder="Valor" maxlength="5">
+                                    <div class="form-group form-float">
+                                        <div class="form-line focused">
+                                          <label class="form-label">Valor</label>
+                                            <input type="text" name="valor" id="valor" class="form-control" maxlength="5">
                                         </div>
                                     </div>
                                 </div>
@@ -74,9 +77,9 @@
                 </div>
             </div>
         </div>
-        
+
         <!-- Creación -->
-        
+
         <div class="modal fade" id="crear" tabindex="-1" role="dialog">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
@@ -87,23 +90,26 @@
                         <div class="row clearfix">
                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                 <div class="col-md-4">
-                                    <div class="form-group">
+                                    <div class="form-group form-float">
                                         <div class="form-line">
-                                            <input type="number" name="cod_parametro_c" id="cod_parametro_c" class="form-control" placeholder="Código">
+                                          <label class="form-label">Código</label>
+                                            <input type="text" name="cod_parametro_c" id="cod_parametro_c" class="form-control">
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
-                                    <div class="form-group">
+                                    <div class="form-group form-float">
                                         <div class="form-line">
-                                            <input type="text" name="descripcion_c" id="descripcion_c" class="form-control" placeholder="Descripción" maxlength="15">
+                                          <label class="form-label">Descripción</label>
+                                            <input type="text" name="descripcion_c" id="descripcion_c" class="form-control" maxlength="15">
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
-                                    <div class="form-group">
+                                    <div class="form-group form-float">
                                         <div class="form-line">
-                                            <input type="number" name="valor_c" id="valor_c" class="form-control" placeholder="Valor" maxlength="5">
+                                          <label class="form-label">Valor</label>
+                                            <input type="text" name="valor_c" id="valor_c" class="form-control" maxlength="5">
                                         </div>
                                     </div>
                                 </div>
@@ -117,6 +123,6 @@
                 </div>
             </div>
         </div>
-        
+
     </div>
 </section>

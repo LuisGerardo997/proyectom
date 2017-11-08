@@ -31,9 +31,9 @@
                 </div>
             </div>
         </div>
-        
+
         <!-- Edición -->
-        
+
         <div class="modal fade" id="editar" tabindex="-1" role="dialog">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
@@ -44,23 +44,26 @@
                         <div class="row clearfix">
                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                 <div class="col-md-4">
-                                    <div class="form-group">
-                                        <div class="form-line">
-                                            <input type="number" name="cod_tipo_transaccion" id="cod_tipo_transaccion" class="form-control" placeholder="Código">
+                                    <div class="form-group form-float">
+                                        <div class="form-line focused">
+                                          <label class="form-label">Código</label>
+                                            <input disabled type="text" name="cod_tipo_transaccion" id="cod_tipo_transaccion" class="form-control">
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
-                                    <div class="form-group">
-                                        <div class="form-line">
-                                            <input type="text" name="tipo_transaccion" id="tipo_transaccion" class="form-control" placeholder="Nombre de la transacción" maxlength="30">
+                                    <div class="form-group form-float">
+                                        <div class="form-line focused">
+                                          <label class="form-label">Tipo de Transaccion</label>
+                                            <input type="text" name="tipo_transaccion" id="tipo_transaccion" class="form-control">
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
-                                    <div class="form-group">
-                                        <div class="form-line">
-                                            <input type="text" name="descripcion" id="descripcion" class="form-control" placeholder="Descripción" maxlength="200">
+                                    <div class="form-group form-float">
+                                        <div class="form-line focused">
+                                          <label class="form-label">Descripcion</label>
+                                            <input type="text" name="descripcion" id="descripcion" class="form-control">
                                         </div>
                                     </div>
                                 </div>
@@ -74,9 +77,9 @@
                 </div>
             </div>
         </div>
-        
+
         <!-- Creación -->
-        
+
         <div class="modal fade" id="crear" tabindex="-1" role="dialog">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
@@ -87,23 +90,26 @@
                         <div class="row clearfix">
                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                 <div class="col-md-4">
-                                    <div class="form-group">
+                                    <div class="form-group form-float">
                                         <div class="form-line">
-                                            <input type="number" name="cod_tipo_transaccion_c" id="cod_tipo_transaccion_c" class="form-control" placeholder="Código">
+                                          <label class="form-label">Código</label>
+                                            <input type="text" name="cod_tipo_transaccion_c" id="cod_tipo_transaccion_c" class="form-control">
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
-                                    <div class="form-group">
+                                    <div class="form-group form-float">
                                         <div class="form-line">
-                                            <input type="text" name="tipo_transaccion_c" id="tipo_transaccion_c" class="form-control" placeholder="Nombre de la transacción" maxlength="30">
+                                          <label class="form-label">Tipo de Transaccion</label>
+                                            <input type="text" name="tipo_transaccion_c" id="tipo_transaccion_c" class="form-control">
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
-                                    <div class="form-group">
+                                    <div class="form-group form-float">
                                         <div class="form-line">
-                                            <input type="text" name="descripcion_c" id="descripcion_c" class="form-control" placeholder="Descripción" maxlength="200">
+                                          <label class="form-label">Descripcion</label>
+                                            <input type="text" name="descripcion_c" id="descripcion_c" class="form-control">
                                         </div>
                                     </div>
                                 </div>

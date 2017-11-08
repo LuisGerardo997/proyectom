@@ -48,23 +48,26 @@
                         <div class="row clearfix">
                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                 <div class="col-md-4">
-                                    <div class="form-group">
-                                        <div class="form-line">
-                                            <input type="number" name="cod_forma_pago" id="cod_forma_pago" class="form-control" placeholder="Codigo">
+                                    <div class="form-group form-float">
+                                        <div class="form-line focused">
+                                          <label class="form-label">Código</label>
+                                            <input disabled type="text" name="cod_forma_pago" id="cod_forma_pago" class="form-control">
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
-                                    <div class="form-group">
-                                        <div class="form-line">
-                                            <input type="text" name="forma_pago" id="forma_pago" class="form-control" placeholder="Forma de Pago">
+                                    <div class="form-group form-float">
+                                        <div class="form-line focused">
+                                          <label class="form-label">Forma de Pago</label>
+                                            <input type="text" name="forma_pago" id="forma_pago" class="form-control">
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
-                                    <div class="form-group">
-                                        <div class="form-line">
-                                            <input type="text" name="descripcion" id="descripcion" class="form-control" placeholder="Descripcion">
+                                    <div class="form-group form-float">
+                                        <div class="form-line focused">
+                                          <label class="form-label">Descripcion</label>
+                                            <input type="text" name="descripcion" id="descripcion" class="form-control">
                                         </div>
                                     </div>
                                 </div>
@@ -88,23 +91,26 @@
                         <div class="row clearfix">
                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                               <div class="col-md-4">
-                                  <div class="form-group">
+                                  <div class="form-group form-float">
                                       <div class="form-line">
-                                          <input type="number" name="cod_forma_pago" id="cod_forma_pago_c" class="form-control" placeholder="Codigo">
+                                        <label class="form-label">Código</label>
+                                          <input type="number" name="cod_forma_pago" id="cod_forma_pago_c" class="form-control">
                                       </div>
                                   </div>
                               </div>
                               <div class="col-md-4">
-                                  <div class="form-group">
+                                  <div class="form-group form-float">
                                       <div class="form-line">
-                                          <input type="text" name="forma_pago" id="forma_pago_c" class="form-control" placeholder="Forma de Pago">
+                                        <label class="form-label">Forma de Pago</label>
+                                          <input type="text" name="forma_pago" id="forma_pago_c" class="form-control">
                                       </div>
                                   </div>
                               </div>
                               <div class="col-md-4">
-                                  <div class="form-group">
+                                  <div class="form-group form-float">
                                       <div class="form-line">
-                                          <input type="text" name="descripcion" id="descripcion_c" class="form-control" placeholder="Descripcion">
+                                        <label class="form-label">Descripcion</label>
+                                          <input type="text" name="descripcion" id="descripcion_c" class="form-control">
                                       </div>
                                   </div>
                               </div>

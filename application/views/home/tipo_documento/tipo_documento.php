@@ -47,31 +47,35 @@
                     <div class="modal-body">
                         <div class="row clearfix">
                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                <div class="col-md-4">
-                                    <div class="form-group">
-                                        <div class="form-line">
-                                            <input type="number" name="cod_tipo_documento" id="cod_tipo_documento" class="form-control" placeholder="Codigo">
+                                <div class="col-md-6">
+                                    <div class="form-group form-float">
+                                        <div class="form-line focused">
+                                          <label class="form-label">Código</label>
+                                            <input disabled type="text" name="cod_tipo_documento" id="cod_tipo_documento" class="form-control">
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-4">
-                                    <div class="form-group">
-                                        <div class="form-line">
-                                            <input type="text" name="descripcion" id="descripcion" class="form-control" placeholder="Descripcion">
+                                <div class="col-md-6">
+                                    <div class="form-group form-float">
+                                        <div class="form-line focused">
+                                          <label class="form-label">Descripcion</label>
+                                            <input type="text" name="descripcion" id="descripcion" class="form-control">
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-4">
-                                    <div class="form-group">
-                                        <div class="form-line">
-                                            <input type="number" name="nro_serie" id="nro_serie" class="form-control" placeholder="Numero de Serie">
+                                <div class="col-md-6">
+                                    <div class="form-group form-float">
+                                        <div class="form-line focused">
+                                          <label class="form-label">Numero de Serie</label>
+                                            <input type="text" name="nro_serie" id="nro_serie" class="form-control">
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-4">
-                                    <div class="form-group">
-                                        <div class="form-line">
-                                            <input type="number" name="nro_correlativo" id="nro_correlativo" class="form-control" placeholder="Numero Correlativo">
+                                <div class="col-md-6">
+                                    <div class="form-group form-float">
+                                        <div class="form-line focused">
+                                          <label class="form-label">Numero Correlativo</label>
+                                            <input type="text" name="nro_correlativo" id="nro_correlativo" class="form-control">
                                         </div>
                                     </div>
                                 </div>
@@ -94,31 +98,35 @@
                     <div class="modal-body">
                         <div class="row clearfix">
                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                              <div class="col-md-4">
-                                  <div class="form-group">
+                              <div class="col-md-6">
+                                  <div class="form-group form-float">
                                       <div class="form-line">
-                                          <input type="number" name="cod_tipo_documento" id="cod_tipo_documento_c" class="form-control" placeholder="Codigo">
+                                        <label class="form-label">Código</label>
+                                          <input type="number" name="cod_tipo_documento" id="cod_tipo_documento_c" class="form-control">
                                       </div>
                                   </div>
                               </div>
-                              <div class="col-md-4">
-                                  <div class="form-group">
+                              <div class="col-md-6">
+                                  <div class="form-group form-float">
                                       <div class="form-line">
-                                          <input type="text" name="descripcion" id="descripcion_c" class="form-control" placeholder="Descripcion">
+                                        <label class="form-label">Descripcion</label>
+                                          <input type="text" name="descripcion" id="descripcion_c" class="form-control">
                                       </div>
                                   </div>
                               </div>
-                              <div class="col-md-4">
-                                  <div class="form-group">
+                              <div class="col-md-6">
+                                  <div class="form-group form-float">
                                       <div class="form-line">
-                                          <input type="number" name="nro_serie" id="nro_serie_c" class="form-control" placeholder="Numero de Serie">
+                                        <label class="form-label">Numero de Serie</label>
+                                          <input type="number" name="nro_serie" id="nro_serie_c" class="form-control">
                                       </div>
                                   </div>
                               </div>
-                              <div class="col-md-4">
-                                  <div class="form-group">
+                              <div class="col-md-6">
+                                  <div class="form-group form-float">
                                       <div class="form-line">
-                                          <input type="number" name="nro_correlativo" id="nro_correlativo_c" class="form-control" placeholder="Numero Correlativo">
+                                        <label class="form-label">Numero Correlativo</label>
+                                          <input type="number" name="nro_correlativo" id="nro_correlativo_c" class="form-control">
                                       </div>
                                   </div>
                               </div>

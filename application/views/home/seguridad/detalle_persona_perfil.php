@@ -34,9 +34,9 @@
                 </div>
             </div>
         </div>
-        
+
         <!-- Edición -->
-        
+
         <div class="modal fade" id="editar" tabindex="-1" role="dialog">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
@@ -47,44 +47,50 @@
                         <div class="row clearfix">
                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                 <div class="col-md-4">
-                                    <div class="form-group">
-                                        <div class="form-line">
-                                            <input type="number" name="cod_perfil" id="cod_perfil" class="form-control" placeholder="Código de perfil">
+                                    <div class="form-group form-float">
+                                        <div class="form-line focused">
+                                          <label class="form-label">Código Perfil</label>
+                                            <input disabled type="number" name="cod_perfil" id="cod_perfil" class="form-control">
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
-                                    <div class="form-group">
-                                        <div class="form-line">
-                                            <input type="text" name="perfil" id="perfil" class="form-control" placeholder="Nombre del perfil" maxlength="30">
+                                    <div class="form-group form-float">
+                                        <div class="form-line focused">
+                                          <label class="form-label">Perfil</label>
+                                            <input type="text" name="perfil" id="perfil" class="form-control" maxlength="30">
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
-                                    <div class="form-group">
-                                        <div class="form-line">
-                                            <input type="number" name="cod_persona" id="cod_persona" class="form-control" placeholder="Código">
+                                    <div class="form-group form-float">
+                                        <div class="form-line focused">
+                                          <label class="form-label">Código de Persona</label>
+                                            <input type="number" name="cod_persona" id="cod_persona" class="form-control">
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
-                                    <div class="form-group">
-                                        <div class="form-line">
-                                            <input type="text" name="nombres" id="nombres" class="form-control" placeholder="Nombres" maxlength="120">
+                                    <div class="form-group form-float">
+                                        <div class="form-line focused">
+                                          <label class="form-label">Nombre</label>
+                                            <input type="text" name="nombres" id="nombres" class="form-control" maxlength="120">
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
-                                    <div class="form-group">
-                                        <div class="form-line">
-                                            <input type="text" name="apellido_paterno" id="apellido_paterno" class="form-control" placeholder="Apellido Paterno" maxlength="60">
+                                    <div class="form-group form-float">
+                                        <div class="form-line focused">
+                                          <label class="form-label">Apellido Paterno</label>
+                                            <input type="text" name="apellido_paterno" id="apellido_paterno" class="form-control" maxlength="60">
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
-                                    <div class="form-group">
-                                        <div class="form-line">
-                                            <input type="text" name="apellido_materno" id="apellido_materno" class="form-control" placeholder="Apellido Materno" maxlength="60">
+                                    <div class="form-group  form-float">
+                                        <div class="form-line focused">
+                                          <label class="form-label">Apellido Materno</label>
+                                            <input type="text" name="apellido_materno" id="apellido_materno" class="form-control" maxlength="60">
                                         </div>
                                     </div>
                                 </div>
@@ -98,9 +104,9 @@
                 </div>
             </div>
         </div>
-        
+
         <!-- Creación -->
-        
+
         <div class="modal fade" id="crear" tabindex="-1" role="dialog">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
@@ -110,7 +116,7 @@
                     <div class="modal-body">
                         <div class="row clearfix">
                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                <div class="col-md-4">
+                                <div class="col-md-6">
                                     <select name="cod_perfil_c" id="cod_perfil_c" class="form-control">
                                         <option value="">Selecione por favor</option>
                                         <?php foreach($perfil as $fila):?>
@@ -118,7 +124,7 @@
                                         <?php endforeach; ?>
                                     </select>
                                 </div>
-                                <div class="col-md-4">
+                                <div class="col-md-6">
                                     <select name="cod_persona_c" id="cod_persona_c" class="form-control">
                                         <option value="">Selecione por favor</option>
                                         <?php foreach($persona as $fila):?>
@@ -136,6 +142,6 @@
                 </div>
             </div>
         </div>
-        
+
     </div>
 </section>

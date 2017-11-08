@@ -47,16 +47,18 @@
                         <div class="row clearfix">
                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                 <div class="col-md-4">
-                                    <div class="form-group">
-                                        <div class="form-line">
-                                            <input type="number" name="cod_tipo_movimiento" id="cod_tipo_movimiento" class="form-control" placeholder="Codigo">
+                                    <div class="form-group form-float">
+                                        <div class="form-line focused">
+                                          <label class="form-label">Código</label>
+                                            <input disabled type="text" name="cod_tipo_movimiento" id="cod_tipo_movimiento" class="form-control">
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
-                                    <div class="form-group">
-                                        <div class="form-line">
-                                            <input type="text" name="tipo_movimiento" id="tipo_movimiento" class="form-control" placeholder="Tipo de Movimiento">
+                                    <div class="form-group form-float">
+                                        <div class="form-line focused">
+                                          <label class="form-label">Tipo de Movimiento</label>
+                                            <input type="text" name="tipo_movimiento" id="tipo_movimiento" class="form-control">
                                         </div>
                                     </div>
                                 </div>
@@ -80,16 +82,18 @@
                         <div class="row clearfix">
                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                               <div class="col-md-4">
-                                  <div class="form-group">
+                                  <div class="form-group form-float">
                                       <div class="form-line">
-                                          <input type="number" name="cod_tipo_movimiento" id="cod_tipo_movimiento_c" class="form-control" placeholder="Codigo">
+                                        <label class="form-label">Código</label>
+                                          <input type="number" name="cod_tipo_movimiento" id="cod_tipo_movimiento_c" class="form-control"
                                       </div>
                                   </div>
                               </div>
                               <div class="col-md-4">
-                                  <div class="form-group">
+                                  <div class="form-group form-float">
                                       <div class="form-line">
-                                          <input type="text" name="tipo_movimiento" id="tipo_movimiento_c" class="form-control" placeholder="Tipo de Movimiento">
+                                        <label class="form-label">Tipo de Movimiento</label>
+                                          <input type="text" name="tipo_movimiento" id="tipo_movimiento_c" class="form-control">
                                       </div>
                                   </div>
                               </div>

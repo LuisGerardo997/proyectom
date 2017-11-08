@@ -1,4 +1,4 @@
-<section class="content">
+ form-float<section class="content">
     <div class="container-fluid">
         <div class="row clearfix">
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -30,9 +30,9 @@
                 </div>
             </div>
         </div>
-        
+
         <!-- Edición -->
-        
+
         <div class="modal fade" id="editar" tabindex="-1" role="dialog">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
@@ -43,16 +43,18 @@
                         <div class="row clearfix">
                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                 <div class="col-md-4">
-                                    <div class="form-group">
-                                        <div class="form-line">
-                                            <input type="number" name="cod_perfil" id="cod_perfil" class="form-control" placeholder="Código">
+                                    <div class="form-group form-float">
+                                        <div class="form-line focused">
+                                          <label class="form-label">Código</label>
+                                            <input disabled type="number" name="cod_perfil" id="cod_perfil" class="form-control">
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
-                                    <div class="form-group">
-                                        <div class="form-line">
-                                            <input type="text" name="perfil" id="perfil" class="form-control" placeholder="Nombre" maxlength="30">
+                                    <div class="form-group form-float">
+                                        <div class="form-line focused">
+                                          <label class="form-label">Nombre del Perfil</label>
+                                            <input type="text" name="perfil" id="perfil" class="form-control">
                                         </div>
                                     </div>
                                 </div>
@@ -66,9 +68,9 @@
                 </div>
             </div>
         </div>
-        
+
         <!-- Creación -->
-        
+
         <div class="modal fade" id="crear" tabindex="-1" role="dialog">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
@@ -79,16 +81,18 @@
                         <div class="row clearfix">
                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                 <div class="col-md-4">
-                                    <div class="form-group">
+                                    <div class="form-group form-float">
                                         <div class="form-line">
-                                            <input type="number" name="cod_perfil_c" id="cod_perfil_c" class="form-control" placeholder="Código">
+                                          <label class="form-label">Código</label>
+                                            <input type="text" name="cod_perfil_c" id="cod_perfil_c" class="form-control">
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
-                                    <div class="form-group">
+                                    <div class="form-group form-float">
                                         <div class="form-line">
-                                            <input type="text" name="perfil_c" id="perfil_c" class="form-control" placeholder="Nombre" maxlength="30">
+                                          <label class="form-label">Nombre del Perfil</label>
+                                            <input type="text" name="perfil_c" id="perfil_c" class="form-control">
                                         </div>
                                     </div>
                                 </div>
@@ -102,6 +106,6 @@
                 </div>
             </div>
         </div>
-        
+
     </div>
 </section>
