@@ -12,7 +12,7 @@ function base_url(){
 <head>
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-    <title>404 | Bootstrap Based Admin Template - Material Design</title>
+    <title>404 | Residencial Río</title>
     <!-- Favicon-->
     <link rel="icon" href="../../favicon.ico" type="image/x-icon">
 
