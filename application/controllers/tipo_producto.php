@@ -11,28 +11,37 @@ class Tipo_producto extends CI_Controller {
   public function index()
   {
     if($this->session->userdata('username')){
-            $user = $this->session->userdata('username');
-            $nombre = $this->session->userdata('nombres');
-            $apellido_p = $this->session->userdata('apellido_p');
-            $apellido_m = $this->session->userdata('apellido_m');
-            $email = $this->session->userdata('email');
-            $foto_p = $this->session->userdata('foto_p');
-            $data = array(
-                'nombre' => $nombre,
-                'apellido_p' => $apellido_p,
-                'email' => $email,
-            );
-            $this->load->view('home/head',$data);
-            if (($this->session->userdata['cargo'] == 'Recepcionista')||($this->session->userdata['cargo'] == 'Administrador')){
-                $this->load->view('home/body1');
-            }
-            if (($this->session->userdata['cargo'] == 'Almacenero')||($this->session->userdata['cargo'] == 'Administrador')){
-                $this->load->view('home/body2');
-            }
-            if($this->session->userdata['cargo'] == 'Administrador'){
-                $this->load->view('home/body3');
-            }
-      $this->load->view('home/main');
+      $driverdb = $this->db->dbdriver;
+      if ($driverdb == 'mysqli'){
+        $db_name = 'MySQL';
+      }elseif ($driverdb == 'postgre') {
+        $db_name = 'PostgreSQL';
+      }
+      $db_data = array(
+        'motor_db' => $db_name,
+      );
+      $user = $this->session->userdata('username');
+      $nombre = $this->session->userdata('nombres');
+      $apellido_p = $this->session->userdata('apellido_p');
+      $apellido_m = $this->session->userdata('apellido_m');
+      $email = $this->session->userdata('email');
+      $foto_p = $this->session->userdata('foto_p');
+      $data = array(
+        'nombre' => $nombre,
+        'apellido_p' => $apellido_p,
+        'email' => $email,
+      );
+      $this->load->view('home/head',$data);
+      if (($this->session->userdata['cargo'] == 'Recepcionista')||($this->session->userdata['cargo'] == 'Administrador')){
+        $this->load->view('home/body1');
+      }
+      if (($this->session->userdata['cargo'] == 'Almacenero')||($this->session->userdata['cargo'] == 'Administrador')){
+        $this->load->view('home/body2');
+      }
+      if($this->session->userdata['cargo'] == 'Administrador'){
+        $this->load->view('home/body3');
+      }
+      $this->load->view('home/main',$db_data);
       $this->load->view('home/productos/tipo_producto');
       $this->load->view('home/footer_dt');
 
@@ -42,51 +51,51 @@ class Tipo_producto extends CI_Controller {
   }
   public function consultar(){
     //if ($this->input->is_ajax_request()){
-        echo json_encode($this->Tipo_producto_model->consultar());
+    echo json_encode($this->Tipo_producto_model->consultar());
 
     //}
   }
   function actualizar(){
-      $selector = $this->input->post('cod_tipo_producto');
-      $cod_tipo_producto = $selector;
-      $tipo_producto = $this->input->post('tipo_producto');
-      $descripcion = $this->input->post('descripcion');
-      $data = array(
-        'cod_tipo_producto' => $cod_tipo_producto,
-        'tipo_producto' => $tipo_producto,
-        'descripcion' => $descripcion,
-      );
-      if($this->Tipo_producto_model->actualizar($selector, $data) == true){
-        echo '1';
-      }else{
-        echo '0';
-      }
+    $selector = $this->input->post('cod_tipo_producto');
+    $cod_tipo_producto = $selector;
+    $tipo_producto = $this->input->post('tipo_producto');
+    $descripcion = $this->input->post('descripcion');
+    $data = array(
+      'cod_tipo_producto' => $cod_tipo_producto,
+      'tipo_producto' => $tipo_producto,
+      'descripcion' => $descripcion,
+    );
+    if($this->Tipo_producto_model->actualizar($selector, $data) == true){
+      echo '1';
+    }else{
+      echo '0';
+    }
   }
   function eliminar(){
-      $idselect = $this->input->post('cod_tipo_producto');
-      $data = array(
-        'estado' => '0',
-      );
-      if($this->Tipo_producto_model->eliminar($idselect, $data) == true){
-        echo '1';
-      }else{
-        echo '0';
-      }
+    $idselect = $this->input->post('cod_tipo_producto');
+    $data = array(
+      'estado' => '0',
+    );
+    if($this->Tipo_producto_model->eliminar($idselect, $data) == true){
+      echo '1';
+    }else{
+      echo '0';
     }
-    function guardar(){
-      $cod_tipo_producto = $this->input->post('cod_tipo_producto');
-      $tipo_producto = $this->input->post('tipo_producto');
-      $descripcion = $this->input->post('descripcion');
-      $data = array(
-        'cod_tipo_producto' => $cod_tipo_producto,
-        'tipo_producto' => $tipo_producto,
-        'descripcion' => $descripcion,
-        'estado' => null,
-      );
-      if($this->Tipo_producto_model->guardar($data) == true){
-        echo '1';
-      }else{
-        echo '0';
-      }
+  }
+  function guardar(){
+    $cod_tipo_producto = $this->input->post('cod_tipo_producto');
+    $tipo_producto = $this->input->post('tipo_producto');
+    $descripcion = $this->input->post('descripcion');
+    $data = array(
+      'cod_tipo_producto' => $cod_tipo_producto,
+      'tipo_producto' => $tipo_producto,
+      'descripcion' => $descripcion,
+      'estado' => null,
+    );
+    if($this->Tipo_producto_model->guardar($data) == true){
+      echo '1';
+    }else{
+      echo '0';
     }
+  }
 }

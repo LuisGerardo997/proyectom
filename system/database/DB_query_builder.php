@@ -51,6 +51,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 abstract class CI_DB_query_builder extends CI_DB_driver {
 
+		public $dbname;
 	/**
 	 * Return DELETE SQL flag
 	 *
@@ -141,6 +142,7 @@ abstract class CI_DB_query_builder extends CI_DB_driver {
 	 * @var	array
 	 */
 	protected $qb_orderby			= array();
+
 
 	/**
 	 * QB data sets

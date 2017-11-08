@@ -187,7 +187,9 @@ function &DB($params = '', $query_builder_override = NULL)
 		/**
 	 	 * @ignore
 		 */
-		class CI_DB extends CI_DB_driver { }
+		class CI_DB extends CI_DB_driver {
+			public $dbname;
+		}
 	}
 
 	// Load the DB driver

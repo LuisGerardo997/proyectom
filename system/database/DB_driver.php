@@ -94,6 +94,16 @@ abstract class CI_DB_driver {
 	 */
 	public $dbdriver		= 'mysqli';
 
+	public function dbname(){
+		if ($dbdriver == 'mysqli'){
+			$name = 'MySQL';
+			return $name;
+		}elseif ($this->dbdriver === 'postgre'){
+			$name = 'PostgreSQL';
+			return $name;
+		}
+	}
+
 	/**
 	 * Sub-driver
 	 *

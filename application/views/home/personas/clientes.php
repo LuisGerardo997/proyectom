@@ -23,7 +23,7 @@
                     <div class="body">
                         <div class="table-responsive">
                             <table id="dt_table" class="table table-bordered table-striped table-hover dataTable">
-                                <thead>
+                                <thead width="100%">
                                     <tr>
                                         <th>DNI</th>
                                         <th>Nombres</th>
@@ -53,43 +53,49 @@
                         <div class="row clearfix">
                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                 <div class="col-md-4">
-                                    <div class="form-group">
-                                        <div class="form-line">
-                                            <input type="number" name="cod_persona" id="cod_persona" class="form-control" placeholder="DNI">
+                                    <div class="form-group form-float">
+                                        <div class="form-line focused">
+                                            <label class="form-label">Código</label>
+                                            <input disabled type="number" name="cod_persona" id="cod_persona" class="form-control">
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
-                                    <div class="form-group">
-                                        <div class="form-line">
-                                            <input type="text" name="nombres_e" id="nombres_e" class="form-control" placeholder="Nombres">
+                                    <div class="form-group form-float">
+                                        <div class="form-line focused">
+                                            <label class="form-label">Nombres</label>
+                                            <input type="text" name="nombres_e" id="nombres_e" class="form-control" >
                                         </div>
                                     </div>
                                 </div><div class="col-md-4">
-                                    <div class="form-group">
-                                        <div class="form-line">
-                                            <input type="text" name="apellido_paterno" id="apellido_paterno" class="form-control" placeholder="Apellido Paterno">
+                                    <div class="form-group form-float">
+                                        <div class="form-line focused">
+                                            <label class="form-label">Apellido paterno</label>
+                                            <input type="text" name="apellido_paterno" id="apellido_paterno" class="form-control">
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
-                                    <div class="form-group">
-                                        <div class="form-line">
-                                            <input type="text" name="apellido_materno" id="apellido_materno" class="form-control" placeholder="Apellido Materno">
+                                    <div class="form-group form-float">
+                                        <div class="form-line focused">
+                                            <label class="form-label">Apellido materno</label>
+                                            <input type="text" name="apellido_materno" id="apellido_materno" class="form-control">
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
-                                    <div class="form-group">
-                                        <div class="form-line">
-                                            <input type="text" name="ruc" id="ruc" class="form-control" placeholder="RUC">
+                                    <div class="form-group form-float">
+                                        <div class="form-line focused">
+                                            <label class="form-label">RUC</label>
+                                            <input type="text" name="ruc" id="ruc" class="form-control">
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
-                                    <div class="form-group">
-                                        <div class="form-line">
-                                            <input type="text" name="email" id="email" class="form-control email" placeholder="e-Mail">
+                                    <div class="form-group form-float">
+                                        <div class="form-line focused">
+                                            <label class="form-label">e-Mail</label>
+                                            <input type="text" name="email" id="email" class="form-control email">
                                         </div>
                                     </div>
                                 </div>
@@ -105,9 +111,10 @@
                                     </div>
                                 </div>
                                 <div class="col-md-3">
-                                    <div class="form-group">
-                                        <div class="form-line">
-                                            <input type="text" name="tel_movil" id="tel_movil" class="form-control" placeholder="Teléfono">
+                                    <div class="form-group form-float">
+                                        <div class="form-line focused">
+                                            <label class="form-label">Teléfono</label>
+                                            <input type="text" name="tel_movil" id="tel_movil" class="form-control">
                                         </div>
                                     </div>
                                 </div>
@@ -132,50 +139,56 @@
         <div class="modal fade" id="crear" tabindex="-1" role="dialog">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
-                    <div class="modal-header">
+                    <div class="modal-header text-center">
                         <h2 class="modal-title" id="largeModalLabel">Registro de Clientes</h2>
                     </div>
                     <div class="modal-body">
                         <div class="row clearfix">
                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                 <div class="col-md-4">
-                                    <div class="form-group">
+                                    <div class="form-group form-float">
                                         <div class="form-line">
-                                            <input type="number" name="cod_persona_c" id="cod_persona_c" class="form-control" placeholder="DNI">
+                                            <label class="form-label">DNI</label>
+                                            <input type="number" name="cod_persona_c" id="cod_persona_c" class="form-control">
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
-                                    <div class="form-group">
+                                    <div class="form-group form-float">
                                         <div class="form-line">
-                                            <input type="text" name="nombres" id="nombres_c" class="form-control" placeholder="Nombres">
+                                            <label class="form-label">Nombres</label>
+                                            <input type="text" name="nombres" id="nombres_c" class="form-control">
                                         </div>
                                     </div>
                                 </div><div class="col-md-4">
-                                    <div class="form-group">
+                                    <div class="form-group form-float">
                                         <div class="form-line">
-                                            <input type="text" name="apellido_paterno" id="apellido_paterno_c" class="form-control" placeholder="Apellido Paterno">
+                                            <label class="form-label">Apellido paterno</label>
+                                            <input type="text" name="apellido_paterno" id="apellido_paterno_c" class="form-control">
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
-                                    <div class="form-group">
+                                    <div class="form-group form-float">
                                         <div class="form-line">
-                                            <input type="text" name="apellido_materno" id="apellido_materno_c" class="form-control" placeholder="Apellido Materno">
+                                            <label class="form-label">Apellido materno</label>
+                                            <input type="text" name="apellido_materno" id="apellido_materno_c" class="form-control">
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
-                                    <div class="form-group">
+                                    <div class="form-group form-float">
                                         <div class="form-line">
-                                            <input type="number" name="ruc" id="ruc_c" class="form-control" placeholder="RUC">
+                                            <label class="form-label">RUC</label>
+                                            <input type="number" name="ruc" id="ruc_c" class="form-control">
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
-                                    <div class="form-group">
+                                    <div class="form-group form-float">
                                         <div class="form-line">
-                                            <input type="text" name="email" id="email_c" class="form-control email" placeholder="e-Mail">
+                                            <label class="form-label">e-Mail</label>
+                                            <input type="text" name="email" id="email_c" class="form-control email">
                                         </div>
                                     </div>
                                 </div>
@@ -191,9 +204,10 @@
                                     </div>
                                 </div>
                                 <div class="col-md-3">
-                                    <div class="form-group">
+                                    <div class="form-group form-float">
                                         <div class="form-line">
-                                            <input type="text" name="tel_movil" id="tel_movil_c" class="form-control" placeholder="Teléfono">
+                                            <label class="form-label">Teléfono</label>
+                                            <input type="text" name="tel_movil" id="tel_movil_c" class="form-control">
                                         </div>
                                     </div>
                                 </div>

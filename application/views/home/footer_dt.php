@@ -16,6 +16,12 @@
 <!-- Bootstrap Core Js -->
 <script src="<?= base_url() ?>plugins/bootstrap/js/bootstrap.js"></script>
 
+<!-- Moment Plugin Js -->
+<script src="<?= base_url() ?>plugins/momentjs/moment.js"></script>
+
+<!-- Bootstrap Material Datetime Picker Plugin Js -->
+<script src="<?= base_url() ?>plugins/bootstrap-material-datetimepicker/js/bootstrap-material-datetimepicker.js"></script>
+
 <!-- Slimscroll Plugin Js -->
 <script src="<?= base_url() ?>plugins/jquery-slimscroll/jquery.slimscroll.js"></script>
 
@@ -26,6 +32,30 @@
 <script src="<?= base_url() ?>js/admin.js"></script>
 <?php if($this->uri->segment(1)=='clientes') {?>
     <script src="<?= base_url() ?>js/clientes.js"></script>
+<?php };?>
+<?php if($this->uri->segment(1)=='tipo_persona') {?>
+      <script src="<?= base_url() ?>js/tipo_persona.js"></script>
+<?php };?>
+<?php if($this->uri->segment(1)=='empleados') {?>
+      <script src="<?= base_url() ?>js/empleados.js"></script>
+<?php };?>
+<?php if($this->uri->segment(1)=='tipo_habitacion') {?>
+      <script src="<?= base_url() ?>js/tipo_habitacion.js"></script>
+<?php };?>
+<?php if($this->uri->segment(1)=='habitacion') {?>
+      <script src="<?= base_url() ?>js/habitacion.js"></script>
+<?php };?>
+<?php if($this->uri->segment(1)=='ubigeo') {?>
+      <script src="<?= base_url() ?>js/ubigeo.js"></script>
+<?php };?>
+<?php if($this->uri->segment(1)=='servicios') {?>
+      <script src="<?= base_url() ?>js/servicios.js"></script>
+<?php };?>
+<?php if($this->uri->segment(1)=='ofertas') {?>
+      <script src="<?= base_url() ?>js/ofertas.js"></script>
+<?php };?>
+<?php if($this->uri->segment(1)=='area') {?>
+      <script src="<?= base_url() ?>js/area.js"></script>
 <?php };?>
 <?php if($this->uri->segment(1)=='cargo') {?>
     <script src="<?= base_url() ?>js/cargo.js"></script>
@@ -51,6 +81,38 @@
 <?php if($this->uri->segment(1)=='forma_pago') {?>
     <script src="<?= base_url() ?>js/forma_pago.js"></script>
 <?php };?>
+<?php if($this->uri->segment(1)=='caja') {?>
+      <script src="<?= base_url() ?>js/caja.js"></script>
+<?php }; ?>
+
+<?php if($this->uri->segment(1)=='caja_persona') {?>
+      <script src="<?= base_url() ?>js/caja_persona.js"></script>
+<?php }; ?>
+
+<?php if($this->uri->segment(1)=='tipo_transaccion') {?>
+      <script src="<?= base_url() ?>js/tipo_transaccion.js"></script>
+<?php }; ?>
+
+<?php if($this->uri->segment(1)=='parametro') {?>
+      <script src="<?= base_url() ?>js/parametro.js"></script>
+<?php }; ?>
+
+<?php if($this->uri->segment(1)=='modulo') {?>
+      <script src="<?= base_url() ?>js/modulo.js"></script>
+<?php }; ?>
+
+<?php if($this->uri->segment(1)=='perfil') {?>
+      <script src="<?= base_url() ?>js/perfil.js"></script>
+<?php }; ?>
+
+<?php if($this->uri->segment(1)=='acceso') {?>
+      <script src="<?= base_url() ?>js/acceso.js"></script>
+<?php }; ?>
+
+<?php if($this->uri->segment(1)=='detalle_persona_perfil') {?>
+      <script src="<?= base_url() ?>js/detalle_persona_perfil.js"></script>
+<?php }; ?>
+
 <script src="<?= base_url() ?>js/pages/tables/jquery-datatable.js"></script>
 
 <!-- Input Mask Plugin Js -->

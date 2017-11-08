@@ -22,18 +22,18 @@
                     </div>
                     <div class="body">
                         <div class="table-responsive">
-                            <table id="dt_table" class="table table-bordered table-striped table-hover dataTable">
+                            <table id="dt_table" class="table table-bordered table-striped table-hover dataTable" width="100%">
                                 <thead>
                                     <tr>
                                         <th>Codigo</th>
                                         <th>Marca</th>
                                         <th>Tipo de Producto</th>
                                         <th>Producto</th>
-                                        <th>Descricion</th>
-                                        <th>e-Precio</th>
-                                        <th> Stock</th>
-                                        <th> Stock Minimo</th>
-                                        <th> Stock Maximo</th>
+                                        <th>Descripcion</th>
+                                        <th>Precio</th>
+                                        <th>Stock</th>
+                                        <th>Stock Minimo</th>
+                                        <th>Stock Maximo</th>
                                         <th>Acción</th>
                                     </tr>
                                 </thead>
@@ -55,9 +55,10 @@
                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                               <div class="row clearfix">
                                 <div class="col-md-4">
-                                    <div class="form-group">
+                                    <div class="form-group form-float">
                                         <div class="form-line">
-                                            <input type="number" name="cod_producto" id="cod_producto" class="form-control" placeholder="Codigo">
+                                            <label class="form-label">Código</label>
+                                            <input type="number" name="cod_producto" id="cod_producto" class="form-control">
                                         </div>
                                     </div>
                                 </div>
@@ -80,43 +81,47 @@
                               </div>
                               <div class="row clearfix">
                                 <div class="col-md-4">
-                                    <div class="form-group">
+                                    <div class="form-group form-float">
                                         <div class="form-line">
-                                            <input type="text" name="producto" id="producto" class="form-control" placeholder="Producto">
+                                            <label class="form-label">Producto</label>
+                                            <input type="text" name="producto" id="producto" class="form-control">
                                         </div>
                                     </div>
                                 </div><div class="col-md-4">
-                                    <div class="form-group">
+                                    <div class="form-group form-float">
                                         <div class="form-line">
-                                            <input type="text" name="descripcion" id="descripcion" class="form-control" placeholder="Descricion">
+                                            <label class="form-label">Descripcion</label>
+                                            <input type="text" name="descripcion" id="descripcion" class="form-control">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group form-float">
+                                        <div class="form-line">
+                                            <label class="form-label">Precio (s/.)</label>
+                                            <input type="text" name="precio_producto" id="precio_producto" class="form-control">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group form-float">
+                                        <div class="form-line">
+                                            <label class="form-label">Stock actual</label>
+                                            <input type="text" name="stock_producto" id="stock_producto" class="form-control">
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <div class="form-line">
-                                            <input type="text" name="precio_producto" id="precio_producto" class="form-control" placeholder='Precio Producto'>
+                                            <input type="text" name="stock_minimo" id="stock_minimo" class="form-control email">
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <div class="form-line">
-                                            <input type="text" name="stock_producto" id="stock_producto" class="form-control" placeholder="Stock Producto">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="form-group">
-                                        <div class="form-line">
-                                            <input type="text" name="stock_minimo" id="stock_minimo" class="form-control email" placeholder="Stock Minimo">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="form-group">
-                                        <div class="form-line">
-                                            <input type="text" name="stock_maximo" id="stock_maximo" class="form-control email" placeholder="Stock Maximo">
+                                            <input type="text" name="stock_maximo" id="stock_maximo" class="form-control email">
                                         </div>
                                     </div>
                                 </div>
@@ -144,7 +149,7 @@
                               <div class="col-md-4">
                                   <div class="form-group">
                                       <div class="form-line">
-                                          <input type="number" name="cod_producto" id="cod_producto_c" class="form-control" placeholder="Codigo">
+                                          <input type="number" name="cod_producto" id="cod_producto_c" class="form-control">
                                       </div>
                                   </div>
                               </div>
@@ -169,41 +174,41 @@
                               <div class="col-md-4">
                                   <div class="form-group">
                                       <div class="form-line">
-                                          <input type="text" name="producto" id="producto_c" class="form-control" placeholder="Producto">
+                                          <input type="text" name="producto" id="producto_c" class="form-control">
                                       </div>
                                   </div>
                               </div><div class="col-md-4">
                                   <div class="form-group">
                                       <div class="form-line">
-                                          <input type="text" name="descripcion" id="descripcion_c" class="form-control" placeholder="Descricion">
+                                          <input type="text" name="descripcion" id="descripcion_c" class="form-control">
                                       </div>
                                   </div>
                               </div>
                               <div class="col-md-4">
                                   <div class="form-group">
                                       <div class="form-line">
-                                          <input type="text" name="precio_producto" id="precio_producto_c" class="form-control" placeholder='Precio Producto'>
+                                          <input type="text" name="precio_producto" id="precio_producto_c" class="form-control">
                                       </div>
                                   </div>
                               </div>
                               <div class="col-md-4">
                                   <div class="form-group">
                                       <div class="form-line">
-                                          <input type="text" name="stock_producto" id="stock_producto_c" class="form-control" placeholder="Stock Producto">
+                                          <input type="text" name="stock_producto" id="stock_producto_c" class="form-control">
                                       </div>
                                   </div>
                               </div>
                               <div class="col-md-4">
                                   <div class="form-group">
                                       <div class="form-line">
-                                          <input type="text" name="stock_minimo" id="stock_minimo_c" class="form-control email" placeholder="Stock Minimo">
+                                          <input type="text" name="stock_minimo" id="stock_minimo_c" class="form-control email">
                                       </div>
                                   </div>
                               </div>
                               <div class="col-md-4">
                                   <div class="form-group">
                                       <div class="form-line">
-                                          <input type="text" name="stock_maximo" id="stock_maximo_c" class="form-control email" placeholder="Stock Maximo">
+                                          <input type="text" name="stock_maximo" id="stock_maximo_c" class="form-control email">
                                       </div>
                                   </div>
                               </div>

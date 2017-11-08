@@ -28,7 +28,9 @@
                         &copy; 2016 - 2017 <a href="javascript:void(0);">&nbsp;&nbsp;UNSM - FISI</a>.
                     </div>
                     <div class="version">
-                        <b>Version: </b> 2.0.5
+                        <b>Version: </b> 2.0.5 &nbsp;
+                        <b>|</b>
+                        <b>&nbsp;&nbsp;Motor de BD: </b> <?= $motor_db; ?>
                     </div>
                 </div>
                 <!-- #Footer -->

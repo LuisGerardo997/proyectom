@@ -11,6 +11,15 @@ class Clientes extends CI_Controller {
   public function index()
   {
     if($this->session->userdata('username')){
+            $driverdb = $this->db->dbdriver;
+            if ($driverdb == 'mysqli'){
+                $db_name = 'MySQL';
+            }elseif ($driverdb == 'postgre') {
+                $db_name = 'PostgreSQL';
+            }
+            $db_data = array(
+                'motor_db' => $db_name,
+            );
             $user = $this->session->userdata('username');
             $nombre = $this->session->userdata('nombres');
             $apellido_p = $this->session->userdata('apellido_p');
@@ -32,7 +41,7 @@ class Clientes extends CI_Controller {
             if($this->session->userdata['cargo'] == 'Administrador'){
                 $this->load->view('home/body3');
             }
-      $this->load->view('home/main');
+      $this->load->view('home/main',$db_data);
       $data1 = $this->Clientes_model->select1();
       $resulta = array(
         'ciudad' => $data1,

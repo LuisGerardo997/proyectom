@@ -21,14 +21,14 @@
                     </div>
                     <div class="body">
                         <div class="table-responsive">
-                            <table id="dt_table" class="table table-bordered table-striped table-hover dataTable">
+                            <table id="dt_table" class="table table-bordered table-striped table-hover dataTable" width="100%">
                                 <thead>
                                     <tr>
                                         <th> Codigo </th>
                                         <th> Area</th>
                                         <th> Descripcion</th>
                                         <th> Cargo</th>
-                                        <th> Acción</th>
+                                        <th width="1px"> Acción</th>
                                     </tr>
                                 </thead>
                                 <tbody></tbody>
@@ -48,9 +48,10 @@
                         <div class="row clearfix">
                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                 <div class="col-md-4">
-                                    <div class="form-group">
-                                        <div class="form-line">
-                                            <input type="number" name="cod_cargo" id="cod_cargo" class="form-control" placeholder="Codigo">
+                                    <div class="form-group form-float">
+                                        <div class="form-line focused">
+                                            <label class="form-label">Código</label>
+                                            <input disabled type="number" name="cod_cargo" id="cod_cargo" class="form-control">
                                         </div>
                                     </div>
                                 </div>
@@ -63,16 +64,18 @@
                                     </select>
                                 </div>
                                 <div class="col-md-4">
-                                    <div class="form-group">
-                                        <div class="form-line">
-                                            <input type="text" name="descripcion" id="descripcion" class="form-control" placeholder="Descripcion">
+                                    <div class="form-group form-float">
+                                        <div class="form-line focused">
+                                            <label class="form-label">Descripción</label>
+                                            <input type="text" name="descripcion" id="descripcion" class="form-control">
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
-                                    <div class="form-group">
-                                        <div class="form-line">
-                                            <input type="text" name="cargo" id="cargo" class="form-control" placeholder="Cargo">
+                                    <div class="form-group form-float">
+                                        <div class="form-line focused">
+                                            <label class="form-label">Cargo</label>
+                                            <input type="text" name="cargo" id="cargo" class="form-control">
                                         </div>
                                     </div>
                                 </div>
@@ -98,9 +101,10 @@
                           <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                           <div class="row clearfix">
                             <div class="col-md-6">
-                                <div class="form-group">
+                                <div class="form-group form-float">
                                     <div class="form-line">
-                                        <input type="number" name="cod_cargo" id="cod_cargo_c" class="form-control" placeholder="Codigo">
+                                        <label class="form-label">Cargo</label>
+                                        <input type="number" name="cod_cargo" id="cod_cargo_c" class="form-control">
                                     </div>
                                 </div>
                             </div>
@@ -115,16 +119,18 @@
                             </div>
                         <div class="row clearfix">
                             <div class="col-md-6">
-                                <div class="form-group">
+                                <div class="form-group form-float">
                                     <div class="form-line">
-                                        <input type="text" name="descripcion" id="descripcion_c" class="form-control" placeholder="Descripcion">
+                                        <label class="form-label">Descripción</label>
+                                        <input type="text" name="descripcion" id="descripcion_c" class="form-control">
                                     </div>
                                 </div>
                             </div>
                         <div class="col-md-6">
-                            <div class="form-group">
+                            <div class="form-group form-float">
                                 <div class="form-line">
-                                    <input type="text" name="cargo" id="cargo_c" class="form-control" placeholder="Cargo">
+                                    <label class="form-label">Cargo</label>
+                                    <input type="text" name="cargo" id="cargo_c" class="form-control">
                                 </div>
                             </div>
                         </div>

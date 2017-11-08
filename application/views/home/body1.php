@@ -20,13 +20,13 @@
                     </a>
                     <ul class="ml-menu">
                         <li>
-                            <a href="pages/widgets/cards/basic.html">Tipo de personas</a>
+                            <a href="<?= base_url() ?>tipo_persona">Tipo de personas</a>
                         </li>
                         <li>
                             <a href="<?= base_url() ?>clientes">Clientes</a>
                         </li>
                         <li>
-                            <a href="pages/widgets/cards/no-header.html">Empleados</a>
+                            <a href="<?= base_url() ?>empleados">Empleados</a>
                         </li>
                     </ul>
                 </li>
@@ -36,10 +36,10 @@
                     </a>
                     <ul class="ml-menu">
                         <li>
-                            <a href="pages/widgets/infobox/infobox-1.html">Tipos de habitación</a>
+                            <a href="<?= base_url()?>tipo_habitacion">Tipos de habitación</a>
                         </li>
                         <li>
-                            <a href="pages/widgets/infobox/infobox-1.html">Habitaciones</a>
+                            <a href="<?= base_url()?>habitacion">Habitaciones</a>
                         </li>
                     </ul>
                 </li>

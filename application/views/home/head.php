@@ -18,6 +18,10 @@
 
   <link href="<?= base_url() ?>css/material-icons.css" rel="stylesheet">
 
+  <!-- Bootstrap Material Datetime Picker Css -->
+  <link href="<?= base_url() ?>plugins/bootstrap-material-datetimepicker/css/bootstrap-material-datetimepicker.css" rel="stylesheet" />
+
+
   <!-- Bootstrap Select Css
   <link href="<?= base_url() ?>plugins/bootstrap-select/css/bootstrap-select.css" rel="stylesheet" />
 -->

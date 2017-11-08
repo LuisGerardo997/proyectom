@@ -22,13 +22,13 @@
                     </div>
                     <div class="body">
                         <div class="table-responsive">
-                            <table id="dt_table" class="table table-bordered table-striped table-hover dataTable">
+                            <table id="dt_table" class="table table-bordered table-striped table-hover dataTable" width="100%">
                                 <thead>
                                     <tr>
-                                        <th>Codigo</th>
+                                        <th width="15%">Codigo</th>
                                         <th>Tipo de Producto</th>
                                         <th> Descricion</th>
-                                        <th> Accion</th>
+                                        <th width="1px"> Accion</th>
                                     </tr>
                                 </thead>
                                 <tbody></tbody>
@@ -48,23 +48,26 @@
                         <div class="row clearfix">
                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                 <div class="col-md-4">
-                                    <div class="form-group">
+                                    <div class="form-group form-float">
                                         <div class="form-line">
-                                            <input type="number" name="cod_tipo_producto" id="cod_tipo_producto" class="form-control" placeholder="Codigo">
+                                            <label class="form-label">Código</label>
+                                            <input type="number" name="cod_tipo_producto" id="cod_tipo_producto" class="form-control">
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
-                                    <div class="form-group">
+                                    <div class="form-group form-float">
                                         <div class="form-line">
-                                            <input type="text" name="tipo_producto" id="tipo_producto" class="form-control" placeholder="Tipo de Producto">
+                                            <label class="form-label">Tipo de producto</label>
+                                            <input type="text" name="tipo_producto" id="tipo_producto" class="form-control">
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
-                                    <div class="form-group">
+                                    <div class="form-group form-float">
                                         <div class="form-line">
-                                            <input type="text" name="descripcion" id="descripcion" class="form-control" placeholder="Descripcion">
+                                            <label class="form-label">Descripción</label>
+                                            <input type="text" name="descripcion" id="descripcion" class="form-control">
                                         </div>
                                     </div>
                                 </div>
@@ -88,23 +91,26 @@
                         <div class="row clearfix">
                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                               <div class="col-md-4">
-                                  <div class="form-group">
+                                  <div class="form-group form-float">
                                       <div class="form-line">
-                                          <input type="number" name="cod_tipo_producto" id="cod_tipo_producto_c" class="form-control" placeholder="Codigo">
+                                          <label class="form-label">Código</label>
+                                          <input type="number" name="cod_tipo_producto" id="cod_tipo_producto_c" class="form-control">
                                       </div>
                                   </div>
                               </div>
                               <div class="col-md-4">
-                                  <div class="form-group">
+                                  <div class="form-group form-float">
                                       <div class="form-line">
-                                          <input type="text" name="tipo_producto" id="tipo_producto_c" class="form-control" placeholder="Tipo de Producto">
+                                          <label class="form-label">Tipo de producto</label>
+                                          <input type="text" name="tipo_producto" id="tipo_producto_c" class="form-control">
                                       </div>
                                   </div>
                               </div>
                               <div class="col-md-4">
-                                  <div class="form-group">
+                                  <div class="form-group form-float">
                                       <div class="form-line">
-                                          <input type="text" name="descripcion" id="descripcion_c" class="form-control" placeholder="Descripcion">
+                                          <label class="form-label">Descripción</label>
+                                          <input type="text" name="descripcion" id="descripcion_c" class="form-control">
                                       </div>
                                   </div>
                               </div>

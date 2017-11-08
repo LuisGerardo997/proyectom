@@ -23,7 +23,7 @@
                                         <a href="<?php base_url() ?>caja">Caja</a>
                                     </li>
                                     <li>
-                                        <a href="<?php base_url() ?>encargado">Encargado</a>
+                                        <a href="<?php base_url() ?>caja_persona">Encargado</a>
                                     </li>
                                 </ul>
                             </li>
@@ -33,7 +33,7 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="<?php base_url() ?>parametros">
+                                <a href="<?php base_url() ?>parametro">
                                     <span>Parámetros</span>
                                 </a>
                             </li>
@@ -41,9 +41,10 @@
                                 <a href="javascript:void(0);" class="menu-toggle">
                                     <span>Seguridad</span>
                                 </a>
-                                <ul class="ml-menu"><li><a href="">Módulos</a></li>
-                                    <li><a href="<?php base_url() ?>perfiles">Perfiles</a></li>
-                                    <li><a href="<?php base_url() ?>accesos">Accesos</a></li>
-                                    <li><a href="<?php base_url() ?>privilegios">Privilegios</a></li>
+                                <ul class="ml-menu">
+                                    <li><a href="<?= base_url() ?>modulo">Módulos</a></li>
+                                    <li><a href="<?php base_url() ?>perfil">Perfiles</a></li>
+                                    <li><a href="<?php base_url() ?>acceso">Accesos</a></li>
+                                    <li><a href="<?php base_url() ?>detalle_persona_perfil">Privilegios</a></li>
                                 </ul>
                             </li>
