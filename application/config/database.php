@@ -6,12 +6,12 @@ $query_builder=TRUE;
 
 $db['default']=array(
 'dsn'=>'',
-'port'=>'5432',
-'hostname'=>'127.0.0.1',
-'username'=>'postgres',
+'port'=>'1433',
+'hostname'=>'localhost',
+'username'=>'sa',
 'password' =>'12345',
 'database' =>'residencial_rio_db',
-'dbdriver' =>'postgre',
+'dbdriver' =>'sqlsrv',
 'dbprefix' =>'',
 'pconnect' =>FALSE,
 'db_debug'=>(ENVIRONMENT !== 'production'),
