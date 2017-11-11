@@ -1,5 +1,5 @@
 $(document).on('ready',function(){
-    var base_url = 'http://localhost/proyectom/';
+    
 $('.datepicker').bootstrapMaterialDatePicker({
     format: 'YYYY-MM-DD',
     clearButton: true,
@@ -44,14 +44,14 @@ editClient = function(fecha_inicio, cod_caja, nro_caja, cod_persona, apellido_pa
     $('#fecha_inicio').val(fecha_inicio);
     $("#cod_caja option:contains('"+nro_caja+"')").attr("selected",true);
     $("#cod_persona option:contains('"+apellido_paterno+" "+apellido_materno+" "+nombres+"')").attr("selected",true);
-    
+
     enviar = function(){
         $.post(base_url+"caja_persona/actualizar",{
             fecha_inicio:$('#fecha_inicio').val(),
             cod_caja:$('#cod_caja').val(),
             cod_persona:$('#cod_persona').val()
         },
-        
+
         function(data){
             if (data == 1){
                 alert('Los cambios se han realizado correctamente');

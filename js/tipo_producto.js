@@ -1,5 +1,5 @@
 $(document).on('ready',function(){
-    var base_url = 'http://localhost/proyectom/';
+
 $('#dt_table').DataTable({
     'paging':true,
     'info':true,

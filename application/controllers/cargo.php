@@ -16,6 +16,8 @@ class Cargo extends CI_Controller {
                 $db_name = 'MySQL';
             }elseif ($driverdb == 'postgre') {
                 $db_name = 'PostgreSQL';
+            }elseif ($driverdb == 'sqlsrv') {
+                $db_name = 'MS SQL Server';
             }
             $db_data = array(
                 'motor_db' => $db_name,

@@ -1,5 +1,5 @@
 $(document).on('ready',function(){
-  var base_url = 'http://localhost/proyectom/';
+
     $('.datepicker').bootstrapMaterialDatePicker({
         format: 'YYYY/MM/DD',
         clearButton: true,
@@ -14,7 +14,7 @@ $('#dt_table').DataTable({
     'filter':true,
     'stateSave':true,
     'ajax':{
-        "url":"http://localhost/proyectom/ofertas/consultar",
+        "url":base_url+"proyectom/ofertas/consultar",
         "type":"POST",
         dataSrc: ''
     },

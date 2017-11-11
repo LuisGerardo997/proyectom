@@ -1,5 +1,5 @@
 $(document).on('ready',function(){
-    var base_url = 'http://localhost/proyectom/';
+
 $('#dt_table').DataTable({
     'paging':true,
     'info':true,
@@ -35,14 +35,14 @@ editClient = function(cod_parametro, descripcion, valor){
     $('#cod_parametro').val(cod_parametro);
     $('#descripcion').val(descripcion);
     $('#valor').val(valor);
-    
+
     enviar = function(){
         $.post(base_url+"parametro/actualizar",{
             cod_parametro:$('#cod_parametro').val(),
             descripcion:$('#descripcion').val(),
             valor:$('#valor').val(),
         },
-        
+
         function(data){
             if (data == 1){
                 alert('Los cambios se han realizado correctamente');

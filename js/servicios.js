@@ -1,14 +1,14 @@
 $(document).on('ready',function(){
-    var base_url = 'http://localhost/proyectom/';
 
-    
+
+
 $('#dt_table').DataTable({
     'paging':true,
     'info':true,
     'filter':true,
     'stateSave':true,
     'ajax':{
-        "url":"http://localhost/proyectom/servicios/consultar",
+        "url":base_url+"servicios/consultar",
         "type":"POST",
         dataSrc: ''
     },
@@ -46,7 +46,7 @@ editClient = function(cod_servicio, servicio, precio){
             servicio:$('#servicio').val(),
             precio:$('#precio').val(),
         },
-               
+
         function(data){
             if (data == 1){
                 alert('El registro fue guardado correctamente');
@@ -84,7 +84,5 @@ insertdat = function(cod_servicio, servicio, precio){
         }
         alert(data);
     });
-};   
+};
 });
-
-

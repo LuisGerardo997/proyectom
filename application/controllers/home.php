@@ -26,10 +26,12 @@ class Home extends CI_Controller {
             $apellido_m = $this->session->userdata('apellido_m');
             $email = $this->session->userdata('email');
             $foto_p = $this->session->userdata('foto_p');
+            $address = $this->session->userdata('address');
             $data = array(
                 'nombre' => $nombre,
                 'apellido_p' => $apellido_p,
                 'email' => $email,
+                'addres' => $address,
             );
             $this->load->view('home/head',$data);
             if (($this->session->userdata['cargo'] == 'Recepcionista')||($this->session->userdata['cargo'] == 'Administrador')){

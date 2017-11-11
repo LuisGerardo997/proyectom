@@ -1,5 +1,5 @@
 $(document).on('ready',function(){
-    var base_url = 'http://localhost/proyectom/';
+
 
 $('#dt_table').DataTable({
     'paging':true,
@@ -7,7 +7,7 @@ $('#dt_table').DataTable({
     'filter':true,
     'stateSave':true,
     'ajax':{
-        "url":"http://localhost/proyectom/tipo_persona/consultar",
+        "url":base_url+"tipo_persona/consultar",
         "type":"POST",
         dataSrc: ''
     },
@@ -35,14 +35,14 @@ $('#dt_table').DataTable({
 editClient = function(cod_tipo_persona, tipo_persona){
     $('#cod_tipo_persona').val(cod_tipo_persona);
     $('#tipo_persona').val(tipo_persona);
-    
+
     enviar = function(){
         $.post(base_url+"tipo_persona/actualizar",
         {
             cod_tipo_persona:$('#cod_tipo_persona').val(),
             tipo_persona:$('#tipo_persona').val(),
         },
-               
+
         function(data){
             if (data == 1){
                 alert('El registro fue guardado correctamente');
@@ -53,7 +53,7 @@ editClient = function(cod_tipo_persona, tipo_persona){
         });
     }
 };
-    
+
 deldat = function(cod_tipo_persona){
     $.post(base_url+'tipo_persona/eliminar',
     {
@@ -80,5 +80,5 @@ insertdat = function(cod_tipo_persona, tipo_persona){
         }
         alert(data);
     });
-};   
+};
 });

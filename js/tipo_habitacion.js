@@ -1,5 +1,5 @@
 $(document).on('ready',function(){
-    var base_url = 'http://localhost/proyectom/';
+
 
 $('#dt_table').DataTable({
     'paging':true,
@@ -7,7 +7,7 @@ $('#dt_table').DataTable({
     'filter':true,
     'stateSave':true,
     'ajax':{
-        "url":"http://localhost/proyectom/tipo_habitacion/consultar",
+        "url":base_url+"tipo_habitacion/consultar",
         "type":"POST",
         dataSrc: ''
     },
@@ -95,4 +95,3 @@ insertdat = function(cod_tipo_habitacion, tipo_habitacion, descripcion, precio_t
 };
 
 });
-

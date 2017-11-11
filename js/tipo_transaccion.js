@@ -1,5 +1,5 @@
 $(document).on('ready',function(){
-    var base_url = 'http://localhost/proyectom/';
+
 $('#dt_table').DataTable({
     'paging':true,
     'info':true,
@@ -35,14 +35,14 @@ editClient = function(cod_tipo_transaccion, tipo_transaccion, descripcion){
     $('#cod_tipo_transaccion').val(cod_tipo_transaccion);
     $('#tipo_transaccion').val(tipo_transaccion);
     $('#descripcion').val(descripcion);
-    
+
     enviar = function(){
         $.post(base_url+"tipo_transaccion/actualizar",{
             cod_tipo_transaccion:$('#cod_tipo_transaccion').val(),
             tipo_transaccion:$('#tipo_transaccion').val(),
             descripcion:$('#descripcion').val()
         },
-        
+
         function(data){
             if (data == 1){
                 alert('Los cambios se han realizado correctamente');

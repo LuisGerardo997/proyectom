@@ -20,13 +20,13 @@
         </div>
         <div class="body">
           <div class="table-responsive">
-            <table id="dt_table" class="table table-bordered table-striped table-hover dataTable">
+            <table id="dt_table" class="table table-bordered table-striped table-hover dataTable" width="100%">
               <thead>
                 <tr>
                   <th>Codigo de Área</th>
                   <th>Área</th>
                   <th>Descripción</th>
-                  <th>Acción</th>
+                  <th witdh="1px">Acción</th>
                 </tr>
               </thead>
               <tbody></tbody>

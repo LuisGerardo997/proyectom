@@ -1,13 +1,11 @@
 $(document).on('ready',function(){
-        var base_url = 'http://localhost/proyectom/';
-
 $('#dt_table').DataTable({
     'paging':true,
     'info':true,
     'filter':true,
     'stateSave':true,
     'ajax':{
-        "url":"http://localhost/proyectom/area/consultar",
+        "url":base_url+"area/consultar",
         "type":"POST",
         dataSrc: ''
     },
@@ -45,7 +43,7 @@ enviar = function(){
             area:$('#area').val(),
             descripcion:$('#descripcion').val(),
         },
-               
+
         function(data){
             if (data == 1){
                 alert('El registro fue guardado correctamente');
@@ -56,7 +54,7 @@ enviar = function(){
         });
     }
 };
-               
+
 deldat = function(cod_area){
     $.post(base_url+'area/eliminar',
     {
@@ -84,5 +82,5 @@ insertdat = function(cod_area, area, descripcion){
         }
         alert(data);
     });
-};   
+};
 })

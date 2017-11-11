@@ -8,7 +8,6 @@ class Login extends CI_Controller {
     }
 
     public function index(){
-
          if($this->session->userdata('username')){
              header('Location:home');
          }
@@ -34,7 +33,6 @@ class Login extends CI_Controller {
                  $this->load->view('login/sign-in');
              }
      }
-
      public function cerrar_sesion(){
        $this->session->sess_destroy();
        redirect('login','refresh');

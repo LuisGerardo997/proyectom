@@ -1,5 +1,5 @@
 $(document).on('ready',function(){
-        var base_url = 'http://localhost/proyectom/';
+
 
 
 $('#dt_table').DataTable({
@@ -8,7 +8,7 @@ $('#dt_table').DataTable({
     'filter':true,
     'stateSave':true,
     'ajax':{
-        "url":"http://localhost/proyectom/ubigeo/consultar",
+        "url":base_url+"ubigeo/consultar",
         "type":"POST",
         dataSrc: ''
     },
@@ -49,7 +49,7 @@ editClient = function(cod_ciudad, ciudad, provincia, departamento){
             provincia:$('#provincia').val(),
             departamento:$('#departamento').val(),
         },
-               
+
         function(data){
             if (data == 1){
                 alert('El registro fue guardado correctamente');
@@ -88,5 +88,5 @@ insertdat = function(cod_ciudad, ciudad, provincia, departamento){
         }
         alert(data);
     });
-};   
+};
 });

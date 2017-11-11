@@ -1,12 +1,12 @@
 $(document).on('ready',function(){
-    var base_url = 'http://localhost/proyectom/';
+
 $('#dt_table').DataTable({
     'paging':true,
     'info':true,
     'filter':true,
     'stateSave':true,
     'ajax':{
-        "url":"http://localhost/proyectom/modulo/consultar",
+        "url":base_url+"modulo/consultar",
         "type":"POST",
         dataSrc: ''
     },

@@ -1,5 +1,5 @@
 $(document).on('ready',function(){
-    var base_url = 'http://localhost/proyectom/';
+
 $('#dt_table').DataTable({
     'destroy':true,
     'paging':true,
@@ -31,12 +31,12 @@ $('#dt_table').DataTable({
 ],
 "order":[[1, "asc"]],
 });
-    
+
 editClient = function(cod_caja, nro_caja, descripcion){
     $('#cod_caja').val(cod_caja);
     $('#nro_caja').val(nro_caja);
     $('#descripcion').val(descripcion);
-    
+
     enviar = function(){
         $.post(base_url+"caja/actualizar",
         {
@@ -54,7 +54,7 @@ editClient = function(cod_caja, nro_caja, descripcion){
         });
     }
 };
-    
+
 deldat = function(cod_caja){
     $.post(base_url+'caja/eliminar',
     {

@@ -1,12 +1,11 @@
 $(document).on('ready',function(){
-    var base_url = 'http://localhost/proyectom/';
 $('#dt_table').DataTable({
     'paging':true,
     'info':true,
     'filter':true,
     'stateSave':true,
     'ajax':{
-        "url":"http://localhost/proyectom/empleados/consultar",
+        "url":base_url+"empleados/consultar",
         "type":"POST",
         dataSrc: ''
     },
@@ -52,7 +51,7 @@ editClient = function(cod_persona, nombres, apellido_paterno, apellido_materno, 
     $('input:radio[name="genero"][value="'+genero+'"]').prop('checked', true);
     $('#tel_movil').val(tel_movil);
     $("#ciudad option:contains('"+ciudad+"')").attr("selected",true);
-    
+
  enviar = function(){
         $.post(base_url+"empleados/actualizar",
         {

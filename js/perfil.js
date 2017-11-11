@@ -1,5 +1,5 @@
 $(document).on('ready',function(){
-    var base_url = 'http://localhost/proyectom/';
+
 $('#dt_table').DataTable({
     'paging':true,
     'info':true,
@@ -33,13 +33,13 @@ $('#dt_table').DataTable({
 editClient = function(cod_perfil, perfil){
     $('#cod_perfil').val(cod_perfil);
     $('#perfil').val(perfil);
-    
+
     enviar = function(){
         $.post(base_url+"perfil/actualizar",{
             cod_perfil:$('#cod_perfil').val(),
             perfil:$('#perfil').val()
         },
-        
+
         function(data){
             if (data == 1){
                 alert('Los cambios se han realizado correctamente');

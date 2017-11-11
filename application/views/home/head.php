@@ -6,6 +6,9 @@
   <meta http-equiv="X-UA-Compatible" content="IE=Edge">
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <title>Residencial Rio</title>
+  <script>
+    var base_url = '<?php echo base_url() ?>';
+  </script>
 
   <!-- Jquery Core Js -->
   <script src="<?= base_url() ?>plugins/jquery/jquery.min.js"></script>
@@ -14,9 +17,8 @@
   <link rel="icon" href="<?= base_url() ?>images/logo1.ico">
 
   <!-- Google Fonts -->
-  <link href="<?= base_url() ?>css/roboto-font.css" rel="stylesheet" type="text/css">
-
-  <link href="<?= base_url() ?>css/material-icons.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&subset=latin,cyrillic-ext" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" type="text/css">
 
   <!-- Bootstrap Material Datetime Picker Css -->
   <link href="<?= base_url() ?>plugins/bootstrap-material-datetimepicker/css/bootstrap-material-datetimepicker.css" rel="stylesheet" />
@@ -61,7 +63,7 @@
           </div>
         </div>
       </div>
-      <p>Please wait...</p>
+      <p>Espere por favor...</p>
     </div>
   </div>
   <!-- #END# Page Loader -->
@@ -134,7 +136,7 @@
                         <i class="material-icons">delete_forever</i>
                       </div>
                       <div class="menu-info">
-                        <h4><b>Nancy Doe</b> deleted account</h4>
+                        <h4><b>Nancy Doe</b></h4>
                         <p>
                           <i class="material-icons">access_time</i> 3 hours ago
                         </p>
@@ -295,7 +297,7 @@
         </div>
         <div class="info-container">
           <div class="name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><?php echo ($this->session->userdata['nombres'].' '.$this->session->userdata['apellido_p'].' '.$this->session->userdata['apellido_m']); ?></div>
-          <div class="email"><?php echo ($this->session->userdata['cargo']); ?></div>
+          <div class="email"><?php echo $this->session->userdata['cargo'] ?></div>
           <div class="btn-group user-helper-dropdown">
             <i class="material-icons" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">keyboard_arrow_down</i>
             <ul class="dropdown-menu pull-right">

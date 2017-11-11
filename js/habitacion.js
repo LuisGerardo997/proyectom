@@ -1,35 +1,11 @@
 $(document).on('ready',function(){
-        var base_url = 'http://localhost/proyectom/';
-    /*$('#dt_table tbody').html('');
-    $.post(base_url+"clientes/consultar",
-    function(data){
-    alert(data);
-    var p = JSON.parse(data);
-    $.each(p, function(i, item){
-    $('#dt_table tbody').append(
-    '<tr>'+
-    '   <td>1</td>'+
-    '   <td>'+item.nombre+'</td>'+
-    '   <td>'+item.apellido_paterno+'</td>'+
-    '   <td>'+item.apellido_materno+'</td>'+
-    '   <td>'+item.ruc+'</td>'+
-    '   <td>'+item.email+'</td>'+
-    '   <td>'+item.genero+'</td>'+
-    '   <td>'+item.tel_movil+'</td>'+
-    '   <td>'+item.ciudad+'</td>'+
-    '   <td><button href="#" type="button" class="btn btn-default waves-effect">Crear</button></td>'+
-    '</tr>'
-);
-});
-});*/
-
 $('#dt_table').DataTable({
     'paging':true,
     'info':true,
     'filter':true,
     'stateSave':true,
     'ajax':{
-        "url":"http://localhost/proyectom/habitacion/consultar",
+        "url":base_url+"habitacion/consultar",
         "type":"POST",
         dataSrc: ''
     },
@@ -59,7 +35,7 @@ editClient = function(cod_habitacion, tipo_habitacion, piso){
     $('#cod_habitacion').val(cod_habitacion);
     $("#tipo_habitacion option:contains('"+tipo_habitacion+"')").attr("selected",true);
     $('#piso').val(piso);
-   
+
     enviar = function(){
         $.post(base_url+"habitacion/actualizar",
         {
@@ -109,4 +85,3 @@ insertdat = function(cod_habitacion, tipo_habitacion, piso){
 };
 
 });
-
