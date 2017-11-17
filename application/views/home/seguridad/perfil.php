@@ -19,9 +19,9 @@
                             <table id="dt_table" class="table table-bordered table-striped table-hover dataTable">
                                 <thead>
                                     <tr>
-                                        <th>Código</th>
+                                        <th width="15%">Código</th>
                                         <th>Perfil</th>
-                                        <th>Acción</th>
+                                        <th width="1px">Acción</th>
                                     </tr>
                                 </thead>
                             </table>
@@ -84,7 +84,7 @@
                                     <div class="form-group form-float">
                                         <div class="form-line">
                                           <label class="form-label">Código</label>
-                                            <input type="text" name="cod_perfil_c" id="cod_perfil_c" class="form-control">
+                                            <input type="text" disabled value="<?base_url() ?><?php echo $this->Perfil_model->num_rows() ?>" name="cod_perfil_c" id="cod_perfil_c" class="form-control">
                                         </div>
                                     </div>
                                 </div>

@@ -23,6 +23,9 @@
 
     <!-- Custom Css -->
     <link href="<?=base_url() ?>css/style.css" rel="stylesheet">
+
+    <!-- Jquery Core Js -->
+    <script src="<?=base_url() ?>plugins/jquery/jquery.min.js"></script>
 </head>
 
 <body class="login-page">
@@ -40,7 +43,7 @@
                             <i class="material-icons">person</i>
                         </span>
                         <div class="form-line">
-                            <input type="text" class="form-control" name="user" placeholder="Nombre de usuario" required autofocus>
+                            <input type="text" class="form-control" name="user" id="user" placeholder="Nombre de usuario" required autofocus>
                         </div>
                     </div>
                     <div class="input-group">
@@ -48,9 +51,10 @@
                             <i class="material-icons">lock</i>
                         </span>
                         <div class="form-line">
-                            <input type="password" class="form-control" name="pass" placeholder="Contraseña" required>
+                            <input type="password" class="form-control" name="pass" id="pass" placeholder="Contraseña" required>
                         </div>
                     </div>
+                    <div id="field_perfil"></div>
                     <div class="row">
                         <div class="col-xs-8 p-t-5">
                             <input type="checkbox" name="rememberme" id="rememberme" class="filled-in chk-col-pink">
@@ -61,7 +65,7 @@
                         </div>
                     </div>
                         <div class="col-xs-12 align-center">
-                            <a href="forgot-password.html">Olvidaste tu contraseña?</a>
+                            <a href="forgot-password.html">Olvidaste tu contraseñaxd?</a>
                         </div>
                         <br>
                     </div>
@@ -69,9 +73,35 @@
             </div>
         </div>
     </div>
+    <script>
+    var base_url = '<?php echo base_url(); ?>';
+      $(document).ready(function(){
+        var field = document.getElementById(field_perfil);
+        field_perfil.setAttribute("style","display:none");
+        $('#pass').on('focus',function(){
+            var username = $('#user').val();
+            $.post(base_url+'login/perfiles',
+            {
+                user:username,
+            },
+            function(data){
+                field_perfil.setAttribute("style","display:block");
+                var datos = eval(data);
+                html = '<div class="input-group">';
+                html += '<select name="perfil" class="form-control">';
+                for(var i = 0; i < datos.length; i++){
+                    html += '<option value="'+datos[i]['cod_perfil']+'">'+datos[i]['perfil']+'</option>"';
+                }
+                html += "</select></div>";
+                $('#field_perfil').html(html);
+            })
 
-    <!-- Jquery Core Js -->
-    <script src="<?=base_url() ?>plugins/jquery/jquery.min.js"></script>
+        })
+
+        //if (username == )
+      })
+    </script>
+
 
     <!-- Bootstrap Core Js -->
     <script src="<?=base_url() ?>plugins/bootstrap/js/bootstrap.js"></script>

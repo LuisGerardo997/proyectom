@@ -30,7 +30,8 @@ $('#dt_table').DataTable({
         }
     }
 ],
-"order":[[1, "asc"]],
+"order":[[0, "asc"]],
+'language':español
 });
 
 editClient = function(cod_perfil, perfil, cod_persona, nombres, apellido_paterno, apellido_materno){

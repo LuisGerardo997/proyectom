@@ -28,7 +28,8 @@ $('#dt_table').DataTable({
         }
     }
 ],
-"order":[[1, "asc"]],
+"order":[[0, "asc"]],
+'language':español
 });
 
 editClient = function(cod_tipo_transaccion, tipo_transaccion, descripcion){

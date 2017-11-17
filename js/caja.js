@@ -30,6 +30,7 @@ $('#dt_table').DataTable({
     }
 ],
 "order":[[1, "asc"]],
+'language':español
 });
 
 editClient = function(cod_caja, nro_caja, descripcion){

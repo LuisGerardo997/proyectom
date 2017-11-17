@@ -107,6 +107,7 @@
 
 <?php if($this->uri->segment(1)=='acceso') {?>
       <script src="<?= base_url() ?>js/acceso.js"></script>
+      <script src="<?= base_url() ?>plugins/multi-select/js/jquery.multi-select.js"></script>
 <?php }; ?>
 
 <?php if($this->uri->segment(1)=='detalle_persona_perfil') {?>

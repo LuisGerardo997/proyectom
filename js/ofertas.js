@@ -14,7 +14,7 @@ $('#dt_table').DataTable({
     'filter':true,
     'stateSave':true,
     'ajax':{
-        "url":base_url+"proyectom/ofertas/consultar",
+        "url":base_url+"ofertas/consultar",
         "type":"POST",
         dataSrc: ''
     },
@@ -39,6 +39,7 @@ $('#dt_table').DataTable({
     }
 ],
 "order":[[0, "asc"]],
+'language':español
 });
 
 

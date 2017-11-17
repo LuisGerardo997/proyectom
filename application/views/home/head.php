@@ -12,7 +12,7 @@
 
   <!-- Jquery Core Js -->
   <script src="<?= base_url() ?>plugins/jquery/jquery.min.js"></script>
-
+  <script src="<?= base_url() ?>js/idioma.js"></script>
   <!-- Favicon-->
   <link rel="icon" href="<?= base_url() ?>images/logo1.ico">
 
@@ -44,6 +44,7 @@
 
 <!-- Custom Css -->
 <link href="<?= base_url() ?>css/style.css" rel="stylesheet">
+<link href="<?= base_url() ?>plugins/multi-select/css/multi-select.css" rel="stylesheet">
 
 <!-- AdminBSB Themes. You can choose a theme from css/themes instead of get all themes -->
 <link href="<?= base_url() ?>css/themes/all-themes.css" rel="stylesheet" />
@@ -312,4 +313,13 @@
           </div>
         </div>
       </div>
-      <!-- #User Info -->
+      <!-- #User Info --><!-- Menu -->
+      <div class="menu">
+          <ul class="list">
+              <li class="header">Navegación Principal</li>
+              <li class="active">
+                  <a href="index.html">
+                      <i class="material-icons">home</i>
+                      <span>Home</span>
+                  </a>
+              </li>

@@ -42,4 +42,9 @@ class Clientes_model extends CI_Model{
       return false;
     }
   }
+  function consulta_extendida(){
+    $this->db->select('cod_persona');
+    $resultado = $this->db->get('persona');
+    return $resultado->result();
+  }
 }

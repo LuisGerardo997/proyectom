@@ -1,5 +1,5 @@
 $(document).on('ready',function(){
-    
+
 $('.datepicker').bootstrapMaterialDatePicker({
     format: 'YYYY-MM-DD',
     clearButton: true,
@@ -38,6 +38,7 @@ $('#dt_table').DataTable({
     }
 ],
 "order":[[1, "asc"]],
+'language':español
 });
 
 editClient = function(fecha_inicio, cod_caja, nro_caja, cod_persona, apellido_paterno, apellido_materno, nombres){

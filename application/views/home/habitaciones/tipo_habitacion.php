@@ -113,7 +113,7 @@
                                     <div class="form-group form-float">
                                         <div class="form-line">
                                           <label class="form-label">Número</label>
-                                            <input type="number" name="cod_tipo_habitacion_c" id="cod_tipo_habitacion_c" class="form-control">
+                                            <input type="number" disabled value="<?base_url() ?><?php echo $this->Tipo_habitacion_model->num_rows() ?>" name="cod_tipo_habitacion_c" id="cod_tipo_habitacion_c" class="form-control">
                                         </div>
                                     </div>
                                 </div>

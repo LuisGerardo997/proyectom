@@ -14,8 +14,11 @@ class Login extends CI_Controller {
          if(isset($_POST['pass'])){
              if (($this->Login_model->ingresar($_POST['user'],$_POST['pass']))==1){
                $usuario = $_POST['user'];
+               $perfil = $_POST['perfil'];
                $cargo = $this->Login_model->cargo($usuario);
                $datos = $this->Login_model->datospersonales($usuario);
+               $pool = $this->Login_model->accesos($perfil);
+               }
                $dat = array(
                  'username' => $usuario,
                  'cargo' => $cargo->cargo,
@@ -25,11 +28,12 @@ class Login extends CI_Controller {
                  'apellido_m' => $datos->apellido_materno,
                  'email' => $datos->email,
                  'foto_p' => $datos->foto_persona,
+                 'perfil' => $perfil,
+                 'accesos' => $pool,
                );
                  $this->session->set_userdata($dat);
-                 }
                  header("Location:home");
-             }else{
+                }else{
                  $this->load->view('login/sign-in');
              }
      }
@@ -37,6 +41,11 @@ class Login extends CI_Controller {
        $this->session->sess_destroy();
        redirect('login','refresh');
 
+     }
+     public function perfiles(){
+      $persona = $this->input->post('user');
+      $resultado = $this->Login_model->perfiles($persona);
+      echo json_encode($resultado);
      }
 
 

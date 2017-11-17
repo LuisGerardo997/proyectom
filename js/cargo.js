@@ -30,6 +30,7 @@ $('#dt_table').DataTable({
     }
 ],
 "order":[[0, "asc"]],
+'language':español
 });
 
 

@@ -3,7 +3,7 @@ class Tipo_habitacion_model extends CI_Model{
     function __construct(){
         parent::__construct();
     }
-    
+
     function consultar(){
         $this->db->select('th.cod_tipo_habitacion, th.tipo_habitacion, th.descripcion, th.precio_tipo_habitacion, th.max_h');
         $this->db->where('th.estado',null,false);
@@ -18,7 +18,7 @@ function guardar($guardar){
       return false;
     }
   }
-  
+
     function actualizar($cod,$hab){
     $this->db->where('cod_tipo_habitacion',$cod);
     $this->db->update('tipo_habitacion',$hab);
@@ -28,7 +28,7 @@ function guardar($guardar){
       return false;
     }
   }
-    
+
   function eliminar($cod, $hab){
     $this->db->where('cod_tipo_habitacion', $cod);
     $this->db->update('tipo_habitacion', $hab);
@@ -38,5 +38,9 @@ function guardar($guardar){
       return false;
     }
   }
+    function num_rows(){
+          $num = $this->db->count_all('tipo_habitacion');
+          $num = $num+1;
+          return $num;
+      }
 }
-

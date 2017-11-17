@@ -19,10 +19,10 @@
                             <table id="dt_table" class="table table-bordered table-striped table-hover dataTable" width='100%'>
                                 <thead>
                                     <tr>
-                                        <th>Código</th>
+                                        <th width="15%">Código</th>
                                         <th>Dependencia</th>
                                         <th>Módulo</th>
-                                        <th>Acción</th>
+                                        <th width="1px">Acción</th>
                                     </tr>
                                 </thead>
                             </table>
@@ -66,7 +66,7 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-link waves-effect">Guardar cambios</button>
+                        <button type="button" class="btn btn-link waves-effect" onClick="enviar();">Guardar cambios</button>
                         <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">Cerrar</button>
                     </div>
                 </div>
@@ -85,7 +85,7 @@
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <div class="form-line">
-                                            <input type="number" name="cod_modulo" id="cod_modulo_c" class="form-control" placeholder="Código">
+                                            <input type="number" disabled value="<?base_url() ?><?php echo $this->Modulo_model->num_rows() ?>" name="cod_modulo" id="cod_modulo_c" class="form-control" placeholder="Código">
                                         </div>
                                     </div>
                                 </div>

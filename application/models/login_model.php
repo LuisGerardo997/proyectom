@@ -33,5 +33,18 @@ class Login_model extends CI_Model{
           return $result->row();
 
       }
+
+      public function perfiles($persona){
+        $consulta = "select dpp.cod_perfil, p.perfil from detalle_persona_perfil dpp INNER JOIN perfil p on p.cod_perfil = dpp.cod_perfil where dpp.cod_persona = (select cod_persona from persona where usuario ='".$persona."')";
+        $resultado = $this->db->query($consulta);
+        return $resultado->result_array();
+      }
+
+      public function accesos($data){
+        $this->db->select('cod_modulo');
+        $this->db->where('cod_perfil',$data);
+        $resultado = $this->db->get('accesos');
+        return $resultado -> result_array();
+      }
 }
 ?>

@@ -5,11 +5,10 @@ class Modulo_model extends CI_Model{
     }
 
     function consultar(){
-        $this->db->select('h.cod_modulo, p.modulo pmodulo, h.modulo');
-        $this->db->where('p.estado','1');
-        $this->db->from('modulos h');
-        $this->db->join('modulos p','h.parent_cod_modulo = p.cod_modulo','left');
-        $data = $this->db->get();
+        $this->db->select('m.cod_modulo, mo.modulo pmodulo, m.modulo');
+        $this->db->where('m.estado','1');
+        $this->db->join('modulos m', 'm.parent_cod_modulo = mo.cod_modulo','right');
+        $data = $this->db->get('modulos mo');
         return $data->result();
 
     }
@@ -45,4 +44,9 @@ function eliminar($p, $hab){
         return false;
     }
 }
+  function num_rows(){
+        $num = $this->db->count_all('modulos');
+        $num = $num+1;
+        return $num;
+    }
 }

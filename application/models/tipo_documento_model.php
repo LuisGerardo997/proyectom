@@ -36,4 +36,9 @@ class Tipo_documento_model extends CI_Model{
       return false;
     }
   }
+    function num_rows(){
+          $num = $this->db->count_all('tipo_documento');
+          $num = $num+1;
+          return $num;
+      }
 }

@@ -16,7 +16,7 @@
                     </div>
                     <div class="body">
                         <div class="table-responsive">
-                            <table id="dt_table" class="table table-bordered table-striped table-hover dataTable">
+                            <table id="dt_table" class="table table-bordered table-striped table-hover dataTable" width="100%">
                                 <thead>
                                     <tr>
                                         <th>Código de módulo</th>
@@ -94,16 +94,16 @@
                     <div class="modal-body">
                         <div class="row clearfix">
                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                <div class="col-md-4">
+                                <div class="col-md-6">
                                   <label for="cod_modulo_c" class="form_group">Módulo</label>
                                     <select name="cod_modulo_c" id="cod_modulo_c" class="form-control">
-                                        <option value="">Selecione por favor</option>
-                                        <?php foreach($modulo as $fila):?>
-                                        <option value='<?= $fila["cod_modulo"] ?>'><?= $fila['modulo'] ?></option>
-                                        <?php endforeach; ?>
+                                        <option value="">asdhsa</option>
+                                        <?php foreach ($this->Acceso_model->select2() as $key) {?>
+                                            <option value="<?php echo $key['cod_modulo']; ?>"><?php echo $key['modulo']; ?></option>
+                                        <?php } ?>
                                     </select>
                                 </div>
-                                <div class="col-md-4">
+                                <div class="col-md-6">
                                   <label for="cod_perfil_c" class="form_group">Perfil</label>
                                     <select name="cod_perfil_c" id="cod_perfil_c" class="form-control">
                                         <option value="">Selecione por favor</option>
@@ -111,6 +111,8 @@
                                         <option value='<?= $fila["cod_perfil"] ?>'><?= $fila['perfil'] ?></option>
                                         <?php endforeach; ?>
                                     </select>
+                                </div>
+                                <div id="espacio">
                                 </div>
                             </div>
                         </div>

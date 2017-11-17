@@ -35,10 +35,21 @@ $('#dt_table').DataTable({
     }
 ],
 "order":[[1, "asc"]],
+'language': español
 });
 
 
 editClient = function(cod_persona, nombres, apellido_paterno, apellido_materno, ruc, email, genero, tel_movil, ciudad){
+  alert('xD');
+  $.post(base_url+'clientes/consulta_extendida',
+  {
+  },
+  function(data){
+    var datos = eval(data);
+    for (var i = 0; i < datos.length; i++){
+      alert(datos[i]['cod_persona']);
+    }
+  });
     $('#cod_persona').val(cod_persona);
     $('#nombres_e').val(nombres);
     $('#apellido_paterno').val(apellido_paterno);

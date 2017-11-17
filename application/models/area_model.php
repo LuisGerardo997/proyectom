@@ -3,7 +3,7 @@ class Area_model extends CI_Model{
     function __construct(){
         parent::__construct();
     }
-    
+
     function consultar(){
         $this->db->select('a.cod_area, a.area, a.descripcion');
         $this->db->where('a.estado','0');
@@ -19,7 +19,7 @@ class Area_model extends CI_Model{
         return false;
        }
     }
-    
+
     function actualizar($cod,$hab){
         $this->db->where('cod_area',$cod);
         $this->db->update('area',$hab);
@@ -29,7 +29,7 @@ class Area_model extends CI_Model{
          return false;
        }
     }
-    
+
     function eliminar($cod, $hab){
         $this->db->where('cod_area', $cod);
         $this->db->update('area', $hab);
@@ -39,4 +39,9 @@ class Area_model extends CI_Model{
          return false;
        }
     }
+    function num_rows(){
+          $num = $this->db->count_all('area');
+          $num = $num+1;
+          return $num;
+      }
 }

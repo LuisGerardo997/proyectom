@@ -28,13 +28,29 @@ $('#dt_table').DataTable({
         }
     }
 ],
-"order":[[1, "asc"]],
+"order":[[0, "asc"]],
+'language':español
 });
 
 editClient = function(cod_modulo, pmodulo, modulo){
     $('#cod_modulo').val(cod_modulo);
     $('#pmodulo').val(pmodulo);
     $('#modulo').val(modulo);
+    enviar = function(){
+        $.post(base_url+"modulo/actualizar",{
+            cod_modulo:$('#cod_modulo').val(),
+            pmodulo:$('#pmodulo').val(),
+            modulo:$('#modulo').val(),
+        },
+
+        function(data){
+            if (data == 1){
+                alert('Los cambios se han realizado correctamente');
+                $('#cerrar_modal').click();
+                location.reload();
+            }
+        });
+    }
 };
 deldat = function(cod_modulo){
     $.post(base_url+'modulo/eliminar',

@@ -44,7 +44,7 @@
             </div>
         </div>
         <div class="modal fade" id="editar" tabindex="-1" role="dialog">
-            <div class="modal-dialog" role="document">
+            <div class="modal-dialog modal-lg" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h2 class="modal-title" id="largeModalLabel">Edición de datos</h2>
@@ -52,7 +52,7 @@
                     <div class="modal-body">
                         <div class="row clearfix">
                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                <div class="col-md-4">
+                                <div class="col-md-2">
                                     <div class="form-group form-float">
                                         <div class="form-line focused">
                                             <label class="form-label">Código</label>
@@ -60,14 +60,15 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-4">
+                                <div class="col-md-3">
                                     <div class="form-group form-float">
                                         <div class="form-line focused">
                                             <label class="form-label">Nombres</label>
                                             <input type="text" name="nombres_e" id="nombres_e" class="form-control" >
                                         </div>
                                     </div>
-                                </div><div class="col-md-4">
+                                </div>
+                                <div class="col-md-2">
                                     <div class="form-group form-float">
                                         <div class="form-line focused">
                                             <label class="form-label">Apellido paterno</label>
@@ -75,7 +76,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-4">
+                                <div class="col-md-2">
                                     <div class="form-group form-float">
                                         <div class="form-line focused">
                                             <label class="form-label">Apellido materno</label>
@@ -83,7 +84,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-4">
+                                <div class="col-md-3">
                                     <div class="form-group form-float">
                                         <div class="form-line focused">
                                             <label class="form-label">RUC</label>

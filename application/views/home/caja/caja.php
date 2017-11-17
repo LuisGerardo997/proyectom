@@ -93,7 +93,7 @@
                                     <div class="form-group form-float">
                                         <div class="form-line">
                                           <label class="form-label">Código</label>
-                                            <input type="text" name="cod_caja_c" id="cod_caja_c" class="form-control"/>
+                                            <input type="text" disabled value="<?base_url() ?><?php echo $this->Caja_model->num_rows() ?>" name="cod_caja_c" id="cod_caja_c" class="form-control"/>
                                         </div>
                                     </div>
                                 </div>

@@ -34,7 +34,8 @@ $('#dt_table').DataTable({
         }
     }
 ],
-"order":[[1, "asc"]],
+"order":[[0, "asc"]],
+'language':español
 });
 
 
