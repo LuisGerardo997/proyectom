@@ -44,8 +44,9 @@ class Clientes extends CI_Controller {
             }
             if (in_array('1', $arr)){
                 $this->load->view('home/mod_mantenimiento');
+                if (in_array('5',$arr)){
                 $this->load->view('home/mod_persona');
-                if (in_array('6',$arr)){
+                }if (in_array('6',$arr)){
                   $this->load->view('home/mod_habitacion');
                 }if (in_array('7',$arr)){
                   $this->load->view('home/mod_ubigeo');
@@ -86,8 +87,12 @@ class Clientes extends CI_Controller {
               }
       $this->load->view('home/main',$db_data);
       $data1 = $this->Clientes_model->select1();
+      $data2 = $this->Clientes_model->select2();
+      $data3 = $this->Clientes_model->select3();
       $resulta = array(
         'ciudad' => $data1,
+        'ec' => $data2,
+        'tp' => $data3,
       );
       $this->load->view('home/personas/clientes',$resulta);
       $this->load->view('home/footer_dt');
@@ -102,16 +107,6 @@ class Clientes extends CI_Controller {
 
     //}
   }
-  /*function ver(){
-  $pool = $this->Login_model->accesos('1');
-
-  if (in_array('6', $arr)){
-
-    print_r($arr);
-  }
-  echo 'xD';
-  //print_r($pool[0]['cod_modulo']);
-}*/
   function actualizar(){
       $selector = $this->input->post('cod_persona');
       $cod_persona = $selector;
@@ -183,8 +178,81 @@ class Clientes extends CI_Controller {
         echo '0';
       }
     }
-    function consulta_extendida(){
-      $resultado = $this->Clientes_model->consulta_extendida();
-      echo json_encode($resultado);
+    function almacenar(){
+      $cod_persona = $this->input->post('cod_persona');
+      $nombres = $this->input->post('nombres');
+      $apellido_paterno = $this->input->post('apellido_paterno');
+      $apellido_materno = $this->input->post('apellido_materno');
+      $ruc = $this->input->post('ruc');
+      $email = $this->input->post('email');
+      $genero = $this->input->post('genero');
+      $tel_movil = $this->input->post('tel_movil');
+      $direccion = $this->input->post('direccion');
+      $bancaria = $this->input->post('bancaria');
+      $banco = $this->input->post('banco');
+      $telefono_domicilio = $this->input->post('telefono_domicilio');
+      $operador = $this->input->post('operador');
+      $nacimiento = $this->input->post('nacimiento');
+      $profesion = $this->input->post('profesion');
+      $hijos = $this->input->post('hijos');
+      $estatura = $this->input->post('estatura');
+      $peso = $this->input->post('peso');
+      $sangre = $this->input->post('sangre');
+      $hobby = $this->input->post('hobby');
+      $deporte = $this->input->post('deporte');
+      if ($this->input->post('ciudad') != ''){
+        $ciudad = $this->input->post('ciudad');
+      }else{
+        $ciudad = null;
+      }
+      if ($this->input->post('ciudad1') != ''){
+        $ciudad1 = $this->input->post('ciudad1');
+      }else{
+        $ciudad1 = null;
+      }
+      if ($this->input->post('civil') != ''){
+        $civil = $this->input->post('civil');
+      }else{
+        $civil = null;
+      }
+      if ($this->input->post('persona') != ''){
+        $persona = $this->input->post('persona');
+      }else{
+        $persona = null;
+      }
+
+      $data = array(
+        'cod_persona' => $cod_persona,
+        'nombres' => $nombres,
+        'apellido_paterno' => $apellido_paterno,
+        'apellido_materno' => $apellido_materno,
+        'ruc' => $ruc,
+        'email' => $email,
+        'genero' => $genero,
+        'tel_movil' => $tel_movil,
+        'direccion' => $direccion,
+        'nro_cuenta_bancaria' => $bancaria,
+        'nombre_banco' => $banco,
+        'tel_domicilio' => $telefono_domicilio,
+        'operador_movil' => $operador,
+        'fecha_nacimiento' => $nacimiento,
+        'profesion' => $profesion,
+        'num_hijos' => $hijos,
+        'estatura_cm' => $estatura,
+        'peso_kg' => $peso,
+        'tipo_sangre' => $sangre,
+        'hobby' => $hobby,
+        'deporte_favorito' => $deporte,
+        'cod_ciudad_nacimiento' => $ciudad,
+        'cod_ciudad_direccion' =>  $ciudad1,
+        'cod_estado_civil' => $civil,
+        'cod_tipo_persona' => $persona,
+        'estado' => '0',
+      );
+      if($this->Clientes_model->guardar($data) == true){
+        echo '1';
+      }else{
+        echo '0';
+      }
     }
 }

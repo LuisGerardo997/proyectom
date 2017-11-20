@@ -39,27 +39,33 @@ $('#dt_table').DataTable({
 });
 
 
-editClient = function(cod_persona, nombres, apellido_paterno, apellido_materno, ruc, email, genero, tel_movil, ciudad){
-  alert('xD');
-  $.post(base_url+'clientes/consulta_extendida',
-  {
-  },
-  function(data){
-    var datos = eval(data);
-    for (var i = 0; i < datos.length; i++){
-      alert(datos[i]['cod_persona']);
-    }
-  });
-    $('#cod_persona').val(cod_persona);
+editClient = function(cod_persona, nombres, apellido_paterno, apellido_materno, ruc, email, genero, tel_movil, ciudad,direccion, bancaria, banco, telefono_domicilio, operador, profesion, hijos, estatura, peso, sangre, hobby, deporte, ciudad1, civil, persona){
+    $('#cod_persona_e').val(cod_persona);
     $('#nombres_e').val(nombres);
-    $('#apellido_paterno').val(apellido_paterno);
-    $('#apellido_materno').val(apellido_materno);
-    $('#ruc').val(ruc);
-    $('#email').val(email);
+    $('#apellido_paterno_e').val(apellido_paterno);
+    $('#apellido_materno_e').val(apellido_materno);
+    $('#ru_e').val(ruc);
+    $('#email_e').val(email);
     //$('input[name=genero]').filter('[value='+genero+']').attr('checked', true);
-    $('input:radio[name="genero"][value="'+genero+'"]').prop('checked', true);
-    $('#tel_movil').val(tel_movil);
-    $("#ciudad option:contains('"+ciudad+"')").attr("selected",true);
+    $('input:radio[name="genero_e"][value="'+genero+'"]').prop('checked', true);
+    $('#tel_movil_e').val(tel_movil);
+    $('#direccion_e').val(direccion);
+    $('#bancaria_e').val(bancaria);
+    $('#banco_e').val(banco);
+    $('#telefono_domicilio_e').val(telefono_domicilio);
+    $('#operador_e').val(operador);
+    $('#nacimiento_e').val(nacimiento);
+    $('#profesion_e').val(profesion);
+    $('#hijos_e').val(hijos);
+    $('#estatura_e').val(estatura);
+    $('#peso_e').val(peso);
+    $('#sangre_e').val(sangre);
+    $('#hobby_e').val(hobby);
+    $('#deporte_e').val(deporte);
+    $("#ciudad_e option:contains('"+ciudad+"')").attr("selected",true);
+    $("#ciudad1_e option:contains('"+ciudad1+"')").attr("selected",true);
+    $("#civil_e option:contains('"+civil+"')").attr("selected",true);
+    $("#persona_e option:contains('"+persona+"')").attr("selected",true);
     enviar = function(){
         $.post(base_url+"clientes/actualizar",
         {
@@ -70,8 +76,24 @@ editClient = function(cod_persona, nombres, apellido_paterno, apellido_materno, 
             ruc:$('#ruc').val(),
             email:$('#email').val(),
             genero:$('input[name=genero]:checked', '#editar').val(),
-            tel_movil:$('#tel_movil').val(),
-            ciudad:$('#ciudad').val()
+            tel_movil:$('#tel_movil_e').val(),
+            direccion:$('#direccion_e').val(),
+            bancaria:$('#bancaria_e').val(),
+            banco:$('#banco_e').val(),
+            telefono_domicilio:$('#telefono_domicilio_e').val(),
+            operador:$('#operador_e').val(),
+            nacimiento:$('#nacimiento_e').val(),
+            profesion:$('#profesion_e').val(),
+            hijos:$('#hijos_e').val(),
+            estatura:$('#estatura_e').val(),
+            peso:$('#peso_e').val(),
+            sangre:$('#sangre_e').val(),
+            hobby:$('#hobby_e').val(),
+            deporte:$('#deporte_e').val(),
+            ciudad:$('#ciudad_e').val(),
+            ciudad1:$('#ciudad1_e').val(),
+            civil:$('#civil_e').val(),
+            persona:$('#persona_e').val(),
         },
         function(data){
             if (data == 1){
@@ -109,6 +131,43 @@ insertdat = function(cod_persona, nombres, apellido_paterno, apellido_materno, r
         genero:$('input[name=genero_c]:checked', '#crear').val(),
         tel_movil:$('#tel_movil_c').val(),
         ciudad:$('#ciudad_c').val()
+    },
+    function(data){
+        if(data == 1){
+            alert('El registro fue correctamente almacenado');
+            location.reload();
+        }
+        alert(data);
+    });
+};
+insertdatextend = function(cod_persona, nombres, apellido_paterno, apellido_materno, ruc, email, genero, tel_movil, ciudad,direccion, bancaria, banco, telefono_domicilio, operador, profesion, hijos, estatura, peso, sangre, hobby, deporte, ciudad1, civil, persona, cargo){
+    $.post(base_url+'clientes/almacenar',
+    {
+        cod_persona:$('#cod_persona_e').val(),
+        nombres:$('#nombres_e').val(),
+        apellido_paterno:$('#apellido_paterno_e').val(),
+        apellido_materno:$('#apellido_materno_e').val(),
+        ruc:$('#ru_e').val(),
+        email:$('#email_e').val(),
+        genero:$('input[name=genero_e]:checked', '#crear').val(),
+        tel_movil:$('#tel_movil_e').val(),
+        ciudad:$('#ciudad_e').val(),
+        direccion:$('#direccion_e').val(),
+        bancaria:$('#bancaria_e').val(),
+        banco:$('#banco_e').val(),
+        telefono_domicilio:$('#telefono_domicilio_e').val(),
+        operador:$('#operador_e').val(),
+        nacimiento:$('#nacimiento_e').val(),
+        profesion:$('#profesion_e').val(),
+        hijos:$('#hijos_e').val(),
+        estatura:$('#estatura_e').val(),
+        peso:$('#peso_e').val(),
+        sangre:$('#sangre_e').val(),
+        hobby:$('#hobby_e').val(),
+        deporte:$('deporte_e').val(),
+        ciudad1:$('#ciudad1_e').val(),
+        civil:$('#civil_e').val(),
+        persona:$('#persona_e').val(),
     },
     function(data){
         if(data == 1){

@@ -41,8 +41,9 @@ class Empleados extends CI_Controller {
             }
             if (in_array('1', $arr)){
                 $this->load->view('home/mod_mantenimiento');
+                if (in_array('5',$arr)){
                 $this->load->view('home/mod_persona');
-                if (in_array('6',$arr)){
+                }if (in_array('6',$arr)){
                   $this->load->view('home/mod_habitacion');
                 }if (in_array('7',$arr)){
                   $this->load->view('home/mod_ubigeo');
@@ -84,11 +85,13 @@ class Empleados extends CI_Controller {
         if($this->session->userdata('username')){
             $consulta = $this->Empleados_model->select();
             $consulta1 = $this->Empleados_model->select1();
-            $consulta2 = $this->Empleados_model->select2();
+            $data3 = $this->Empleados_model->select3();
+            $data4 = $this->Empleados_model->select4();
             $datos = array(
             'ciudad' => $consulta,
             'cargo' => $consulta1,
-            'area' => $consulta2,
+            'ec' => $data3,
+            'tp' => $data4,
             );
             $this->load->view('home/main',$db_data);
             $this->load->view('home/personas/empleados',$datos);
@@ -113,25 +116,73 @@ class Empleados extends CI_Controller {
       $nombres = $this->input->post('nombres');
       $apellido_paterno = $this->input->post('apellido_paterno');
       $apellido_materno = $this->input->post('apellido_materno');
-      $area = $this->input->post('area');
-      $cargo = $this->input->post('cargo');
       $ruc = $this->input->post('ruc');
       $email = $this->input->post('email');
       $genero = $this->input->post('genero');
       $tel_movil = $this->input->post('tel_movil');
-      $ciudad = $this->input->post('ciudad');
+      $direccion = $this->input->post('direccion');
+      $bancaria= $this->input->post('bancaria');
+      $banco = $this->input->post('banco');
+      $telefono_domicilio = $this->input->post('telefono_domicilio');
+      $operador = $this->input->post('operador');
+      $nacimiento = $this->input->post('nacimiento');
+      $profesion = $this->input->post('profesion');
+      $hijos = $this->input->post('hijos');
+      $estatura = $this->input->post('estatura');
+      $peso = $this->input->post('peso');
+      $sangre = $this->input->post('sangre');
+      $hobby = $this->input->post('hobby');
+      $deporte = $this->input->post('deporte');
+      if ($this->input->post('ciudad') != ''){
+        $ciudad = $this->input->post('ciudad');
+      }else{
+        $ciudad = null;
+      }
+      if ($this->input->post('ciudad1') != ''){
+        $ciudad1 = $this->input->post('ciudad1');
+      }else{
+        $ciudad1 = null;
+      }
+      if ($this->input->post('civil') != ''){
+        $civil = $this->input->post('civil');
+      }else{
+        $civil = null;
+      }
+      if ($this->input->post('persona') != ''){
+        $persona = $this->input->post('persona');
+      }else{
+        $persona = null;
+      }
+      $cargo = $this->input->post('cargo');
       $data = array(
         'cod_persona' => $cod_persona,
         'nombres' => $nombres,
         'apellido_paterno' => $apellido_paterno,
         'apellido_materno' => $apellido_materno,
-        'area' => $area,
-        'cargo' => $cargo,
+        'cod_cargo' => $cargo,
         'ruc' => $ruc,
         'email' => $email,
         'genero' => $genero,
         'tel_movil' => $tel_movil,
-        'cod_ciudad_direccion' => $ciudad,
+        'cod_ciudad_nacimiento' => $ciudad,
+        'cod_ciudad_direccion' => $ciudad1,
+        'nro_cuenta_bancaria' => $bancaria,
+        'nombre_banco' => $banco,
+        'tel_domicilio' => $telefono_domicilio,
+        'tel_movil' => $tel_movil,
+        'direccion' => $direccion,
+        'operador_movil' => $operador,
+        'fecha_nacimiento' => $nacimiento,
+        'profesion' => $profesion,
+        'num_hijos' => $hijos,
+        'estatura_cm' => $estatura,
+        'peso_kg' => $peso,
+        'tipo_sangre' => $sangre,
+        'hobby' => $hobby,
+        'deporte_favorito' => $deporte,
+        'cod_estado_civil' => $civil,
+        'cod_tipo_persona' => $persona,
+        'estado' => '1',
       );
       if($this->Empleados_model->actualizar($selector, $data) == true){
         echo '1';
@@ -162,19 +213,117 @@ class Empleados extends CI_Controller {
       $email = $this->input->post('email');
       $genero = $this->input->post('genero');
       $tel_movil = $this->input->post('tel_movil');
-      $ciudad = $this->input->post('ciudad');
+      if ($this->input->post('ciudad') != ''){
+        $ciudad = $this->input->post('ciudad');
+      }else{
+        $ciudad = null;
+      }
+      if ($this->input->post('cargo') != ''){
+        $cargo = $this->input->post('cargo');
+      }else{
+        $cargo = null;
+      }
       $data = array(
         'cod_persona' => $cod_persona,
         'nombres' => $nombres,
         'apellido_paterno' => $apellido_paterno,
         'apellido_materno' => $apellido_materno,
-        'area' => $area,
-        'cargo' => $cargo,
+        'cod_cargo' => $area,
+        'cod_cargo' => $cargo,
         'ruc' => $ruc,
         'email' => $email,
         'genero' => $genero,
         'tel_movil' => $tel_movil,
         'cod_ciudad_direccion' => $ciudad,
+        'estado' => '1',
+      );
+      if($this->Empleados_model->guardar($data) == true){
+        echo '1';
+      }else{
+        echo '0';
+      }
+    }
+    function almacenar(){
+      $cod_persona = $this->input->post('cod_persona');
+      $nombres = $this->input->post('nombres');
+      $apellido_paterno = $this->input->post('apellido_paterno');
+      $apellido_materno = $this->input->post('apellido_materno');
+      $ruc = $this->input->post('ruc');
+      $area = $this->input->post('area');
+      $email = $this->input->post('email');
+      $genero = $this->input->post('genero');
+      $tel_movil = $this->input->post('tel_movil');
+      $direccion = $this->input->post('direccion');
+      $bancaria = $this->input->post('bancaria');
+      $banco = $this->input->post('banco');
+      $telefono_domicilio = $this->input->post('telefono_domicilio');
+      $operador = $this->input->post('operador');
+      if ($this->input->post('nacimiento') != ''){
+        $nacimiento = $this->input->post('nacimiento');
+      }else{
+        $nacimiento = '2017-01-01';
+      }
+      $profesion = $this->input->post('profesion');
+      $hijos = $this->input->post('hijos');
+      $estatura = $this->input->post('estatura');
+      $peso = $this->input->post('peso');
+      $sangre = $this->input->post('sangre');
+      $hobby = $this->input->post('hobby');
+      $deporte = $this->input->post('deporte');
+      if ($this->input->post('ciudad') != ''){
+        $ciudad = $this->input->post('ciudad');
+      }else{
+        $ciudad = null;
+      }
+      if ($this->input->post('ciudad1') != ''){
+        $ciudad1 = $this->input->post('ciudad1');
+      }else{
+        $ciudad1 = null;
+      }
+      if ($this->input->post('civil') != ''){
+        $civil = $this->input->post('civil');
+      }else{
+        $civil = null;
+      }
+      if ($this->input->post('persona') != ''){
+        $persona = $this->input->post('persona');
+      }else{
+        $persona = null;
+      }
+      if ($this->input->post('cargo') != ''){
+        $cargo = $this->input->post('cargo');
+      }else{
+        $cargo = null;
+      }
+
+      $data = array(
+        'cod_persona' => $cod_persona,
+        'nombres' => $nombres,
+        'apellido_paterno' => $apellido_paterno,
+        'apellido_materno' => $apellido_materno,
+        'ruc' => $ruc,
+        'email' => $email,
+        'genero' => $genero,
+        'tel_movil' => $tel_movil,
+        'direccion' => $direccion,
+        'nro_cuenta_bancaria' => $bancaria,
+        'nombre_banco' => $banco,
+        'tel_domicilio' => $telefono_domicilio,
+        'operador_movil' => $operador,
+        'fecha_nacimiento' => $nacimiento,
+        'profesion' => $profesion,
+        'num_hijos' => $hijos,
+        'estatura_cm' => $estatura,
+        'peso_kg' => $peso,
+        'tipo_sangre' => $sangre,
+        'hobby' => $hobby,
+        'deporte_favorito' => $deporte,
+        'cod_ciudad_direccion' => $ciudad,
+        'cod_ciudad_nacimiento' =>  $ciudad1,
+        'cod_estado_civil' => $civil,
+        'cod_tipo_persona' => $persona,
+        'cod_cargo' => $cargo,
+        'cod_cargo' => $area,
         'estado' => '1',
       );
       if($this->Empleados_model->guardar($data) == true){

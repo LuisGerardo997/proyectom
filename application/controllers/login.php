@@ -8,84 +8,115 @@ class Login extends CI_Controller {
     }
 
     public function index(){
-         if($this->session->userdata('username')){
-             header('Location:home');
-         }
-         if(isset($_POST['pass'])){
-             if (($this->Login_model->ingresar($_POST['user'],$_POST['pass']))==1){
-               $usuario = $_POST['user'];
-               $perfil = $_POST['perfil'];
-               $cargo = $this->Login_model->cargo($usuario);
-               $datos = $this->Login_model->datospersonales($usuario);
-               $pool = $this->Login_model->accesos($perfil);
-               }
-               $dat = array(
-                 'username' => $usuario,
-                 'cargo' => $cargo->cargo,
-                 'cod_p' => $datos->cod_persona,
-                 'nombres' => $datos->nombres,
-                 'apellido_p' => $datos->apellido_paterno,
-                 'apellido_m' => $datos->apellido_materno,
-                 'email' => $datos->email,
-                 'foto_p' => $datos->foto_persona,
-                 'perfil' => $perfil,
-                 'accesos' => $pool,
-               );
-                 $this->session->set_userdata($dat);
-                 header("Location:home");
-                }else{
-                 $this->load->view('login/sign-in');
-             }
-     }
-     public function cerrar_sesion(){
-       $this->session->sess_destroy();
-       redirect('login','refresh');
-
-     }
-     public function perfiles(){
-      $persona = $this->input->post('user');
-      $resultado = $this->Login_model->perfiles($persona);
-      echo json_encode($resultado);
-     }
-
-
-/*
-    public function index(){
-
         if($this->session->userdata('username')){
             header('Location:home');
         }
         if(isset($_POST['pass'])){
-            $this->load->model('login_model');
-            if (($this->login_model->ingresar($_POST['user'],$_POST['pass']))==1){
-                $this->session->set_userdata('username',$_POST['user']);
-                }
-                header("Location:home");
-            }else{
-                $this->load->view('login/login');
+            if (($this->Login_model->ingresar($_POST['user'],$_POST['pass']))==1){
+                $usuario = $_POST['user'];
+                $cargo = $this->Login_model->cargo($usuario);
+                $datos = $this->Login_model->datospersonales($usuario);
+                $pool = $this->Login_model->perfiles($usuario);
+                $num = count($pool);
             }
-        $this->load->view('login/login');
+            $dat = array(
+                'username' => $usuario,
+                'cargo' => $cargo->cargo,
+                'cod_p' => $datos->cod_persona,
+                'nombres' => $datos->nombres,
+                'apellido_p' => $datos->apellido_paterno,
+                'apellido_m' => $datos->apellido_materno,
+                'email' => $datos->email,
+                'foto_p' => $datos->foto_persona,
+            );
+            $this->session->set_userdata($dat);
+            if ($num > 1){
+                header("Location:login/select_perfil");
+            }else{
+                $perf = $pool[0]['cod_perfil'];
+                $perf1 = $pool[0]['perfil'];
+                $data = array(
+                    'perfil' => $perf,
+                    'nom_perfil' => $perf1,
+                );
+                $this->session->set_userdata($data);
+                redirect('home');
+            }
+        }else{
+            $this->load->view('login/sign-in');
+        }
     }
-
     public function cerrar_sesion(){
-      $this->session->sess_destroy();
-      redirect('login','refresh');
+        $this->session->sess_destroy();
+        redirect('login','refresh');
 
     }
+    public function perfiles(){
+        $persona = $this->session->userdata('username');
+        $resultado = $this->Login_model->perfiles($persona);
+        print_r($resultado[0]['cod_perfil']);
+    }
+    public function select_perfil(){
+        $persona = $this->session->userdata('username');
+        $pool = $this->Login_model->perfiles($persona);
+        $num = count($pool);
+        $data = array(
+            'perfiles' => $pool,
+            'total' => $num,
+        );
+        $this->load->view('login/select_perfil',$data);
+        $this->load->view('home/footer_dt');
+    }
+    public function registro_perfil(){
+        $cod_perfil = $this->input->post('cod_perfil');
+        $perfil = $this->Login_model->nombre_perfil($cod_perfil);
+        $data = array(
+            'perfil' => $cod_perfil,
+            'nom_perfil' => $perfil[0]['perfil'],
+        );
+        $this->session->set_userdata($data);
+        echo 'hecho';
+    }
+
+
+
+    /*
+    public function index(){
+
+    if($this->session->userdata('username')){
+    header('Location:home');
+}
+if(isset($_POST['pass'])){
+$this->load->model('login_model');
+if (($this->login_model->ingresar($_POST['user'],$_POST['pass']))==1){
+$this->session->set_userdata('username',$_POST['user']);
+}
+header("Location:home");
+}else{
+$this->load->view('login/login');
+}
+$this->load->view('login/login');
 }
 
- public function ingresar()
-        $user=$this->input->post('user');
-        $pass=$this->input->post('pass');
+public function cerrar_sesion(){
+$this->session->sess_destroy();
+redirect('login','refresh');
 
-        $res = $this->login_model->ingresar($user,$pass);
+}
+}
 
-        if ($res==1){
-            $this->load->view('home');
-        }else{
-            $data['mensaje']='<script>alert("Usuario o contraseña incorrectos")</script>';
-            $this->load->view('login',$data);
+public function ingresar()
+$user=$this->input->post('user');
+$pass=$this->input->post('pass');
 
-        }
-    }*/
+$res = $this->login_model->ingresar($user,$pass);
+
+if ($res==1){
+$this->load->view('home');
+}else{
+$data['mensaje']='<script>alert("Usuario o contraseña incorrectos")</script>';
+$this->load->view('login',$data);
+
+}
+}*/
 }

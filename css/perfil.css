@@ -1,0 +1,9 @@
+.centrado {
+    width:74%;
+    position: absolute;
+    left: 30%;
+    top: 30%;
+    bottom: 30%;
+    transform: translate(-20%, -20%);
+    -webkit-transform: translate(-20%, -20%);
+}

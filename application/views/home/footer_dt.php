@@ -18,6 +18,8 @@
 
 <!-- Moment Plugin Js -->
 <script src="<?= base_url() ?>plugins/momentjs/moment.js"></script>
+<script src="<?= base_url() ?>plugins/sweetalert/sweetalert.min.js"></script>
+<script src="<?= base_url() ?>js/pages/ui/dialogs.js">></script>
 
 <!-- Bootstrap Material Datetime Picker Plugin Js -->
 <script src="<?= base_url() ?>plugins/bootstrap-material-datetimepicker/js/bootstrap-material-datetimepicker.js"></script>
@@ -104,6 +106,9 @@
 <?php if($this->uri->segment(1)=='perfil') {?>
       <script src="<?= base_url() ?>js/perfil.js"></script>
 <?php }; ?>
+<?php if($this->uri->segment(1)=='usuarios') {?>
+      <script src="<?= base_url() ?>js/usuarios.js"></script>
+<?php }; ?>
 
 <?php if($this->uri->segment(1)=='acceso') {?>
       <script src="<?= base_url() ?>js/acceso.js"></script>
@@ -121,6 +126,7 @@
 
 <!-- Demo Js -->
 <script src="<?= base_url() ?>js/demo.js"></script>
+<!-- <script src="<? base_url() ?>js/pages/widgets/infobox/infobox-4.js"></script> -->
 </body>
 
 </html>

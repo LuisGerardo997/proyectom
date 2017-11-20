@@ -46,5 +46,11 @@ class Login_model extends CI_Model{
         $resultado = $this->db->get('accesos');
         return $resultado -> result_array();
       }
+      public function nombre_perfil($data){
+        $this->db->select('perfil');
+        $this->db->where('cod_perfil',$data);
+        $resultado = $this->db->get('perfil');
+        return $resultado -> result_array();
+      }
 }
 ?>

@@ -1,19 +1,15 @@
 <?php
-class Empleados_model extends CI_Model{
+class Usuarios_model extends CI_Model{
     function __construct(){
         parent::__construct();
     }
 
     function consultar(){
-        $this->db->select('p.cod_persona, p.nombres, p.apellido_paterno, p.apellido_materno, c.cargo, p.ruc, p.email, p.genero, p.tel_movil, u.ciudad ciudad_direccion, ub.ciudad ciudad_nacimiento, p.nro_cuenta_bancaria, p.nombre_banco, p.tel_domicilio, p.tel_movil, p.operador_movil, p.fecha_nacimiento, p.profesion, p.num_hijos, p.estatura_cm, p.peso_kg, p.tipo_sangre, p.hobby, p.deporte_favorito, p.observacion_persona, e.estado_civil, tp.tipo_persona');
-        $this->db->where('p.estado','1');
-        $this->db->from('persona p');
-        $this->db->join('ubigeo u','u.cod_ciudad = p.cod_ciudad_direccion','left');
-        $this->db->join('ubigeo ub','ub.cod_ciudad = p.cod_ciudad_nacimiento','left');
-        $this->db->join('cargo c','c.cod_cargo = p.cod_cargo','left');
-        $this->db->join('estado_civil e','e.cod_estado_civil = p.cod_estado_civil','left');
-        $this->db->join('tipo_persona tp','tp.cod_tipo_persona = p.cod_tipo_persona','left');
-        $data = $this->db->get();
+        $this->db->select('cod_persona, usuario, nombres, apellido_paterno, apellido_materno');
+        $this->db->where('estado','1');
+        $where = 'usuario <> ""';
+        $this->db->where($where);
+        $data = $this->db->get('persona');
         return $data->result();
     }
 
@@ -35,8 +31,11 @@ class Empleados_model extends CI_Model{
   }
 
   function select(){
-    $this->db->select('cod_ciudad, ciudad');
-    $resultado= $this->db->get('ubigeo');
+    $this->db->select('cod_persona, nombres, apellido_paterno, apellido_materno');
+    $this->db->where('estado', '1');
+    $where = 'usuario is null';
+    $this->db->where($where);
+    $resultado = $this->db->get('persona');
     return $resultado -> result_array();
   }
 

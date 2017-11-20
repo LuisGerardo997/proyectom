@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html>
-
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=Edge">
@@ -41,6 +40,8 @@
 
 <!-- Morris Chart Css-->
 <link href="<?= base_url() ?>plugins/morrisjs/morris.css" rel="stylesheet" />
+    <!-- Sweetalert Css -->
+    <link href="<? base_url() ?>plugins/sweetalert/sweetalert.css" rel="stylesheet" />
 
 <!-- Custom Css -->
 <link href="<?= base_url() ?>css/style.css" rel="stylesheet">
@@ -298,7 +299,7 @@
         </div>
         <div class="info-container">
           <div class="name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><?php echo ($this->session->userdata['nombres'].' '.$this->session->userdata['apellido_p'].' '.$this->session->userdata['apellido_m']); ?></div>
-          <div class="email"><?php echo $this->session->userdata['cargo'] ?></div>
+          <div class="email"><?php echo $this->session->userdata['nom_perfil'] ?></div>
           <div class="btn-group user-helper-dropdown">
             <i class="material-icons" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">keyboard_arrow_down</i>
             <ul class="dropdown-menu pull-right">
@@ -308,7 +309,8 @@
               <li><a href="javascript:void(0);"><i class="material-icons">shopping_cart</i>Sales</a></li>
               <li><a href="javascript:void(0);"><i class="material-icons">favorite</i>Likes</a></li>
               <li role="seperator" class="divider"></li>
-              <li><a href="<?= base_url() ?>login/cerrar_sesion"><i class="material-icons">input</i>Sign Out</a></li>
+              <li><a href="<?= base_url() ?>login/cerrar_sesion"><i class="material-icons">input</i>Cerrar sesión</a></li>
+              <li><a href="<?= base_url() ?>login/select_perfil"><i class="material-icons">group</i>Cambiar perfil</a></li>
             </ul>
           </div>
         </div>

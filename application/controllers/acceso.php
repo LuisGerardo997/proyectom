@@ -41,8 +41,9 @@ class Acceso extends CI_Controller {
             }
             if (in_array('1', $arr)){
                 $this->load->view('home/mod_mantenimiento');
+                if (in_array('5',$arr)){
                 $this->load->view('home/mod_persona');
-                if (in_array('6',$arr)){
+                }if (in_array('6',$arr)){
                   $this->load->view('home/mod_habitacion');
                 }if (in_array('7',$arr)){
                   $this->load->view('home/mod_ubigeo');
@@ -116,35 +117,44 @@ class Acceso extends CI_Controller {
     function guardar(){
         $cod_perfil = $this->input->post('cod_perfil');
         $cod_modulo = $this->input->post('cod_modulo');
+        $check = true;
+        $check1 = true;
         if ($cod_sub_modulo = $this->input->post('cod_sub_modulo')){
+          if (!$this->Acceso_model->existe($cod_sub_modulo[0],$cod_perfil)){
+            $data = array(
+                'cod_perfil' => $cod_perfil,
+                'cod_modulo' => $cod_modulo,
+                'estado' => '1',
+            );
+            $check = $this->Acceso_model->guardar($data);
+          }
           foreach ($cod_sub_modulo as $key){
             $data = array(
                 'cod_perfil' => $cod_perfil,
                 'cod_modulo' => $key,
                 'estado' => '1',
             );
-            if($this->Acceso_model->guardar($data) == true){
-                echo '1';
-            }
-            else {
-                echo '0';
-            }
-          }
+            $check1 = $this->Acceso_model->guardar($data);
         }
-        $data = array(
-              'cod_perfil' => $cod_perfil,
-              'cod_modulo' => $cod_modulo,
-              'estado' => '1',
-          );
-
-        if($this->Acceso_model->guardar($data) == true){
+        if (($check == true)||($check1 == true)){
             echo '1';
         }
-
         else {
             echo '0';
         }
+      }else{
+      $data = array(
+          'cod_perfil' => $cod_perfil,
+          'cod_modulo' => $cod_modulo,
+          'estado' => '1',
+      );
+      if($this->Acceso_model->guardar($data)==true){
+        echo '1';
+      }else{
+        echo '2';
+      }
     }
+  }
     function select3(){
       $cod = $this->input->post('co');
       $resultado = $this->Acceso_model->select3($cod);
@@ -153,5 +163,10 @@ class Acceso extends CI_Controller {
       }else{
         echo json_encode($resultado);
       }
+    }
+    function perfil_modulos(){
+      $perfil = $this->input->post('perfilval');
+      $resultado = $this->Acceso_model->perfil_modulos($perfil);
+      echo json_encode($resultado);
     }
 }

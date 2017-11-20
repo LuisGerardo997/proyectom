@@ -58,4 +58,20 @@ class Acceso_model extends CI_Model{
           return 0;
       }
     }
+    function perfil_modulos($data){
+      $this->db->select('cod_modulo');
+      $this->db->where('cod_perfil', $data);
+      $resultado = $this->db->get('accesos');
+      return $resultado->result_array();
+    }
+
+    function existe($data,$data1){
+      $query = $this->db->query('select cod_modulo from accesos where cod_perfil ="'.$data1.'"');
+      $num = $query->num_rows();
+      if ($num != 0){
+          return true;
+      }else{
+          return false;
+      }
+    }
 }

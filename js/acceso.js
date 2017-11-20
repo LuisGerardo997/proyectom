@@ -57,14 +57,14 @@ insertdat = function(cod_perfil, cod_modulo){
     },
     function(data){
         if(data == 1){
-            alert('El registro fue almacenado correctamente');
-            alert($('#cod_sub_modulo_c').val());
+            alert('Los datos han sido guardados exitosamente.');
             location.reload();
         }else{
             alert('El registro no pudo ser almacenado');
         }
     });
 };
+
 $('#cod_modulo_c').change(function(){
     $('#cod_modulo_c option:selected').each(function(){
         var cod = $(this).val();
@@ -77,18 +77,50 @@ $('#cod_modulo_c').change(function(){
         if (data != 0){
             espacio.setAttribute("style","display:block");
             var datos = eval(data);
-            var html = '';
-            html += '<div class="col-md-12"><label for="cod_sub_modulo_c">Sub módulo</label>';
-            html += '<select class="form-control show-tick" multiple id="cod_sub_modulo_c">';
-            for (var i = 0; i < datos.length ; i++){
-                html += '<option value="'+datos[i]['cod_modulo']+'">'+datos[i]['modulo']+'</option>';
+            input_data = 'check';
+            imprimir(input_data);
+            function imprimir(input_data){
+                var html = '';
+                html += '<div class="col-md-12"><label for="cod_sub_modulo_c">Sub módulo</label>';
+                html += '<select class="form-control show-tick" multiple id="cod_sub_modulo_c">';
+                if (input_data == 'check'){
+                    for (var i = 0; i < datos.length ; i++){
+                        html += '<option value="'+datos[i]['cod_modulo']+'">'+datos[i]['modulo']+'</option>';
+                    }
+                }else{
+                    for (var i = 0; i < datos.length ; i++){
+                        if (!input_data.includes(datos[i]['cod_modulo'])){
+                            html += '<option value="'+datos[i]['cod_modulo']+'">'+datos[i]['modulo']+'</option>';
+                        }
+                    }
+                }
+                html += '</select></div>';
+                $('#espacio').html(html);
+                $('#cod_sub_modulo_c').multiSelect();
             }
-            html += '</select></div>';
-            $('#espacio').html(html);
-            $('#cod_sub_modulo_c').multiSelect();
         }else{
             espacio.setAttribute("style","display:none");
         }
+        $('#cod_perfil_c').change(function(){
+            $('#cod_perfil_c option:selected').each(function(){
+                var perf = $(this).val();
+                $.post(base_url+'acceso/perfil_modulos',
+            {
+                perfilval:perf,
+            },
+            function(data){
+                var datos = eval(data);
+                var modulos_arr=[];
+                for (i=0; i<datos.length; i++){
+                    modulos_arr.push(datos[i]['cod_modulo']);
+                }
+                espacio.innerHTML='';
+                if (modulos_arr.length > 0){
+                    imprimir(modulos_arr);
+                }
+            })
+            })
+        })
     });
 });
 });

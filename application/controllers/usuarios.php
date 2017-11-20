@@ -1,25 +1,22 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Home extends CI_Controller {
-    function __construct(){
-        parent::__construct();
-        $this->load->library('session');
-        $this->load->model('Login_model');
-    }
+class Usuarios extends CI_Controller {
+  function __construct(){
+    parent::__construct();
+    $this->load->model('Usuarios_model');
+    $this->load->model('Login_model');
+  }
 
-
-	public function index()
-	{
-        if($this->session->userdata('username')){
+    public function index(){
             $driverdb = $this->db->dbdriver;
             if ($driverdb == 'mysqli'){
                 $db_name = 'MySQL';
             }elseif ($driverdb == 'postgre') {
                 $db_name = 'PostgreSQL';
             }elseif ($driverdb == 'sqlsrv') {
-                $db_name = 'MS SQL Server';
-            }
+                      $db_name = 'MS SQL Server';
+                  }
             $db_data = array(
                 'motor_db' => $db_name,
             );
@@ -29,15 +26,13 @@ class Home extends CI_Controller {
             $apellido_m = $this->session->userdata('apellido_m');
             $email = $this->session->userdata('email');
             $foto_p = $this->session->userdata('foto_p');
-            $address = $this->session->userdata('address');
             $data = array(
                 'nombre' => $nombre,
                 'apellido_p' => $apellido_p,
                 'email' => $email,
-                'addres' => $address,
             );
             $this->load->view('home/head',$data);
-            $perfil = $this->session->userdata('perfil');
+            $perfil = $this->session->userdata['perfil'];
             $pool = $this->Login_model->accesos($perfil);
             $num = count($pool);
             $arr = array();
@@ -46,8 +41,9 @@ class Home extends CI_Controller {
             }
             if (in_array('1', $arr)){
                 $this->load->view('home/mod_mantenimiento');
+                if (in_array('5',$arr)){
                 $this->load->view('home/mod_persona');
-                if (in_array('6',$arr)){
+                }if (in_array('6',$arr)){
                   $this->load->view('home/mod_habitacion');
                 }if (in_array('7',$arr)){
                   $this->load->view('home/mod_ubigeo');
@@ -86,14 +82,70 @@ class Home extends CI_Controller {
               }if  (in_array('4',$arr)){
                 $this->load->view('home/mod_reportes');
               }
+        if($this->session->userdata('username')){
+            $consulta = $this->Usuarios_model->select();
+            $consulta1 = $this->Usuarios_model->select1();
+            $data3 = $this->Usuarios_model->select3();
+            $data4 = $this->Usuarios_model->select4();
+            $datos = array(
+            'persona' => $consulta,
+            'cargo' => $consulta1,
+            'ec' => $data3,
+            'tp' => $data4,
+            );
             $this->load->view('home/main',$db_data);
+            $this->load->view('home/seguridad/usuario',$datos);
             $this->load->view('home/footer_dt');
+        }
 
-        }else{
+        else {
             header('Location:login');
         }
     }
-    public function gestionar_db(){
-      $this->load->view('panel_control');
+
+    public function consultar(){
+    //if ($this->input->is_ajax_request()){
+        echo json_encode($this->Usuarios_model->consultar());
+    //}
+    }
+
+
+    function actualizar(){
+      $selector = $this->input->post('cod_persona');
+      $user = $this->input->post('usuario');
+      $data = array(
+        'usuario' => $user,
+      );
+      if($this->Usuarios_model->actualizar($selector, $data) == true){
+        echo '1';
+      }else{
+        echo '0';
+      }
+  }
+  function eliminar(){
+      $idselect = $this->input->post('cod_persona');
+      $data = array(
+        'estado' => null,
+      );
+      if($this->Usuarios_model->eliminar($idselect, $data) == true){
+        echo '1';
+      }else{
+        echo '0';
+      }
+    }
+
+    function guardar(){
+      $cod_persona = $this->input->post('cod_persona');
+      $user = $this->input->post('user');
+      $pass = $this->input->post('pass');
+      $data = array(
+        'usuario' => $user,
+        'contrasea' => $pass,
+      );
+      if($this->Usuarios_model->actualizar($cod_persona, $data) == true){
+        echo '1';
+      }else{
+        echo '0';
+      }
     }
 }

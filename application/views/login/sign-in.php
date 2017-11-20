@@ -65,7 +65,7 @@
                         </div>
                     </div>
                         <div class="col-xs-12 align-center">
-                            <a href="forgot-password.html">Olvidaste tu contraseñaxd?</a>
+                            <a href="forgot-password.html">Olvidaste tu contraseña?</a>
                         </div>
                         <br>
                     </div>
@@ -73,7 +73,7 @@
             </div>
         </div>
     </div>
-    <script>
+    <!-- <script>
     var base_url = '<?php echo base_url(); ?>';
       $(document).ready(function(){
         var field = document.getElementById(field_perfil);
@@ -100,7 +100,7 @@
 
         //if (username == )
       })
-    </script>
+    </script> -->
 
 
     <!-- Bootstrap Core Js -->
