@@ -33,13 +33,15 @@
 <body class="bg-indigo">
   <div class="centrado">
     <div class="block-header">
-      <h1 class="text-center">Por favor, seleccione su perfil</h1>
+      <div class="text-center"><img src="<?= base_url() ?>images/Rio1.png">
+      <h1 class="text-center">Bienvenido <?php echo $this->session->userdata('username'); ?></h1>
+      <h4 class="text-center">Por favor, seleccione su perfil</h4>
     </div>
     <div class="container-fluid">
       <?php foreach ($perfiles as $fila): ?>
         <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
           <a id="<?= $fila['cod_perfil'] ?>">
-          <div class="info-box-2 bg-green hover-zoom-effect">
+          <div class="info-box-2 bg-light-green hover-zoom-effect">
             <div class="icon">
               <i class="material-icons">person</i>
             </div>

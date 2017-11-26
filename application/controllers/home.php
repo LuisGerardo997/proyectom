@@ -81,6 +81,7 @@ class Home extends CI_Controller {
                 $this->load->view('home/mod_mantenimiento_fin');
               }if (in_array('2',$arr)){
                 $this->load->view('home/mod_reservacion');
+                $this->load->view('home/mod_ventas');
               }if (in_array('3',$arr)){
                 $this->load->view('home/mod_almacen');
               }if  (in_array('4',$arr)){

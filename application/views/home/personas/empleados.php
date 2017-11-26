@@ -332,10 +332,10 @@
                                 <div class="col-md-3">
                                     <div class="form-group">
                                         <div class="demo-radio-button">
-                                            <input name="genero_r" value="M" type="radio" id="masculino" />
-                                            <label for="masculino">Masculino</label>
-                                            <input name="genero_r" value="F" type="radio" id="femenino" />
-                                            <label for="femenino">Femenino</label>
+                                            <input name="genero_r" value="M" type="radio" id="masculino_r" />
+                                            <label for="masculino_r">Masculino</label>
+                                            <input name="genero_r" value="F" type="radio" id="femenino_r" />
+                                            <label for="femenino_r">Femenino</label>
                                         </div>
                                     </div>
                                 </div>

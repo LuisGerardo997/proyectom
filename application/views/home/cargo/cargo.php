@@ -132,11 +132,11 @@
                                     <label class="form-label">Cargo</label>
                                     <input type="text" name="cargo" id="cargo_c" class="form-control">
                                 </div>
+                              </div>
                             </div>
-                        </div>
-                        </div>
                           </div>
                         </div>
+                      </div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-link waves-effect" onclick="insertdat();">Guardar cambios</button>

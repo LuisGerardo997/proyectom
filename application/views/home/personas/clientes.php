@@ -1,7 +1,5 @@
-
 <section class="content">
     <div class="container-fluid">
-        <!-- Basic Examples -->
         <div class="row clearfix">
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                 <div class="card">
@@ -16,7 +14,7 @@
                                 </a>
                                 <ul class="dropdown-menu pull-right">
                                     <li><a data-toggle="modal" data-target="#crear">Añadir</a></li>
-                                    <li><a data-toggle="modal" data-target="#completo">Formulario Extendido</a></li>
+                                    <li><a data-toggle="modal" data-target="#completo">Formulario extendido</a></li>
                                 </ul>
                             </li>
                         </ul>
@@ -31,7 +29,7 @@
                                         <th>Apellido Paterno</th>
                                         <th>Apellido Materno</th>
                                         <th>RUC</th>
-                                        <th>e-Mail</th>
+                                        <th>E-mail</th>
                                         <th>Género</th>
                                         <th>Teléfono</th>
                                         <th>Ciudad</th>
@@ -44,11 +42,14 @@
                 </div>
             </div>
         </div>
+
+        <!-- Edición -->
+
         <div class="modal fade" id="editar" tabindex="-1" role="dialog">
             <div class="modal-dialog modal-lg" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h2 class="modal-title" id="largeModalLabel">Edición de Datos</h2>
+                        <h2 class="modal-title" id="largeModalLabel">Edición de datos</h2>
                     </div>
                     <div class="modal-body">
                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -56,7 +57,7 @@
                                   <div class="form-group form-float">
                                       <div class="form-line focused">
                                           <label class="form-label focused">DNI</label>
-                                          <input type="number" name="cod_persona_c" id="cod_persona_e" class="form-control">
+                                          <input type="number" name="cod_persona_e" id="cod_persona_e" class="form-control" maxlength="8">
                                       </div>
                                   </div>
                               </div>
@@ -71,7 +72,7 @@
                                     <div class="form-group form-float">
                                         <div class="form-line focused">
                                             <label class="form-label">Apellido paterno</label>
-                                            <input type="text" name="apellido_paterno" id="apellido_paterno_e" class="form-control">
+                                            <input type="text" name="apellido_paterno_e" id="apellido_paterno_e" class="form-control">
                                         </div>
                                     </div>
                                 </div>
@@ -79,7 +80,7 @@
                                     <div class="form-group form-float">
                                         <div class="form-line focused">
                                             <label class="form-label">Apellido materno</label>
-                                            <input type="text" name="apellido_materno" id="apellido_materno_e" class="form-control">
+                                            <input type="text" name="apellido_materno_e" id="apellido_materno_e" class="form-control">
                                         </div>
                                     </div>
                                 </div>
@@ -87,24 +88,24 @@
                                     <div class="form-group form-float">
                                         <div class="form-line focused">
                                             <label class="form-label">RUC</label>
-                                            <input type="text" name="ruc" id="ruc_e" class="form-control">
+                                            <input type="number" name="ruc_e" id="ruc_e" class="form-control" maxlength="11">
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group form-float">
                                         <div class="form-line focused">
-                                            <label class="form-label">e-Mail</label>
-                                            <input type="text" name="email" id="email_e" class="form-control email">
+                                            <label class="form-label">E-mail</label>
+                                            <input type="email" name="email_e" id="email_e" class="form-control email">
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-3">
+                                <div class="col-md-4">
                                     <div class="form-group">
                                         <div class="demo-radio-button">
-                                            <input name="genero" value="M" type="radio" id="masculino" />
+                                            <input name="genero_e" value="M" type="radio" id="masculino" />
                                             <label for="masculino">Masculino</label>
-                                            <input name="genero" value="F" type="radio" id="femenino" />
+                                            <input name="genero_e" value="F" type="radio" id="femenino" />
                                             <label for="femenino">Femenino</label>
                                         </div>
                                     </div>
@@ -113,23 +114,23 @@
                                     <div class="form-group form-float">
                                         <div class="form-line focused">
                                             <label class="form-label">Teléfono</label>
-                                            <input type="text" name="tel_movil" id="tel_movil_e" class="form-control">
+                                            <input type="number" name="tel_movil_e" id="tel_movil_e" class="form-control">
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group form-float">
                                         <div class="form-line focused">
-                                            <label class="form-label">Direccion</label>
-                                            <input type="text" name="direccion" id="direccion_e" class="form-control">
+                                            <label class="form-label">Dirección</label>
+                                            <input type="text" name="direccion_e" id="direccion_e" class="form-control">
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group form-float">
                                         <div class="form-line focused">
-                                            <label class="form-label">Cuenta Bancaria</label>
-                                            <input type="text" name="bancaria" id="bancaria_e" class="form-control">
+                                            <label class="form-label">Cuenta bancaria</label>
+                                            <input type="number" name="bancaria_e" id="bancaria_e" class="form-control">
                                         </div>
                                     </div>
                                 </div>
@@ -137,31 +138,31 @@
                                     <div class="form-group form-float">
                                         <div class="form-line focused">
                                             <label class="form-label">Banco</label>
-                                            <input type="text" name="banco" id="banco_e" class="form-control">
+                                            <input type="text" name="banco_e" id="banco_e" class="form-control">
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group form-float">
                                         <div class="form-line focused">
-                                            <label class="form-label">Telefono Domicilio</label>
-                                            <input type="text" name="telefono_domicilio" id="telefono_domicilio_e" class="form-control">
+                                            <label class="form-label">Teléfono domicilio</label>
+                                            <input type="number" name="telefono_domicilio_e" id="telefono_domicilio_e" class="form-control">
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group form-float">
                                         <div class="form-line focused">
-                                            <label class="form-label">Operador Movil</label>
-                                            <input type="text" name="operador" id="operador_e" class="form-control">
+                                            <label class="form-label">Operador móvil</label>
+                                            <input type="text" name="operador_e" id="operador_e" class="form-control">
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group form-float">
                                         <div class="form-line focused">
-                                            <label class="form-label">Fecha Nacimiento</label>
-                                            <input type="text" name="nacimiento" id="nacimiento_e" class="datepicker form-control">
+                                            <label class="form-label">Fecha de nacimiento</label>
+                                            <input type="text" name="nacimiento_e" id="nacimiento_e" class="datepicker form-control">
                                         </div>
                                     </div>
                                 </div>
@@ -169,39 +170,48 @@
                                     <div class="form-group form-float">
                                         <div class="form-line focused">
                                             <label class="form-label">Profesión</label>
-                                            <input type="text" name="profesion" id="profesion_e" class="form-control">
+                                            <input type="text" name="profesion_e" id="profesion_e" class="form-control">
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group form-float">
                                         <div class="form-line focused">
-                                            <label class="form-label">Numero de Hijos</label>
-                                            <input type="numeric" name="hijos" id="hijos_e" class="form-control">
+                                            <label class="form-label">Número de hijos</label>
+                                            <input type="number" name="hijos_e" id="hijos_e" class="form-control" maxlength="2">
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group form-float">
                                         <div class="form-line focused">
-                                            <label class="form-label">Estatura</label>
-                                            <input type="numeric" name="estatura" id="estatura_e" class="form-control">
+                                            <label class="form-label">Estatura (cm)</label>
+                                            <input type="number" name="estatura_e" id="estatura_e" class="form-control" step="0.01" maxlength="4">
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group form-float">
                                         <div class="form-line focused">
-                                            <label class="form-label">Peso</label>
-                                            <input type="numeric" name="peso" id="peso_e" class="form-control">
+                                            <label class="form-label">Peso (Kg) (Ejemplo: 64,6)</label>
+                                            <input type="number" name="peso_e" id="peso_e" class="form-control" step="0.01" maxlength="4">
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group form-float">
-                                        <div class="form-line focused">
-                                            <label class="form-label">Tipo Sangre</label>
-                                            <input type="text" name="sangre" id="sangre_e" class="form-control">
+                                        <div class="form-line">
+                                            <select name="sangre_e" id="sangre_e" class="form-control">
+                                                <option class="active" value="">Grupo sanguíneo</option>
+                                                <option value='O-'>O negativo (O-)</option>
+                                                <option value='O+'>O positivo (O+)</option>
+                                                <option value='A-'>A negativo (A-)</option>
+                                                <option value='A+'>A positivo (A+)</option>
+                                                <option value='B-'>B negativo (B-)</option>
+                                                <option value='B+'>B positivo (B+)</option>
+                                                <option value='AB-'>AB negativo (AB-)</option>
+                                                <option value='AB+'>AB positivo (A+)</option>
+                                            </select>
                                         </div>
                                     </div>
                                 </div>
@@ -209,21 +219,21 @@
                                     <div class="form-group form-float">
                                         <div class="form-line focused">
                                             <label class="form-label">Hobby</label>
-                                            <input type="text" name="hobby" id="hobby_e" class="form-control">
+                                            <input type="text" name="hobby_e" id="hobby_e" class="form-control">
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group form-float">
                                         <div class="form-line focused">
-                                            <label class="form-label">Deporte Favorito</label>
-                                            <input type="text" name="deporte" id="deporte_e" class="form-control">
+                                            <label class="form-label">Deporte favorito</label>
+                                            <input type="text" name="deporte_e" id="deporte_e" class="form-control">
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-sm-4">
-                                    <select name="ciudad" id="ciudad_e" class="form-control">
-                                        <option value="">-- Ciudad de Nacimiento --</option>
+                                    <select name="ciudad_e" id="ciudad_e" class="form-control">
+                                        <option value="">Ciudad de nacimiento</option>
                                         <?php foreach($ciudad as $fila):?>
                                             <option class='' value='<?= $fila["cod_ciudad"] ?>'><?= $fila['ciudad'] ?></option>
                                         <?php endforeach; ?>
@@ -232,24 +242,24 @@
                               </div>
                               <div class="row clearfix">
                                 <div class="col-sm-4">
-                                    <select name="ciudad1" id="ciudad1_e" class="form-control">
-                                        <option class="active" value=''>-- Dirección Actual --</option>
+                                    <select name="ciudad1_e" id="ciudad1_e" class="form-control">
+                                        <option class="active" value=''>Ciudad actual</option>
                                         <?php foreach($ciudad as $fila):?>
                                             <option value='<?= $fila["cod_ciudad"] ?>'><?= $fila['ciudad'] ?></option>
                                         <?php endforeach; ?>
                                     </select>
                                 </div>
                                 <div class="col-sm-4">
-                                    <select name="civil" id="civil_e" class="form-control">
-                                        <option value="">-- Estado Civil --</option>
+                                    <select name="civil_e" id="civil_e" class="form-control">
+                                        <option value="">Estado civil</option>
                                         <?php foreach($ec as $fila):?>
                                             <option value='<?= $fila["cod_estado_civil"] ?>'><?= $fila['estado_civil'] ?></option>
                                         <?php endforeach; ?>
                                     </select>
                                 </div>
                                 <div class="col-sm-4">
-                                    <select name="persona" id="persona_e" class="form-control">
-                                        <option value="">-- Tipo Persona --</option>
+                                    <select name="persona_e" id="persona_e" class="form-control">
+                                        <option value="">Tipo de persona</option>
                                         <?php foreach($tp as $fila):?>
                                             <option value='<?= $fila["cod_tipo_persona"] ?>'><?= $fila['tipo_persona'] ?></option>
                                         <?php endforeach; ?>
@@ -265,11 +275,14 @@
                 </div>
             </div>
         </div>
+
+        <!-- Creación -->
+
         <div class="modal fade" id="completo" tabindex="-1" role="dialog">
             <div class="modal-dialog modal-lg" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h2 class="modal-title" id="largeModalLabel">Registro Extendido</h2>
+                        <h2 class="modal-title" id="largeModalLabel">Registro extendido</h2>
                     </div>
                     <div class="modal-body">
                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -277,7 +290,7 @@
                                   <div class="form-group form-float">
                                       <div class="form-line">
                                           <label class="form-label">DNI</label>
-                                          <input type="number" name="cod_persona_c" id="cod_persona_e" class="form-control">
+                                          <input type="number" max="99999999" name="cod_persona_r" id="cod_persona_r" class="form-control">
                                       </div>
                                   </div>
                               </div>
@@ -285,14 +298,14 @@
                                     <div class="form-group form-float">
                                         <div class="form-line">
                                             <label class="form-label">Nombres</label>
-                                            <input type="text" name="nombres_e" id="nombres_e" class="form-control" >
+                                            <input type="text" name="nombres_r" id="nombres_r" class="form-control" >
                                         </div>
                                     </div>
                                 </div><div class="col-md-4">
                                     <div class="form-group form-float">
                                         <div class="form-line">
                                             <label class="form-label">Apellido paterno</label>
-                                            <input type="text" name="apellido_paterno" id="apellido_paterno_e" class="form-control">
+                                            <input type="text" name="apellido_paterno_r" id="apellido_paterno_r" class="form-control">
                                         </div>
                                     </div>
                                 </div>
@@ -300,7 +313,7 @@
                                     <div class="form-group form-float">
                                         <div class="form-line">
                                             <label class="form-label">Apellido materno</label>
-                                            <input type="text" name="apellido_materno" id="apellido_materno_e" class="form-control">
+                                            <input type="text" name="apellido_materno_r" id="apellido_materno_r" class="form-control">
                                         </div>
                                     </div>
                                 </div>
@@ -308,25 +321,25 @@
                                     <div class="form-group form-float">
                                         <div class="form-line">
                                             <label class="form-label">RUC</label>
-                                            <input type="text" name="ruc" id="ruc_e" class="form-control">
+                                            <input type="number" name="ruc_r" id="ruc_r" class="form-control" maxlength="11">
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group form-float">
                                         <div class="form-line">
-                                            <label class="form-label">e-Mail</label>
-                                            <input type="text" name="email" id="email_e" class="form-control email">
+                                            <label class="form-label">E-mail</label>
+                                            <input type="email" name="email_r" id="email_r" class="form-control email">
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-3">
+                                <div class="col-md-4">
                                     <div class="form-group">
                                         <div class="demo-radio-button">
-                                            <input name="genero" value="M" type="radio" id="masculino" />
-                                            <label for="masculino">Masculino</label>
-                                            <input name="genero" value="F" type="radio" id="femenino" />
-                                            <label for="femenino">Femenino</label>
+                                            <input name="genero_r" value="M" type="radio" id="masculino_r" />
+                                            <label for="masculino_r">Masculino</label>
+                                            <input name="genero_r" value="F" type="radio" id="femenino_r" />
+                                            <label for="femenino_r">Femenino</label>
                                         </div>
                                     </div>
                                 </div>
@@ -334,23 +347,23 @@
                                     <div class="form-group form-float">
                                         <div class="form-line">
                                             <label class="form-label">Teléfono</label>
-                                            <input type="text" name="tel_movil" id="tel_movil_e" class="form-control">
+                                            <input type="number" name="tel_movil_r" id="tel_movil_r" class="form-control">
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group form-float">
                                         <div class="form-line">
-                                            <label class="form-label">Direccion</label>
-                                            <input type="text" name="direccion" id="direccion_e" class="form-control">
+                                            <label class="form-label">Dirección</label>
+                                            <input type="text" name="direccion_r" id="direccion_r" class="form-control">
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group form-float">
                                         <div class="form-line">
-                                            <label class="form-label">Cuenta Bancaria</label>
-                                            <input type="text" name="bancaria" id="bancaria_e" class="form-control">
+                                            <label class="form-label">Cuenta bancaria</label>
+                                            <input type="number" name="bancaria_r" id="bancaria_r" class="form-control">
                                         </div>
                                     </div>
                                 </div>
@@ -358,31 +371,31 @@
                                     <div class="form-group form-float">
                                         <div class="form-line">
                                             <label class="form-label">Banco</label>
-                                            <input type="text" name="banco" id="banco_e" class="form-control">
+                                            <input type="text" name="banco_r" id="banco_r" class="form-control">
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group form-float">
                                         <div class="form-line">
-                                            <label class="form-label">Telefono Domicilio</label>
-                                            <input type="text" name="telefono_domicilio" id="telefono_domicilio_e" class="form-control">
+                                            <label class="form-label">Teléfono domicilio</label>
+                                            <input type="number" name="telefono_domicilio_r" id="telefono_domicilio_r" class="form-control">
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group form-float">
                                         <div class="form-line">
-                                            <label class="form-label">Operador Movil</label>
-                                            <input type="text" name="operador" id="operador_e" class="form-control">
+                                            <label class="form-label">Operador móvil</label>
+                                            <input type="text" name="operador_r" id="operador_r" class="form-control">
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group form-float">
                                         <div class="form-line">
-                                            <label class="form-label">Fecha Nacimiento</label>
-                                            <input type="text" name="nacimiento" id="nacimiento_e" class="datepicker form-control">
+                                            <label class="form-label">Fecha de nacimiento</label>
+                                            <input type="text" name="nacimiento_r" id="nacimiento_r" class="datepicker form-control">
                                         </div>
                                     </div>
                                 </div>
@@ -390,61 +403,66 @@
                                     <div class="form-group form-float">
                                         <div class="form-line">
                                             <label class="form-label">Profesión</label>
-                                            <input type="text" name="profesion" id="profesion_e" class="form-control">
+                                            <input type="text" name="profesion_r" id="profesion_r" class="form-control">
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group form-float">
                                         <div class="form-line">
-                                            <label class="form-label">Numero de Hijos</label>
-                                            <input type="numeric" name="hijos" id="hijos_e" class="form-control">
+                                            <label class="form-label">Número de hijos</label>
+                                            <input type="number" name="hijos_r" id="hijos_r" class="form-control" maxlength="2">
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group form-float">
                                         <div class="form-line">
-                                            <label class="form-label">Estatura</label>
-                                            <input type="numeric" name="estatura" id="estatura_e" class="form-control">
+                                            <label class="form-label">Estatura (cm)</label>
+                                            <input type="number" name="estatura_r" id="estatura_r" class="form-control" step="0.01" maxlength="4">
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group form-float">
                                         <div class="form-line">
-                                            <label class="form-label">Peso</label>
-                                            <input type="numeric" name="peso" id="peso_e" class="form-control">
+                                            <label class="form-label">Peso (Kg) (Ejemplo: 64,6)</label>
+                                            <input type="number" name="peso_r" id="peso_r" class="form-control" maxlength="4">
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
-                                    <div class="form-group form-float">
-                                        <div class="form-line">
-                                            <label class="form-label">Tipo Sangre</label>
-                                            <input type="text" name="sangre" id="sangre_e" class="form-control">
-                                        </div>
-                                    </div>
+                                    <select name="sangre_r" id="sangre_r" class="form-control">
+                                        <option class="active" value="">Grupo sanguíneo</option>
+                                        <option value='O-'>O negativo (O-)</option>
+                                        <option value='O+'>O positivo (O+)</option>
+                                        <option value='A-'>A negativo (A-)</option>
+                                        <option value='A+'>A positivo (A+)</option>
+                                        <option value='B-'>B negativo (B-)</option>
+                                        <option value='B+'>B positivo (B+)</option>
+                                        <option value='AB-'>AB negativo (AB-)</option>
+                                        <option value='AB+'>AB positivo (A+)</option>
+                                    </select>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group form-float">
                                         <div class="form-line">
                                             <label class="form-label">Hobby</label>
-                                            <input type="text" name="hobby" id="hobby_e" class="form-control">
+                                            <input type="text" name="hobby_r" id="hobby_r" class="form-control">
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group form-float">
                                         <div class="form-line">
-                                            <label class="form-label">Deporte Favorito</label>
-                                            <input type="text" name="deporte" id="deporte_e" class="form-control">
+                                            <label class="form-label">Deporte favorito</label>
+                                            <input type="text" name="deporte_r" id="deporte_r" class="form-control">
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-sm-4">
-                                    <select name="ciudad" id="ciudad_e" class="form-control">
-                                        <option value="">-- Ciudad de Nacimiento --</option>
+                                    <select name="ciudad_r" id="ciudad_r" class="form-control">
+                                        <option value="">Ciudad de nacimiento</option>
                                         <?php foreach($ciudad as $fila):?>
                                             <option class='' value='<?= $fila["cod_ciudad"] ?>'><?= $fila['ciudad'] ?></option>
                                         <?php endforeach; ?>
@@ -453,24 +471,24 @@
                               </div>
                               <div class="row clearfix">
                                 <div class="col-sm-4">
-                                    <select name="ciudad1" id="ciudad1_e" class="form-control">
-                                        <option class="active" value=''>-- Dirección Actual --</option>
+                                    <select name="ciudad1_r" id="ciudad1_r" class="form-control">
+                                        <option class="active" value=''>Ciudad actual</option>
                                         <?php foreach($ciudad as $fila):?>
                                             <option value='<?= $fila["cod_ciudad"] ?>'><?= $fila['ciudad'] ?></option>
                                         <?php endforeach; ?>
                                     </select>
                                 </div>
                                 <div class="col-sm-4">
-                                    <select name="civil" id="civil_e" class="form-control">
-                                        <option value="">-- Estado Civil --</option>
+                                    <select name="civil_r" id="civil_r" class="form-control">
+                                        <option value="">Estado civil</option>
                                         <?php foreach($ec as $fila):?>
                                             <option value='<?= $fila["cod_estado_civil"] ?>'><?= $fila['estado_civil'] ?></option>
                                         <?php endforeach; ?>
                                     </select>
                                 </div>
                                 <div class="col-sm-4">
-                                    <select name="persona" id="persona_e" class="form-control">
-                                        <option value="">-- Tipo Persona --</option>
+                                    <select name="persona_r" id="persona_r" class="form-control">
+                                        <option value="">Tipo de persona</option>
                                         <?php foreach($tp as $fila):?>
                                             <option value='<?= $fila["cod_tipo_persona"] ?>'><?= $fila['tipo_persona'] ?></option>
                                         <?php endforeach; ?>
@@ -486,6 +504,9 @@
                 </div>
             </div>
         </div>
+
+        <!-- Creación -->
+
         <div class="modal fade" id="crear" tabindex="-1" role="dialog">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
@@ -499,7 +520,7 @@
                                     <div class="form-group form-float">
                                         <div class="form-line">
                                             <label class="form-label">DNI</label>
-                                            <input type="number" name="cod_persona_c" id="cod_persona_c" class="form-control">
+                                            <input type="number" name="cod_persona_c" id="cod_persona_c" class="form-control" maxlength="8">
                                         </div>
                                     </div>
                                 </div>
@@ -530,19 +551,18 @@
                                     <div class="form-group form-float">
                                         <div class="form-line">
                                             <label class="form-label">RUC</label>
-                                            <input type="number" name="ruc" id="ruc_c" class="form-control">
+                                            <input type="number" name="ruc_c" id="ruc_c" class="form-control" maxlength="11">
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group form-float">
                                         <div class="form-line">
-                                            <label class="form-label">e-Mail</label>
-                                            <input type="text" name="email" id="email_c" class="form-control email">
+                                            <label class="form-label">E-mail</label>
+                                            <input type="email" name="email" id="email_c" class="form-control email">
                                         </div>
                                     </div>
                                 </div>
-
                                 <div class="col-md-3">
                                     <div class="form-group">
                                         <div class="demo-radio-button">
@@ -557,13 +577,13 @@
                                     <div class="form-group form-float">
                                         <div class="form-line">
                                             <label class="form-label">Teléfono</label>
-                                            <input type="text" name="tel_movil" id="tel_movil_c" class="form-control">
+                                            <input type="number" name="tel_movil" id="tel_movil_c" class="form-control">
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-sm-6">
                                     <select name="ciudad" id="ciudad_c" class="form-control show-tick">
-                                        <option value="">-- Please select --</option>
+                                        <option value="">Ciudad actual</option>
                                         <?php foreach($ciudad as $fila):?>
                                             <option value='<?= $fila["cod_ciudad"] ?>'><?= $fila['ciudad'] ?></option>
                                         <?php endforeach; ?>
@@ -579,7 +599,6 @@
                 </div>
             </div>
         </div>
-        <!-- #END# Basic Examples -->
 
     </div>
 </section>

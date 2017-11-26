@@ -1,6 +1,6 @@
 
                         <li>
-                            <a href="javascript:void(0);">
+                            <a href="<?= base_url() ?>reservaciones">
                                 <i class="material-icons">hotel</i>
                                 <span>Reservaciones</span>
                             </a>

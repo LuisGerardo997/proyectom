@@ -1,25 +1,26 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Forma_pago extends CI_Controller {
-  function __construct(){
-    parent::__construct();
-    $this->load->model('Login_model');
-    $this->load->model('Forma_pago_model');
-  }
+class Reservaciones extends CI_Controller {
+    function __construct(){
+        parent::__construct();
+        $this->load->library('session');
+        $this->load->model('Reservaciones_model');
+        $this->load->model('Login_model');
+    }
 
 
-  public function index()
-  {
-    if($this->session->userdata('username')){
+	public function index()
+	{
+        if($this->session->userdata('username')){
             $driverdb = $this->db->dbdriver;
             if ($driverdb == 'mysqli'){
                 $db_name = 'MySQL';
             }elseif ($driverdb == 'postgre') {
                 $db_name = 'PostgreSQL';
             }elseif ($driverdb == 'sqlsrv') {
-                      $db_name = 'MS SQL Server';
-                  }
+                $db_name = 'MS SQL Server';
+            }
             $db_data = array(
                 'motor_db' => $db_name,
             );
@@ -29,13 +30,15 @@ class Forma_pago extends CI_Controller {
             $apellido_m = $this->session->userdata('apellido_m');
             $email = $this->session->userdata('email');
             $foto_p = $this->session->userdata('foto_p');
+            $address = $this->session->userdata('address');
             $data = array(
                 'nombre' => $nombre,
                 'apellido_p' => $apellido_p,
                 'email' => $email,
+                'addres' => $address,
             );
             $this->load->view('home/head',$data);
-            $perfil = $this->session->userdata['perfil'];
+            $perfil = $this->session->userdata('perfil');
             $pool = $this->Login_model->accesos($perfil);
             $num = count($pool);
             $arr = array();
@@ -44,8 +47,9 @@ class Forma_pago extends CI_Controller {
             }
             if (in_array('1', $arr)){
                 $this->load->view('home/mod_mantenimiento');
-                $this->load->view('home/mod_persona');
-                if (in_array('6',$arr)){
+                if (in_array('5',$arr)){
+                    $this->load->view('home/mod_persona');
+                }if (in_array('6',$arr)){
                   $this->load->view('home/mod_habitacion');
                 }if (in_array('7',$arr)){
                   $this->load->view('home/mod_ubigeo');
@@ -79,73 +83,38 @@ class Forma_pago extends CI_Controller {
                 $this->load->view('home/mod_mantenimiento_fin');
               }if (in_array('2',$arr)){
                 $this->load->view('home/mod_reservacion');
+                $this->load->view('home/mod_ventas');
               }if (in_array('3',$arr)){
                 $this->load->view('home/mod_almacen');
               }if  (in_array('4',$arr)){
                 $this->load->view('home/mod_reportes');
               }
-      $this->load->view('home/main',$db_data);
-      $num_rows = $this->Forma_pago_model->num_rows();
-      $data = array(
-        'num_rows' => $num_rows,
-      );
-      $this->load->view('home/forma_pago/forma_pago', $data);
-      $this->load->view('home/footer_dt');
+            $this->load->view('home/main',$db_data);
+            $t_tran = $this->Reservaciones_model->select1();
+            $oferta = $this->Reservaciones_model->select2();
+            $data1 = array(
+                't_tran' => $t_tran,
+                'oferta' => $oferta,
+            );
+            $this->load->view('reservaciones/reservaciones',$data1);
+            $this->load->view('home/footer_dt');
 
-    }else{
-      header('Location:login');
+        }else{
+            header('Location:login');
+        }
     }
-  }
-  public function consultar(){
-    //if ($this->input->is_ajax_request()){
-        echo json_encode($this->Forma_pago_model->consultar());
+    public function consultar(){
+      //if ($this->input->is_ajax_request()){
+          echo json_encode($this->Reservaciones_model->consultar());
 
-    //}
-  }
-  function actualizar(){
-      $selector = $this->input->post('cod_forma_pago');
-      $cod_forma_pago = $selector;
-      $forma_pago = $this->input->post('forma_pago');
-      $descripcion = $this->input->post('descripcion');
-      $data = array(
-        'cod_forma_pago' => $cod_forma_pago,
-        'forma_pago' => $forma_pago,
-        'descripcion' => $descripcion,
-      );
-      if($this->Forma_pago_model->actualizar($selector, $data) == true){
-        echo '1';
-      }else{
-        echo '0';
-      }
-  }
-  function eliminar(){
-      $idselect = $this->input->post('cod_forma_pago');
-      $data = array(
-        'estado' => '0',
-      );
-      if($this->Forma_pago_model->eliminar($idselect, $data) == true){
-        echo '1';
-      }else{
-        echo '0';
-      }
+      //}
     }
-    function guardar(){
-      $cod_forma_pago = $this->input->post('cod_forma_pago');
-      $forma_pago = $this->input->post('forma_pago');
-      $descripcion = $this->input->post('descripcion');
-      $data = array(
-        'cod_forma_pago' => $cod_forma_pago,
-        'forma_pago' => $forma_pago,
-        'descripcion' => $descripcion,
-        'estado' => null,
-      );
-      if($this->Forma_pago_model->guardar($data) == true){
-        echo '1';
-      }else{
-        echo '0';
-      }
-    }
-    function num_rows(){
-      echo $this->Forma_pago_model->num_rows();
+    function comprobar_cliente(){
+        $cliente = $this->input->post('cliente');
+        if($this->Reservaciones_model->comprobar_cliente($cliente) == true){
+            echo 'Existe';
+        }else{
+            echo 'No existe';
+        }
     }
 }

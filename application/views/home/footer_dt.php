@@ -118,6 +118,12 @@
 <?php if($this->uri->segment(1)=='detalle_persona_perfil') {?>
       <script src="<?= base_url() ?>js/detalle_persona_perfil.js"></script>
 <?php }; ?>
+<?php if($this->uri->segment(1)=='ventas') {?>
+      <script src="<?= base_url() ?>js/ventas.js"></script>
+<?php }; ?>
+<?php if($this->uri->segment(1)=='reservaciones') {?>
+      <script src="<?= base_url() ?>js/reservaciones.js"></script>
+<?php }; ?>
 
 <script src="<?= base_url() ?>js/pages/tables/jquery-datatable.js"></script>
 

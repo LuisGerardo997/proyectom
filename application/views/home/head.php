@@ -17,7 +17,7 @@
 
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&subset=latin,cyrillic-ext" rel="stylesheet" type="text/css">
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" type="text/css">
+  <link href="<?= base_url() ?>css/material-icons.css" rel="stylesheet" type="text/css">
 
   <!-- Bootstrap Material Datetime Picker Css -->
   <link href="<?= base_url() ?>plugins/bootstrap-material-datetimepicker/css/bootstrap-material-datetimepicker.css" rel="stylesheet" />
@@ -295,7 +295,7 @@
       <!-- User Info -->
       <div class="user-info">
         <div class="image">
-          <img src="<?= base_url(); ?>images/prrito.jpg" width="48" height="48" alt="User" />
+          <img src="<?= base_url() ?><?php echo $this->session->userdata('foto_p'); ?>" width="48" height="48" alt="User" />
         </div>
         <div class="info-container">
           <div class="name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><?php echo ($this->session->userdata['nombres'].' '.$this->session->userdata['apellido_p'].' '.$this->session->userdata['apellido_m']); ?></div>
