@@ -88,6 +88,7 @@ class Home extends CI_Controller {
                 $this->load->view('home/mod_reportes');
               }
             $this->load->view('home/main',$db_data);
+            $this->load->view('home/home');
             $this->load->view('home/footer_dt');
 
         }else{

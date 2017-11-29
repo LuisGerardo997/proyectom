@@ -5,12 +5,13 @@ class Habitacion_model extends CI_Model{
     }
     
     function consultar(){
-        $this->db->select('h.cod_habitacion, th.tipo_habitacion, h.piso');
-        $this->db->where('h.estado','0');
+        $this->db->select('h.cod_habitacion, th.tipo_habitacion, h.piso, x.nombre');
+        $this->db->where('h.estado','1');
+        $this->db->join('tipo_habitacion th','th.cod_tipo_habitacion = h.cod_tipo_habitacion', 'left');
+        $this->db->join('estado_habitacion x','x.cod_estado_habitacion = h.cod_estado_habitacion', 'left');
         $this->db->from('habitacion h');
-        $this->db->join('tipo_habitacion th','th.cod_tipo_habitacion = h.cod_tipo_habitacion');
         $data = $this->db->get();
-        return $data->result();
+        return $data->result_array();
     }
 
     function guardar($guardar){
@@ -31,9 +32,17 @@ class Habitacion_model extends CI_Model{
     }
   }
 
-   function select(){
+   function select1(){
     $this->db->select('cod_tipo_habitacion, tipo_habitacion');
+    $this->db->where('estado','1');
     $resultado= $this->db->get('tipo_habitacion');
+    return $resultado -> result_array();
+  }
+    
+    function select2(){
+    $this->db->select('cod_estado_habitacion, nombre');
+    $this->db->where('estado','1');
+    $resultado= $this->db->get('estado_habitacion');
     return $resultado -> result_array();
   }
     
@@ -47,5 +56,3 @@ class Habitacion_model extends CI_Model{
     }
   }
 }
-
-

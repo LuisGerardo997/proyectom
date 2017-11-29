@@ -7,6 +7,8 @@ class Reservaciones extends CI_Controller {
         $this->load->library('session');
         $this->load->model('Reservaciones_model');
         $this->load->model('Login_model');
+        $this->load->model('Clientes_model');
+        $this->load->model('Habitacion_model');
     }
 
 
@@ -109,12 +111,166 @@ class Reservaciones extends CI_Controller {
 
       //}
     }
+  function actualizar(){
+      $fecha_ingreso = $this->input->post('cod_cargo');
+      $fecha_reservacion = $this->input->post('area');
+      $descripcion = $this->input->post('descripcion');
+      $cargo = $this->input->post('cargo');
+      $data = array(
+        'cod_cargo' => $cod_cargo,
+        'cod_area' => $area,
+        'descripcion' => $descripcion,
+        'cargo' => $cargo,
+      );
+      if($this->Cargo_model->actualizar($selector, $data) == true){
+        echo '1';
+      }else{
+        echo '0';
+      }
+  }
     function comprobar_cliente(){
         $cliente = $this->input->post('cliente');
-        if($this->Reservaciones_model->comprobar_cliente($cliente) == true){
-            echo 'Existe';
-        }else{
+        if($this->Reservaciones_model->comprobar_cliente($cliente) == false){
             echo 'No existe';
+        }else{
+            echo json_encode($this->Reservaciones_model->comprobar_cliente($cliente));
+        }
+    }
+    function room_list(){
+        if($this->input->post('hab')==''){
+            $habitacion = '';
+        }else{
+            $habitacion = $this->input->post('hab');
+        }
+        $resultado = $this->Reservaciones_model->room_list($habitacion);
+        echo json_encode($resultado);
+    }
+    function detalle_habitacion(){
+        $habitacion = $this->input->post('cod_habitacion');
+        $resultado = $this->Reservaciones_model->detalle_habitacion($habitacion);
+        echo json_encode($resultado);
+    }
+    function registrar(){
+        $nro_res = $this->input->post('nro_res');
+        $cliente = $this->input->post('cliente');
+        $empleado = $this->input->post('empleado');
+        $fecha_r = $this->input->post('fecha_r');
+        $fecha_estadia = $this->input->post('fecha_estadia');
+        $lista_hab = $this->input->post('lista_hab');
+        $huespedes = $this->input->post('huespedes');
+        $datos = array(
+            'cod_estadia' => $nro_res,
+            'cod_cliente' => $cliente,
+            'cod_empleado' => $empleado,
+            'fecha_reserva' => $fecha_r,
+            'fecha_ingreso' => $fecha_estadia,
+            'estado' => 1,
+        );
+        $resultado1 = $this->Reservaciones_model->registrar1($datos);
+        $resultado2 = $this->Reservaciones_model->registrar2($nro_res, $cliente, $fecha_estadia, $lista_hab, $huespedes);
+        if(($resultado1 == true)&&($resultado2 == true)){
+            echo 'Registro correcto';
+        }else{
+            echo 'Registro fallido';
+        }
+    }
+    function registrar_estadia(){
+        $nro_res = $this->input->post('nro_res');
+        $cliente = $this->input->post('cliente');
+        $empleado = $this->input->post('empleado');
+        $fecha_r = $this->input->post('fecha_r');
+        $fecha_estadia = $this->input->post('fecha_estadia');
+        $lista_hab = $this->input->post('lista_hab');
+        $datos = array(
+            'cod_estadia' => $nro_res,
+            'cod_cliente' => $cliente,
+            'cod_empleado' => $empleado,
+            'fecha_reserva' => $fecha_r,
+            'fecha_ingreso' => $fecha_estadia,
+            'estado' => 1,
+        );
+        $c = 0;
+        foreach($lista_hab as $fila){
+            $data_hab = array(
+                'cod_habitacion' => $fila,
+                'cod_estado_habitacion' => '2',
+            );
+            $this->Habitacion_model->actualizar($fila,$data_hab);
+        }
+        $resultado1 = $this->Reservaciones_model->registrar1($datos);
+        //$resultado2 = $this->Reservaciones_model->registrar2($nro_res, $cliente, $fecha_estadia, $lista_hab, $huespedes);
+      if($resultado1 == true)/*&&($resultado2 == true)*/{
+            echo 'Registro correcto';
+        }else{
+            echo 'Registro fallido';
+        }
+    }
+    function registrar_detalle_estadia(){
+        $nro_res = $this->input->post('nro_res');
+        if ($this->input->post('huesped') == ''){
+            $huesped = '0';
+        }else{
+            $huesped = $this->input->post('huesped');
+        }
+        if ($this->Reservaciones_model->existencia($huesped) == false){
+            $data = array(
+                'cod_persona' => $huesped,
+                'nombres' => $this->input->post('huesped_nombre'),
+                'apellido_paterno' => $this->input->post('huesped_apellido_paterno'),
+                'apellido_materno' => $this->input->post('huesped_apellido_materno'),
+                'cod_persona_contacto' => $this->input->post('cliente'),
+            );
+            $this->Clientes_model->guardar($data);
+        }
+            /*$datos_huesped = array(
+                'cod_persona' => $huesped,
+                'cod_persona_contacto' => $this->input->post('cliente'),
+            );
+            if($this->Reservaciones_model->registrar_cliente($datos_huesped)==true){
+                $empleado = $this->input->post('fecha_r');
+                $fecha_r = $this->input->post('tipo_r');
+                $fecha_estadia = $this->input->post('fecha_estadia');
+                $habitacion = $this->input->post('habitacion');
+                $datos = array(
+                    'cod_estadia' => $nro_res,
+                    'cod_persona' => $huesped,
+                    'fecha_ingreso' => $fecha_estadia,
+                    'cod_habitacion' => $habitacion,
+                    'estado' => 1,
+                );
+                $resultado1 = $this->Reservaciones_model->registrar_detalle_estadia($datos);
+              if($resultado1 == true)/*&&($resultado2 == true)*//*
+                    echo 'Registro correcto';
+                }else{
+                    echo 'Registro fallido';
+                }
+            }
+        }else{
+            */
+        $empleado = $this->input->post('fecha_r');
+        $fecha_r = $this->input->post('tipo_r');
+        $fecha_estadia = $this->input->post('fecha_estadia');
+        $habitacion = $this->input->post('habitacion');
+        $datos = array(
+            'cod_estadia' => $nro_res,
+            'cod_persona' => $huesped,
+            'fecha_ingreso' => $fecha_estadia,
+            'cod_habitacion' => $habitacion,
+            'estado' => 1,
+        );
+        $resultado1 = $this->Reservaciones_model->registrar_detalle_estadia($datos);
+      if($resultado1 == true)/*&&($resultado2 == true)*/{
+            echo 'Registro correcto';
+        }else{
+            echo 'Registro fallido';
+        }
+    }
+    function existencia(){
+        $persona = $this->input->post('cod_persona');
+        if ($this->Reservaciones_model->existencia($persona)==false){
+            echo 0;
+        }else{
+            echo 1;
         }
     }
 }

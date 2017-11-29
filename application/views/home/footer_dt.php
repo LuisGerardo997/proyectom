@@ -118,11 +118,17 @@
 <?php if($this->uri->segment(1)=='detalle_persona_perfil') {?>
       <script src="<?= base_url() ?>js/detalle_persona_perfil.js"></script>
 <?php }; ?>
+<?php if($this->uri->segment(1)=='estado_habitacion') {?>
+      <script src="<?= base_url() ?>js/estado_habitacion.js"></script>
+<?php }; ?>
 <?php if($this->uri->segment(1)=='ventas') {?>
       <script src="<?= base_url() ?>js/ventas.js"></script>
 <?php }; ?>
 <?php if($this->uri->segment(1)=='reservaciones') {?>
       <script src="<?= base_url() ?>js/reservaciones.js"></script>
+      <script src="<?= base_url() ?>plugins/jquery-validation/jquery.validate.js"></script>
+      <script src="<?= base_url() ?>plugins/jquery-steps/jquery.steps.js"></script>
+      <script src="<?= base_url() ?>js/pages/forms/form-wizard.js"></script>
 <?php }; ?>
 
 <script src="<?= base_url() ?>js/pages/tables/jquery-datatable.js"></script>

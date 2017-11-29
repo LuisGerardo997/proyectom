@@ -203,7 +203,7 @@ var empleado = '<?php echo $this->session->userdata('cod_p') ?>';
                                                                                         <div class="body">
                                                                                                 <div class="col-md-6 col-md-offset-3">
                                                                                                         <div class="form-group form-float">
-                                                                                                                <div class="form-line">
+                                                                                                                <div class="form-line focused">
                                                                                                                     <label class="form-label">Buscar:</label>
                                                                                                                     <input type="text" name="buscar" id="buscar" class="form-control" >
                                                                                                                 </div>

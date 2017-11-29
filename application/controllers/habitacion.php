@@ -81,11 +81,16 @@ class Habitacion extends CI_Controller {
               }if  (in_array('4',$arr)){
                 $this->load->view('home/mod_reportes');
               }
+        
+        
         if($this->session->userdata('username')){
-            $data1 = $this->Habitacion_model->select();
+            $data1 = $this->Habitacion_model->select1();
+            $data2 = $this->Habitacion_model->select2();
             $resulta = array(
-            'tipo_habitacion' => $data1,
+                'tipo_habitacion' => $data1,
+                'estado_habitacion' => $data2,
             );
+            
             $this->load->view('home/main',$db_data);
             $this->load->view('home/habitaciones/habitacion',$resulta);
             $this->load->view('home/footer_dt');
@@ -97,19 +102,20 @@ class Habitacion extends CI_Controller {
     }
 
     public function consultar(){
-    //if ($this->input->is_ajax_request()){
         echo json_encode($this->Habitacion_model->consultar());
-    //}
     }
+    
 function actualizar(){
       $selector = $this->input->post('cod_habitacion');
       $cod_habitacion = $selector;
       $tipo_habitacion = $this->input->post('tipo_habitacion');
       $piso = $this->input->post('piso');
+      $nombre = $this->input->post('nombre');
       $data = array(
         'cod_habitacion' => $cod_habitacion,
         'cod_tipo_habitacion' => $tipo_habitacion,
         'piso' => $piso,
+        'cod_estado_habitacion' => $nombre,
       );
       if($this->Habitacion_model->actualizar($selector, $data) == true){
         echo '1';
@@ -121,7 +127,7 @@ function actualizar(){
   function eliminar(){
       $idselect = $this->input->post('cod_habitacion');
       $data = array(
-        'estado' => null,
+        'estado' => '0',
       );
       if($this->Habitacion_model->eliminar($idselect, $data) == true){
         echo '1';
@@ -134,11 +140,13 @@ function actualizar(){
       $cod_habitacion = $this->input->post('cod_habitacion');
       $tipo_habitacion = $this->input->post('tipo_habitacion');
       $piso = $this->input->post('piso');
+      $nombre = $this->input->post('nombre');
       $data = array(
         'cod_habitacion' => $cod_habitacion,
         'cod_tipo_habitacion' => $tipo_habitacion,
         'piso' => $piso,
-        'estado' => '0',
+        'cod_estado_habitacion' => $nombre,
+        'estado' => '1',
       );
       if($this->Habitacion_model->guardar($data) == true){
         echo '1';

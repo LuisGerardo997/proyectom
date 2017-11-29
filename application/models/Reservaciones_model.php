@@ -5,15 +5,10 @@ class Reservaciones_model extends CI_Model{
     parent::__construct();
   }
   function consultar(){
-    $this->db->select('v.cod_venta, pc.cod_persona cod_pc, pc.nombres nombres_c, pc.apellido_paterno apellido_p_c, pc.apellido_materno apellido_m_c, pe.cod_persona cod_pe, pe.nombres nombres_e, pe.apellido_paterno apellido_p_e, pe.apellido_materno apellido_m_e, tt.tipo_transaccion, o.oferta, v.fecha_venta');
-    $this->db->where('v.estado','0');
-    $this->db->from('ventas v');
-    $this->db->join('persona pc', 'pc.cod_persona = v.cod_cliente');
-    $this->db->join('persona pe', 'pe.cod_persona = v.cod_cliente');
-    $this->db->join('tipo_transaccion tt', 'tt.cod_tipo_transaccion = v.cod_tipo_transaccion');
-    $this->db->join('ofertas o', 'o.cod_oferta = v.cod_oferta');
-    $data = $this->db->get();
-    return $data->result();
+    $this->db->select('cod_estadia, cod_cliente, cod_empleado, fecha_reserva, fecha_ingreso, fecha_salida');
+    $this->db->where('estado','1');
+    $data = $this->db->get('estadia');
+    return $data->result_array();
   }
   function actualizar($cod,$hab){
     $this->db->where('cod_cargo',$cod);
@@ -34,17 +29,17 @@ class Reservaciones_model extends CI_Model{
     $resultado= $this->db->get('ofertas');
     return $resultado -> result_array();
   }
-  function num_venta(){
-    $query='SELECT * FROM ventas';
+  function num_reservacion(){
+    $query='SELECT * FROM estadia';
     $resultado=$this->db->query($query);
     return $resultado -> num_rows();
   }
   function comprobar_cliente($param){
-    $this->db->select('cod_persona');
+    $this->db->select('cod_persona, nombres, apellido_paterno, apellido_materno');
     $this->db->where('cod_persona',$param);
     $resultado=$this->db->get('persona');
-    if ($resultado -> num_rows() != 0){
-      return true;
+    if ($resultado -> result_array() != ''){
+      return $resultado -> result_array();
     }else{
       return false;
     }
@@ -70,4 +65,90 @@ class Reservaciones_model extends CI_Model{
           $num = $num+1;
           return $num;
       }
+  function room_list($arg){
+    $this->db->select('h.cod_habitacion, th.tipo_habitacion, h.piso, th.precio_tipo_habitacion precio');
+    $this->db->group_start();
+    $where = 'h.cod_habitacion like "%'.$arg.'%" OR th.tipo_habitacion LIKE "%'.$arg.'%" OR h.piso LIKE "%'.$arg.'%" OR th.precio_tipo_habitacion LIKE "%'.$arg.'%"';
+    $this->db->where($where);
+    $this->db->group_end();
+    $this->db->where('h.cod_estado_habitacion', 1);
+    $this->db->join('tipo_habitacion th', 'th.cod_tipo_habitacion = h.cod_tipo_habitacion');
+    $this->db->from('habitacion h');
+    $resultado = $this->db->get();
+    return $resultado->result_array();
+  }
+  function detalle_habitacion($arg){
+    $this->db->select('h.cod_habitacion, th.tipo_habitacion, h.piso, th.max_h');
+    $this->db->where('h.cod_habitacion',$arg);
+    $this->db->join('tipo_habitacion th', 'th.cod_tipo_habitacion = h.cod_tipo_habitacion');
+    $this->db->from('habitacion h');
+    $resultado = $this->db->get();
+    return $resultado->result_array();
+  }
+  function registrar1($guardar){
+    if ($this->db->insert('estadia',$guardar)){
+      return true;
+    }else{
+      return false;
+    }
+  }
+  function existencia($arg){
+    $this->db->select('cod_persona');
+    $this->db->where('cod_persona', $arg);
+    $resultado = $this->db->get('persona');
+    if ($resultado->num_rows() == 1){
+      return true;
+    }else{
+      return false;
+    }
+  }/*
+  function registrar2($arg1, $arg2, $arg3, $arg4, $arg5){
+    $c = 0;
+    foreach($arg4 as $fila){
+      for($i=0; $i<count($arg5); $i++){
+        $persona = $arg5[$i];
+        $len_cad = strlen($fila);
+        $habitacion = substr($persona, 0, $len_cad);
+        if ($fila == $habitacion){
+          $huesped = substr($persona, $len_cad);
+          if ($this->Reservaciones_model->existencia($huesped)==0){
+            $datos_p = array(
+              'cod_persona' => $huesped,
+              'estado' => 1,
+            );
+            $this->db->insert('persona',$huesped);
+          }
+          $datos2 = array(
+            'cod_estadia' => $arg1,
+            'cod_habitacion' => $fila,
+            'cod_persona' => $huesped,
+            'fecha_ingreso' => $arg3,
+
+          );
+          if(!$this->db->insert('habitacion_estadia',$datos2)){
+            $c++;
+          }
+          if ($c == 0){
+            return true;
+          }else{
+            return false;
+          }
+        }
+      }
+    }
+  }*/
+  function registrar_detalle_estadia($arg){
+    if($this->db->insert('habitacion_estadia',$arg)){
+      return true;
+    }else{
+      return false;
+    }
+  }
+  function registrar_cliente($arg){
+    if($this->db->insert('persona',$arg)){
+      return true;
+    }else{
+      return false;
+    }
+  }
 }

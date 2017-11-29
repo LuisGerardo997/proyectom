@@ -10,5 +10,8 @@
                         <li>
                                 <a href="<?= base_url()?>habitacion">Habitaciones</a>
                         </li>
+                        <li>
+                                <a href="<?= base_url()?>estado_habitacion">Estado de habitación</a>
+                        </li>
                 </ul>
         </li>

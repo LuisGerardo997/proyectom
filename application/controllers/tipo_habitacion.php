@@ -148,7 +148,7 @@ function actualizar(){
         'descripcion' => $descripcion,
         'precio_tipo_habitacion' => $precio_tipo_habitacion,
         'max_h' => $max_h,
-        'estado' => null,
+        'estado' => '1',
       );
       if($this->Tipo_habitacion_model->guardar($data) == true){
         echo '1';

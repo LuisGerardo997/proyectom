@@ -240,6 +240,7 @@ $('#realizar_venta').click(function(){
         })
     })
 })
+var seleccion_total = new Array();
 var html_p = '';
 var det_body = document.getElementById('det_body');
 var pie_dt = document.getElementById('pie_dt');
@@ -255,6 +256,9 @@ $('#agregar').click(function(){
             seleccionados.push($(this).val());
             }
         })
+        if ($('input[name=listado_s]:unchecked'),prop('checked',false)){
+            console.log($(this).val());
+        }
         $('input[name=listado_p]:checked').each(function(){
             if (seleccionadop.includes($(this).val()) == false){
             seleccionadop.push($(this).val());
@@ -274,16 +278,16 @@ $('#agregar').click(function(){
                     cod:seleccionados[i],
                 },
                 function(data){
+                    var html='';
                     datos = eval(data);
                     for (i=0;i<datos.length;i++){
-                        html = html+'<tr>'+
+                        html +='<tr>'+
                                 '<td>1</td>'+
                                 '<td>'+datos[i]['servicio']+'</td>'+
                                 '<td>'+datos[i]['precio']+'</td>'+
                                 '<td>'+datos[i]['precio']+'</td>'+
                                 '</tr>';
                         total = total+parseInt(datos[i]['precio']);
-                        return (html);
                     }
                     total_html = '<tr>'+
                                     '<th></th>'+
@@ -291,7 +295,16 @@ $('#agregar').click(function(){
                                     '<th>TOTAL</th>'+
                                     '<th>'+total+'</th>'+
                                     '</tr>';
+                    recopilar(html);
                 })
+
+        }
+        seleccion_total.length = 0;
+        function recopilar(data){
+            if (seleccion_total.includes(data)==false){
+                seleccion_total.push(data);
+            }
+            alert(seleccionados);
         }
         for(i=0; i<seleccionadop.length; i++){
                 $.post(base_url+'ventas/get_det_p',
@@ -321,10 +334,8 @@ $('#agregar').click(function(){
         det_body.innerHTML = html;
         pie_dt.innerHTML = total_html;
     })
-    alert(seleccionados+seleccionadop);
     $('#seleccion_detalle').click(function(){
 
     })
 })
-
 });

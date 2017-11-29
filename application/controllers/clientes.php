@@ -99,7 +99,7 @@ class Clientes extends CI_Controller {
   public function consultar(){
         echo json_encode($this->Clientes_model->consultar());
   }
-    
+
   function actualizar(){
       $selector = $this->input->post('cod_persona');
       $cod_persona = $selector;
@@ -202,8 +202,14 @@ class Clientes extends CI_Controller {
       }else{
         $ciudad = null;
       }
+      if ($this->input->post('cod_persona_contacto') != ''){
+        $cod_persona_contacto = $this->input->post('cod_persona_contacto');
+      }else{
+        $cod_persona_contacto = null;
+      }
       $data = array(
         'cod_persona' => $cod_persona,
+        'cod_persona_contacto' => $cod_persona_contacto,
         'nombres' => $nombres,
         'apellido_paterno' => $apellido_paterno,
         'apellido_materno' => $apellido_materno,

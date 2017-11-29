@@ -13,6 +13,7 @@ $('#dt_table').DataTable({
         {data: 'cod_habitacion'},
         {data: 'tipo_habitacion'},
         {data: 'piso'},
+        {data: 'nombre'},
         {"orderable":true,
         render:function(data, type, row){
             return '<div class="btn-group" role="group">'+
@@ -20,7 +21,7 @@ $('#dt_table').DataTable({
             'Acciones <span class="caret"></span>'+
             '</button>'+
             '<ul class="dropdown-menu" aria-labelledby="btnGroupVerticalDrop1">'+
-            '<li><a data-toggle="modal" data-target="#editar" class=" waves-effect waves-block" onClick="editClient(\''+row.cod_habitacion+'\',\''+row.tipo_habitacion+'\',\''+row.piso+'\');">Editar</a></li>'+
+            '<li><a data-toggle="modal" data-target="#editar" class=" waves-effect waves-block" onClick="editClient(\''+row.cod_habitacion+'\',\''+row.tipo_habitacion+'\',\''+row.piso+'\',\''+row.nombre+'\');">Editar</a></li>'+
             '<li><a href="javascript:void(0);" class=" waves-effect waves-block" onClick="deldat(\''+row.cod_habitacion+'\')">Eliminar</a></li>'+
             '</ul>'+
             '</div>'
@@ -32,10 +33,11 @@ $('#dt_table').DataTable({
 });
 
 
-editClient = function(cod_habitacion, tipo_habitacion, piso){
+editClient = function(cod_habitacion, tipo_habitacion, piso, nombre){
     $('#cod_habitacion').val(cod_habitacion);
     $("#tipo_habitacion option:contains('"+tipo_habitacion+"')").attr("selected",true);
     $('#piso').val(piso);
+    $("#nombre option:contains('"+nombre+"')").attr("selected",true);
 
     enviar = function(){
         $.post(base_url+"habitacion/actualizar",
@@ -43,6 +45,7 @@ editClient = function(cod_habitacion, tipo_habitacion, piso){
             cod_habitacion:$('#cod_habitacion').val(),
             tipo_habitacion:$('#tipo_habitacion').val(),
             piso:$('#piso').val(),
+            nombre:$('#nombre').val(),
         },
         function(data){
             if (data == 1){
@@ -65,23 +68,22 @@ editClient = function(cod_habitacion, tipo_habitacion, piso){
             alert('El registro fue eliminado correctamente');
             location.reload();
         }
-        alert(cod_habitacion);
     });
 };
 
-insertdat = function(cod_habitacion, tipo_habitacion, piso){
+insertdat = function(cod_habitacion, tipo_habitacion, piso, nombre){
     $.post(base_url+'habitacion/guardar',
     {
         cod_habitacion:$('#cod_habitacion_c').val(),
         tipo_habitacion:$('#tipo_habitacion_c').val(),
         piso:$('#piso_c').val(),
+        nombre:$('#nombre_c').val(),
     },
     function(data){
         if(data == 1){
             alert('El registro fue almacenado correctamente');
             location.reload();
         }
-        alert(data);
     });
 };
 

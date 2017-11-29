@@ -32,6 +32,9 @@
 <!-- Waves Effect Css -->
 <link href="<?= base_url() ?>plugins/node-waves/waves.css" rel="stylesheet" />
 
+    <!-- Bootstrap Tagsinput Css -->
+    <link href="<?= base_url() ?>plugins/bootstrap-tagsinput/bootstrap-tagsinput.css" rel="stylesheet">
+
 <!-- Animation Css -->
 <link href="<?= base_url() ?>plugins/animate-css/animate.css" rel="stylesheet" />
 
@@ -320,7 +323,7 @@
           <ul class="list">
               <li class="header">Navegación Principal</li>
               <li class="active">
-                  <a href="index.html">
+                  <a href="<?= base_url() ?>home">
                       <i class="material-icons">home</i>
                       <span>Home</span>
                   </a>
