@@ -111,6 +111,17 @@ class Reservaciones extends CI_Controller {
 
       //}
     }
+    public function consultar_estadia(){
+        $estadia = $this->input->post('cod_estadia');
+      //if ($this->input->is_ajax_request()){
+          echo json_encode($this->Reservaciones_model->consultar_estadia($estadia));
+
+      //}
+    }
+    public function consultar_habitacion_estadia(){
+        $estadia = $this->input->post('cod_estadia1');
+          echo json_encode($this->Reservaciones_model->consultar_habitacion_estadia($estadia));
+    }
   function actualizar(){
       $fecha_ingreso = $this->input->post('cod_cargo');
       $fecha_reservacion = $this->input->post('area');

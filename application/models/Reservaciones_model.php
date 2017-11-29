@@ -10,6 +10,22 @@ class Reservaciones_model extends CI_Model{
     $data = $this->db->get('estadia');
     return $data->result_array();
   }
+  function consultar_estadia($arg){
+    $this->db->select('e.cod_estadia, p.cod_persona, p.nombres, p.apellido_paterno, p.apellido_materno, e.cod_empleado, e.fecha_reserva, e.fecha_ingreso, e.fecha_salida');
+    $this->db->where('e.cod_estadia',$arg);
+    $this->db->join('persona p', 'p.cod_persona = e.cod_cliente');
+    $data = $this->db->get('estadia e');
+    return $data->result_array();
+  }
+  function consultar_habitacion_estadia($arg){
+    $this->db->select('pe.cod_persona, pe.nombres, pe.apellido_paterno, pe.apellido_materno, ha.cod_habitacion, he.fecha_ingreso, he.fecha_salida');
+    $this->db->where('he.cod_estadia',$arg);
+    $this->db->join('persona pe','pe.cod_persona = he.cod_persona', 'left');
+    $this->db->join('estadia es','es.cod_estadia = he.cod_estadia', 'left');
+    $this->db->join('habitacion ha','ha.cod_habitacion = he.cod_habitacion', 'left');
+    $data = $this->db->get('habitacion_estadia he');
+    return $data->result_array();
+  }
   function actualizar($cod,$hab){
     $this->db->where('cod_cargo',$cod);
     $this->db->update('cargo',$hab);

@@ -43,6 +43,7 @@ $(document).on('ready',function(){
                 '<ul class="dropdown-menu" aria-labelledby="btnGroupVerticalDrop1">'+
                 '<li><a data-toggle="modal" data-target="#editar" class=" waves-effect waves-block" onClick="editClient(\''+row.cod_estadia+'\',\''+row.cod_cliente+'\',\''+row.cod_empleado+'\',\''+row.fecha_reserva+'\',\''+row.fecha_ingreso+'\',\''+row.fecha_salida+'\');">Editar</a></li>'+
                 '<li><a href="javascript:void(0);" class=" waves-effect waves-block" onClick="deldat(\''+row.cod_estadia+'\')">Eliminar</a></li>'+
+                '<li><a data-toggle="modal" data-target="#VerDetalle" class="waves-effect waves-block" onClick="VerDetalle(\''+row.cod_estadia+'\')">Ver detalles</a></li>'+
                 '</ul>'+
                 '</div>'
             }
@@ -157,7 +158,7 @@ $('#realizar_venta').click(function(){
                     nom_client.setAttribute("style","display:none");
                     app_client.setAttribute("style","display:none");
                     apm_client.setAttribute("style","display:none");
-                    apellido_m.setAttribute("style","display:none");
+                    //apellido_m.setAttribute("style","display:none");
                     //empleado_div.setAttribute("class","col-md-3");
                     //fecha_div.setAttribute("class","col-md-3");
                     tipo_r_div.setAttribute("class","col-md-3");
@@ -366,7 +367,7 @@ $('#realizar_venta').click(function(){
                             function(data){
                                 console.log(data);
                                 console.log(huespedes);
-                                //location.reload();
+                                location.reload();
                             })
                         }
                     }
@@ -412,4 +413,70 @@ comprobar = function(data1){
         }
     })
 }
+VerDetalle=function(data1){
+    /*$.post(base_url+'reservaciones/consultar',
+        {
+            cod_estadia:data1,
+        },
+        function(data2){
+        var datos = eval(data2);
+            datos.forEach(function(a){
+                html = '';
+                html+='<div class="col-md-12 text-left"><h4>Huésped '+a+'</h4>';
+                html+='<div class="col-md-12 text-left" id="'+a+'"></div>';
+                html+='<br /><div class="col-md-12" id="deta'+a+'"></div></div>';
+                $('#detalle_body').append(html);*/
+                $.post(base_url+'reservaciones/consultar_estadia',
+                {
+                    cod_estadia:data1,
+                },
+                function(data){
+                    var html = '';
+                    datos = eval(data);
+                    var objeto={};
+                    for (i = 0; i < datos.length; i++){
+                        html+= '<div class="col-md-4"><strong>Código de estadía: </strong>'+datos[i]['cod_estadia']+'<br /><br />';
+                        html+= '<strong>Empleado (DNI): </strong>'+datos[i]['cod_empleado']+'<br /><br />';
+                        html+= '<strong>Cliente (DNI): </strong>'+datos[i]['cod_persona']+'</div><br />';
+                        html+= '<div class="col-md-4"><strong>Nombres: </strong>'+datos[i]['nombres']+'</div>';
+                        html+= '<div class="col-md-4"><strong>Apellido paterno: </strong>'+datos[i]['apellido_paterno']+'</div>';
+                        html+= '<div class="col-md-4"><strong>Apellido materno: </strong>'+datos[i]['apellido_materno']+'</div>';
+                        html+= '<div class="col-md-4"><strong>Fecha de reservación: </strong>'+datos[i]['fecha_reserva']+'</div>';
+                        html+= '<div class="col-md-4"><strong>Fecha de ingreso: </strong>'+datos[i]['fecha_ingreso']+'</div>';
+                        html+= '<div class="col-md-4"><strong>Fecha de salida: </strong>'+datos[i]['fecha_salida']+'</div>';
+                        $('#Detalle').append(html);
+                        var html = '';
+
+                        /*for (j=0;j<datos[i]['max_h'];j++){
+                            html += '<div class="col-md-3">';
+                            html += '<div class="form-group form-float">'+
+                                    '<div class="form-line focused">';
+                            html += '<label class="form-label">Huésped '+parseInt(j+1)+':</label>';
+                            html += '<input class="form-control" type="number" id="'+a+j+'" />';
+                            html += '</div></div></div>';
+                        }*/
+                        //$('#deta'+a+'').html(html);
+                        $.post(base_url+'reservaciones/consultar_habitacion_estadia',
+                            {
+                                cod_estadia1:datos[i]['cod_estadia'],
+                            },
+                               function(data1){
+                                var html = '';
+                                datos = eval(data1);
+                                var objeto={};
+                                for (i = 0; i < datos.length; i++){
+                                    html+= '<p><strong>DNI: </strong>'+datos[i]['cod_persona']+'</p>';
+                                    html+= '<p><strong>Nombres: </strong>'+datos[i]['nombres']+'</p>';
+                                    html+= '<p><strong>Apellido paterno: </strong>'+datos[i]['apellido_paterno']+'</p>';
+                                    html+= '<p><strong>Apellido materno: </strong>'+datos[i]['apellido_materno']+'</p>';
+                                    html+= '<p><strong>Nº de habitación: </strong>'+datos[i]['cod_habitacion']+'</p>';
+                                    html+= '<p><strong>Fecha de ingreso: </strong>'+datos[i]['fecha_ingreso']+'</p>';
+                                    html+= '<p><strong>Fecha de salida: </strong>'+datos[i]['fecha_salida']+'</p>';
+                                    $('#habitacion_estadia').html(html);
+                                }
+
+                        })
+                    }
+                })
+        }
 })

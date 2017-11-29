@@ -245,6 +245,28 @@ var empleado = '<?php echo $this->session->userdata('cod_p') ?>';
             </div>
         </div>
 </div>
+<div class="modal fade" id="VerDetalle" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+              <h2 class="modal-title" id="largeModalLabel">Detalles de la reservación</h2>
+            </div>
+            <div class="modal-body">
+                <div class="row clearfix">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+
+                       <div id="Detalle"></div>
+                       <div id="habitacion_estadia"></div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
 <!-- Final de modals -->
 </div>
 </section>
