@@ -123,6 +123,10 @@
 <?php }; ?>
 <?php if($this->uri->segment(1)=='ventas') {?>
       <script src="<?= base_url() ?>js/ventas.js"></script>
+      <script src="<?= base_url() ?>plugins/jquery-validation/jquery.validate.js"></script>
+      <script src="<?= base_url() ?>plugins/jquery-steps/jquery.steps.js"></script>
+      <script src="<?= base_url() ?>js/pages/forms/form-wizard.js"></script>
+      <script src="<?= base_url() ?>plugins/jquery-spinner/js/jquery.spinner.js"></script>
 <?php }; ?>
 <?php if($this->uri->segment(1)=='reservaciones') {?>
       <script src="<?= base_url() ?>js/reservaciones.js"></script>

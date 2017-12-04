@@ -130,14 +130,61 @@ class Ventas extends CI_Controller {
         echo json_encode($consulta);
     }
     function servicios_slct(){
-        if($this->input->post('buscar_s')){
-            $data1 = $this->input->post('buscar_s');
-        }else{
+        $cliente = $this->input->post('cliente');
+        $consultar_cliente = $this->Ventas_model->consultar_cliente_estadia($cliente);
+        if ($consultar_cliente > 0){
+            if($this->input->post('buscar_s')){
+                $data1 = $this->input->post('buscar_s');
+            }else{
 
-            $data1 = "";
+                $data1 = "";
+            }
+            $consulta = $this->Ventas_model->servicios_slct($data1);
+            echo json_encode($consulta);
         }
-        $consulta = $this->Ventas_model->servicios_slct($data1);
-        echo json_encode($consulta);
+    }
+    function estadias_slct(){
+        $cliente = $this->input->post('cliente_estadia');
+        $consultar_cliente = $this->Ventas_model->consultar_cliente_estadia($cliente);
+        if ($consultar_cliente > 0){
+            if($this->input->post('buscar_e')){
+                $data1 = $this->input->post('buscar_e');
+            }else{
+                $data1 = "";
+            }
+            $consulta = $this->Ventas_model->estadias_slct($data1, $cliente);
+            echo json_encode($consulta);
+        }
+    }
+    function guardar_venta(){
+        $fecha = $this->input->post('fecha');
+        $nro_venta = $this->input->post('nro_venta');
+        $cliente_venta = $this->input->post('cliente_venta');
+        $empleado = $this->input->post('empleado');
+        $productos = $this->input->post('productos');
+        $producto_precio = $this->input->post('producto_precio');
+        $cantidad = $this->input->post('cantidad');
+        $venta_p = array(
+            'cod_venta' => $nro_venta,
+            'cod_cliente' => $cliente_venta,
+            'cod_empleado' => $empleado,
+            'fecha_venta' => $fecha,
+            'estado' => '1',
+        );
+        $this->Ventas_model->nueva_venta($venta_p);
+        $iteraciones_p = count($productos);
+        for ($i = 0; $i < $iteraciones_p; $i++){
+            $detalle_p = array(
+                'cod_venta' => $nro_venta,
+                'cod_producto' => $productos[$i],
+                'precio' => $producto_precio[$i],
+                'cantidad' => $cantidad[$i],
+            );
+            $this->Ventas_model->detalle_venta($detalle_p);
+        }
+        $servicios = $this->input->post('servicios');
+        $habitaciones = $this->input->post('habitaciones');
+        $estadias = $this->input->post('estadias');
     }
     function get_det(){
         $codigo = $this->input->post('cod');

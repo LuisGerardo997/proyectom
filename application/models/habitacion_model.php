@@ -3,7 +3,7 @@ class Habitacion_model extends CI_Model{
     function __construct(){
         parent::__construct();
     }
-    
+
     function consultar(){
         $this->db->select('h.cod_habitacion, th.tipo_habitacion, h.piso, x.nombre');
         $this->db->where('h.estado','1');
@@ -11,6 +11,11 @@ class Habitacion_model extends CI_Model{
         $this->db->join('estado_habitacion x','x.cod_estado_habitacion = h.cod_estado_habitacion', 'left');
         $this->db->from('habitacion h');
         $data = $this->db->get();
+        return $data->result_array();
+    }
+    function habitaciones_reservadas($arg){
+        $query = 'SELECT DISTINCT he.cod_habitacion, e.cod_estadia FROM habitacion_estadia he LEFT JOIN habitacion h ON he.cod_habitacion = h.cod_habitacion LEFT JOIN estadia e ON e.cod_estadia = he.cod_estadia WHERE h.cod_estado_habitacion = "2" AND e.cod_cliente = "'.$arg.'"';
+        $data = $this->db->query($query);
         return $data->result_array();
     }
 
@@ -21,7 +26,7 @@ class Habitacion_model extends CI_Model{
       return false;
     }
   }
-  
+
     function actualizar($cod,$hab){
     $this->db->where('cod_habitacion',$cod);
     $this->db->update('habitacion',$hab);
@@ -38,14 +43,14 @@ class Habitacion_model extends CI_Model{
     $resultado= $this->db->get('tipo_habitacion');
     return $resultado -> result_array();
   }
-    
+
     function select2(){
     $this->db->select('cod_estado_habitacion, nombre');
     $this->db->where('estado','1');
     $resultado= $this->db->get('estado_habitacion');
     return $resultado -> result_array();
   }
-    
+
   function eliminar($cod, $hab){
     $this->db->where('cod_habitacion', $cod);
     $this->db->update('habitacion', $hab);

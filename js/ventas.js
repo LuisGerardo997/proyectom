@@ -14,6 +14,12 @@ $(document).on('ready',function(){
         time: false
     });
     var seleccionados = new Array();
+    var seleccionadoh = new Array();
+    var seleccionadoe = new Array();
+    var producto_precio = new Array();
+    var servicio_precio = new Array();
+    var cliente = new Array();
+    var valor_p = new Array();
     var seleccionadop = new Array();
     $('#dt_table').DataTable({
         'paging':true,
@@ -53,7 +59,12 @@ $(document).on('ready',function(){
 
 var body_srv = document.getElementById('body_srv');
 var body_pro = document.getElementById('body_pro');
-
+var buscar_servicio_div = document.getElementById('buscar_servicio_div');
+var buscar_estadias_div = document.getElementById('buscar_estadias_div');
+var tabla_servicio_div = document.getElementById('tabla_servicio_div');
+var tabla_estadias_div = document.getElementById('tabla_estadias_div');
+var nota_servicio_div = document.getElementById('nota_servicio_div');
+var nota_estadias_div = document.getElementById('nota_estadias_div');
 editClient = function(cod_cargo, area, descripcion, cargo){
     $('#cod_cargo').val(cod_cargo);
     $("#area option:contains('"+area+"')").attr("selected",true);
@@ -153,6 +164,7 @@ $('#realizar_venta').click(function(){
     //tabla de seleccion de productos
     $.post(base_url+'ventas/productos_slct',
     {
+        buscar:$('#buscar').val(),
     },
     function(data){
         var html = '';
@@ -164,59 +176,208 @@ $('#realizar_venta').click(function(){
                     '<td>'+datos[i]['marca']+'</td>'+
                     '<td>'+datos[i]['tipo_producto']+'</td>'+
                     '<td>'+datos[i]['precio']+'</td>'+
-                    '<td><input type="checkbox" name="listado_p" value="'+datos[i]['cod_producto']+'" id="p'+datos[i]['cod_producto']+'"><label for="p'+datos[i]['cod_producto']+'"></label></td>'+
+                    '<td>'+datos[i]['precio']+'</td>'+
+                    '<td><input type="checkbox" onClick="precio_p(\''+datos[i]['precio']+'\')" name="listado_p" value="'+datos[i]['cod_producto']+'" id="p'+datos[i]['cod_producto']+'"><label for="p'+datos[i]['cod_producto']+'"></label></td>'+
                     '</tr>';
         }
         body_pro.innerHTML = html;
         seleccionadop.forEach(function(i){
             $('#p'+i+'').prop('checked', true);
         });
+        $('input[type=checkbox]').click(function(){
+            var elemento = $(this).val();
+            if (seleccionadop.includes(elemento)){
+                var pos = seleccionadop.indexOf(elemento);
+                cantidad(pos);
+                seleccionadop.splice(pos,1);
+                producto_precio.splice(pos,1);
+            }
+            //console.log($(this).val());
+            $('input[name=listado_p]:checked').each(function(){
+                if (seleccionadop.includes($(this).val()) == false){
+                seleccionadop.push($(this).val());
+                cantidad(1);
+                }
+            })
+            console.log(seleccionadop);
+        })
     })
-    //tabla de seleccion de servicios
-    $.post(base_url+'ventas/servicios_slct',
+//detector de teclas en buscador
+$('#buscar').keyup(function(){
+    $.post(base_url+'ventas/productos_slct',
     {
+        buscar:$('#buscar').val(),
     },
     function(data){
         var html = '';
         var datos = eval(data);
         for (i = 0; i<datos.length; i++){
             html+='<tr>'+
-                    '<td>'+datos[i]['cod_servicio']+'</td>'+
-                    '<td>'+datos[i]['servicio']+'</td>'+
+                    '<td>'+datos[i]['cod_producto']+'</td>'+
+                    '<td>'+datos[i]['producto']+'</td>'+
+                    '<td>'+datos[i]['marca']+'</td>'+
+                    '<td>'+datos[i]['tipo_producto']+'</td>'+
                     '<td>'+datos[i]['precio']+'</td>'+
-                    '<td><input type="checkbox" name="listado_s" value="'+datos[i]['cod_servicio']+'" id="s'+datos[i]['cod_servicio']+'"><label for="s'+datos[i]['cod_servicio']+'"></label></td>'+
+                    '<td>'+datos[i]['precio']+'</td>'+
+                    '<td><input type="checkbox" name="listado_p" onClick="precio_p(\''+datos[i]['precio']+'\')" value="'+datos[i]['cod_producto']+'" id="p'+datos[i]['cod_producto']+'"><label for="p'+datos[i]['cod_producto']+'"></label></td>'+
                     '</tr>';
         }
-        body_srv.innerHTML = html;
-        seleccionados.forEach(function(i){
-            $('#s'+i+'').prop('checked', true);
+        body_pro.innerHTML = html;
+        seleccionadop.forEach(function(i){
+            $('#p'+i+'').prop('checked', true);
         });
-    })
-    //detector de teclas en buscador
-    $('#buscar').keyup(function(){
-        $.post(base_url+'ventas/productos_slct',
-        {
-            buscar:$('#buscar').val(),
-        },
-        function(data){
-            var html = '';
-            var datos = eval(data);
-            for (i = 0; i<datos.length; i++){
-                html+='<tr>'+
-                        '<td>'+datos[i]['cod_producto']+'</td>'+
-                        '<td>'+datos[i]['producto']+'</td>'+
-                        '<td>'+datos[i]['marca']+'</td>'+
-                        '<td>'+datos[i]['tipo_producto']+'</td>'+
-                        '<td>'+datos[i]['precio']+'</td>'+
-                        '<td><input type="checkbox" name="listado_p" value="'+datos[i]['cod_producto']+'" id="p'+datos[i]['cod_producto']+'"><label for="'+datos[i]['cod_producto']+'"></label></td>'+
-                        '</tr>';
+        $('input[type=checkbox]').click(function(){
+            var elemento = $(this).val();
+            if (seleccionadop.includes(elemento)){
+                var pos = seleccionadop.indexOf(elemento);
+                cantidad(pos);
+                seleccionadop.splice(pos,1);
+                producto_precio.splice(pos,1);
             }
-            body_pro.innerHTML = html;
-            seleccionadop.forEach(function(i){
-                $('#p'+i+'').prop('checked', true);
-            });
+            //console.log($(this).val());
+            $('input[name=listado_p]:checked').each(function(){
+                if (seleccionadop.includes($(this).val()) == false){
+                seleccionadop.push($(this).val());
+                cantidad(1);
+                }
+            })
+            console.log(seleccionadop);
         })
     })
+})
+    //tabla de seleccion de servicios
+    $('a[href="#next"]').click(function(){
+        $.post(base_url+'ventas/servicios_slct',
+        {
+          cliente:$('#cliente_input').val(),
+        },
+        function(data){
+            console.log(data);
+            if (data != ''){
+                buscar_servicio_div.setAttribute('style','display:block');
+                tabla_servicio_div.setAttribute('style','display:block');
+                var html = '';
+                var datos = eval(data);
+                for (i = 0; i<datos.length; i++){
+                    html+='<tr>'+
+                            '<td>'+datos[i]['cod_servicio']+'</td>'+
+                            '<td>'+datos[i]['servicio']+'</td>'+
+                            '<td>'+datos[i]['precio']+'</td>'+
+                            '<td><input type="checkbox" name="listado_s" onClick="precio_s(\''+datos[i]['precio']+'\')" value="'+datos[i]['cod_servicio']+'" id="s'+datos[i]['cod_servicio']+'"><label for="s'+datos[i]['cod_servicio']+'"></label></td>'+
+                            '</tr>';
+                }
+                $('#body_srv').html(html);
+                seleccionados.forEach(function(i){
+                    $('#s'+i+'').prop('checked', true);
+                });
+                $('input[type=checkbox]').click(function(){
+                    var elemento = $(this).val();
+                    if (seleccionados.includes(elemento)){
+                        var pos = seleccionados.indexOf(elemento);
+                        seleccionados.splice(pos,1);
+                        seleccionadoh.splice(pos,1);
+                        servicio_precio.splice(pos,1);
+                    }
+                    //console.log($(this).val());
+                    $('input[name=listado_s]:checked').each(function(){
+                        var elemento = $(this).val();
+                        if (seleccionados.includes($(this).val()) == false){
+                        seleccionados.push($(this).val());
+                        //$('#seleccionar_estadia').modal();
+                            $.post(base_url+'habitacion/habitaciones_reservadas',
+                            {
+                                cod_cliente:$('#cliente_input').val(),
+                            },
+                            function(data){
+                                var html = '';
+                                var codigo = '';
+                                var datos = eval(data);
+                                if (datos.length > 0){
+                                    datos.forEach(function(i){
+                                        if (codigo != i['cod_estadia']){
+                                            html+='<div class="row clearfix"><h4>Estadía nro: '+i['cod_estadia']+'</h4></div>';
+                                        }
+                                        codigo = i['cod_estadia'];
+                                        html+='<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">'+
+                                            '<a name="seleccionables" onClick="insertar(\''+i['cod_habitacion']+'\',\''+i['cod_estadia']+'\');" href="#'+i['cod_habitacion']+'">'+
+                                                '<div class="info-box-4 hover-zoom-effect">'+
+                                                        '<div class="icon">'+
+                                                                '<i class="material-icons col-blue">hotel</i>'+
+                                                        '</div>'+
+                                                        '<div class="content">'+
+                                                                '<div class="text">Habitacion</div>'+
+                                                                '<div class="number">'+i['cod_habitacion']+'</div>'+
+                                                        '</div>'+
+                                                '</div>'+
+                                            '</a>'+
+                                        '</div>';
+                                    })
+                                }else{
+                                    html += '<br /><div class="body text-center">No se encontró ninguna habitación vinculada a este cliente.</div>';
+                                    html += '<br /><br />';
+                                }
+                                $('#habitaciones_list1').html(html);
+                            })
+                            $("#habitaciones_list").modal();
+                        }
+                    })
+                    console.log(seleccionadoe);
+                })
+            }else{
+                buscar_servicio_div.setAttribute('style','display:none');
+                tabla_servicio_div.setAttribute('style','display:none');
+                var html = '<br /><br /><div class="col-md-6 col-md-offset-3 text-center"><p>Actualmentel, el cliente no cuesdasdasnta con estadías abiertassss.</p></div>';
+                $('#nota_servicio_div').html(html);
+
+            }
+        })
+        $.post(base_url+'ventas/estadias_slct',
+        {
+          cliente_estadia:$('#cliente_input').val(),
+        },
+        function(data){
+            if (data != ''){
+                var html = '';
+                var datos = eval(data);
+                for (i = 0; i<datos.length; i++){
+                    html+='<tr>'+
+                            '<td>'+datos[i]['cod_estadia']+'</td>'+
+                            '<td>'+datos[i]['fecha_reserva']+'</td>'+
+                            '<td>'+datos[i]['fecha_ingreso']+'</td>'+
+                            '<td>'+datos[i]['fecha_salida']+'</td>'+
+                            '<td>'+(Date(datos[i]['fecha_ingreso'])-Date(output))+'</td>'+
+                            '<td><input type="checkbox" name="listado_e" value="'+datos[i]['cod_estadia']+'" id="e'+datos[i]['cod_estadia']+'"><label for="e'+datos[i]['cod_estadia']+'"></label></td>'+
+                            '</tr>';
+                }
+                $('#body_est').html(html);
+                seleccionadoe.forEach(function(i){
+                    $('#e'+i+'').prop('checked', true);
+                });
+                $('input[type=checkbox]').click(function(){
+                    var elemento = $(this).val();
+                    if (seleccionadoe.includes(elemento)){
+                        var pos = seleccionadoe.indexOf(elemento);
+                        seleccionadoe.splice(pos,1);
+                    }
+                    //console.log($(this).val());
+                    $('input[name=listado_e]:checked').each(function(){
+                        if (seleccionadoe.includes($(this).val()) == false){
+                        seleccionadoe.push($(this).val());
+                        }
+                    })
+                    $('input[name=listado_e]:checked').each(function(){
+                        var cod_est = $(this).val();
+                    })
+                    console.log(seleccionadoe);
+                })
+            }else{
+                buscar_servicio_div.setAttribute('style','display:none');
+                tabla_servicio_div.setAttribute('style','display:none');
+                var html = '<br /><br /><div class="col-md-6 col-md-offset-3 text-center"><p>Actualmentel, el cliente no cuenta con estadías abiertas.</p></div>';
+                $('#nota_estadias_div').html(html);
+
+            }
+        })
     $('#buscar_s').keyup(function(){
         $.post(base_url+'ventas/servicios_slct',
         {
@@ -230,15 +391,71 @@ $('#realizar_venta').click(function(){
                         '<td>'+datos[i]['cod_servicio']+'</td>'+
                         '<td>'+datos[i]['servicio']+'</td>'+
                         '<td>'+datos[i]['precio']+'</td>'+
-                        '<td><input type="checkbox" name="listado_s" value="'+datos[i]['cod_servicio']+'" id="s'+datos[i]['cod_servicio']+'"><label for="s'+datos[i]['cod_servicio']+'"></label></td>'+
+                        '<td><input type="checkbox" name="listado_s" onClick="precio_s(\''+datos[i]['precio']+'\')" value="'+datos[i]['cod_servicio']+'" id="s'+datos[i]['cod_servicio']+'"><label for="s'+datos[i]['cod_servicio']+'"></label></td>'+
                         '</tr>';
             }
             body_srv.innerHTML = html;
             seleccionados.forEach(function(i){
                 $('#s'+i+'').prop('checked', true);
             });
+            $('input[type=checkbox]').click(function(){
+                var elemento = $(this).val();
+                if (seleccionados.includes(elemento)){
+                    var pos = seleccionados.indexOf(elemento);
+                    seleccionados.splice(pos,1);
+                    seleccionadoh.splice(pos,1);
+                    servicio_precio.splice(pos,1);
+                }
+                //console.log($(this).val());
+                $('input[name=listado_s]:checked').each(function(){
+                    if (seleccionados.includes($(this).val()) == false){
+                    //$('#seleccionar_estadia').modal();
+                    seleccionados.push($(this).val());
+                    }
+                })
+                $('input[name=listado_s]:checked').each(function(){
+                    var cod_serv = $(this).val();
+                    $.post(base_url+'habitacion/habitaciones_reservadas',
+                    {
+                    },
+                    function(data){
+                        var html = '';
+                        var codigo = '';
+                        var datos = eval(data);
+                        if (datos.length > 0){
+                            datos.forEach(function(i){
+                                if (codigo != i['cod_estadia']){
+                                    html+='<div class="col-md-12 text-center"><div class="row clearfix"><h4>Estadía nro: '+i['cod_estadia']+'</h4></div></div>';
+                                }
+                                codigo = i['cod_estadia'];
+                                html+='<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">'+
+                                    '<a name="seleccionables" onClick="insertar(\''+i['cod_habitacion']+'\',\''+i['cod_estadia']+'\');" href="#seleccionables">'+
+                                        '<div class="info-box-4 hover-zoom-effect">'+
+                                                '<div class="icon">'+
+                                                        '<i class="material-icons col-blue">hotel</i>'+
+                                                '</div>'+
+                                                '<div class="content">'+
+                                                        '<div class="text">Habitacion</div>'+
+                                                        '<div class="number">'+i['cod_habitacion']+'</div>'+
+                                                '</div>'+
+                                        '</div>'+
+                                    '</a>'+
+                                '</div>';
+                            })
+                        }else{
+                            html += '<br /><div class="body text-center">No se encontró ninguna habitación vinculada a este cliente.</div>';
+                            html += '<br /><br />';
+                        }
+                        $('#habitaciones_list1').html(html);
+                    })
+                    $("#habitaciones_list").modal();
+                })
+                console.log(seleccionados);
+            })
         })
     })
+
+})
 })
 var seleccion_total = new Array();
 var html_p = '';
@@ -246,96 +463,83 @@ var det_body = document.getElementById('det_body');
 var pie_dt = document.getElementById('pie_dt');
 var detalle = document.getElementById('detalle');
 var total = 0;
-detalle.setAttribute('style','display:none');
-$('#agregar').click(function(){
+//detalle.setAttribute('style','display:none');
+/*$('#Servicios').click(function(){
     seleccionados.length = 0;
     seleccionadop.length = 0;
     $('input[type=checkbox]').click(function(){
+        var elemento = $(this).val();
+        if (seleccionados.includes(elemento)){
+            var pos = seleccionados.indexOf(elemento);
+            seleccionados.splice(pos,1);
+        }
+        //console.log($(this).val());
         $('input[name=listado_s]:checked').each(function(){
             if (seleccionados.includes($(this).val()) == false){
             seleccionados.push($(this).val());
             }
         })
-        if ($('input[name=listado_s]:unchecked'),prop('checked',false)){
-            console.log($(this).val());
-        }
-        $('input[name=listado_p]:checked').each(function(){
-            if (seleccionadop.includes($(this).val()) == false){
-            seleccionadop.push($(this).val());
-            }
-        })
-
-        detalle.setAttribute('style','display:block');
-        var html = '';
-        var total_html = '';
-        $('#det_body').html(html);
-        pie_dt.innerHTML = total_html;
-
-
-        for(i=0; i<seleccionados.length; i++){
-                $.post(base_url+'ventas/get_det',
-                {
-                    cod:seleccionados[i],
-                },
-                function(data){
-                    var html='';
-                    datos = eval(data);
-                    for (i=0;i<datos.length;i++){
-                        html +='<tr>'+
-                                '<td>1</td>'+
-                                '<td>'+datos[i]['servicio']+'</td>'+
-                                '<td>'+datos[i]['precio']+'</td>'+
-                                '<td>'+datos[i]['precio']+'</td>'+
-                                '</tr>';
-                        total = total+parseInt(datos[i]['precio']);
-                    }
-                    total_html = '<tr>'+
-                                    '<th></th>'+
-                                    '<th></th>'+
-                                    '<th>TOTAL</th>'+
-                                    '<th>'+total+'</th>'+
-                                    '</tr>';
-                    recopilar(html);
-                })
-
-        }
-        seleccion_total.length = 0;
-        function recopilar(data){
-            if (seleccion_total.includes(data)==false){
-                seleccion_total.push(data);
-            }
-            alert(seleccionados);
-        }
-        for(i=0; i<seleccionadop.length; i++){
-                $.post(base_url+'ventas/get_det_p',
-                {
-                    cod_p:seleccionadop[i],
-                },
-                function(data){
-                    datos = eval(data);
-                    for (i=0;i<datos.length;i++){
-                        html_p +='<tr>'+
-                                '<td>1</td>'+
-                                '<td>'+datos[i]['producto']+'</td>'+
-                                '<td>'+datos[i]['precio']+'</td>'+
-                                '<td>'+datos[i]['precio']+'</td>'+
-                                '</tr>';
-                        total = total+parseInt(datos[i]['precio']);
-                    }
-                    total_html ='<tr>'+
-                                    '<th></th>'+
-                                    '<th></th>'+
-                                    '<th>TOTAL</th>'+
-                                    '<th>'+total+'</th>'+
-                                    '</tr>';
-                })
-        }
-
-        det_body.innerHTML = html;
-        pie_dt.innerHTML = total_html;
+        console.log(seleccionados);
     })
     $('#seleccion_detalle').click(function(){
 
     })
+
+})*/
+
+$('a[href="#finish"]').click(function(){
+    $.post(base_url+'ventas/guardar_venta',
+    {
+        fecha:$('#fecha').val(),
+        nro_venta:$('#nro_venta').val(),
+        cliente_venta:$('#cliente_input').val(),
+        empleado:$('#empleado').val(),
+        productos:seleccionadop,
+        producto_precio:producto_precio,
+        cantidad:valor_p,
+        servicios:seleccionados,
+        servicio_precio:servicio_precio,
+        habitaciones:seleccionadoh,
+        estadias:seleccionadoe,
+    },
+    function(){
+        if (data == 1){
+            console.log('CORRECTO');
+        }else{
+            console.log('INCORRECTO');
+        }
+    })
 })
+
+cantidad = function(arg1){
+    if (arg1 == 1){
+        var cantidad = prompt('Ingrese la cantidad requerida:');
+        if (cantidad != null){
+            valor_p.push(cantidad);
+        }
+    }else{
+        valor_p.splice(arg1,1);
+    }
+    console.log(valor_p)
+}
+precio_p = function(arg1){
+    if (producto_precio.includes(arg1) == false){
+        producto_precio.push(arg1);
+    }
+    console.log(producto_precio)
+}
+precio_s = function(arg1){
+    if (servicio_precio.includes(arg1) == false){
+        servicio_precio.push(arg1);
+    }
+    console.log(servicio_precio)
+}
+insertar = function(data, data1){
+    console.log(data);
+    seleccionadoh.push(data);
+    seleccionadoe.push(data1);
+    console.log(seleccionadoh);
+    console.log(seleccionadoe);
+    $("#habitaciones_list").modal('hide');
+}
 });

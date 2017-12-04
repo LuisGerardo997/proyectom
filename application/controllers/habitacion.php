@@ -81,8 +81,8 @@ class Habitacion extends CI_Controller {
               }if  (in_array('4',$arr)){
                 $this->load->view('home/mod_reportes');
               }
-        
-        
+
+
         if($this->session->userdata('username')){
             $data1 = $this->Habitacion_model->select1();
             $data2 = $this->Habitacion_model->select2();
@@ -90,7 +90,7 @@ class Habitacion extends CI_Controller {
                 'tipo_habitacion' => $data1,
                 'estado_habitacion' => $data2,
             );
-            
+
             $this->load->view('home/main',$db_data);
             $this->load->view('home/habitaciones/habitacion',$resulta);
             $this->load->view('home/footer_dt');
@@ -104,7 +104,7 @@ class Habitacion extends CI_Controller {
     public function consultar(){
         echo json_encode($this->Habitacion_model->consultar());
     }
-    
+
 function actualizar(){
       $selector = $this->input->post('cod_habitacion');
       $cod_habitacion = $selector;
@@ -153,5 +153,10 @@ function actualizar(){
       }else{
         echo '0';
       }
+    }
+    function habitaciones_reservadas(){
+      $cliente = $this->input->post('cod_cliente');
+      $resultado = $this->Habitacion_model->habitaciones_reservadas($cliente);
+      echo json_encode($resultado);
     }
 }

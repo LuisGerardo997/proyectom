@@ -15,6 +15,12 @@ class Ventas_model extends CI_Model{
     $data = $this->db->get();
     return $data->result();
   }
+  function consultar_cliente_estadia($arg){
+    $this->db->select('cod_estadia');
+    $this->db->where('cod_cliente', $arg);
+    $resultado = $this->db->get('estadia');
+    return $resultado->num_rows();
+  }
   function actualizar($cod,$hab){
     $this->db->where('cod_cargo',$cod);
     $this->db->update('cargo',$hab);
@@ -41,7 +47,7 @@ class Ventas_model extends CI_Model{
   }
   function num_venta(){
     $query='SELECT * FROM ventas';
-    $resultado=$this->db->query($query);
+    $resultado = $this->db->query($query);
     return $resultado -> num_rows();
   }
   function comprobar_cliente($param){
@@ -70,6 +76,12 @@ class Ventas_model extends CI_Model{
       return false;
     }
   }
+  function detalle_venta($guardar){
+    $this->db->insert('detalle_venta',$guardar);
+  }
+  function nueva_venta($guardar){
+    $this->db->insert('ventas',$guardar);
+  }
     function num_rows(){
           $num = $this->db->count_all('cargo');
           $num = $num+1;
@@ -90,6 +102,13 @@ class Ventas_model extends CI_Model{
     $where = 'cod_servicio like "%'.$arg.'%" OR servicio LIKE "%'.$arg.'%" OR precio LIKE "%'.$arg.'%"';
     $this->db->where($where);
     $this->db->from('servicio');
+    $resultado = $this->db->get();
+    return $resultado -> result_array();
+  }
+  function estadias_slct($arg, $arg1){
+    $this->db->select('e.cod_estadia, e.fecha_reserva, e.fecha_ingreso, e.fecha_salida');
+    $this->db->from('estadia e');
+    $this->db->where('e.cod_cliente', $arg1);
     $resultado = $this->db->get();
     return $resultado -> result_array();
   }

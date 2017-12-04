@@ -26,6 +26,8 @@
   <!-- Bootstrap Select Css
   <link href="<?= base_url() ?>plugins/bootstrap-select/css/bootstrap-select.css" rel="stylesheet" />
 -->
+    <!-- Bootstrap Spinner Css -->
+    <link href="<?= base_url() ?>plugins/jquery-spinner/css/bootstrap-spinner.css" rel="stylesheet">
 <!-- Bootstrap Core Css -->
 <link href="<?= base_url() ?>plugins/bootstrap/css/bootstrap.css" rel="stylesheet">
 

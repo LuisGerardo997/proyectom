@@ -280,7 +280,7 @@ $('#realizar_venta').click(function(){
                 seleccionadoh.push($(this).val());
                 }
             })
-            //console.log(seleccionadoh);
+            console.log(seleccionadoh);
         })
     })
     $('#buscar_h').keyup(function(){
