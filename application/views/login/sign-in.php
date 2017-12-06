@@ -66,6 +66,7 @@
                     </div>
                         <div class="col-xs-12 align-center">
                             <a href="forgot-password.html">Olvidaste tu contraseña?</a>
+                            <?php if (isset($mensaje)){ ?> <script> alert('<?php echo $mensaje; ?>'); </script> <?php }; ?>
                         </div>
                         <br>
                     </div>

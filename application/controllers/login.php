@@ -11,36 +11,41 @@ class Login extends CI_Controller {
         if($this->session->userdata('username')){
             header('Location:home');
         }
-        if(isset($_POST['pass'])){
+        if(isset($_POST['pass']) && isset($_POST['user'])){
             if (($this->Login_model->ingresar($_POST['user'],$_POST['pass']))==1){
                 $usuario = $_POST['user'];
                 $cargo = $this->Login_model->cargo($usuario);
                 $datos = $this->Login_model->datospersonales($usuario);
                 $pool = $this->Login_model->perfiles($usuario);
                 $num = count($pool);
-            }
-            $dat = array(
-                'username' => $usuario,
-                'cargo' => $cargo->cargo,
-                'cod_p' => $datos->cod_persona,
-                'nombres' => $datos->nombres,
-                'apellido_p' => $datos->apellido_paterno,
-                'apellido_m' => $datos->apellido_materno,
-                'email' => $datos->email,
-                'foto_p' => $datos->foto_persona,
-            );
-            $this->session->set_userdata($dat);
-            if ($num > 1){
-                header("Location:login/select_perfil");
-            }else{
-                $perf = $pool[0]['cod_perfil'];
-                $perf1 = $pool[0]['perfil'];
-                $data = array(
-                    'perfil' => $perf,
-                    'nom_perfil' => $perf1,
+                $dat = array(
+                    'username' => $usuario,
+                    'cargo' => $cargo->cargo,
+                    'cod_p' => $datos->cod_persona,
+                    'nombres' => $datos->nombres,
+                    'apellido_p' => $datos->apellido_paterno,
+                    'apellido_m' => $datos->apellido_materno,
+                    'email' => $datos->email,
+                    'foto_p' => $datos->foto_persona,
                 );
-                $this->session->set_userdata($data);
-                redirect('home');
+                $this->session->set_userdata($dat);
+                if ($num > 1){
+                    header("Location:login/select_perfil");
+                }else{
+                    $perf = $pool[0]['cod_perfil'];
+                    $perf1 = $pool[0]['perfil'];
+                    $data = array(
+                        'perfil' => $perf,
+                        'nom_perfil' => $perf1,
+                    );
+                    $this->session->set_userdata($data);
+                    redirect('home');
+                }
+            }else{
+                $respuesta = array(
+                    'mensaje' => 'El usuario y/o contraseña son incorrectos, por favor ingréselos correctamente.',
+                );
+                $this->load->view('login/sign-in', $respuesta);
             }
         }else{
             $this->load->view('login/sign-in');

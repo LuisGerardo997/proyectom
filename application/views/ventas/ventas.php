@@ -45,8 +45,8 @@ var empleado = '<?php echo $this->session->userdata('cod_p') ?>';
                                                                                 <tr>
                                                                                         <th>#</th>
                                                                                         <th>Cliente</th>
-                                                                                        <th>Empleado</th>
-                                                                                        <th>Tipo de transacción</th>
+                                                                                        <th>Nombres</th>
+                                                                                        <th>Apellido Paterno</th>
                                                                                         <th>Oferta</th>
                                                                                         <th>Fecha</th>
                                                                                         <th><i class="material-icons">more_vert</i></th>

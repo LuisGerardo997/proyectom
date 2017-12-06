@@ -1,13 +1,13 @@
 <?php
-class Ventas_model extends CI_Model{
+class Compras_model extends CI_Model{
 
   function __constuct(){
     parent::__construct();
   }
   function consultar(){
-    $this->db->select('v.cod_venta, v.cod_cliente, pc.nombres, pc.apellido_paterno, pc.apellido_materno, v.cod_oferta, v.fecha_venta');
-    $this->db->from('ventas v');
-    $this->db->join('persona pc', 'pc.cod_persona = v.cod_cliente');
+    $this->db->select('c.cod_compra, p.ruc, p.razon_social, c.fecha_compra');
+    $this->db->from('compras c');
+    $this->db->join('proveedores p', 'p.cod_proveedor = c.cod_proveedor');
     $resultado = $this->db->get();
     return $resultado->result();
   }

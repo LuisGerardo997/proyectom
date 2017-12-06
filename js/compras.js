@@ -27,17 +27,15 @@ $(document).on('ready',function(){
         'filter':true,
         'stateSave':true,
         'ajax':{
-            "url": base_url+"ventas/consultar",
+            "url": base_url+"compras/consultar",
             "type":"POST",
             dataSrc: ''
         },
         'columns':[
-            {data: 'cod_venta'},
-            {data: 'cod_cliente'},
-            {data: 'nombres'},
-            {data: 'apellido_paterno'},
-            {data: 'cod_oferta'},
-            {data: 'fecha_venta'},
+            {data: 'cod_compra'},
+            {data: 'cod_proveedor'},
+            {data: 'razon_social'},
+            {data: 'fecha_compra'},
             {"orderable":true,
             render:function(data, type, row){
                 return '<div class="btn-group" role="group">'+
@@ -45,8 +43,8 @@ $(document).on('ready',function(){
                 'Acciones <span class="caret"></span>'+
                 '</button>'+
                 '<ul class="dropdown-menu" aria-labelledby="btnGroupVerticalDrop1">'+
-                '<li><a data-toggle="modal" data-target="#editar" class=" waves-effect waves-block" onClick="editClient(\''+row.cod_venta+'\',\''+row.cod_pc+'\',\''+row.nombres_c+'\',\''+row.apellido_p_c+'\',\''+row.apellido_m_c+'\',\''+row.cod_pe+'\',\''+row.nombres_e+'\',\''+row.apellido_p_e+'\',\''+row.apellido_m_e+'\',\''+row.tipo_transaccion+'\',\''+row.oferta+'\',\''+row.fecha_venta+'\');">Editar</a></li>'+
-                '<li><a href="javascript:void(0);" class=" waves-effect waves-block" onClick="deldat(\''+row.cod_venta+'\')">Eliminar</a></li>'+
+                '<li><a data-toggle="modal" data-target="#editar" class=" waves-effect waves-block" onClick="editClient(\''+row.cod_compra+'\',\''+row.cod_proveedor+'\',\''+row.razon_social+'\',\''+row.fecha_compra+'\');">Editar</a></li>'+
+                '<li><a href="javascript:void(0);" class=" waves-effect waves-block" onClick="deldat(\''+row.cod_compra+'\')">Eliminar</a></li>'+
                 '</ul>'+
                 '</div>'
             }

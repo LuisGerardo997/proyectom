@@ -1,11 +1,11 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Ventas extends CI_Controller {
+class Compras extends CI_Controller {
     function __construct(){
         parent::__construct();
         $this->load->library('session');
-        $this->load->model('Ventas_model');
+        $this->load->model('Compras_model');
         $this->load->model('Login_model');
     }
 
@@ -90,15 +90,15 @@ class Ventas extends CI_Controller {
                 $this->load->view('home/mod_reportes');
               }
             $this->load->view('home/main',$db_data);
-            $t_tran = $this->Ventas_model->select1();
-            $oferta = $this->Ventas_model->select2();
-            $tipo_producto = $this->Ventas_model->select3();
+            $t_tran = $this->Compras_model->select1();
+            $oferta = $this->Compras_model->select2();
+            $tipo_producto = $this->Compras_model->select3();
             $data1 = array(
                 't_tran' => $t_tran,
                 'oferta' => $oferta,
                 'tp' => $tipo_producto,
             );
-            $this->load->view('ventas/ventas',$data1);
+            $this->load->view('compras/compras',$data1);
             $this->load->view('home/footer_dt');
 
         }else{
@@ -107,13 +107,13 @@ class Ventas extends CI_Controller {
     }
     public function consultar(){
       //if ($this->input->is_ajax_request()){
-          echo json_encode($this->Ventas_model->consultar());
+          echo json_encode($this->Compras_model->consultar());
 
       //}
     }
     function comprobar_cliente(){
         $cliente = $this->input->post('cliente');
-        if($this->Ventas_model->comprobar_cliente($cliente) == true){
+        if($this->Compras_model->comprobar_cliente($cliente) == true){
             echo 'Existe';
         }else{
             echo 'No existe';
@@ -126,12 +126,12 @@ class Ventas extends CI_Controller {
 
             $data1 = "";
         }
-        $consulta = $this->Ventas_model->productos_slct($data1);
+        $consulta = $this->Compras_model->productos_slct($data1);
         echo json_encode($consulta);
     }
     function servicios_slct(){
         $cliente = $this->input->post('cliente');
-        $consultar_cliente = $this->Ventas_model->consultar_cliente_estadia($cliente);
+        $consultar_cliente = $this->Compras_model->consultar_cliente_estadia($cliente);
         if ($consultar_cliente > 0){
             if($this->input->post('buscar_s')){
                 $data1 = $this->input->post('buscar_s');
@@ -139,20 +139,20 @@ class Ventas extends CI_Controller {
 
                 $data1 = "";
             }
-            $consulta = $this->Ventas_model->servicios_slct($data1);
+            $consulta = $this->Compras_model->servicios_slct($data1);
             echo json_encode($consulta);
         }
     }
     function estadias_slct(){
         $cliente = $this->input->post('cliente_estadia');
-        $consultar_cliente = $this->Ventas_model->consultar_cliente_estadia($cliente);
+        $consultar_cliente = $this->Compras_model->consultar_cliente_estadia($cliente);
         if ($consultar_cliente > 0){
             if($this->input->post('buscar_e')){
                 $data1 = $this->input->post('buscar_e');
             }else{
                 $data1 = "";
             }
-            $consulta = $this->Ventas_model->estadias_slct($data1, $cliente);
+            $consulta = $this->Compras_model->estadias_slct($data1, $cliente);
             echo json_encode($consulta);
         }
     }
@@ -172,7 +172,7 @@ class Ventas extends CI_Controller {
             'fecha_venta' => $fecha,
             'estado' => '1',
         );
-        $this->Ventas_model->nueva_venta($venta_p);
+        $this->Compras_model->nueva_venta($venta_p);
         $iteraciones_p = count($productos);
         for ($i = 0; $i < $iteraciones_p; $i++){
             $detalle_p = array(
@@ -181,12 +181,12 @@ class Ventas extends CI_Controller {
                 'precio' => $producto_precio[$i],
                 'cantidad' => $cantidad[$i],
             );
-            $stock_p = $this->Ventas_model->cantidad_producto();
+            $stock_p = $this->Compras_model->cantidad_producto();
             $stock_actual = ($stock_p - $cantidad[$i]);
             $nuevo_stock = array(
                 'stock_producto' => $stock_actual,
             );
-            $this->Ventas_model->detalle_venta($detalle_p);
+            $this->Compras_model->detalle_venta($detalle_p);
             $this->Productos_model->actualizar($productos[$i], $detalle_p);
         }
         $servicios = $this->input->post('servicios');
@@ -202,18 +202,18 @@ class Ventas extends CI_Controller {
                 'cantidad' => '1',
                 'estado' => '1',
             );
-            $this->Ventas_model->detalle_servicio($detalle_s);
+            $this->Compras_model->detalle_servicio($detalle_s);
         }
         echo 1;
     }
     function get_det(){
         $codigo = $this->input->post('cod');
-        $resultado = $this->Ventas_model->get_det($codigo);
+        $resultado = $this->Compras_model->get_det($codigo);
         echo json_encode($resultado);
     }
     function get_det_p(){
         $codigo = $this->input->post('cod_p');
-        $resultado = $this->Ventas_model->get_det_p($codigo);
+        $resultado = $this->Compras_model->get_det_p($codigo);
         echo json_encode($resultado);
     }
 }
