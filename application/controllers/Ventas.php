@@ -6,6 +6,7 @@ class Ventas extends CI_Controller {
         parent::__construct();
         $this->load->library('session');
         $this->load->model('Ventas_model');
+        $this->load->model('Productos_model');
         $this->load->model('Login_model');
     }
 
@@ -111,6 +112,13 @@ class Ventas extends CI_Controller {
 
       //}
     }
+    public function consultar_detalle_ventas(){
+        $cod_venta = $this->input->post('cod_venta');
+      //if ($this->input->is_ajax_request()){
+          echo json_encode($this->Ventas_model->consultar_detalle_ventas($cod_venta));
+
+      //}
+    }
     function comprobar_cliente(){
         $cliente = $this->input->post('cliente');
         if($this->Ventas_model->comprobar_cliente($cliente) == true){
@@ -181,13 +189,13 @@ class Ventas extends CI_Controller {
                 'precio' => $producto_precio[$i],
                 'cantidad' => $cantidad[$i],
             );
-            $stock_p = $this->Ventas_model->cantidad_producto();
-            $stock_actual = ($stock_p - $cantidad[$i]);
+            $stock_p = $this->Ventas_model->cantidad_producto($productos[$i]);
+            $stock_actual = (intval($stock_p) - intval($cantidad[$i]));
             $nuevo_stock = array(
                 'stock_producto' => $stock_actual,
             );
             $this->Ventas_model->detalle_venta($detalle_p);
-            $this->Productos_model->actualizar($productos[$i], $detalle_p);
+            $this->Productos_model->actualizar($productos[$i], $nuevo_stock);
         }
         $servicios = $this->input->post('servicios');
         $habitaciones = $this->input->post('habitaciones');

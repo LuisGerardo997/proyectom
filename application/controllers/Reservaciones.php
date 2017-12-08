@@ -188,10 +188,25 @@ class Reservaciones extends CI_Controller {
     function registrar_estadia(){
         $nro_res = $this->input->post('nro_res');
         $cliente = $this->input->post('cliente');
+        $nombres = $this->input->post('nombres');
+        $apellido_p = $this->input->post('apellido_p');
+        $apellido_m = $this->input->post('apellido_m');
         $empleado = $this->input->post('empleado');
         $fecha_r = $this->input->post('fecha_r');
         $fecha_estadia = $this->input->post('fecha_estadia');
         $lista_hab = $this->input->post('lista_hab');
+        if ($nombres == ''){
+            $cliente_datos = array(
+                'cod_persona' => $cliente,
+                'nombres' => $nombres,
+                'apellido_paterno' => $apellido_p,
+                'apellido_materno' => $apellido_m,
+                'apellido_materno' => $apellido_m,
+                'estado' => '0',
+            );
+            $this->Clientes_model->guardar($cliente_datos);
+
+        };
         $datos = array(
             'cod_estadia' => $nro_res,
             'cod_cliente' => $cliente,

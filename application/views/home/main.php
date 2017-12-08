@@ -25,83 +25,83 @@
                 <div class="tab-content">
                     <div role="tabpanel" class="tab-pane fade in active in active" id="skins">
                         <ul class="demo-choose-skin">
-                            <li data-theme="red" class="active">
+                            <li name="colors" data-theme="red" class="active">
                                 <div class="red"></div>
                                 <span>Red</span>
                             </li>
-                            <li data-theme="pink">
+                            <li name="colors" data-theme="pink">
                                 <div class="pink"></div>
                                 <span>Pink</span>
                             </li>
-                            <li data-theme="purple">
+                            <li name="colors" data-theme="purple">
                                 <div class="purple"></div>
                                 <span>Purple</span>
                             </li>
-                            <li data-theme="deep-purple">
+                            <li name="colors" data-theme="deep-purple">
                                 <div class="deep-purple"></div>
                                 <span>Deep Purple</span>
                             </li>
-                            <li data-theme="indigo">
+                            <li name="colors" data-theme="indigo">
                                 <div class="indigo"></div>
                                 <span>Indigo</span>
                             </li>
-                            <li data-theme="blue">
+                            <li name="colors" data-theme="blue">
                                 <div class="blue"></div>
                                 <span>Blue</span>
                             </li>
-                            <li data-theme="light-blue">
+                            <li name="colors" data-theme="light-blue">
                                 <div class="light-blue"></div>
                                 <span>Light Blue</span>
                             </li>
-                            <li data-theme="cyan">
+                            <li name="colors" data-theme="cyan">
                                 <div class="cyan"></div>
                                 <span>Cyan</span>
                             </li>
-                            <li data-theme="teal">
+                            <li name="colors" data-theme="teal">
                                 <div class="teal"></div>
                                 <span>Teal</span>
                             </li>
-                            <li data-theme="green">
+                            <li name="colors" data-theme="green">
                                 <div class="green"></div>
                                 <span>Green</span>
                             </li>
-                            <li data-theme="light-green">
+                            <li name="colors" data-theme="light-green">
                                 <div class="light-green"></div>
                                 <span>Light Green</span>
                             </li>
-                            <li data-theme="lime">
+                            <li name="colors" data-theme="lime">
                                 <div class="lime"></div>
                                 <span>Lime</span>
                             </li>
-                            <li data-theme="yellow">
+                            <li name="colors" data-theme="yellow">
                                 <div class="yellow"></div>
                                 <span>Yellow</span>
                             </li>
-                            <li data-theme="amber">
+                            <li name="colors" data-theme="amber">
                                 <div class="amber"></div>
                                 <span>Amber</span>
                             </li>
-                            <li data-theme="orange">
+                            <li name="colors" data-theme="orange">
                                 <div class="orange"></div>
                                 <span>Orange</span>
                             </li>
-                            <li data-theme="deep-orange">
+                            <li name="colors" data-theme="deep-orange">
                                 <div class="deep-orange"></div>
                                 <span>Deep Orange</span>
                             </li>
-                            <li data-theme="brown">
+                            <li name="colors" data-theme="brown">
                                 <div class="brown"></div>
                                 <span>Brown</span>
                             </li>
-                            <li data-theme="grey">
+                            <li name="colors" data-theme="grey">
                                 <div class="grey"></div>
                                 <span>Grey</span>
                             </li>
-                            <li data-theme="blue-grey">
+                            <li name="colors" data-theme="blue-grey">
                                 <div class="blue-grey"></div>
                                 <span>Blue Grey</span>
                             </li>
-                            <li data-theme="black">
+                            <li name="colors" data-theme="black">
                                 <div class="black"></div>
                                 <span>Black</span>
                             </li>
@@ -163,3 +163,16 @@
     </div>
 </div>
 </section>
+
+<script>
+var empleado = '<?php echo $this->session->userdata('cod_p'); ?>';
+  $('li[name=colors]').click(function(){
+    console.log($(this).attr('data-theme'));
+    var color = $(this).attr('data-theme');
+    $.post(base_url+'Empleados/actualizar_color',
+    {
+            color:color,
+            empleado:empleado,
+});
+  })
+</script>

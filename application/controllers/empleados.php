@@ -108,7 +108,19 @@ class Empleados extends CI_Controller {
         echo json_encode($this->Empleados_model->consultar());
     //}
     }
+     public function actualizar_color(){
+        $selector = $this->input->post('empleado');
+        $color = $this->input->post('color');
+        $datos = array(
+          'color' => $color,
+         );
 
+        $dat = array(
+          'color_p' => $color,
+        );
+        $this->session->set_userdata($dat);
+        $this->Empleados_model->actualizar($selector, $datos);
+     }
 
     function actualizar(){
       $selector = $this->input->post('cod_persona');

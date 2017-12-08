@@ -11,6 +11,17 @@ class Ventas_model extends CI_Model{
     $resultado = $this->db->get();
     return $resultado->result();
   }
+  function consultar_detalle_ventas($arg){
+    $this->db->select('dv.cod_venta, dv.cod_producto, pr.producto, m.marca, tp.tipo_producto, dv.precio, dv.descuento, p.descripcion, dv.cantidad');
+    $this->db->from('detalle_venta dv');
+    $this->db->where('dv.cod_venta', $arg);
+    $this->db->join('parametros p', 'p.cod_parametro = dv.cod_parametro', 'left');
+    $this->db->join('productos pr', 'pr.cod_producto = dv.cod_producto', 'left');
+    $this->db->join('tipo_producto tp', 'tp.cod_tipo_producto = pr.cod_tipo_producto', 'left');
+    $this->db->join('marca m', 'm.cod_marca = pr.cod_marca', 'left');
+    $resultado = $this->db->get();
+    return $resultado->result_array();
+  }
   function consultar_cliente_estadia($arg){
     $this->db->select('cod_estadia');
     $this->db->where('cod_cliente', $arg);
@@ -94,8 +105,8 @@ class Ventas_model extends CI_Model{
           return $num;
       }
   function productos_slct($arg){
-    $this->db->select('p.cod_producto, p.producto, m.marca, tp.tipo_producto, p.precio_producto precio');
-    $where = 'p.cod_producto like "%'.$arg.'%" OR p.producto LIKE "%'.$arg.'%" OR m.marca LIKE "%'.$arg.'%" OR tp.tipo_producto LIKE "%'.$arg.'%" OR p.precio_producto LIKE "%'.$arg.'%"';
+    $this->db->select('p.cod_producto, p.producto, m.marca, tp.tipo_producto, p.precio_producto precio, p.stock_producto');
+    $where = 'p.cod_producto like "%'.$arg.'%" OR p.producto LIKE "%'.$arg.'%" OR m.marca LIKE "%'.$arg.'%" OR tp.tipo_producto LIKE "%'.$arg.'%" OR p.precio_producto LIKE "%'.$arg.'%" OR p.stock_producto LIKE "%'.$arg.'%"';
     $this->db->where($where);
     $this->db->join('marca m', 'm.cod_marca = p.cod_marca');
     $this->db->join('tipo_producto tp', 'tp.cod_tipo_producto = p.cod_tipo_producto');

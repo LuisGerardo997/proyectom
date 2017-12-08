@@ -5,7 +5,7 @@ class Compras_model extends CI_Model{
     parent::__construct();
   }
   function consultar(){
-    $this->db->select('c.cod_compra, p.ruc, p.razon_social, c.fecha_compra');
+    $this->db->select('c.cod_compra, p.cod_proveedor, p.razon_social, c.fecha_compra');
     $this->db->from('compras c');
     $this->db->join('proveedores p', 'p.cod_proveedor = c.cod_proveedor');
     $resultado = $this->db->get();
@@ -41,15 +41,15 @@ class Compras_model extends CI_Model{
     $resultado= $this->db->get('tipo_producto');
     return $resultado -> result_array();
   }
-  function num_venta(){
-    $query='SELECT * FROM ventas';
+  function num_compra(){
+    $query='SELECT * FROM compras';
     $resultado = $this->db->query($query);
     return $resultado -> num_rows();
   }
-  function comprobar_cliente($param){
-    $this->db->select('cod_persona');
-    $this->db->where('cod_persona',$param);
-    $resultado=$this->db->get('persona');
+  function comprobar_proveedor($param){
+    $this->db->select('cod_proveedor');
+    $this->db->where('cod_proveedor',$param);
+    $resultado=$this->db->get('proveedores');
     if ($resultado -> num_rows() != 0){
       return true;
     }else{
@@ -65,8 +65,15 @@ class Compras_model extends CI_Model{
       return false;
     }
   }
-  function guardar($guardar){
-    if ($this->db->insert('cargo',$guardar)){
+  function guardar_compra($guardar){
+    if ($this->db->insert('compras',$guardar)){
+      return true;
+    }else{
+      return false;
+    }
+  }
+  function guardar_detalle_compras($guardar){
+    if ($this->db->insert('detalle_compras',$guardar)){
       return true;
     }else{
       return false;
@@ -79,35 +86,16 @@ class Compras_model extends CI_Model{
     $resultado = $this->db->get();
     return $resultado->result();
   }
-  function detalle_venta($guardar){
-    $this->db->insert('detalle_venta',$guardar);
-  }
-  function detalle_servicio($guardar){
-    $this->db->insert('detalle_servicio',$guardar);
-  }
-  function nueva_venta($guardar){
-    $this->db->insert('ventas',$guardar);
-  }
     function num_rows(){
           $num = $this->db->count_all('cargo');
           $num = $num+1;
           return $num;
       }
-  function productos_slct($arg){
-    $this->db->select('p.cod_producto, p.producto, m.marca, tp.tipo_producto, p.precio_producto precio');
-    $where = 'p.cod_producto like "%'.$arg.'%" OR p.producto LIKE "%'.$arg.'%" OR m.marca LIKE "%'.$arg.'%" OR tp.tipo_producto LIKE "%'.$arg.'%" OR p.precio_producto LIKE "%'.$arg.'%"';
-    $this->db->where($where);
+  function productos_compra(){
+    $this->db->select('p.cod_producto, p.producto, m.marca, tp.tipo_producto, p.stock_producto, p.stock_maximo, p.precio_producto precio');
     $this->db->join('marca m', 'm.cod_marca = p.cod_marca');
     $this->db->join('tipo_producto tp', 'tp.cod_tipo_producto = p.cod_tipo_producto');
     $this->db->from('productos p');
-    $resultado = $this->db->get();
-    return $resultado -> result_array();
-  }
-  function servicios_slct($arg){
-    $this->db->select('cod_servicio, servicio, precio');
-    $where = 'cod_servicio like "%'.$arg.'%" OR servicio LIKE "%'.$arg.'%" OR precio LIKE "%'.$arg.'%"';
-    $this->db->where($where);
-    $this->db->from('servicio');
     $resultado = $this->db->get();
     return $resultado -> result_array();
   }
@@ -117,17 +105,5 @@ class Compras_model extends CI_Model{
     $this->db->where('e.cod_cliente', $arg1);
     $resultado = $this->db->get();
     return $resultado -> result_array();
-  }
-  function get_det($arg){
-    $this->db->select('servicio, precio');
-    $this->db->where('cod_servicio',$arg);
-    $resultado = $this->db->get('servicio');
-    return $resultado->result_array();
-  }
-  function get_det_p($arg){
-    $this->db->select('producto, precio_producto precio');
-    $this->db->where('cod_producto',$arg);
-    $resultado = $this->db->get('productos');
-    return $resultado->result_array();
   }
 }

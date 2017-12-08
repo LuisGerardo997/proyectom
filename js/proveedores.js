@@ -17,7 +17,6 @@ $('#dt_table').DataTable({
         {data: 'apellido_materno'},
         {data: 'dni'},
         {data: 'ciudad'},
-        {data: 'ruc'},
         {data: 'razon_social'},
         {data: 'descripcion'},
         {"orderable":true,
@@ -27,7 +26,7 @@ $('#dt_table').DataTable({
             'Acciones <span class="caret"></span>'+
             '</button>'+
             '<ul class="dropdown-menu" aria-labelledby="btnGroupVerticalDrop1">'+
-            '<li><a data-toggle="modal" data-target="#editar" class=" waves-effect waves-block" onClick="editClient(\''+row.cod_proveedor+'\',\''+row.nombres+'\',\''+row.apellido_paterno+'\',\''+row.apellido_materno+'\',\''+row.dni+'\',\''+row.ciudad+'\',\''+row.ruc+'\',\''+row.razon_social+'\',\''+row.descripcion+'\');">Editar</a></li>'+
+            '<li><a data-toggle="modal" data-target="#editar" class=" waves-effect waves-block" onClick="editClient(\''+row.cod_proveedor+'\',\''+row.nombres+'\',\''+row.apellido_paterno+'\',\''+row.apellido_materno+'\',\''+row.dni+'\',\''+row.ciudad+'\',\''+row.razon_social+'\',\''+row.descripcion+'\');">Editar</a></li>'+
             '<li><a href="javascript:void(0);" class=" waves-effect waves-block" onClick="deldat(\''+row.cod_proveedor+'\')">Eliminar</a></li>'+
             '</ul>'+
             '</div>'
@@ -39,14 +38,13 @@ $('#dt_table').DataTable({
 });
 
 
-editClient = function(cod_proveedor, nombres, apellido_paterno, apellido_materno,dni,ciudad,ruc,razon_social,descripcion){
+editClient = function(cod_proveedor, nombres, apellido_paterno, apellido_materno,dni,ciudad,razon_social,descripcion){
     $('#cod_proveedor').val(cod_proveedor);
     $('#nombres').val(nombres);
     $('#apellido_paterno').val(apellido_paterno);
     $('#apellido_materno').val(apellido_materno);
     $('#dni').val(dni);
     $("#ciudad option:contains('"+ciudad+"')").attr("selected",true);
-    $('#ruc').val(ruc);
     $('#razon_social').val(razon_social);
     $('#descripcion').val(descripcion);
     enviar = function(){
@@ -58,7 +56,6 @@ editClient = function(cod_proveedor, nombres, apellido_paterno, apellido_materno
             apellido_materno:$('#apellido_materno').val(),
             dni:$('#dni').val(),
             ciudad:$('#ciudad').val(),
-            ruc:$('#ruc').val(),
             razon_social:$('#razon_social').val(),
             descripcion:$('#descripcion').val(),
         },
@@ -85,7 +82,7 @@ deldat = function(cod_proveedor){
         }
     });
 };
-insertdat = function(cod_proveedor, nombres, apellido_paterno, apellido_materno,dni,ciudad,ruc,razon_social,descripcion){
+insertdat = function(cod_proveedor, nombres, apellido_paterno, apellido_materno,dni,ciudad,razon_social,descripcion){
     $.post(base_url+'proveedores/guardar',
     {
       cod_proveedor:$('#cod_proveedor_c').val(),
@@ -94,7 +91,6 @@ insertdat = function(cod_proveedor, nombres, apellido_paterno, apellido_materno,
       apellido_materno:$('#apellido_materno_c').val(),
       dni:$('#dni_c').val(),
       ciudad:$('#ciudad_c').val(),
-      ruc:$('#ruc_c').val(),
       razon_social:$('#razon_social_c').val(),
       descripcion:$('#descripcion_c').val(),
     },

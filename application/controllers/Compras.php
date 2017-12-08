@@ -6,6 +6,7 @@ class Compras extends CI_Controller {
         parent::__construct();
         $this->load->library('session');
         $this->load->model('Compras_model');
+        $this->load->model('Productos_model');
         $this->load->model('Login_model');
     }
 
@@ -111,22 +112,22 @@ class Compras extends CI_Controller {
 
       //}
     }
-    function comprobar_cliente(){
-        $cliente = $this->input->post('cliente');
-        if($this->Compras_model->comprobar_cliente($cliente) == true){
+    function comprobar_proveedor(){
+        $proveedor = $this->input->post('proveedor');
+        if($this->Compras_model->comprobar_proveedor($proveedor) == true){
             echo 'Existe';
         }else{
             echo 'No existe';
         }
     }
-    function productos_slct(){
+    function productos_compra(){
         if($this->input->post('buscar')){
             $data1 = $this->input->post('buscar');
         }else{
 
             $data1 = "";
         }
-        $consulta = $this->Compras_model->productos_slct($data1);
+        $consulta = $this->Compras_model->productos_compra($data1);
         echo json_encode($consulta);
     }
     function servicios_slct(){
@@ -156,55 +157,44 @@ class Compras extends CI_Controller {
             echo json_encode($consulta);
         }
     }
-    function guardar_venta(){
-        $fecha = $this->input->post('fecha');
-        $nro_venta = $this->input->post('nro_venta');
-        $cliente_venta = $this->input->post('cliente_venta');
+    function guardar_compra(){
+        $cod_compra = $this->input->post('cod_compra');
         $empleado = $this->input->post('empleado');
-        $productos = $this->input->post('productos');
-        $producto_precio = $this->input->post('producto_precio');
-        $servicio_precio = $this->input->post('servicio_precio');
-        $cantidad = $this->input->post('cantidad');
-        $venta_p = array(
-            'cod_venta' => $nro_venta,
-            'cod_cliente' => $cliente_venta,
+        $cod_proveedor = $this->input->post('cod_proveedor');
+        $fecha_c = $this->input->post('fecha_c');
+        $producto_cod = $this->input->post('producto_cod');
+        $cantidad = $this->input->post('stock_productox');
+        $precio_unitario = $this->input->post('precio_unitario');
+        $descuento = $this->input->post('descuentox');
+        $cantidad_actual = $this->input->post('cantidad_actual');
+        $compra_p = array(
+            'cod_compra' => $cod_compra,
             'cod_empleado' => $empleado,
-            'fecha_venta' => $fecha,
+            'cod_proveedor' => $cod_proveedor,
+            'fecha_compra' => $fecha_c,
             'estado' => '1',
         );
-        $this->Compras_model->nueva_venta($venta_p);
-        $iteraciones_p = count($productos);
-        for ($i = 0; $i < $iteraciones_p; $i++){
-            $detalle_p = array(
-                'cod_venta' => $nro_venta,
-                'cod_producto' => $productos[$i],
-                'precio' => $producto_precio[$i],
-                'cantidad' => $cantidad[$i],
-            );
-            $stock_p = $this->Compras_model->cantidad_producto();
-            $stock_actual = ($stock_p - $cantidad[$i]);
-            $nuevo_stock = array(
-                'stock_producto' => $stock_actual,
-            );
-            $this->Compras_model->detalle_venta($detalle_p);
-            $this->Productos_model->actualizar($productos[$i], $detalle_p);
+        $res1 = $this->Compras_model->guardar_compra($compra_p);
+        $detalle_compra = array(
+            'cod_compra' => $cod_compra,
+            'cod_producto' => $producto_cod,
+            'precio' => $precio_unitario,
+            'descuento' => $descuento,
+            'cantidad' => $cantidad,
+        );
+        $stock_actual = ($cantidad_actual + $cantidad);
+        $nuevo_stock = array(
+            'stock_producto' => $stock_actual,
+        );
+        $res2 = $this->Compras_model->guardar_detalle_compras($detalle_compra);
+        $this->Productos_model->actualizar($producto_cod, $nuevo_stock);
+        //
+
+        if (($res1 == true)&&($res2 == true)){
+            echo 1;
+        }else{
+            echo 0;
         }
-        $servicios = $this->input->post('servicios');
-        $habitaciones = $this->input->post('habitaciones');
-        $estadias = $this->input->post('estadias');
-        $iteraciones_s = count($servicios);
-        for ($i = 0; $i < $iteraciones_s; $i++){
-            $detalle_s = array(
-                'cod_habitacion' => $habitaciones[$i],
-                'cod_servicio' => $servicios[$i],
-                'cod_estadia' => $estadias[$i],
-                'precio' => $servicio_precio[$i],
-                'cantidad' => '1',
-                'estado' => '1',
-            );
-            $this->Compras_model->detalle_servicio($detalle_s);
-        }
-        echo 1;
     }
     function get_det(){
         $codigo = $this->input->post('cod');

@@ -35,7 +35,7 @@
 <link href="<?= base_url() ?>plugins/node-waves/waves.css" rel="stylesheet" />
 
     <!-- Bootstrap Tagsinput Css -->
-    <link href="<?= base_url() ?>plugins/bootstrap-tagsinput/bootstrap-tagsinput.css" rel="stylesheet">
+<link href="<?= base_url() ?>plugins/bootstrap-tagsinput/bootstrap-tagsinput.css" rel="stylesheet">
 
 <!-- Animation Css -->
 <link href="<?= base_url() ?>plugins/animate-css/animate.css" rel="stylesheet" />
@@ -46,7 +46,7 @@
 <!-- Morris Chart Css-->
 <link href="<?= base_url() ?>plugins/morrisjs/morris.css" rel="stylesheet" />
     <!-- Sweetalert Css -->
-    <link href="<? base_url() ?>plugins/sweetalert/sweetalert.css" rel="stylesheet" />
+<link href="<? base_url() ?>plugins/sweetalert/sweetalert.css" rel="stylesheet" />
 
 <!-- Custom Css -->
 <link href="<?= base_url() ?>css/style.css" rel="stylesheet">
@@ -55,8 +55,7 @@
 <!-- AdminBSB Themes. You can choose a theme from css/themes instead of get all themes -->
 <link href="<?= base_url() ?>css/themes/all-themes.css" rel="stylesheet" />
 </head>
-
-<body class="theme-red">
+<body class="theme-<?php echo $this->session->userdata('color_p'); ?>">
   <!-- Page Loader -->
   <div class="page-loader-wrapper">
     <div class="loader">

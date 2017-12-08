@@ -186,13 +186,15 @@ $('#realizar_venta').click(function(){
         estadia_div.setAttribute("style","display:block");
         $('#fecha_estadia').val(output);
     })
-
-    $('#especificar').click(function(){
+    var inputsval = Array();
+    $('a[href="#next"]').click(function(){
+        inputsval.length=0;
         detalle_body.setAttribute('style','display:block');
         $('#detalle_body').html('');
         var html = '';
         seleccionadodh.length = 0;
         //console.log(seleccionadoh);
+        var maxh = 0;
         seleccionadoh.forEach(function(a){
             html = '';
             //console.log('valor de a: '+a+'');
@@ -217,6 +219,7 @@ $('#realizar_venta').click(function(){
                     objeto.tipo_habitacion = datos[i]['tipo_habitacion'];
                     objeto.piso = datos[i]['piso'];
                     objeto.max_h = datos[i]['max_h'];
+                    maxh = datos[i]['max_h'];
                     seleccionadodh.push(objeto);
                     var html = '';
                     for (j=0;j<datos[i]['max_h'];j++){
@@ -224,11 +227,28 @@ $('#realizar_venta').click(function(){
                         html += '<div class="col-md-12"><div class="col-md-3">';
                         html += '<div class="form-group form-float">'+
                                 '<div class="form-line focused">';
-                        html += '<label class="form-label">Huésped '+parseInt(j+1)+':</label>';
-                        html += '<input class="form-control" onBlur="comprobar('+indice+');" type="number" id="'+a+j+'" />';
+                        html += '<label class="form-label">DNI '+parseInt(j+1)+':</label>';
+                        html += '<input name="dni_huesped" class="form-control" onBlur="comprobar('+indice+');" type="number" id="'+a+j+'" />';
                         html += '</div></div></div><div id="huesdiv'+a+j+'"></div></div>';
                     }
                     $('#deta'+a+'').html(html);
+                    $('input[name=dni_huesped]').blur(function(){
+                        if(inputsval.includes($(this).val())){
+                            alert('No se permite valores duplicados en los campos de DNI, por favor coloque valores diferentes.')
+                            $(this).val('');
+                            console.log(inputsval);
+                            $(this).focus();
+                        }else if($(this).val()!=''){
+                            inputsval.push($(this).val());
+                            console.log(inputsval);
+                        }
+                    })
+                    $('input[name=dni_huesped]').focus(function(){
+                        if (inputsval.includes($(this).val())){
+                            var pos = inputsval.indexOf($(this).val());
+                            inputsval.splice(pos,1);
+                        }
+                    })
                 }
 
             })
@@ -240,10 +260,6 @@ $('#realizar_venta').click(function(){
         //console.log(html);
         //alert(html);
     })
-    $('#no_especificar').click(function(){
-        detalle_body.setAttribute('style','display:none');
-    })
-
     //#############################################################
     // listado de habitaciones
 
@@ -354,6 +370,9 @@ $('#realizar_venta').click(function(){
                         $.post(base_url+'reservaciones/registrar_detalle_estadia',
                             {
                                 nro_res:$('#nro_res').val(),
+                                nombres:$('#nombres').val(),
+                                apellido_p:$('#apellido_p').val(),
+                                apellido_m:$('#apellido_m').val(),
                                 cliente:$('#cliente').val(),
                                 huesped:$('#'+e+j+'').val(),
                                 huesped_nombre:$('#nombres'+e+j+'').val(),

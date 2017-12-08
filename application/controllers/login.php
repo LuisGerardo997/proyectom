@@ -27,6 +27,7 @@ class Login extends CI_Controller {
                     'apellido_m' => $datos->apellido_materno,
                     'email' => $datos->email,
                     'foto_p' => $datos->foto_persona,
+                    'color_p' => $datos->color,
                 );
                 $this->session->set_userdata($dat);
                 if ($num > 1){

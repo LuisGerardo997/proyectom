@@ -24,16 +24,15 @@
                             <table id="dt_table" class="table table-bordered table-striped table-hover dataTable">
                                 <thead>
                                     <tr>
-                                        <th> Codigo</th>
-                                        <th> Nombre</th>
-                                        <th> Apellido Paterno</th>
-                                        <th> Apellido Matern</th>
-                                        <th> DNI</th>
-                                        <th> Ciudad </th>
-                                        <th> RUC</th>
+                                        <th>RUC</th>
+                                        <th>Nombre</th>
+                                        <th>Apellido Paterno</th>
+                                        <th>Apellido Matern</th>
+                                        <th>DNI</th>
+                                        <th>Ciudad </th>
                                         <th>Razon Social</th>
                                         <th>e-Descripcion</th>
-                                        <th>e-Accion</th>
+                                        <th></th>
                                     </tr>
                                 </thead>
                                 <tbody></tbody>
@@ -56,7 +55,7 @@
                                 <div class="col-md-4">
                                     <div class="form-group form-float">
                                         <div class="form-line focused">
-                                            <label class="form-label">Código</label>
+                                            <label class="form-label">RUC</label>
                                             <input disabled type="number" name="cod_proveedor" id="cod_proveedor" class="form-control">
                                         </div>
                                     </div>
@@ -82,14 +81,6 @@
                                         <div class="form-line focused">
                                             <label class="form-label">Apellido materno</label>
                                             <input type="text" name="apellido_materno" id="apellido_materno" class="form-control">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="form-group form-float">
-                                        <div class="form-line focused">
-                                            <label class="form-label">DNI</label>
-                                            <input type="number" name="dni" id="dni" class="form-control">
                                         </div>
                                     </div>
                                 </div>
@@ -150,7 +141,7 @@
                               <div class="col-md-4">
                                   <div class="form-group form-float">
                                       <div class="form-line">
-                                          <label class="form-label">Código</label>
+                                          <label class="form-label">RUC</label>
                                           <input type="number" name="cod_proveedor" id="cod_proveedor_c" class="form-control">
                                       </div>
                                   </div>
@@ -197,22 +188,15 @@
                               </div>
                             </div>
                             <div class="row clearfix">
-                              <div class="col-md-4">
-                                  <div class="form-group form-float">
-                                      <div class="form-line">
-                                          <label class="form-label">RUC</label>
-                                          <input type="text" name="ruc" id="ruc_c" class="form-control">
-                                      </div>
-                                  </div>
-                              </div><div class="col-md-4">
+                                <div class="col-md-4">
                                   <div class="form-group form-float">
                                       <div class="form-line">
                                           <label class="form-label">Razón social</label>
                                           <input type="text" name="razon_social" id="razon_social_c" class="form-control">
                                       </div>
                                   </div>
-                              </div>
-                              <div class="col-md-4">
+                                </div>
+                                <div class="col-md-4">
                                   <div class="form-group form-float">
                                       <div class="form-line">
                                           <label class="form-label">Descripción</label>

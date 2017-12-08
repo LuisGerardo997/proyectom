@@ -45,7 +45,7 @@ $(document).on('ready',function(){
                 'Acciones <span class="caret"></span>'+
                 '</button>'+
                 '<ul class="dropdown-menu" aria-labelledby="btnGroupVerticalDrop1">'+
-                '<li><a data-toggle="modal" data-target="#editar" class=" waves-effect waves-block" onClick="editClient(\''+row.cod_venta+'\',\''+row.cod_pc+'\',\''+row.nombres_c+'\',\''+row.apellido_p_c+'\',\''+row.apellido_m_c+'\',\''+row.cod_pe+'\',\''+row.nombres_e+'\',\''+row.apellido_p_e+'\',\''+row.apellido_m_e+'\',\''+row.tipo_transaccion+'\',\''+row.oferta+'\',\''+row.fecha_venta+'\');">Editar</a></li>'+
+                '<li><a data-toggle="modal" data-target="#detalles" class=" waves-effect waves-block" onClick="detalles(\''+row.cod_venta+'\');">Ver detalles</a></li>'+
                 '<li><a href="javascript:void(0);" class=" waves-effect waves-block" onClick="deldat(\''+row.cod_venta+'\')">Eliminar</a></li>'+
                 '</ul>'+
                 '</div>'
@@ -65,29 +65,32 @@ var tabla_servicio_div = document.getElementById('tabla_servicio_div');
 var tabla_estadias_div = document.getElementById('tabla_estadias_div');
 var nota_servicio_div = document.getElementById('nota_servicio_div');
 var nota_estadias_div = document.getElementById('nota_estadias_div');
-editClient = function(cod_cargo, area, descripcion, cargo){
-    $('#cod_cargo').val(cod_cargo);
-    $("#area option:contains('"+area+"')").attr("selected",true);
-    $('#descripcion').val(descripcion);
-    $('#cargo').val(cargo);
-    enviar = function(){
-        $.post(base_url+"cargo/actualizar",
-        {
-            cod_cargo:$('#cod_cargo').val(),
-            area:$('#area').val(),
-            descripcion:$('#descripcion').val(),
-            cargo:$('#cargo').val(),
+detalles = function(cod_v){
+    var codigo_venta = cod_v;
+    $('#dt_venta').DataTable({
+        'paging':true,
+        'info':true,
+        'filter':true,
+        'stateSave':true,
+        'ajax':{
+            "url": base_url+"ventas/consultar_detalle_ventas",
+            "type":"POST",
+            "data": {cod_venta:codigo_venta},
+            dataSrc: ''
         },
-        function(data){
-            if (data == 1){
-                alert('Guardado');
-                $('#cerrar_modal').click();
-
-                location.reload();
-            }
-            alert(data);
-        });
-    }
+        'columns':[
+            {data: 'cod_producto'},
+            {data: 'producto'},
+            {data: 'marca'},
+            {data: 'tipo_producto'},
+            {data: 'precio'},
+            {data: 'descuento'},
+            {data: 'descripcion'},
+            {data: 'cantidad'},
+            ],
+    "order":[[0, "asc"]],
+    'language':español
+});
 };
 deldat = function(cod_cargo){
     $.post(base_url+'cargo/eliminar',
@@ -119,6 +122,7 @@ insertdat = function(cod_cargo, area, descripcion, cargo){
 var nom_client = document.getElementById('nom_client');
 var app_client = document.getElementById('app_client');
 $('#realizar_venta').click(function(){
+    $('a[href="#next"]').parent().attr('style','display:none');
     $('#nro_venta').val(parseInt(num_venta)+1);
     $('#cliente').on('keyup',function(){
         if ($(this).val().length == 8){
@@ -175,7 +179,7 @@ $('#realizar_venta').click(function(){
                     '<td>'+datos[i]['marca']+'</td>'+
                     '<td>'+datos[i]['tipo_producto']+'</td>'+
                     '<td>'+datos[i]['precio']+'</td>'+
-                    '<td>'+datos[i]['precio']+'</td>'+
+                    '<td>'+datos[i]['stock_producto']+'</td>'+
                     '<td><input type="checkbox" onClick="precio_p(\''+datos[i]['precio']+'\')" name="listado_p" value="'+datos[i]['cod_producto']+'" id="p'+datos[i]['cod_producto']+'"><label for="p'+datos[i]['cod_producto']+'"></label></td>'+
                     '</tr>';
         }
@@ -244,8 +248,19 @@ $('#buscar').keyup(function(){
         })
     })
 })
+    $('#cliente_input').keyup(function(){
+        if ($(this).val().length < 8){
+            $('a[href="#next"]').parent().attr('style','display:none');
+        }else{
+            $('a[href="#next"]').parent().attr('style', 'display:block');
+        }
+    })
     //tabla de seleccion de servicios
+
     $('a[href="#next"]').click(function(){
+        if($('#cliente_input').val().length < 8){
+            $('a[href="#next"]').stopEvent;
+        }
         $.post(base_url+'ventas/servicios_slct',
         {
           cliente:$('#cliente_input').val(),
@@ -541,5 +556,13 @@ insertar = function(data, data1){
     console.log(seleccionadoh);
     console.log(seleccionadoe);
     $("#habitaciones_list").modal('hide');
+}
+stopEvent = function(e) {
+    if (!e) e = window.event;
+    if (e.stopPropagation) {
+        e.stopPropagation();
+    } else {
+        e.cancelBubble = true;
+    }
 }
 });

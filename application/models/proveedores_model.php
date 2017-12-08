@@ -5,7 +5,7 @@ class Proveedores_model extends CI_Model{
     parent::__construct();
   }
   function consultar(){
-    $this->db->select('pr.cod_proveedor, pr.nombres, pr.apellido_paterno, pr.apellido_materno, pr.dni, u.ciudad, pr.ruc, pr.razon_social,pr.descripcion');
+    $this->db->select('pr.cod_proveedor, pr.nombres, pr.apellido_paterno, pr.apellido_materno, pr.dni, u.ciudad, pr.razon_social,pr.descripcion');
     $this->db->where('pr.estado','0');
     $this->db->from('proveedores pr');
     $this->db->join('ubigeo u','u.cod_ciudad = pr.cod_ciudad');

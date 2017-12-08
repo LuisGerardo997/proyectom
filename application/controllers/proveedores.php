@@ -110,7 +110,6 @@ class Proveedores extends CI_Controller {
     $apellido_materno = $this->input->post('apellido_materno');
     $dni = $this->input->post('dni');
     $ciudad = $this->input->post('ciudad');
-    $ruc = $this->input->post('ruc');
     $razon_social = $this->input->post('razon_social');
     $descripcion = $this->input->post('descripcion');
     $data = array(
@@ -120,7 +119,6 @@ class Proveedores extends CI_Controller {
       'apellido_materno' => $apellido_materno,
       'dni' => $dni,
       'cod_ciudad' => $ciudad,
-      'ruc' => $ruc,
       'razon_social' => $razon_social,
       'descripcion' => $descripcion,
     );
@@ -148,7 +146,6 @@ class Proveedores extends CI_Controller {
     $apellido_materno = $this->input->post('apellido_materno');
     $dni = $this->input->post('dni');
     $ciudad = $this->input->post('ciudad');
-    $ruc = $this->input->post('ruc');
     $razon_social = $this->input->post('razon_social');
     $descripcion = $this->input->post('descripcion');
     $data = array(
@@ -158,7 +155,6 @@ class Proveedores extends CI_Controller {
       'apellido_materno' => $apellido_materno,
       'dni' => $dni,
       'cod_ciudad' => $ciudad,
-      'ruc' => $ruc,
       'razon_social' => $razon_social,
       'descripcion' => $descripcion,
       'estado' => '0',

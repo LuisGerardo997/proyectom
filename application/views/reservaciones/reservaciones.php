@@ -37,7 +37,7 @@ var empleado = '<?php echo $this->session->userdata('cod_p') ?>';
         <div class="tab-content">
           <div role="tabpanel" class="tab-pane animated flipInX active" id="home_animation_1">
             <div class="col-md-12 col-xs-12 col-sm-12">
-              <div class="table-responsive">
+              <div class="table-responsive col-md-12">
 
                 <b>Historial de reservaciones</b>
                 <table id="dt_table" class="table table-bordered table-striped table-hover dataTable" width="100%">
@@ -149,14 +149,6 @@ var empleado = '<?php echo $this->session->userdata('cod_p') ?>';
                   <!--</div>
                 </div>
               </div>-->
-              <div class="col-md-3" id='estadia_div'>
-                <div class="form-group form-float">
-                  <div class="form-line focused">
-                    <label class="form-label">Fecha de estadía</label>
-                    <input type="text" name="fecha_estadia" id="fecha_estadia" class="datepicker form-control">
-                  </div>
-                </div>
-              </div>
               <div class="col-md-3" id="tipo_r_div">
                 <div class="form-group">
                   <div class="demo-radio-button">
@@ -167,7 +159,15 @@ var empleado = '<?php echo $this->session->userdata('cod_p') ?>';
                   </div>
                 </div>
               </div>
-              <div class="col-md-12 text-center"><h4>¿Desea especificar los huespedes de cada habitación?</h4></div>
+              <div class="col-md-3" style="display:none" id='estadia_div'>
+                <div class="form-group form-float">
+                  <div class="form-line focused">
+                    <label class="form-label">Fecha de estadía</label>
+                    <input type="text" name="fecha_estadia" id="fecha_estadia" class="datepicker form-control">
+                  </div>
+                </div>
+              </div>
+              <!-- <div class="col-md-12 text-center"><h4>¿Desea especificar los huespedes de cada habitación?</h4></div>
               <div class="col-md-3 col-md-offset-3 text-center">
                 <div class="form-group">
                   <div class="demo-radio-button">
@@ -183,7 +183,7 @@ var empleado = '<?php echo $this->session->userdata('cod_p') ?>';
                     <label for="no_especificar">No detallar</label>
                   </div>
                 </div>
-              </div>
+              </div> -->
               <div class="col-md-12">
                 <hr>
               </div>
