@@ -195,7 +195,7 @@ class Reservaciones extends CI_Controller {
         $fecha_r = $this->input->post('fecha_r');
         $fecha_estadia = $this->input->post('fecha_estadia');
         $lista_hab = $this->input->post('lista_hab');
-        if ($nombres == ''){
+        if ($nombres != ''){
             $cliente_datos = array(
                 'cod_persona' => $cliente,
                 'nombres' => $nombres,

@@ -17,6 +17,8 @@ $(document).on('ready',function(){
     var seleccionadodh = new Array();
     var huespedes = new Array();
     var objeto = new Object();
+    var inputsval = Array();
+    var num_hues = 0;
     $('#dt_table').DataTable({
         'paging':true,
         'info':true,
@@ -43,7 +45,7 @@ $(document).on('ready',function(){
                 '<ul class="dropdown-menu" aria-labelledby="btnGroupVerticalDrop1">'+
                 '<li><a data-toggle="modal" data-target="#editar" class=" waves-effect waves-block" onClick="editClient(\''+row.cod_estadia+'\',\''+row.cod_cliente+'\',\''+row.cod_empleado+'\',\''+row.fecha_reserva+'\',\''+row.fecha_ingreso+'\',\''+row.fecha_salida+'\');">Editar</a></li>'+
                 '<li><a href="javascript:void(0);" class=" waves-effect waves-block" onClick="deldat(\''+row.cod_estadia+'\')">Eliminar</a></li>'+
-                '<li><a data-toggle="modal" data-target="#VerDetalle" class="waves-effect waves-block" onClick="VerDetalle(\''+row.cod_estadia+'\')">Ver detalles</a></li>'+
+                '<li><a class="waves-effect waves-block" onClick="VerDetalle(\''+row.cod_estadia+'\')">Ver detalles</a></li>'+
                 '</ul>'+
                 '</div>'
             }
@@ -113,6 +115,14 @@ var fecha_div = document.getElementById('fecha_div');
 var tipo_r_div = document.getElementById('tipo_r_div');
 var estadia_div = document.getElementById('estadia_div');
 $('#realizar_venta').click(function(){
+    $('a[href="#next"]').parent().attr('style', 'display:none')
+    $('input').blur(function(){
+        if(($('#cliente').val()!='')&&($('#fecha_estadia').val()!='')&&(inputsval.length==num_hues)){
+            $('a[href="#finish"]').parent().attr('style', 'display:block')
+        }else{
+            $('a[href="#finish"]').parent().attr('style', 'display:none')
+        }
+    })
     $('#nro_res').val(parseInt(num_reservacion)+1);
     $('#cliente').on('keyup',function(){
         if ($(this).val().length == 8){
@@ -153,7 +163,6 @@ $('#realizar_venta').click(function(){
                     +'</div>';
                     apm_client.innerHTML = html;
                     apm_client.setAttribute("class","col-md-3 col-md-offset-2");
-
                 }else{
                     nom_client.setAttribute("style","display:none");
                     app_client.setAttribute("style","display:none");
@@ -182,84 +191,21 @@ $('#realizar_venta').click(function(){
         $('#fecha_estadia').val('');
         $('#fecha_estadia').focus();
     })
+    $('#fecha_estadia').change(function(){
+        if($(this).val()==output){
+            $('#ahora').click();
+        }
+    })
     $('#ahora').click(function(){
         estadia_div.setAttribute("style","display:block");
         $('#fecha_estadia').val(output);
     })
-    var inputsval = Array();
-    $('a[href="#next"]').click(function(){
-        inputsval.length=0;
-        detalle_body.setAttribute('style','display:block');
-        $('#detalle_body').html('');
-        var html = '';
-        seleccionadodh.length = 0;
-        //console.log(seleccionadoh);
-        var maxh = 0;
-        seleccionadoh.forEach(function(a){
-            html = '';
-            //console.log('valor de a: '+a+'');
-            html+='<div class="col-md-12 text-left"><h4>Habitacion '+a+'</h4>';
-            html+='<div  class="col-md-12 text-left" id="'+a+'"></div>';
-            html+='<br /><div class="col-md-12" id="deta'+a+'"></div></div>';
-            $('#detalle_body').append(html);
-            $.post(base_url+'reservaciones/detalle_habitacion',
-            {
-                cod_habitacion:a,
-            },
-            function(data){
-                var html = '';
-                datos = eval(data);
-                var objeto={};
-                for (i = 0; i < datos.length; i++){
-                    html+= '<p><strong>Tipo de habitación: </strong>'+datos[i]['tipo_habitacion']+'</p>';
-                    html+= '<p><strong>Piso: </strong>'+datos[i]['piso']+'</p>';
-                    html+= '<p><strong>Capacidad: </strong>'+datos[i]['max_h']+'</p>';
-                    $('#'+a+'').append(html);
-                    objeto.cod_habitacion = a;
-                    objeto.tipo_habitacion = datos[i]['tipo_habitacion'];
-                    objeto.piso = datos[i]['piso'];
-                    objeto.max_h = datos[i]['max_h'];
-                    maxh = datos[i]['max_h'];
-                    seleccionadodh.push(objeto);
-                    var html = '';
-                    for (j=0;j<datos[i]['max_h'];j++){
-                        var indice = a+j;
-                        html += '<div class="col-md-12"><div class="col-md-3">';
-                        html += '<div class="form-group form-float">'+
-                                '<div class="form-line focused">';
-                        html += '<label class="form-label">DNI '+parseInt(j+1)+':</label>';
-                        html += '<input name="dni_huesped" class="form-control" onBlur="comprobar('+indice+');" type="number" id="'+a+j+'" />';
-                        html += '</div></div></div><div id="huesdiv'+a+j+'"></div></div>';
-                    }
-                    $('#deta'+a+'').html(html);
-                    $('input[name=dni_huesped]').blur(function(){
-                        if(inputsval.includes($(this).val())){
-                            alert('No se permite valores duplicados en los campos de DNI, por favor coloque valores diferentes.')
-                            $(this).val('');
-                            console.log(inputsval);
-                            $(this).focus();
-                        }else if($(this).val()!=''){
-                            inputsval.push($(this).val());
-                            console.log(inputsval);
-                        }
-                    })
-                    $('input[name=dni_huesped]').focus(function(){
-                        if (inputsval.includes($(this).val())){
-                            var pos = inputsval.indexOf($(this).val());
-                            inputsval.splice(pos,1);
-                        }
-                    })
-                }
-
-            })
-            //console.log('xDDD');
-            //html+= '<p><strong>Tipo de habitación: </strong>'+seleccionadodh['0']['tipo_habitacion']+'</p>';
-            //html+= '<p><strong>Piso: </strong>'+seleccionadodh['0']['piso']+'</p>';
-            //html += '</div>';
-        })
-        //console.log(html);
-        //alert(html);
+    $('a[href="#wizard_horizontal-h-1"]').click(function(){
+        finish_reserv();
     })
+    // $('a[href="#next"]').click(function(){
+    //     finish_reserv();
+    // })
     //#############################################################
     // listado de habitaciones
 
@@ -297,6 +243,11 @@ $('#realizar_venta').click(function(){
                 }
             })
             console.log(seleccionadoh);
+            if(seleccionadoh.length==0){
+                $('a[href="#next"]').parent().attr('style', 'display:none')
+            }else{
+                $('a[href="#next"]').parent().attr('style', 'display:block')
+            }
         })
     })
     $('#buscar_h').keyup(function(){
@@ -386,6 +337,7 @@ $('#realizar_venta').click(function(){
                             function(data){
                                 console.log(data);
                                 console.log(huespedes);
+                                alert(data);
                                 location.reload();
                             })
                         }
@@ -405,97 +357,160 @@ comprobar = function(data1){
     function(data){
         $('#huesdiv'+data1+'').html('');
         if (data == 0){
-            var html='';
-            html += '<div class="col-md-3">';
-            html += '<div class="form-group form-float">'+
-                    '<div class="form-line focused">';
-            html += '<label class="form-label">Nombres:</label>';
-            html += '<input class="form-control" type="text" id="nombres'+data1+'" />';
-            html += '</div></div></div>';
+            if(inputsval.includes($('#cliente').val())==false){
+                var html='';
+                html += '<div class="col-md-3">';
+                html += '<div class="form-group form-float">'+
+                        '<div class="form-line focused">';
+                html += '<label class="form-label">Nombres:</label>';
+                html += '<input class="form-control" type="text" id="nombres'+data1+'" />';
+                html += '</div></div></div>';
 
-            html += '<div class="col-md-3">';
-            html += '<div class="form-group form-float">'+
-                    '<div class="form-line focused">';
-            html += '<label class="form-label">Apellido Paterno:</label>';
-            html += '<input class="form-control" type="text" id="apellido_paterno'+data1+'" />';
-            html += '</div></div></div>';
+                html += '<div class="col-md-3">';
+                html += '<div class="form-group form-float">'+
+                        '<div class="form-line focused">';
+                html += '<label class="form-label">Apellido Paterno:</label>';
+                html += '<input class="form-control" type="text" id="apellido_paterno'+data1+'" />';
+                html += '</div></div></div>';
 
-            html += '<div class="col-md-3">';
-            html += '<div class="form-group form-float">'+
-                    '<div class="form-line focused">';
-            html += '<label class="form-label">Apellido Materno:</label>';
-            html += '<input class="form-control" type="text" id="apellido_materno'+data1+'" />';
-            html += '</div></div></div>';
-            $('#huesdiv'+data1+'').append(html);
+                html += '<div class="col-md-3">';
+                html += '<div class="form-group form-float">'+
+                        '<div class="form-line focused">';
+                html += '<label class="form-label">Apellido Materno:</label>';
+                html += '<input class="form-control" type="text" id="apellido_materno'+data1+'" />';
+                html += '</div></div></div>';
+                $('#huesdiv'+data1+'').append(html);
+            }
         }else{
             $('#huesdiv'+data1+'').html('');
         }
     })
 }
-VerDetalle=function(data1){
-    /*$.post(base_url+'reservaciones/consultar',
-        {
-            cod_estadia:data1,
-        },
-        function(data2){
-        var datos = eval(data2);
-            datos.forEach(function(a){
-                html = '';
-                html+='<div class="col-md-12 text-left"><h4>Huésped '+a+'</h4>';
-                html+='<div class="col-md-12 text-left" id="'+a+'"></div>';
-                html+='<br /><div class="col-md-12" id="deta'+a+'"></div></div>';
-                $('#detalle_body').append(html);*/
-                $.post(base_url+'reservaciones/consultar_estadia',
+  VerDetalle=function(data1){
+  $('#habitacion_estadia').html('');
+  $('#Detalle').html('');
+    $.post(base_url+'reservaciones/consultar_estadia',
+    {
+        cod_estadia:data1,
+    },
+    function(data){
+        var html = '';
+        datos = eval(data);
+        var objeto={};
+        for (i = 0; i < datos.length; i++){
+            html+= '<div class="col-md-3 align-justify">';
+            html+= '<p><strong>Cliente (DNI): </strong><br />'+datos[i]['cod_persona']+'</p>';
+            html+= '<p><strong>Nombres: </strong><br />'+datos[i]['nombres']+'</p></div>';
+            html+= '<div class="col-md-3 align-justify">';
+            html+= '<p><strong>Apellido paterno: </strong><br />'+datos[i]['apellido_paterno']+'</p>';
+            html+= '<p><strong>Apellido materno: </strong><br />'+datos[i]['apellido_materno']+'</p></div>';
+            html+= '<div class="col-md-3 align-justify">';
+            html+= '<p><strong>Código de estadía: </strong><br />'+datos[i]['cod_estadia']+'</p>';
+            html+= '<p><strong>Fecha de reservación: </strong><br />'+datos[i]['fecha_reserva']+'</p></div>';
+            html+= '<div class="col-md-3 align-justify">';
+            html+= '<p><strong>Fecha de ingreso: </strong><br />'+datos[i]['fecha_ingreso']+'</p>';
+            html+= '<p><strong>Fecha de salida: </strong><br />'+datos[i]['fecha_salida']+'</p></div>';
+            $('#Detalle').append(html);
+            var html = '';
+            $.post(base_url+'reservaciones/consultar_habitacion_estadia',
                 {
-                    cod_estadia:data1,
+                    cod_estadia1:datos[i]['cod_estadia'],
                 },
-                function(data){
-                    var html = '';
-                    datos = eval(data);
+                   function(data1){
+                    datos1 = eval(data1);
                     var objeto={};
-                    for (i = 0; i < datos.length; i++){
-                        html+= '<div class="col-md-4"><strong>Código de estadía: </strong>'+datos[i]['cod_estadia']+'<br /><br />';
-                        html+= '<strong>Empleado (DNI): </strong>'+datos[i]['cod_empleado']+'<br /><br />';
-                        html+= '<strong>Cliente (DNI): </strong>'+datos[i]['cod_persona']+'</div><br />';
-                        html+= '<div class="col-md-4"><strong>Nombres: </strong>'+datos[i]['nombres']+'</div>';
-                        html+= '<div class="col-md-4"><strong>Apellido paterno: </strong>'+datos[i]['apellido_paterno']+'</div>';
-                        html+= '<div class="col-md-4"><strong>Apellido materno: </strong>'+datos[i]['apellido_materno']+'</div>';
-                        html+= '<div class="col-md-4"><strong>Fecha de reservación: </strong>'+datos[i]['fecha_reserva']+'</div>';
-                        html+= '<div class="col-md-4"><strong>Fecha de ingreso: </strong>'+datos[i]['fecha_ingreso']+'</div>';
-                        html+= '<div class="col-md-4"><strong>Fecha de salida: </strong>'+datos[i]['fecha_salida']+'</div>';
-                        $('#Detalle').append(html);
-                        var html = '';
+                    for (j = 0; j < datos1.length; j++){
+                        html+= '<tr>'+
+                                '<td>'+datos1[j]['cod_habitacion']+'</td>'+
+                                '<td>'+datos1[j]['cod_persona']+'</td>'+
+                                '<td>'+datos1[j]['nombres']+'</td>'+
+                                '<td>'+datos1[j]['apellido_paterno']+'</td>'+
+                                '<td>'+datos1[j]['apellido_materno']+'</td>'+
+                        '</tr>';
 
-                        /*for (j=0;j<datos[i]['max_h'];j++){
-                            html += '<div class="col-md-3">';
-                            html += '<div class="form-group form-float">'+
-                                    '<div class="form-line focused">';
-                            html += '<label class="form-label">Huésped '+parseInt(j+1)+':</label>';
-                            html += '<input class="form-control" type="number" id="'+a+j+'" />';
-                            html += '</div></div></div>';
-                        }*/
-                        //$('#deta'+a+'').html(html);
-                        $.post(base_url+'reservaciones/consultar_habitacion_estadia',
-                            {
-                                cod_estadia1:datos[i]['cod_estadia'],
-                            },
-                               function(data1){
-                                var html = '';
-                                datos = eval(data1);
-                                var objeto={};
-                                for (i = 0; i < datos.length; i++){
-                                    html+= '<p><strong>DNI: </strong>'+datos[i]['cod_persona']+'</p>';
-                                    html+= '<p><strong>Nombres: </strong>'+datos[i]['nombres']+'</p>';
-                                    html+= '<p><strong>Apellido paterno: </strong>'+datos[i]['apellido_paterno']+'</p>';
-                                    html+= '<p><strong>Apellido materno: </strong>'+datos[i]['apellido_materno']+'</p>';
-                                    html+= '<p><strong>Nº de habitación: </strong>'+datos[i]['cod_habitacion']+'</p>';
-                                    html+= '<p><strong>Fecha de ingreso: </strong>'+datos[i]['fecha_ingreso']+'</p>';
-                                    html+= '<p><strong>Fecha de salida: </strong>'+datos[i]['fecha_salida']+'</p>';
-                                    $('#habitacion_estadia').html(html);
-                                }
-
-                        })
                     }
-                })
+                    $('#habitacion_estadia').append(html);
+                    $('#VerDetalle').modal();
+
+            })
         }
+    })
+  }
+  finish_reserv = function(){
+      num_hues=0;
+      $('a[href="#finish"]').parent().attr('style', 'display:none')
+      inputsval.length=0;
+      detalle_body.setAttribute('style','display:block');
+      $('#detalle_body').html('');
+      var html = '';
+      seleccionadodh.length = 0;
+      //console.log(seleccionadoh);
+      var maxh = 0;
+      seleccionadoh.forEach(function(a){
+          html = '';
+          //console.log('valor de a: '+a+'');
+          html+='<div class="col-md-12 text-left"><h4>Habitacion '+a+'</h4>';
+          html+='<div  class="col-md-12 text-left" id="'+a+'"></div>';
+          html+='<br /><div class="col-md-12" id="deta'+a+'"></div></div>';
+          $('#detalle_body').append(html);
+          $.post(base_url+'reservaciones/detalle_habitacion',
+          {
+              cod_habitacion:a,
+          },
+          function(data){
+              var html = '';
+              datos = eval(data);
+              var objeto={};
+              for (i = 0; i < datos.length; i++){
+                  html+= '<p><strong>Tipo de habitación: </strong>'+datos[i]['tipo_habitacion']+'</p>';
+                  html+= '<p><strong>Piso: </strong>'+datos[i]['piso']+'</p>';
+                  html+= '<p><strong>Capacidad: </strong>'+datos[i]['max_h']+'</p>';
+                  $('#'+a+'').append(html);
+                  objeto.cod_habitacion = a;
+                  objeto.tipo_habitacion = datos[i]['tipo_habitacion'];
+                  objeto.piso = datos[i]['piso'];
+                  objeto.max_h = datos[i]['max_h'];
+                  num_hues = parseInt(num_hues)+parseInt(datos[i]['max_h']);
+                  maxh = datos[i]['max_h'];
+                  seleccionadodh.push(objeto);
+                  var html = '';
+                  for (j=0;j<datos[i]['max_h'];j++){
+                      var indice = a+j;
+                      html += '<div class="col-md-12"><div class="col-md-3">';
+                      html += '<div class="form-group form-float">'+
+                              '<div class="form-line focused">';
+                      html += '<label class="form-label">DNI '+parseInt(j+1)+':</label>';
+                      html += '<input name="dni_huesped" class="form-control" onBlur="comprobar('+indice+');" type="number" id="'+a+j+'" />';
+                      html += '</div></div></div><div id="huesdiv'+a+j+'"></div></div>';
+                  }
+                  $('#deta'+a+'').html(html);
+                  $('input[name=dni_huesped]').blur(function(){
+                      if(inputsval.includes($(this).val())){
+                          alert('No se permite valores duplicados en los campos de DNI, por favor coloque valores diferentes.')
+                          $(this).val('');
+                          console.log(inputsval);
+                          $(this).focus();
+                      }else if($(this).val()!=''){
+                          inputsval.push($(this).val());
+                          console.log(inputsval);
+                      }
+                  })
+                  $('input[name=dni_huesped]').focus(function(){
+                      if (inputsval.includes($(this).val())){
+                          var pos = inputsval.indexOf($(this).val());
+                          inputsval.splice(pos,1);
+                      }
+                  })
+                  console.log(num_hues);
+              }
+
+          })
+          //console.log('xDDD');
+          //html+= '<p><strong>Tipo de habitación: </strong>'+seleccionadodh['0']['tipo_habitacion']+'</p>';
+          //html+= '<p><strong>Piso: </strong>'+seleccionadodh['0']['piso']+'</p>';
+          //html += '</div>';
+      })
+      //console.log(html);
+      //alert(html);
+  }
 })

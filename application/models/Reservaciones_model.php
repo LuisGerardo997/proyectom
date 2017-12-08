@@ -20,6 +20,7 @@ class Reservaciones_model extends CI_Model{
   function consultar_habitacion_estadia($arg){
     $this->db->select('pe.cod_persona, pe.nombres, pe.apellido_paterno, pe.apellido_materno, ha.cod_habitacion, he.fecha_ingreso, he.fecha_salida');
     $this->db->where('he.cod_estadia',$arg);
+    $this->db->order_by('ha.cod_habitacion', 'ASC');
     $this->db->join('persona pe','pe.cod_persona = he.cod_persona', 'left');
     $this->db->join('estadia es','es.cod_estadia = he.cod_estadia', 'left');
     $this->db->join('habitacion ha','ha.cod_habitacion = he.cod_habitacion', 'left');

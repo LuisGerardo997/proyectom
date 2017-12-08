@@ -159,7 +159,7 @@ var empleado = '<?php echo $this->session->userdata('cod_p') ?>';
                   </div>
                 </div>
               </div>
-              <div class="col-md-3" style="display:none" id='estadia_div'>
+              <div class="col-md-3" id='estadia_div'>
                 <div class="form-group form-float">
                   <div class="form-line focused">
                     <label class="form-label">Fecha de estadía</label>
@@ -249,14 +249,30 @@ var empleado = '<?php echo $this->session->userdata('cod_p') ?>';
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h2 class="modal-title" id="largeModalLabel">Detalles de la reservación</h2>
+        <h2 class="modal-title text-center" id="largeModalLabel">Detalle de la reservación</h2>
       </div>
       <div class="modal-body">
         <div class="row clearfix">
           <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 
-            <div id="Detalle"></div>
-            <div id="habitacion_estadia"></div>
+            <div id="Detalle" class="p-t-15"></div>
+
+            <div class="table-responsive col-md-12 p-t-10">
+
+              <h5>Huéspedes:</h5>
+              <table class="table table-bordered table-striped table-hover" width="100%">
+                <thead>
+                  <tr>
+                    <th width="1px">Habitación</th>
+                    <th>DNI</th>
+                    <th>Nombres</th>
+                    <th>Apellido paterno</th>
+                    <th>Apellido materno</th>
+                  </tr>
+                </thead>
+                <tbody id="habitacion_estadia"></tbody>
+              </table>
+            </div>
 
           </div>
         </div>
