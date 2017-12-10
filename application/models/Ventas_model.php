@@ -88,7 +88,7 @@ class Ventas_model extends CI_Model{
     $this->db->from('productos');
     $this->db->where('cod_producto', $arg);
     $resultado = $this->db->get();
-    return $resultado->result();
+    return $resultado->row();
   }
   function detalle_venta($guardar){
     $this->db->insert('detalle_venta',$guardar);
@@ -106,8 +106,11 @@ class Ventas_model extends CI_Model{
       }
   function productos_slct($arg){
     $this->db->select('p.cod_producto, p.producto, m.marca, tp.tipo_producto, p.precio_producto precio, p.stock_producto');
+    $this->db->group_start();
     $where = 'p.cod_producto like "%'.$arg.'%" OR p.producto LIKE "%'.$arg.'%" OR m.marca LIKE "%'.$arg.'%" OR tp.tipo_producto LIKE "%'.$arg.'%" OR p.precio_producto LIKE "%'.$arg.'%" OR p.stock_producto LIKE "%'.$arg.'%"';
     $this->db->where($where);
+    $this->db->group_end();
+    //$this->db->where('stock_producto >', 0);
     $this->db->join('marca m', 'm.cod_marca = p.cod_marca');
     $this->db->join('tipo_producto tp', 'tp.cod_tipo_producto = p.cod_tipo_producto');
     $this->db->from('productos p');

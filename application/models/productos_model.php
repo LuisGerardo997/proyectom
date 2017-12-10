@@ -22,6 +22,11 @@ class Productos_model extends CI_Model{
       return false;
     }
   }
+  function buscar_producto($cod_p){
+    $this->db->where('cod_producto', $cod_p);
+    $resultado = $this->db->get('productos');
+    return $resultado -> result_array();
+  }
   function select1(){
     $this->db->select('cod_marca, marca');
     $resultado= $this->db->get('marca');

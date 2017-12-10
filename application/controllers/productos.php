@@ -172,4 +172,9 @@ class Productos extends CI_Controller {
       echo '0';
     }
   }
+  function buscar_producto(){
+    $producto = $this->input->post('cod_pr');
+    $resultado = $this->Productos_model->buscar_producto($producto);
+    echo json_encode($resultado);
+  }
 }

@@ -14,7 +14,7 @@ class Habitacion_model extends CI_Model{
         return $data->result_array();
     }
     function habitaciones_reservadas($arg){
-        $query = 'SELECT DISTINCT he.cod_habitacion, e.cod_estadia FROM habitacion_estadia he LEFT JOIN habitacion h ON he.cod_habitacion = h.cod_habitacion LEFT JOIN estadia e ON e.cod_estadia = he.cod_estadia WHERE h.cod_estado_habitacion = "2" AND e.cod_cliente = "'.$arg.'"';
+        $query = 'SELECT DISTINCT he.cod_habitacion, e.cod_estadia, th.tipo_habitacion ,h.piso FROM habitacion_estadia he LEFT JOIN habitacion h ON he.cod_habitacion = h.cod_habitacion LEFT JOIN estadia e ON e.cod_estadia = he.cod_estadia LEFT JOIN tipo_habitacion th ON th.cod_tipo_habitacion = h.cod_tipo_habitacion WHERE h.cod_estado_habitacion = "2" AND e.cod_cliente = "'.$arg.'"';
         $data = $this->db->query($query);
         return $data->result_array();
     }

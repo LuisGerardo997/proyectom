@@ -7,6 +7,7 @@ class Ventas extends CI_Controller {
         $this->load->library('session');
         $this->load->model('Ventas_model');
         $this->load->model('Productos_model');
+        $this->load->model('Reservaciones_model');
         $this->load->model('Login_model');
     }
 
@@ -190,7 +191,7 @@ class Ventas extends CI_Controller {
                 'cantidad' => $cantidad[$i],
             );
             $stock_p = $this->Ventas_model->cantidad_producto($productos[$i]);
-            $stock_actual = (intval($stock_p) - intval($cantidad[$i]));
+            $stock_actual = (intval($stock_p->stock_producto) - intval($cantidad[$i]));
             $nuevo_stock = array(
                 'stock_producto' => $stock_actual,
             );

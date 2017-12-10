@@ -155,7 +155,7 @@ function actualizar(){
       }
     }
     function habitaciones_reservadas(){
-      $cliente = $this->input->post('cod_cliente');
+      $cliente = $this->input->post('cliente_estadia');
       $resultado = $this->Habitacion_model->habitaciones_reservadas($cliente);
       echo json_encode($resultado);
     }

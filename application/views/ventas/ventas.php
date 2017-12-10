@@ -49,7 +49,7 @@ var empleado = '<?php echo $this->session->userdata('cod_p') ?>';
                                                                                         <th>Apellido Paterno</th>
                                                                                         <th>Oferta</th>
                                                                                         <th>Fecha</th>
-                                                                                        <th><i class="material-icons">more_vert</i></th>
+                                                                                        <th width="1px"><i class="material-icons">more_vert</i></th>
                                                                                 </tr>
                                                                         </thead>
                                                                 </table>
@@ -92,11 +92,35 @@ var empleado = '<?php echo $this->session->userdata('cod_p') ?>';
                                                                                         <!--</div>
                                                                                 </div>
                                                                         </div>-->
-                                                                        <div class="col-md-4 col-md-offset-4">
+                                                                        <div class="col-md-4 col-md-offset-4" id="cod_client">
                                                                                 <div class="form-group form-float">
                                                                                         <div class="form-line focused">
                                                                                                 <label class="form-label">Cliente (DNI)</label>
                                                                                                 <input maxlength="8" type="number" value="" name="cliente_input" id="cliente_input" class="form-control">
+                                                                                        </div>
+                                                                                </div>
+                                                                        </div>
+                                                                        <div class="col-md-4" id="nom_client" style="display:none">
+                                                                                <div class="form-group form-float">
+                                                                                        <div class="form-line focused">
+                                                                                                <label class="form-label">Nombres</label>
+                                                                                                <input maxlength="8" type="text" value="" name="nombre_cliente" id="nombre_cliente" class="form-control">
+                                                                                        </div>
+                                                                                </div>
+                                                                        </div>
+                                                                        <div class="col-md-4" id="app_client" style="display:none">
+                                                                                <div class="form-group form-float">
+                                                                                        <div class="form-line focused">
+                                                                                                <label class="form-label">Apellido Paterno</label>
+                                                                                                <input maxlength="8" type="text" value="" name="app_cliente" id="app_cliente" class="form-control">
+                                                                                        </div>
+                                                                                </div>
+                                                                        </div>
+                                                                        <div class="col-md-4" id="apm_client" style="display:none">
+                                                                                <div class="form-group form-float">
+                                                                                        <div class="form-line focused">
+                                                                                                <label class="form-label">Apellido Materno</label>
+                                                                                                <input maxlength="8" type="text" value="" name="apm_cliente" id="cliente_input" class="form-control">
                                                                                         </div>
                                                                                 </div>
                                                                         </div>
@@ -140,16 +164,16 @@ var empleado = '<?php echo $this->session->userdata('cod_p') ?>';
 
                                                                                                                 <div class="body">
                                                                                                                         <div class="table-responsive col-md-10 col-md-offset-1">
-                                                                                                                                <table id="slct_table" class="table table-hover" width="100%">
+                                                                                                                                <table id="slct_table" class="table table-striped table-bordered table-hover" width="100%">
                                                                                                                                         <thead>
                                                                                                                                                 <tr>
                                                                                                                                                         <th width="15%">Código</th>
-                                                                                                                                                        <th>Producto</th>
+                                                                                                                                                        <th width="100%">Producto</th>
                                                                                                                                                         <th>Marca</th>
-                                                                                                                                                        <th>Tipo de producto</th>
+                                                                                                                                                        <th width="30%">Tipo de producto</th>
                                                                                                                                                         <th>Precio</th>
                                                                                                                                                         <th>Stock</th>
-                                                                                                                                                        <th width="1px"></th>
+                                                                                                                                                        <th width="1px"><i class="material-icons">check</i></th>
                                                                                                                                                 </tr>
                                                                                                                                         </thead>
                                                                                                                                         <tbody id='body_pro'></tbody>
@@ -165,14 +189,28 @@ var empleado = '<?php echo $this->session->userdata('cod_p') ?>';
                                                                                                                                 <div class="form-group form-float">
                                                                                                                                         <div class="form-line">
                                                                                                                                                 <label class="form-label">Buscar:</label>
-                                                                                                                                                <input type="text" name="buscar_s" id="buscar_s" class="form-control" >
+                                                                                                                                                <input type="text" name="buscar_h" id="buscar_s" class="form-control" >
                                                                                                                                         </div>
                                                                                                                                 </div>
                                                                                                                         </div>
                                                                                                                 </div>
                                                                                                                 <div class="body" id='tabla_servicio_div'>
                                                                                                                         <div class="table-responsive col-md-10 col-md-offset-1">
-                                                                                                                                <table id="srv_table" class="table table-hover" width="100%">
+                                                                                                                                <table id="est_table" class="table table-bordered table-striped table-hover" width="100%">
+                                                                                                                                        <thead>
+                                                                                                                                                <tr>
+                                                                                                                                                        <th width="15%">Estadía</th>
+                                                                                                                                                        <th>Habitación</th>
+                                                                                                                                                        <th>Tipo habitación</th>
+                                                                                                                                                        <th>Piso</th>
+                                                                                                                                                        <th width="1px"><i class="material-icons">check</i></th>
+                                                                                                                                                </tr>
+                                                                                                                                        </thead>
+                                                                                                                                        <tbody id='body_est'>
+
+                                                                                                                                        </tbody>
+                                                                                                                                </table>
+                                                                                                                                <!-- <table id="sta_slct" class="table table-hover" width="100%">
                                                                                                                                         <thead>
                                                                                                                                                 <tr>
                                                                                                                                                         <th width="15%">Código</th>
@@ -181,7 +219,7 @@ var empleado = '<?php echo $this->session->userdata('cod_p') ?>';
                                                                                                                                                 </tr>
                                                                                                                                         </thead>
                                                                                                                                         <tbody id='body_srv'></tbody>
-                                                                                                                                </table>
+                                                                                                                                </table> -->
                                                                                                                         </div>
                                                                                                                 </div>
                                                                                                                 <div id='nota_servicio_div'></div>
@@ -209,7 +247,7 @@ var empleado = '<?php echo $this->session->userdata('cod_p') ?>';
 </div>
 <!-- #END# Tabs With Custom Animations -->
 <!-- Comienzo de modals -->
-<div class="modal fade" id="habitaciones_list" tabindex="-1" role="dialog">
+<!-- <div class="modal fade" id="habitaciones_list" tabindex="-1" role="dialog">
         <div class="modal-dialog modal-lg" role="document">
                 <div class="modal-content">
                         <div class="modal-header text-center">
@@ -229,7 +267,7 @@ var empleado = '<?php echo $this->session->userdata('cod_p') ?>';
                         </div>
                 </div>
         </div>
-</div>
+</div> -->
 <div class="modal fade" id="detalle_venta" tabindex="-1" role="dialog">
         <div class="modal-dialog modal-lg" role="document">
                 <div class="modal-content">
@@ -251,37 +289,41 @@ var empleado = '<?php echo $this->session->userdata('cod_p') ?>';
                 </div>
         </div>
 </div>
-<div class="modal fade" id="seleccionar_estadia" tabindex="-1" role="dialog">
+<div class="modal fade" id="seleccionar_servicio" tabindex="-1" role="dialog">
         <div class="modal-dialog modal-lg" role="document">
                 <div class="modal-content">
                         <div class="modal-header text-center">
-                                <h2 class="modal-title" id="largeModalLabel">Selección de estadía</h2>
+                                <h2 class="modal-title" id="largeModalLabel">Selección de servicios</h2>
                         </div>
                         <div class="modal-body">
                                 <div class="row clearfix">
                                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                                 <div class="body" id='tabla_estadias_div'>
                                                         <div class="table-responsive">
-                                                                <table id="est_table" class="table table-striped table-hover" width="100%">
-                                                                        <thead>
-                                                                                <tr>
-                                                                                        <th width="15%">Código</th>
-                                                                                        <th>Fecha de reservación</th>
-                                                                                        <th>Fecha de ingreso</th>
-                                                                                        <th>Fecha de salida</th>
-                                                                                        <th>Tiempo(días)</th>
-                                                                                        <th width="1px"></th>
-                                                                                </tr>
-                                                                        </thead>
-                                                                        <tbody id='body_est'>
+                                                                <form action="#">
+                                                                        <table id="srv_table" class="table table-striped table-bordered table-hover" width="100%">
+                                                                                <thead>
+                                                                                        <tr>
+                                                                                                <th width="15%">Código</th>
+                                                                                                <th>Servicios</th>
+                                                                                                <th>Precio</th>
+                                                                                                <th width="1px"><i class="material-icons">check</i></th>
+                                                                                        </tr>
+                                                                                </thead>
+                                                                                <tbody id='body_srv'>
 
-                                                                        </tbody>
-                                                                </table>
+                                                                                </tbody>
+                                                                        </table>
+                                                                </form>
                                                         </div>
                                                 </div>
                                                 <div id='nota_estadia_div'></div>
                                         </div>
                                 </div>
+                        </div>
+                        <div class="modal-footer">
+                                <button type="button" class="btn btn-link waves-effect" id="aceptar_button" onClick="confirmar_servicios()">Aceptar</button>
+                                <button type="button" class="btn btn-link waves-effect" onClick="cancelar_servicios()">Cerrar</button>
                         </div>
                 </div>
         </div>
@@ -312,68 +354,44 @@ var empleado = '<?php echo $this->session->userdata('cod_p') ?>';
                                                           </thead>
                                                   </table>
                                           </div>
-                                                <!-- <ul class="nav nav-tabs tab-nav-right text-right" role="tablist">
-                                                        <li role="presentation" id="producto1_trigger" class="active"><a href="#producto1" data-toggle="tab">Codigo</a></li>
-                                                </ul>
-
-                                                <div class="tab-content">
-                                                        <div role="tabpanel" class="tab-pane animated flipInX active" id="producto1">
-                                                                <div class="body">
-                                                                        <br>
-                                                                        <div class="demo-icon-container">
-                                                                                <div class="row clearfix">
-                                                                                        <div class="col-xs-4 col-sm-4 col-md-6 col-lg-6">
-                                                                                                <div class="demo-google-material-icon">
-                                                                                                        <i class="material-icons">sort_by_alpha</i> <span class="icon-name"><strong>Código: </strong>3d_rotation</span>
-                                                                                                </div>
-                                                                                        </div>
-                                                                                        <div class="col-xs-4 col-sm-4 col-md-6 col-lg-6">
-                                                                                                <div class="demo-google-material-icon">
-                                                                                                        <i class="material-icons">local_parking</i> <span class="icon-name"><strong>Código: </strong>3d_rotation</span>
-                                                                                                </div>
-                                                                                        </div>
-                                                                                </div>
-                                                                                <div class="row clearfix">
-                                                                                        <div class="col-xs-4 col-sm-4 col-md-6 col-lg-6">
-                                                                                                <div class="demo-google-material-icon">
-                                                                                                        <i class="material-icons">copyright</i> <span class="icon-name"><strong>Marca: </strong>3d_rotation</span>
-                                                                                                </div>
-                                                                                        </div>
-                                                                                        <div class="col-xs-4 col-sm-4 col-md-6 col-lg-6">
-                                                                                                <div class="demo-google-material-icon">
-                                                                                                        <i class="material-icons">dashboard</i> <span class="icon-name"><strong>Tipo: </strong>3d_rotation</span>
-                                                                                                </div>
-                                                                                        </div>
-                                                                                </div>
-                                                                                <div class="row clearfix">
-                                                                                        <div class="col-xs-4 col-sm-4 col-md-6 col-lg-6">
-                                                                                                <div class="demo-google-material-icon">
-                                                                                                        <i class="material-icons">filter_1</i> <span class="icon-name"><strong>Cantidad: </strong>3d_rotation</span>
-                                                                                                </div>
-                                                                                        </div>
-                                                                                        <div class="col-xs-4 col-sm-4 col-md-6 col-lg-6">
-                                                                                                <div class="demo-google-material-icon">
-                                                                                                        <i class="material-icons">monetization_on</i> <span class="icon-name"><strong>Precio: </strong>3d_rotation</span>
-                                                                                                </div>
-                                                                                        </div>
-                                                                                </div>
-                                                                                <div class="row clearfix">
-                                                                                        <div class="col-xs-4 col-sm-4 col-md-6 col-lg-6">
-                                                                                                <div class="demo-google-material-icon">
-                                                                                                        <i class="material-icons">comment</i> <span class="icon-name"><strong>Descripción: </strong></span>
-                                                                                                        <p>abbsauidbu</p>
-                                                                                                </div>
-                                                                                        </div>
-                                                                                </div>
-                                                                        </div>
-                                                                </div>
-                                                        </div>
-                                        </div> -->
                                 </div>
                         </div>
                               <div class="modal-footer">
                                 <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">Cerrar</button>
                               </div>
+                        </div>
+                </div>
+        </div>
+</div>
+<div class="modal fade" id="producto_cant" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                        <div class="modal-header text-center">
+                                <h3 class="title" id="largeModalLabel">Introduzca la cantidad deseada:</h3>
+                        </div>
+                        <div class="modal-body">
+                                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 p-t-20" id="contenedor_detalle">
+                                        <div class="col-md-4 col-md-offset-2">
+                                                <div class="form-group form-float">
+                                                        <div class="form-line focused">
+                                                                <label class="form-label">Cantidad</label>
+                                                                <input maxlength="8" type="number" value="" name="cant_prod" id="cant_prod" class="form-control">
+                                                        </div>
+                                                </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                                <div class="form-group form-float">
+                                                        <div class="form-line focused">
+                                                                <label class="form-label">Stock disponible</label>
+                                                                <input disabled maxlength="8" type="number" value="" name="cant_max" id="cant_max" class="form-control">
+                                                        </div>
+                                                </div>
+                                        </div>
+                                </div>
+                        </div>
+                        <div class="modal-footer">
+                                <button type="button" class="btn btn-link waves-effect" id="confirm_cant">Confirmar</button>
+                                <button type="button" class="btn btn-link waves-effect" onClick="cancelar();" data-dismiss="modal">Cancelar</button>
                         </div>
                 </div>
         </div>

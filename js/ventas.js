@@ -1,4 +1,8 @@
 $(document).on('ready',function(){
+    $('.modal').on('hidden.bs.modal', function(){
+		$(this).find('form')[0].reset();
+		$("label.error").remove();
+	});
     var d = new Date();
 
     var month = d.getMonth()+1;
@@ -21,6 +25,8 @@ $(document).on('ready',function(){
     var cliente = new Array();
     var valor_p = new Array();
     var seleccionadop = new Array();
+    var habitacion_servicio = new Array();
+    var habitacion_servicio_seleccion = new Array();
     $('#dt_table').DataTable({
         'paging':true,
         'info':true,
@@ -72,6 +78,7 @@ detalles = function(cod_v){
         'info':true,
         'filter':true,
         'stateSave':true,
+        'destroy':true,
         'ajax':{
             "url": base_url+"ventas/consultar_detalle_ventas",
             "type":"POST",
@@ -191,7 +198,7 @@ $('#realizar_venta').click(function(){
             var elemento = $(this).val();
             if (seleccionadop.includes(elemento)){
                 var pos = seleccionadop.indexOf(elemento);
-                cantidad(pos);
+                valor_p.splice(pos,1);
                 seleccionadop.splice(pos,1);
                 producto_precio.splice(pos,1);
             }
@@ -199,7 +206,7 @@ $('#realizar_venta').click(function(){
             $('input[name=listado_p]:checked').each(function(){
                 if (seleccionadop.includes($(this).val()) == false){
                 seleccionadop.push($(this).val());
-                cantidad(1);
+                cantidad(elemento);
                 }
             })
             console.log(seleccionadop);
@@ -233,15 +240,15 @@ $('#buscar').keyup(function(){
             var elemento = $(this).val();
             if (seleccionadop.includes(elemento)){
                 var pos = seleccionadop.indexOf(elemento);
-                cantidad(pos);
                 seleccionadop.splice(pos,1);
                 producto_precio.splice(pos,1);
+                valor_p.splice(pos,1);
             }
             //console.log($(this).val());
             $('input[name=listado_p]:checked').each(function(){
                 if (seleccionadop.includes($(this).val()) == false){
                 seleccionadop.push($(this).val());
-                cantidad(1);
+                cantidad(elemento);
                 }
             })
             console.log(seleccionadop);
@@ -249,10 +256,42 @@ $('#buscar').keyup(function(){
     })
 })
     $('#cliente_input').keyup(function(){
-        if ($(this).val().length < 8){
+        if ($(this).val().length != 8){
             $('a[href="#next"]').parent().attr('style','display:none');
         }else{
             $('a[href="#next"]').parent().attr('style', 'display:block');
+        }
+        if ($(this).val().length == 8){
+            $.post(base_url+'reservaciones/comprobar_cliente',
+            {
+                cliente:$('#cliente_input').val(),
+            },
+            function(data){
+                if (data == 'No existe'){
+                    $('#nom_client').attr("style","display:block");
+                    $('#app_client').attr("style","display:block");
+                    $('#apm_client').attr("style","display:block");
+                    $('#cod_client').attr('class','col-md-3');
+                    $('#nom_client').attr("class","col-md-3");
+                    $('#app_client').attr("class","col-md-3");
+                    $('#apm_client').attr("class","col-md-3");
+                }else{
+                    $('#nom_client').attr("style","display:none");
+                    $('#app_client').attr("style","display:none");
+                    $('#apm_client').attr("style","display:none");
+                    $('#cod_client').attr('class','col-md-4 col-md-offset-4');
+                    var datos = eval(data);
+                    var clnt = '';
+                    datos.forEach(function(i){
+                        clnt = 'El cliente es: '+i['nombres']+' '+i['apellido_paterno']+' '+i['apellido_materno'];
+                    })
+                    alert(clnt);
+                    $('#cliente_input').blur();
+                }
+            })
+        }
+        if ($(this).val().length > 8){
+            alert('Se exedió el número máximo de caracteres para este campo');
         }
     })
     //tabla de seleccion de servicios
@@ -289,7 +328,7 @@ $('#buscar').keyup(function(){
                     if (seleccionados.includes(elemento)){
                         var pos = seleccionados.indexOf(elemento);
                         seleccionados.splice(pos,1);
-                        seleccionadoh.splice(pos,1);
+                        //seleccionadoh.splice(pos,1);
                         servicio_precio.splice(pos,1);
                     }
                     //console.log($(this).val());
@@ -298,91 +337,109 @@ $('#buscar').keyup(function(){
                         if (seleccionados.includes($(this).val()) == false){
                         seleccionados.push($(this).val());
                         //$('#seleccionar_estadia').modal();
-                            $.post(base_url+'habitacion/habitaciones_reservadas',
-                            {
-                                cod_cliente:$('#cliente_input').val(),
-                            },
-                            function(data){
-                                var html = '';
-                                var codigo = '';
-                                var datos = eval(data);
-                                if (datos.length > 0){
-                                    datos.forEach(function(i){
-                                        if (codigo != i['cod_estadia']){
-                                            html+='<div class="row clearfix"><h4>Estadía nro: '+i['cod_estadia']+'</h4></div>';
-                                        }
-                                        codigo = i['cod_estadia'];
-                                        html+='<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">'+
-                                            '<a name="seleccionables" onClick="insertar(\''+i['cod_habitacion']+'\',\''+i['cod_estadia']+'\');" href="#'+i['cod_habitacion']+'">'+
-                                                '<div class="info-box-4 hover-zoom-effect">'+
-                                                        '<div class="icon">'+
-                                                                '<i class="material-icons col-blue">hotel</i>'+
-                                                        '</div>'+
-                                                        '<div class="content">'+
-                                                                '<div class="text">Habitacion</div>'+
-                                                                '<div class="number">'+i['cod_habitacion']+'</div>'+
-                                                        '</div>'+
-                                                '</div>'+
-                                            '</a>'+
-                                        '</div>';
-                                    })
-                                }else{
-                                    html += '<br /><div class="body text-center">No se encontró ninguna habitación vinculada a este cliente.</div>';
-                                    html += '<br /><br />';
-                                }
-                                $('#habitaciones_list1').html(html);
-                            })
-                            $("#habitaciones_list").modal();
+                            // $.post(base_url+'habitacion/habitaciones_reservadas',
+                            // {
+                            //     cod_cliente:$('#cliente_input').val(),
+                            // },
+                            // function(data){
+                            //     var html = '';
+                            //     var codigo = '';
+                            //     var datos = eval(data);
+                            //     if (datos.length > 0){
+                            //         datos.forEach(function(i){
+                            //             if (codigo != i['cod_estadia']){
+                            //                 html+='<div class="row clearfix"><h4>Estadía nro: '+i['cod_estadia']+'</h4></div>';
+                            //             }
+                            //             codigo = i['cod_estadia'];
+                            //             html+='<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">'+
+                            //                 '<a name="seleccionables" onClick="insertar(\''+i['cod_habitacion']+'\',\''+i['cod_estadia']+'\');" href="#'+i['cod_habitacion']+'">'+
+                            //                     '<div class="info-box-4 hover-zoom-effect">'+
+                            //                             '<div class="icon">'+
+                            //                                     '<i class="material-icons col-blue">hotel</i>'+
+                            //                             '</div>'+
+                            //                             '<div class="content">'+
+                            //                                     '<div class="text">Habitacion</div>'+
+                            //                                     '<div class="number">'+i['cod_habitacion']+'</div>'+
+                            //                             '</div>'+
+                            //                     '</div>'+
+                            //                 '</a>'+
+                            //             '</div>';
+                            //         })
+                            //     }else{
+                            //         html += '<br /><div class="body text-center">No se encontró ninguna habitación vinculada a este cliente.</div>';
+                            //         html += '<br /><br />';
+                            //     }
+                            //     $('#habitaciones_list1').html(html);
+                            // })
                         }
+                        $('#aceptar_button').click(function(){
+                            confirmar_servicios();
+                        })
                     })
-                    console.log(seleccionadoe);
+                    console.log(seleccionados);
                 })
             }else{
                 buscar_servicio_div.setAttribute('style','display:none');
                 tabla_servicio_div.setAttribute('style','display:none');
-                var html = '<br /><br /><div class="col-md-6 col-md-offset-3 text-center"><p>Actualmentel, el cliente no cuesdasdasnta con estadías abiertassss.</p></div>';
+                var html = '<br /><br /><div class="col-md-6 col-md-offset-3 text-center"><p>Actualmente, el cliente no cuenta con estadías abiertas.</p></div>';
                 $('#nota_servicio_div').html(html);
 
             }
         })
-        $.post(base_url+'ventas/estadias_slct',
+        $.post(base_url+'habitacion/habitaciones_reservadas',
         {
           cliente_estadia:$('#cliente_input').val(),
         },
         function(data){
+            $('#body_est').html('');
+            $('#nota_estadias_div').html('');
             if (data != ''){
                 var html = '';
                 var datos = eval(data);
                 for (i = 0; i<datos.length; i++){
+                    // if (datos[i]['fecha_salida'] == null){
+                    //     fecha_salida ='No especificado';
+                    // }else{
+                    //     fecha_salida = datos[i]['fecha_salida'];
+                    // }
                     html+='<tr>'+
                             '<td>'+datos[i]['cod_estadia']+'</td>'+
-                            '<td>'+datos[i]['fecha_reserva']+'</td>'+
-                            '<td>'+datos[i]['fecha_ingreso']+'</td>'+
-                            '<td>'+datos[i]['fecha_salida']+'</td>'+
-                            '<td>'+(Date(datos[i]['fecha_ingreso'])-Date(output))+'</td>'+
-                            '<td><input type="checkbox" name="listado_e" value="'+datos[i]['cod_estadia']+'" id="e'+datos[i]['cod_estadia']+'"><label for="e'+datos[i]['cod_estadia']+'"></label></td>'+
+                            '<td>'+datos[i]['cod_habitacion']+'</td>'+
+                            '<td>'+datos[i]['tipo_habitacion']+'</td>'+
+                            '<td>'+datos[i]['piso']+'</td>'+
+                            '<td><input type="checkbox" name="listado_h" value="'+datos[i]['cod_habitacion']+'" id="h'+datos[i]['cod_habitacion']+'"><label for="h'+datos[i]['cod_habitacion']+'"></label></td>'+
                             '</tr>';
                 }
                 $('#body_est').html(html);
-                seleccionadoe.forEach(function(i){
-                    $('#e'+i+'').prop('checked', true);
+                seleccionadoh.forEach(function(i){
+                    $('#h'+i+'').prop('checked', true);
                 });
                 $('input[type=checkbox]').click(function(){
                     var elemento = $(this).val();
-                    if (seleccionadoe.includes(elemento)){
-                        var pos = seleccionadoe.indexOf(elemento);
-                        seleccionadoe.splice(pos,1);
-                    }
-                    //console.log($(this).val());
-                    $('input[name=listado_e]:checked').each(function(){
-                        if (seleccionadoe.includes($(this).val()) == false){
-                        seleccionadoe.push($(this).val());
+                    habitacion_servicio.forEach(function(ele){
+                        if(ele.includes(elemento)){
+                            var pos1 = habitacion_servicio.indexOf(ele);
+                            habitacion_servicio.splice(pos1, 1);
+                            console.log(habitacion_servicio)
                         }
                     })
-                    $('input[name=listado_e]:checked').each(function(){
-                        var cod_est = $(this).val();
+                    if (seleccionadoh.includes(elemento)){
+                        var pos = seleccionadoh.indexOf(elemento);
+                        seleccionadoh.splice(pos,1);
+                    }
+                    //console.log($(this).val());
+                    $('input[name=listado_h]:checked').each(function(){
+                        if (seleccionadoh.includes($(this).val()) == false){
+                        seleccionadoh.push($(this).val());
+                        $('#seleccionar_servicio').modal();
+
+                        }
                     })
+                    // $('input[name=listado_e]:checked').each(function(){
+                    //     var cod_est = $(this).val();
+                    // })
                     console.log(seleccionadoe);
+                    console.log(habitacion_servicio);
                 })
             }else{
                 buscar_servicio_div.setAttribute('style','display:none');
@@ -525,16 +582,44 @@ $('a[href="#finish"]').click(function(){
         }
     })
 })
-
-cantidad = function(arg1){
-    if (arg1 == 1){
-        var cantidad = prompt('Ingrese la cantidad requerida:');
-        if (cantidad != null){
-            valor_p.push(cantidad);
-        }
-    }else{
-        valor_p.splice(arg1,1);
+cancelar = function(){
+    var prod = seleccionadop.pop();
+    $('#p'+prod+'').prop('checked', false);
+    producto_precio.pop();
+    if($('#producto_cant').val()>0){
+        valor_p.pop();
     }
+}
+cantidad = function(arg1){
+    $.post(base_url+'productos/buscar_producto',
+    {
+        cod_pr:arg1,
+    },
+    function(data){
+        datos = eval(data);
+        console.log(datos)
+        $('#cant_max').val(datos[0]['stock_producto']);
+        $('#cant_prod').keyup(function(){
+            if ($('#cant_prod').val()>datos[0]['stock_producto']){
+                alert('La cantidad ingresada, supera al stock disponible.')
+                $('#cant_prod').val('');
+            }
+        })
+    })
+    $('#producto_cant').modal({backdrop: "static",})
+    $('#confirm_cant').click(function(){
+        if ($('#cant_prod').val()>0){
+             valor_p.push($('#cant_prod').val());
+             $('#producto_cant').modal('hide')
+        }else {
+            alert('El campo "cantidad" es requerido.')
+            $(this).focus();
+        }
+    })
+    // var cantidad = prompt('Ingrese la cantidad requerida:');
+    // if (cantidad != null){
+    //     valor_p.push(cantidad);
+    // }
     console.log(valor_p)
 }
 precio_p = function(arg1){
@@ -564,5 +649,27 @@ stopEvent = function(e) {
     } else {
         e.cancelBubble = true;
     }
+}
+confirmar_servicios = function(){
+    if (seleccionados.length > 0){
+        var len = habitacion_servicio.length;
+        habitacion_servicio[len] = [];
+        console.log(seleccionadoh);
+        var copia_h = seleccionadoh.slice();
+        var valorh = copia_h.pop();
+        var copia_s = seleccionados.slice();
+        habitacion_servicio[len].push(valorh);
+        habitacion_servicio[len].push(copia_s);
+        console.log(habitacion_servicio);
+        seleccionados.length=0;
+        $('#seleccionar_servicio').modal('hide');
+    }
+}
+cancelar_servicios = function(){
+    var cod = seleccionados.pop();
+    $('#s'+cod+'').prop('checked', false);
+    seleccionadoh.pop()
+    seleccionados.length=0;
+    servicio_precio.length=0;
 }
 });

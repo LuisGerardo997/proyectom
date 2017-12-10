@@ -108,7 +108,7 @@ var empleado = '<?php echo $this->session->userdata('cod_p') ?>';
                     </section>
 
                     <h2>Reservación</h2>
-                    <section>
+                    <section id="formulario">
                       <div class="text-center">
                         <h4>Datos de la reservación</h4>
                         <span>En los campos que se colocan a continuación, coloque los datos pertenecientes a la reservación.</span>
