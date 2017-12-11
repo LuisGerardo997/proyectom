@@ -20,21 +20,35 @@
                             <!-- Wrapper for slides -->
                             <div class="carousel-inner" role="listbox">
                                 <div class="item active">
-                                    <img src="<?= base_url() ?>images/bloggif_5a1e5eefcc7ab.jpeg" />
+                                    <img src="<?= base_url() ?>images/carrusel/frontis.jpg" />
                                     <div class="carousel-caption">
                                         <h3>First slide label</h3>
                                         <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
                                     </div>
                                 </div>
                                 <div class="item">
-                                    <img src="<?= base_url() ?>images/xhabitaciones-hotel-sol-san-javier-08.jpg.pagespeed.ic.gtLiau-ToQ.jpg"  />
+                                    <img src="<?= base_url() ?>images/carrusel/recepcion.jpg"  />
                                     <div class="carousel-caption">
                                         <h3>Second slide label</h3>
                                         <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
                                     </div>
                                 </div>
                                 <div class="item">
-                                    <img src="<?= base_url() ?>images/xsalones-hotel-sol-san-javier-01.jpg.pagespeed.ic.sKV8eF5qkz.jpg" />
+                                    <img src="<?= base_url() ?>images/carrusel/simple.jpg" />
+                                    <div class="carousel-caption">
+                                        <h3>Third slide label</h3>
+                                        <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
+                                    </div>
+                                </div>
+                                <div class="item">
+                                    <img src="<?= base_url() ?>images/carrusel/doble.jpg" />
+                                    <div class="carousel-caption">
+                                        <h3>Third slide label</h3>
+                                        <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
+                                    </div>
+                                </div>
+                                <div class="item">
+                                    <img src="<?= base_url() ?>images/carrusel/matrimonial.jpg" />
                                     <div class="carousel-caption">
                                         <h3>Third slide label</h3>
                                         <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>

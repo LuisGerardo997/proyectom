@@ -198,21 +198,33 @@ class Ventas extends CI_Controller {
             $this->Ventas_model->detalle_venta($detalle_p);
             $this->Productos_model->actualizar($productos[$i], $nuevo_stock);
         }
-        $servicios = $this->input->post('servicios');
-        $habitaciones = $this->input->post('habitaciones');
+        $habitacion_servicio = $this->input->post('habitacion_servicio');
         $estadias = $this->input->post('estadias');
-        $iteraciones_s = count($servicios);
-        for ($i = 0; $i < $iteraciones_s; $i++){
-            $detalle_s = array(
-                'cod_habitacion' => $habitaciones[$i],
-                'cod_servicio' => $servicios[$i],
-                'cod_estadia' => $estadias[$i],
-                'precio' => $servicio_precio[$i],
-                'cantidad' => '1',
-                'estado' => '1',
-            );
-            $this->Ventas_model->detalle_servicio($detalle_s);
+        $iteraciones_s = count($estadias);
+        foreach ($habitacion_servicio as $key) {
+            $iteraciones_detalle = count($key[2]);
+            for ($j=0;$j<$iteraciones_detalle; $j++){
+                $detalle_s = array(
+                    'cod_habitacion' => $key[1],
+                    'cod_servicio' => $key[2][$j],
+                    'cod_estadia' => $key[0],
+                    'precio' => $key[3][$j],
+                    'cantidad' => '1',
+                    'estado' => '1',
+                );
+                $this->Ventas_model->detalle_servicio($detalle_s);
+            }
         }
+            // $detalle_s = array(
+            //     'cod_habitacion' => $habitaciones[$i],
+            //     'cod_servicio' => $servicios[$i],
+            //     'cod_estadia' => $estadias[$i],
+            //     'precio' => $servicio_precio[$i],
+            //     'cantidad' => '1',
+            //     'estado' => '1',
+            // );
+            // $this->Ventas_model->detalle_servicio($detalle_s);
+
         echo 1;
     }
     function get_det(){

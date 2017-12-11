@@ -1,4 +1,8 @@
 $(document).on('ready',function(){
+    $('.modal').on('hidden.bs.modal', function(){
+		$(this).find('form')[0].reset();
+		$("label.error").remove();
+	});
   var d = new Date();
 
   var month = d.getMonth()+1;
@@ -109,92 +113,228 @@ var proveedor_app = document.getElementById('proveedor_app');
 var proveedor_apm = document.getElementById('proveedor_apm');
 $('#realizar_venta').click(function(){
   $('a[href="#next"]').parent().attr('style','display:none');
+  $('#tabla_proveedor').DataTable({
+      'paging':true,
+      'info':true,
+      'filter':true,
+      'stateSave':true,
+      'ajax':{
+          "url": base_url+"deudas/consultar_proveedor",
+          "type":"POST",
+          dataSrc: ''
+      },
+      'columns':[
+          {data: 'cod_proveedor'},
+          {data: 'razon_social'},
+          {data: 'dni'},
+          {data: 'nombres'},
+          {data: 'apellido_paterno'},
+          {data: 'apellido_materno'},
+          {data: 'ciudad'},
+          {"orderable":true,
+              render:function(data, type, row){
+              return '<input name="proveedor_cod" onClick="proveedor_c(\''+row.cod_proveedor+'\')" type="radio" id="\''+row.cod_proveedor+'\'"/>'+'<label for="\''+row.cod_proveedor+'\'"></label>'
+              }
+          }
+      ],
+      "order":[[0, "asc"]],
+      'language':español
+  });
+  proveedor_c = function(data1){
+    $('a[href="#next"]').parent().attr('style', 'display:block');
+    $('#proveedor').val(data1);
+  }
   $('#nro_compra').val(parseInt(num_compra)+1);
-  $('#proveedor').on('keyup',function(){
-    comprobar_proveedor($(this).val());
-    if ($(this).val().length > 11){
-      alert('Se exedió el número máximo de caracteres para este campo');
-    }
-  })
-  $('#proveedor').keyup(function(){
-      if ($(this).val().length =! 11){
-          $('a[href="#next"]').parent().attr('style','display:none');
-      }else{
-          $('a[href="#next"]').parent().attr('style', 'display:block');
-      }
-  })
+  // $('#proveedor').on('keyup',function(){
+  //   comprobar_proveedor($(this).val());
+  //   if ($(this).val().length > 11){
+  //     alert('Se exedió el número máximo de caracteres para este campo');
+  //   }
+  // })
+  // $('input[name=proveedor_cod]').click(function(){
+  //     $('a[href="#next"]').parent().attr('style', 'display:block');
+  // })
   $('#empleado').val(empleado);
   $('#fecha').val(output);
-  $('#existentes_dt').DataTable({
-    'paging':true,
-    'info':true,
-    'filter':true,
-    'stateSave':true,
-    'ajax':{
-      "url": base_url+"compras/productos_compra",
-      "type":"POST",
-      dataSrc: ''
+
+    //tabla de seleccion de productos
+    $.post(base_url+'compras/productos_compra',
+    {
+        buscar:$('#buscar').val(),
     },
-    'columns':[
-      {data: 'cod_producto'},
-      {data: 'producto'},
-      {data: 'marca'},
-      {data: 'tipo_producto'},
-      {data: 'stock_producto'},
-      {data: 'stock_maximo'},
-      {data: 'precio'},
-      {"orderable":true,
-      render:function(data, type, row){
-        return '<div class="btn-group" role="group">'+
-        '<button id="btnGroupVerticalDrop1" type="button" class="btn white waves-effect dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">'+
-        'Acciones <span class="caret"></span>'+
-        '</button>'+
-        '<ul class="dropdown-menu" aria-labelledby="btnGroupVerticalDrop1">'+
-        '<li><a href="javascript:void(0);" class=" waves-effect waves-block" onClick="ingresar_cantidad(\''+row.cod_producto+'\',\''+row.stock_maximo+'\',\''+row.stock_producto+'\',\''+row.precio+'\');">Reabastecer</a></li>'+
-        '</ul>'+
-        '</div>'
-      }
-    }
-  ],
-  "order":[[0, "asc"]],
-  'language':español
-});
+    function(data){
+        var html = '';
+        var datos = eval(data);
+        for (i = 0; i<datos.length; i++){
+            html+='<tr>'+
+                    '<td>'+datos[i]['cod_producto']+'</td>'+
+                    '<td>'+datos[i]['producto']+'</td>'+
+                    '<td>'+datos[i]['marca']+'</td>'+
+                    '<td>'+datos[i]['tipo_producto']+'</td>'+
+                    '<td>'+datos[i]['stock_producto']+'</td>'+
+                    '<td>'+datos[i]['stock_maximo']+'</td>'+
+                    '<td>'+datos[i]['precio']+'</td>'+
+                    '<td><input type="checkbox" onClick="precio_p(\''+datos[i]['precio']+'\')" name="listado_p" value="'+datos[i]['cod_producto']+'" id="p'+datos[i]['cod_producto']+'"><label for="p'+datos[i]['cod_producto']+'"></label></td>'+
+                    '</tr>';
+        }
+        body_pro.innerHTML = html;
+        seleccionadop.forEach(function(i){
+            $('#p'+i+'').prop('checked', true);
+        });
+        $('input[type=checkbox]').click(function(){
+            var elemento = $(this).val();
+            if (seleccionadop.includes(elemento)){
+                var pos = seleccionadop.indexOf(elemento);
+                valor_p.splice(pos,1);
+                seleccionadop.splice(pos,1);
+                producto_precio.splice(pos,1);
+            }
+            //console.log($(this).val());
+            $('input[name=listado_p]:checked').each(function(){
+                if (seleccionadop.includes($(this).val()) == false){
+                seleccionadop.push($(this).val());
+                cantidad(elemento);
+                }
+            })
+            console.log(seleccionadop);
+        })
+    })
+//detector de teclas en buscador
+$('#buscar').keyup(function(){
+    $.post(base_url+'compras/productos_compra',
+    {
+        buscar:$('#buscar').val(),
+    },
+    function(data){
+        var html = '';
+        var datos = eval(data);
+        for (i = 0; i<datos.length; i++){
+            html+='<tr>'+
+                    '<td>'+datos[i]['cod_producto']+'</td>'+
+                    '<td>'+datos[i]['producto']+'</td>'+
+                    '<td>'+datos[i]['marca']+'</td>'+
+                    '<td>'+datos[i]['tipo_producto']+'</td>'+
+                    '<td>'+datos[i]['stock_producto']+'</td>'+
+                    '<td>'+datos[i]['stock_maximo']+'</td>'+
+                    '<td>'+datos[i]['precio']+'</td>'+
+                    '<td><input type="checkbox" name="listado_p" onClick="precio_p(\''+datos[i]['precio']+'\')" value="'+datos[i]['cod_producto']+'" id="p'+datos[i]['cod_producto']+'"><label for="p'+datos[i]['cod_producto']+'"></label></td>'+
+                    '</tr>';
+        }
+        body_pro.innerHTML = html;
+        seleccionadop.forEach(function(i){
+            $('#p'+i+'').prop('checked', true);
+        });
+        $('input[type=checkbox]').click(function(){
+            var elemento = $(this).val();
+            if (seleccionadop.includes(elemento)){
+                var pos = seleccionadop.indexOf(elemento);
+                seleccionadop.splice(pos,1);
+                producto_precio.splice(pos,1);
+                valor_p.splice(pos,1);
+            }
+            //console.log($(this).val());
+            $('input[name=listado_p]:checked').each(function(){
+                if (seleccionadop.includes($(this).val()) == false){
+                seleccionadop.push($(this).val());
+                cantidad(elemento);
+                }
+            })
+            console.log(seleccionadop);
+        })
+    })
+})
+//   $('#existentes_dt').DataTable({
+//     'paging':true,
+//     'info':true,
+//     'filter':true,
+//     'stateSave':true,
+//     'ajax':{
+//       "url": base_url+"compras/productos_compra",
+//       "type":"POST",
+//       dataSrc: ''
+//     },
+//     'columns':[
+//       {data: 'cod_producto'},
+//       {data: 'producto'},
+//       {data: 'marca'},
+//       {data: 'tipo_producto'},
+//       {data: 'stock_producto'},
+//       {data: 'stock_maximo'},
+//       {data: 'precio'},
+//       {"orderable":true,
+//       render:function(data, type, row){
+//         return '<div class="btn-group" role="group">'+
+//         '<button id="btnGroupVerticalDrop1" type="button" class="btn white waves-effect dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">'+
+//         'Acciones <span class="caret"></span>'+
+//         '</button>'+
+//         '<ul class="dropdown-menu" aria-labelledby="btnGroupVerticalDrop1">'+
+//         '<li><a href="javascript:void(0);" class=" waves-effect waves-block" onClick="ingresar_cantidad(\''+row.cod_producto+'\',\''+row.stock_maximo+'\',\''+row.stock_producto+'\',\''+row.precio+'\');">Reabastecer</a></li>'+
+//         '</ul>'+
+//         '</div>'
+//       }
+//     }
+//   ],
+//   "order":[[0, "asc"]],
+//   'language':español
+// });
 })
 var valor_maximo;
-ingresar_cantidad = function(arg1, arg2, arg3, arg4){
-  $('#cantidad_actual').val(arg3);
-  $('#precio_unitario').val(arg4);
-  $('#ingresar_cantidad').modal({backdrop: "static"})
-  cant_maxima = parseInt(arg2)
-  cant_actual = parseInt(arg3)
-  valor_maximo = cant_maxima-cant_actual;
-  $('#cantidad_maxima').val(valor_maximo)
-  $('#producto_cod').val(arg1)
-  $('#stock_productox').keyup(function(){
-    console.log($(this).val());
-    if ($(this).val() > valor_maximo){
-      alert('La cantidad ingresada, supera a la capacidad máxima en almacén, por favor, ingrese un valor menor a la cantidad máxima expresa.');
-      $(this).val('');
-    }else if($(this).val()!=0){
-      monto_total = parseFloat($('#stock_productox').val())*parseFloat(arg4);
-      $('#monto_compra').val(monto_total);
-    }
-    if ($(this).val()==0){
-      $('#monto_compra').val('');
-    }
-  })
-  $('#descuentox').keyup(function(){
-    if ($('#descuentox').val()!=0){
-      var coeficiente = parseFloat($('#descuentox').val())/100;
-      descuento_valor = parseFloat($('#stock_productox').val())*parseFloat(arg4)*coeficiente;
-      monto_total = parseFloat($('#stock_productox').val())*parseFloat(arg4)-descuento_valor;
-      $('#monto_compra').val(monto_total);
-    }else{
-      monto_total = parseFloat($('#stock_productox').val())*parseFloat(arg4);
-      $('#monto_compra').val(monto_total);
-    }
-  })
-}
+// ingresar_cantidad = function(arg1, arg2, arg3, arg4){
+//   $('#cantidad_actual').val(arg3);
+//   $('#precio_unitario').val(arg4);
+//   $('#ingresar_cantidad').modal({backdrop: "static", keyboard: false})
+//   cant_maxima = parseInt(arg2)
+//   cant_actual = parseInt(arg3)
+//   valor_maximo = cant_maxima-cant_actual;
+//   $('#cantidad_maxima').val(valor_maximo)
+//   $('#producto_cod').val(arg1)
+//   $('#stock_productox').keyup(function(){
+//     console.log($(this).val());
+//     if ($(this).val() > valor_maximo){
+//       alert('La cantidad ingresada, supera a la capacidad máxima de almacenaje, por favor, ingrese un valor menor a la cantidad máxima expresa.');
+//       $(this).val('');
+//     }else if($(this).val()!=0){
+//       monto_total = parseFloat($('#stock_productox').val())*parseFloat(arg4);
+//       $('#monto_compra').val(monto_total);
+//     }
+//     if ($(this).val()==0){
+//       $('#monto_compra').val('');
+//     }
+//   })
+//   $('#descuentox').keyup(function(){
+//     if ($('#descuentox').val()!=0){
+//       var coeficiente = parseFloat($('#descuentox').val())/100;
+//       descuento_valor = parseFloat($('#stock_productox').val())*parseFloat(arg4)*coeficiente;
+//       monto_total = parseFloat($('#stock_productox').val())*parseFloat(arg4)-descuento_valor;
+//       $('#monto_compra').val(monto_total);
+//     }else{
+//       monto_total = parseFloat($('#stock_productox').val())*parseFloat(arg4);
+//       $('#monto_compra').val(monto_total);
+//     }
+//   })
+// }
+
+$('a[href="#finish"]').click(function(){
+    $.post(base_url+'compras/guardar_compra',
+    {
+        cod_compra:$('#nro_compra').val(),
+        empleado:$('#empleado').val(),
+        cod_proveedor:$('#proveedor').val(),
+        fecha_c:$('#fecha').val(),
+        productos:seleccionadop,
+        precio_unitario:producto_precio,
+        descuentox:$('#oferta').val(),
+        cantidad_p:valor_p,
+    },
+    function(data){
+        if (data == 1){
+            console.log('Compra satisfactoria');
+            location.reload();
+        }else{
+            console.log('INCORRECTO');
+        }
+    })
+})
 precio_p = function(arg1){
   if (producto_precio.includes(arg1) == false){
     producto_precio.push(arg1);
@@ -284,5 +424,52 @@ comprobar_proveedor = function(arg){
       }
     })
   }
+}
+cancelar = function(){
+    var prod = seleccionadop.pop();
+    $('#p'+prod+'').prop('checked', false);
+    producto_precio.pop();
+    if($('#producto_cant').val()>0){
+        valor_p.pop();
+    }
+}
+cantidad = function(arg1){
+    $.post(base_url+'productos/buscar_producto',
+    {
+        cod_pr:arg1,
+    },
+    function(data){
+        datos = eval(data);
+        console.log(datos)
+        $('#cant_act').val(datos[0]['stock_producto']);
+        var cantidad_act = parseInt(datos[0]['stock_producto']);
+        var cantidad_max = parseInt(datos[0]['stock_maximo']);
+        var cantidad_permitida= cantidad_max-cantidad_act
+        $('#cant_max').val(cantidad_permitida);
+        $('#cant_prod').keyup(function(){
+            if ($('#cant_prod').val()>parseInt(cantidad_permitida)){
+                alert('La cantidad ingresada, supera a la capacidad del almacen.')
+                $('#cant_prod').val('');
+            }
+        })
+    })
+    $('#producto_cant').modal({backdrop: "static", keyboard: false})
+    $('#confirm_cant').click(function(){
+        if ($('#cant_prod').val()>0){
+          if(valor_p.includes($('#cant_prod').val())==false){
+               valor_p.push($('#cant_prod').val());
+               $('#producto_cant').modal('hide')
+               console.log(valor_p)
+             }
+        }else {
+            alert('El campo "cantidad" es requerido.')
+            $(this).focus();
+        }
+    })
+    // var cantidad = prompt('Ingrese la cantidad requerida:');
+    // if (cantidad != null){
+    //     valor_p.push(cantidad);
+    // }
+    console.log(valor_p)
 }
 });

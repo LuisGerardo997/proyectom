@@ -106,4 +106,7 @@ class Compras_model extends CI_Model{
     $resultado = $this->db->get();
     return $resultado -> result_array();
   }
+  function detalle_compra($guardar){
+    $this->db->insert('detalle_compras',$guardar);
+  }
 }

@@ -371,22 +371,24 @@ var empleado = '<?php echo $this->session->userdata('cod_p') ?>';
                         </div>
                         <div class="modal-body">
                                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 p-t-20" id="contenedor_detalle">
-                                        <div class="col-md-4 col-md-offset-2">
-                                                <div class="form-group form-float">
-                                                        <div class="form-line focused">
-                                                                <label class="form-label">Cantidad</label>
-                                                                <input maxlength="8" type="number" value="" name="cant_prod" id="cant_prod" class="form-control">
+                                        <form action="#">
+                                                <div class="col-md-4 col-md-offset-2">
+                                                        <div class="form-group form-float">
+                                                                <div class="form-line focused">
+                                                                        <label class="form-label">Cantidad</label>
+                                                                        <input maxlength="8" type="number" value="" name="cant_prod" id="cant_prod" class="form-control">
+                                                                </div>
                                                         </div>
                                                 </div>
-                                        </div>
-                                        <div class="col-md-4">
-                                                <div class="form-group form-float">
-                                                        <div class="form-line focused">
-                                                                <label class="form-label">Stock disponible</label>
-                                                                <input disabled maxlength="8" type="number" value="" name="cant_max" id="cant_max" class="form-control">
+                                                <div class="col-md-4">
+                                                        <div class="form-group form-float">
+                                                                <div class="form-line focused">
+                                                                        <label class="form-label">Stock disponible</label>
+                                                                        <input disabled maxlength="8" type="number" value="" name="cant_max" id="cant_max" class="form-control">
+                                                                </div>
                                                         </div>
                                                 </div>
-                                        </div>
+                                        </form>
                                 </div>
                         </div>
                         <div class="modal-footer">

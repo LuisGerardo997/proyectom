@@ -26,10 +26,12 @@ class Modulo extends CI_Controller {
             $apellido_m = $this->session->userdata('apellido_m');
             $email = $this->session->userdata('email');
             $foto_p = $this->session->userdata('foto_p');
+            $modulos = $this->Modulo_model->consultar_padres();
             $data = array(
                 'nombre' => $nombre,
                 'apellido_p' => $apellido_p,
                 'email' => $email,
+                'modulos' => $modulos,
             );
             $this->load->view('home/head',$data);
             $perfil = $this->session->userdata['perfil'];
@@ -83,7 +85,11 @@ class Modulo extends CI_Controller {
               }
         if($this->session->userdata('username')){
             $this->load->view('home/main',$db_data);
-            $this->load->view('home/seguridad/modulo');
+            $data1 = $this->Modulo_model->select1();
+            $resulta = array(
+              'modulo' => $data1,
+            );
+            $this->load->view('home/seguridad/modulo', $resulta);
             $this->load->view('home/footer_dt');
         }
 
@@ -95,6 +101,17 @@ class Modulo extends CI_Controller {
     public function consultar(){
     //if ($this->input->is_ajax_request()){
         echo json_encode($this->Modulo_model->consultar());
+    //}
+    }
+    public function consultar_padres(){
+    //if ($this->input->is_ajax_request()){
+        echo json_encode($this->Modulo_model->consultar_padres());
+    //}
+    }
+    public function consultar_submodulos(){
+    //if ($this->input->is_ajax_request()){
+        $cod_modulo = $this->input->post('cod_modulo');
+        echo json_encode($this->Modulo_model->consultar_submodulos($cod_modulo));
     //}
     }
 
@@ -117,6 +134,9 @@ class Modulo extends CI_Controller {
             $cod_modulo = $this->input->post('cod_modulo_c');
             if ($this->input->post('pmodulo_c') != ''){
               $pmodulo = $this->input->post('pmodulo_c');
+              if ($this->input->post('submodulo_c') != ''){
+                $pmodulo = $this->input->post('submodulo_c');
+              }
             }else{
               $pmodulo = null;
             }

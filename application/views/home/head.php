@@ -210,7 +210,7 @@
           </li>
           <!-- #END# Notifications -->
           <!-- Tasks -->
-          <li class="dropdown">
+          <!-- <li class="dropdown">
             <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button">
               <i class="material-icons">flag</i>
               <span class="label-count">9</span>
@@ -285,7 +285,7 @@
                 <a href="javascript:void(0);">View All Tasks</a>
               </li>
             </ul>
-          </li>
+          </li> -->
           <!-- #END# Tasks -->
           <li class="pull-right"><a href="javascript:void(0);" class="js-right-sidebar" data-close="true"><i class="material-icons">more_vert</i></a></li>
         </ul>
@@ -307,12 +307,12 @@
           <div class="btn-group user-helper-dropdown">
             <i class="material-icons" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">keyboard_arrow_down</i>
             <ul class="dropdown-menu pull-right">
-              <li><a href="javascript:void(0);"><i class="material-icons">person</i>Profile</a></li>
+              <li><a href="javascript:void(0);"><i class="material-icons">person</i>Perfil</a></li>
               <li role="seperator" class="divider"></li>
-              <li><a href="javascript:void(0);"><i class="material-icons">group</i>Followers</a></li>
+              <!-- <li><a href="javascript:void(0);"><i class="material-icons">group</i>Followers</a></li>
               <li><a href="javascript:void(0);"><i class="material-icons">shopping_cart</i>Sales</a></li>
-              <li><a href="javascript:void(0);"><i class="material-icons">favorite</i>Likes</a></li>
-              <li role="seperator" class="divider"></li>
+              <li><a href="javascript:void(0);"><i class="material-icons">favorite</i>Likes</a></li> -->
+              <!-- <li role="seperator" class="divider"></li> -->
               <li><a href="<?= base_url() ?>login/cerrar_sesion"><i class="material-icons">input</i>Cerrar sesión</a></li>
               <li><a href="<?= base_url() ?>login/select_perfil"><i class="material-icons">group</i>Cambiar perfil</a></li>
             </ul>
@@ -324,8 +324,9 @@
           <ul class="list">
               <li class="header">Navegación Principal</li>
               <li class="active">
-                  <a href="<?= base_url() ?>home">
+                  <a class="toggled waves-effect waves-block" href="<?= base_url() ?>home">
                       <i class="material-icons">home</i>
                       <span>Home</span>
                   </a>
               </li>
+              

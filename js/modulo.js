@@ -70,6 +70,7 @@ insertdat = function(cod_modulo, pmodulo, modulo){
       cod_modulo_c:$('#cod_modulo_c').val(),
       pmodulo_c:$('#pmodulo_c').val(),
       modulo_c:$('#modulo_c').val(),
+      submodulo_c:$('#submodulo_c').val(),
     },
     function(data){
         if(data == 1){
@@ -78,4 +79,31 @@ insertdat = function(cod_modulo, pmodulo, modulo){
         }
     });
 };
+$('#pmodulo_c').change(function(){
+  var modulo = $(this).val();
+  if (modulo != ''){
+    $.post(base_url+'modulo/consultar_submodulos',
+    {
+      cod_modulo: modulo,
+    },
+    function(data){
+      if (data != ''){
+        var datos = eval(data);
+        var html = '';
+        html += '<select name="submodulo" id="submodulo_c" class="form-control">'+
+              '<option value="">-- Please select --</option>';
+        $('#submodulo_div').attr('style', 'display:block');
+        datos.forEach(function(e){
+          html+='<option value="'+e['cod_modulo']+'">'+e['pmodulo']+'</option>';
+        })
+        html+='</select>';
+        $('#contenedor_sub').html(html);
+      }else{
+        $('#submodulo_div').attr('style', 'display:none');
+      }
+    })
+  }else{
+    $('#submodulo_div').attr('style', 'display:none');
+  }
+})
 });

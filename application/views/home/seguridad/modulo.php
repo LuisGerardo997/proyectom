@@ -89,10 +89,21 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-4">
+                                <div class="col-md-4" >
                                     <div class="form-group">
                                         <div class="form-line">
-                                            <input type="text" name="pmodulo" id="pmodulo_c" class="form-control" placeholder="Dependencia">
+                                            <select name="pmodulo" id="pmodulo_c" class="form-control">
+                                                <option value="">-- Please select --</option>
+                                                <?php foreach($modulo as $fila):?>
+                                                    <option value='<?= $fila["cod_modulo"] ?>'><?= $fila['modulo'] ?></option>
+                                                <?php endforeach; ?>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4" id="submodulo_div" style="display:none">
+                                    <div class="form-group">
+                                        <div class="form-line" id="contenedor_sub">
                                         </div>
                                     </div>
                                 </div>

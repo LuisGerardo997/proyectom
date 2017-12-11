@@ -409,6 +409,9 @@ $('#buscar').keyup(function(){
                             '<td>'+datos[i]['piso']+'</td>'+
                             '<td><input type="checkbox" name="listado_h" value="'+datos[i]['cod_habitacion']+'" id="h'+datos[i]['cod_habitacion']+'"><label for="h'+datos[i]['cod_habitacion']+'"></label></td>'+
                             '</tr>';
+                    if (seleccionadoe.includes(datos[i]['cod_estadia'])==false){
+                        seleccionadoe.push(datos[i]['cod_estadia']);
+                    }
                 }
                 $('#body_est').html(html);
                 seleccionadoh.forEach(function(i){
@@ -453,6 +456,7 @@ $('#buscar').keyup(function(){
         $.post(base_url+'ventas/servicios_slct',
         {
             buscar_s:$('#buscar_s').val(),
+            compras:$('#buscar_s').val(),
         },
         function(data){
             var html = '';
@@ -568,9 +572,7 @@ $('a[href="#finish"]').click(function(){
         productos:seleccionadop,
         producto_precio:producto_precio,
         cantidad:valor_p,
-        servicios:seleccionados,
-        servicio_precio:servicio_precio,
-        habitaciones:seleccionadoh,
+        habitacion_servicio:habitacion_servicio,
         estadias:seleccionadoe,
     },
     function(data){
@@ -599,20 +601,27 @@ cantidad = function(arg1){
         datos = eval(data);
         console.log(datos)
         $('#cant_max').val(datos[0]['stock_producto']);
+        console.log(datos[0]['stock_producto'])
         $('#cant_prod').keyup(function(){
-            if ($('#cant_prod').val()>datos[0]['stock_producto']){
+            if ($('#cant_prod').val()>parseInt(datos[0]['stock_producto'])){
                 alert('La cantidad ingresada, supera al stock disponible.')
+                $('#cant_prod').val(0);
                 $('#cant_prod').val('');
             }
         })
     })
-    $('#producto_cant').modal({backdrop: "static",})
+    $('#producto_cant').modal({backdrop: "static", keyboard: false})
     $('#confirm_cant').click(function(){
         if ($('#cant_prod').val()>0){
              valor_p.push($('#cant_prod').val());
+             console.log(valor_p)
              $('#producto_cant').modal('hide')
-        }else {
+        }else if($('#cant_prod').val() == '') {
             alert('El campo "cantidad" es requerido.')
+            $(this).focus();
+        }else if($('#cant_prod').val()<0){
+            alert('El campo "cantidad" es requerido.')
+            $('#cant_prod').val('');
             $(this).focus();
         }
     })
@@ -658,10 +667,16 @@ confirmar_servicios = function(){
         var copia_h = seleccionadoh.slice();
         var valorh = copia_h.pop();
         var copia_s = seleccionados.slice();
+        var copia_sp = servicio_precio.slice();
+        var copia_e = seleccionadoe.slice();
+        var valore = copia_e.pop();
+        habitacion_servicio[len].push(valore);
         habitacion_servicio[len].push(valorh);
         habitacion_servicio[len].push(copia_s);
+        habitacion_servicio[len].push(copia_sp);
         console.log(habitacion_servicio);
         seleccionados.length=0;
+        servicio_precio.length=0;
         $('#seleccionar_servicio').modal('hide');
     }
 }

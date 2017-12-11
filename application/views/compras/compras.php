@@ -17,7 +17,7 @@ var empleado = '<?php echo $this->session->userdata('cod_p') ?>';
                                                         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                                                                 <!-- Nav tabs -->
                                                                 <ul class="nav nav-tabs tab-nav-right text-right" role="tablist">
-                                                                        <li role="presentation" id="ventas_realizadas" class="active"><a href="#home_animation_1" data-toggle="tab">Ventas realizadas</a></li>
+                                                                        <li role="presentation" id="ventas_realizadas" class="active"><a href="#home_animation_1" data-toggle="tab">Compras realizadas</a></li>
                                                                         <li role="presentation" id="realizar_venta"><a href="#profile_animation_1" data-toggle="tab">Realizar compra</a></li>
                                                                 </ul>
 
@@ -66,23 +66,31 @@ var empleado = '<?php echo $this->session->userdata('cod_p') ?>';
                                                                                                                 <h2>Proveedor</h2>
                                                                                                                 <section>
                                                                                                                         <div class="text-center">
-                                                                                                                                <h4>Establecer proveedor</h4>
-                                                                                                                                <span>A continuación, introduzca el RUC del proveedor.</span>
+                                                                                                                                <h4>Seleccione el proveedor</h4>
                                                                                                                         </div>
                                                                                                                         <br>
                                                                                                                         <input type="hidden" disabled value="" name="nro_compra" id="nro_compra" class="form-control">
-                                                                                                                        <div class="col-md-4 col-md-offset-4" id="proveedor_div">
-                                                                                                                                <div class="form-group form-float">
-                                                                                                                                        <div class="form-line focused focused">
-                                                                                                                                                <label class="form-label">Proveedor (RUC)</label>
-                                                                                                                                                <input maxlength="3" type="number" value="" name="proveedor" id="proveedor" class="form-control">
-                                                                                                                                        </div>
-                                                                                                                                </div>
+                                                                                                                        <div class="table-responsive">
+                                                                                                                                <table id="tabla_proveedor" class="table table-bordered table-striped table-hover dataTable" width="100%">
+                                                                                                                                        <thead>
+                                                                                                                                                <tr>
+                                                                                                                                                        <th>RUC</th>
+                                                                                                                                                        <th>Razón social</th>
+                                                                                                                                                        <th>DNI</th>
+                                                                                                                                                        <th>Nombres</th>
+                                                                                                                                                        <th>Apellido paterno</th>
+                                                                                                                                                        <th>Apellido materno</th>
+                                                                                                                                                        <th>Ciudad</th>
+                                                                                                                                                        <th>Acción</th>
+                                                                                                                                                </tr>
+                                                                                                                                        </thead>
+                                                                                                                                </table>
                                                                                                                         </div>
                                                                                                                         <div id="proveedor_nombre"></div>
                                                                                                                         <div id="proveedor_app"></div>
                                                                                                                         <div id="proveedor_apm"></div>
-                                                                                                                        <input disabled type="hidden" value="" name="empleado" id="empleado" class="form-control">
+                                                                                                                        <input type="hidden" name="empleado" id="empleado" class="form-control">
+                                                                                                                        <input type="hidden" name="empleado" id="proveedor" class="form-control">
                                                                                                                         <input type="hidden" name="fecha" id="fecha" class="datepicker form-control">
                                                                                                                         <input type="hidden" name="fecha_r" id="fecha_r" class="datepicker form-control">
                                                                                                                         <div class="col-md-12">
@@ -96,17 +104,19 @@ var empleado = '<?php echo $this->session->userdata('cod_p') ?>';
                                                                                                                                 <div class="row clearfix">
                                                                                                                                         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                                                                                                                                                 <!-- Nav tabs -->
-                                                                                                                                                <ul class="nav nav-tabs tab-nav-right text-right" role="tablist">
+                                                                                                                                                <!-- <ul class="nav nav-tabs tab-nav-right text-right" role="tablist">
                                                                                                                                                         <li role="presentation" id="existentes_trigger" class="active"><a href="#existentes" data-toggle="tab">Productos existentes</a></li>
                                                                                                                                                         <li role="presentation" id="nuevos_trigger"><a href="#nuevos" data-toggle="tab">Producto nuevo</a></li>
-                                                                                                                                                </ul>
+                                                                                                                                                </ul> -->
 
                                                                                                                                                 <!-- Tab panes -->
-                                                                                                                                                <div class="tab-content">
-                                                                                                                                                        <div role="tabpanel" class="tab-pane animated flipInX active" id="existentes">
+                                                                                                                                                <!-- <div class="tab-content">
+                                                                                                                                                        <div role="tabpanel" class="tab-pane animated flipInX active" id="existentes"> -->
                                                                                                                                                                 <div class="body">
+                                                                                                                                                                        <h4 class="text-center">Selección de productos</h4>
+                                                                                                                                                                        <br>
                                                                                                                                                                         <div class="table-responsive">
-                                                                                                                                                                                <table id="existentes_dt" class="table table-bordered table-striped table-hover dataTable">
+                                                                                                                                                                                <table class="table table-bordered table-striped table-hover">
                                                                                                                                                                                         <thead>
                                                                                                                                                                                                 <tr>
                                                                                                                                                                                                         <th>Código</th>
@@ -116,16 +126,17 @@ var empleado = '<?php echo $this->session->userdata('cod_p') ?>';
                                                                                                                                                                                                         <th>Stock</th>
                                                                                                                                                                                                         <th>Stock máximo</th>
                                                                                                                                                                                                         <th>Precio</th>
-                                                                                                                                                                                                        <th></th>
+                                                                                                                                                                                                        <th><i class="material-icons">check</i></th>
                                                                                                                                                                                                 </tr>
                                                                                                                                                                                         </thead>
+                                                                                                                                                                                        <tbody id="body_pro"></tbody>
                                                                                                                                                                                 </table>
                                                                                                                                                                         </div>
                                                                                                                                                                 </div>
 
 
-                                                                                                                                                        </div>
-                                                                                                                                                        <div role="tabpanel" class="tab-pane animated flipInX" id="nuevos">
+                                                                                                                                                        <!-- </div> -->
+                                                                                                                                                        <!-- <div role="tabpanel" class="tab-pane animated flipInX" id="nuevos">
                                                                                                                                                                 <h3 class="title text-center">Registro de nuevo producto</h3>
                                                                                                                                                                 <br><br>
                                                                                                                                                                 <div class="row clearfix">
@@ -212,8 +223,8 @@ var empleado = '<?php echo $this->session->userdata('cod_p') ?>';
 
                                                                                                                                                                         </div>
                                                                                                                                                                 </div>
-                                                                                                                                                        </div>
-                                                                                                                                                </div>
+                                                                                                                                                        </div> -->
+                                                                                                                                                <!-- </div> -->
                                                                                                                                         </div>
                                                                                                                                 </div>
                                                                                                                         </div>
@@ -323,6 +334,42 @@ var empleado = '<?php echo $this->session->userdata('cod_p') ?>';
                         <div class="modal-footer">
                                 <button type="button" onClick='guardar_compra();' class="btn btn-link waves-effect">Aceptar</button>
                                 <button type="button" id="cerrar_modal" class="btn btn-link waves-effect" data-dismiss="modal">Cancelar</button>
+                        </div>
+                </div>
+        </div>
+</div>
+<div class="modal fade" id="producto_cant" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                        <div class="modal-header text-center">
+                                <h3 class="title" id="largeModalLabel">Introduzca la cantidad deseada:</h3>
+                        </div>
+                        <div class="modal-body">
+                                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 p-t-20" id="contenedor_detalle">
+                                        <form action="#">
+                                                <div class="col-md-4 col-md-offset-2">
+                                                        <div class="form-group form-float">
+                                                                <div class="form-line focused">
+                                                                        <label class="form-label">Cantidad</label>
+                                                                        <input maxlength="8" type="number" value="" name="cant_prod" id="cant_prod" class="form-control">
+                                                                </div>
+                                                        </div>
+                                                </div>
+                                                                        <input disabled maxlength="8" type="hidden" value="" name="cant_act" id="cant_act" class="form-control">
+                                                <div class="col-md-4">
+                                                        <div class="form-group form-float">
+                                                                <div class="form-line focused">
+                                                                        <label class="form-label">Máximo permitido</label>
+                                                                        <input disabled maxlength="8" type="number" value="" name="cant_max" id="cant_max" class="form-control">
+                                                                </div>
+                                                        </div>
+                                                </div>
+                                        </form>
+                                </div>
+                        </div>
+                        <div class="modal-footer">
+                                <button type="button" class="btn btn-link waves-effect" id="confirm_cant">Confirmar</button>
+                                <button type="button" class="btn btn-link waves-effect" onClick="cancelar();" data-dismiss="modal">Cancelar</button>
                         </div>
                 </div>
         </div>
