@@ -6,6 +6,7 @@ class Tipo_movimiento extends CI_Controller {
     parent::__construct();
     $this->load->model('Tipo_movimiento_model');
     $this->load->model('Login_model');
+    $this->load->model('Modulo_model');
   }
 
 
@@ -86,7 +87,7 @@ class Tipo_movimiento extends CI_Controller {
                 $this->load->view('home/mod_reportes');
               }
       $this->load->view('home/main',$db_data);
-      $this->load->view('home/tipo_movimiento/tipo_movimiento');
+      $this->load->view('home/movimientos/tipo_movimiento');
       $this->load->view('home/footer_dt');
 
     }else{
@@ -94,11 +95,9 @@ class Tipo_movimiento extends CI_Controller {
     }
   }
   public function consultar(){
-    //if ($this->input->is_ajax_request()){
         echo json_encode($this->Tipo_movimiento_model->consultar());
-
-    //}
   }
+
   function actualizar(){
       $selector = $this->input->post('cod_tipo_movimiento');
       $cod_tipo_movimiento = $selector;
@@ -130,7 +129,7 @@ class Tipo_movimiento extends CI_Controller {
       $data = array(
         'cod_tipo_movimiento' => $cod_tipo_movimiento,
         'tipo_movimiento' => $tipo_movimiento,
-        'estado' => null,
+        'estado' => '1',
       );
       if($this->Tipo_movimiento_model->guardar($data) == true){
         echo '1';

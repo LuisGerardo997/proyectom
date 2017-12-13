@@ -6,6 +6,7 @@ class Cargo extends CI_Controller {
     parent::__construct();
     $this->load->model('Cargo_model');
     $this->load->model('Login_model');
+    $this->load->model('Modulo_model');
   }
 
 
@@ -99,11 +100,9 @@ class Cargo extends CI_Controller {
     }
   }
   public function consultar(){
-    //if ($this->input->is_ajax_request()){
         echo json_encode($this->Cargo_model->consultar());
-
-    //}
   }
+
   function actualizar(){
       $selector = $this->input->post('cod_cargo');
       $cod_cargo = $selector;
@@ -125,7 +124,7 @@ class Cargo extends CI_Controller {
   function eliminar(){
       $idselect = $this->input->post('cod_cargo');
       $data = array(
-        'estado' => null,
+        'estado' => '0',
       );
       if($this->Cargo_model->eliminar($idselect, $data) == true){
         echo '1';
@@ -143,7 +142,7 @@ class Cargo extends CI_Controller {
         'cod_area' => $area,
         'descripcion' => $descripcion,
         'cargo' => $cargo,
-        'estado' => '0',
+        'estado' => '1',
       );
       if($this->Cargo_model->guardar($data) == true){
         echo '1';

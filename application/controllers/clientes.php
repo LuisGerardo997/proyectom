@@ -6,6 +6,7 @@ class Clientes extends CI_Controller {
     parent::__construct();
     $this->load->model('Clientes_model');
     $this->load->model('Login_model');
+    $this->load->model('Modulo_model');
   }
 
   public function index(){
@@ -189,118 +190,163 @@ class Clientes extends CI_Controller {
       }
     }
     function guardar(){
-      $cod_persona = $this->input->post('cod_persona');
-      $nombres = $this->input->post('nombres');
-      $apellido_paterno = $this->input->post('apellido_paterno');
-      $apellido_materno = $this->input->post('apellido_materno');
-      $ruc = $this->input->post('ruc');
-      $email = $this->input->post('email');
-      $genero = $this->input->post('genero');
-      $tel_movil = $this->input->post('tel_movil');
-      if ($this->input->post('ciudad') != ''){
-        $ciudad = $this->input->post('ciudad');
-      }else{
-        $ciudad = null;
-      }
-      if ($this->input->post('cod_persona_contacto') != ''){
-        $cod_persona_contacto = $this->input->post('cod_persona_contacto');
-      }else{
-        $cod_persona_contacto = null;
-      }
-      $data = array(
-        'cod_persona' => $cod_persona,
-        'cod_persona_contacto' => $cod_persona_contacto,
-        'nombres' => $nombres,
-        'apellido_paterno' => $apellido_paterno,
-        'apellido_materno' => $apellido_materno,
-        'ruc' => $ruc,
-        'email' => $email,
-        'genero' => $genero,
-        'tel_movil' => $tel_movil,
-        'cod_ciudad_direccion' => $ciudad,
-        'estado' => '0',
-      );
-      if($this->Clientes_model->guardar($data) == true){
-        echo '1';
-      }else{
-        echo '0';
-      }
-    }
-    function almacenar(){
-      $cod_persona = $this->input->post('cod_persona');
-      $nombres = $this->input->post('nombres');
-      $apellido_paterno = $this->input->post('apellido_paterno');
-      $apellido_materno = $this->input->post('apellido_materno');
-      $ruc = $this->input->post('ruc');
-      $email = $this->input->post('email');
-      $genero = $this->input->post('genero');
-      $tel_movil = $this->input->post('tel_movil');
-      $direccion = $this->input->post('direccion');
-      $bancaria = $this->input->post('bancaria');
-      $banco = $this->input->post('banco');
-      $telefono_domicilio = $this->input->post('telefono_domicilio');
-      $operador = $this->input->post('operador');
-      $nacimiento = $this->input->post('nacimiento');
-      $profesion = $this->input->post('profesion');
-      $hijos = $this->input->post('hijos');
-      $estatura = $this->input->post('estatura');
-      $peso = $this->input->post('peso');
-      $sangre = $this->input->post('sangre');
-      $hobby = $this->input->post('hobby');
-      $deporte = $this->input->post('deporte');
-      if ($this->input->post('ciudad') != ''){
-        $ciudad = $this->input->post('ciudad');
-      }else{
-        $ciudad = null;
-      }
-      if ($this->input->post('ciudad1') != ''){
-        $ciudad1 = $this->input->post('ciudad1');
-      }else{
-        $ciudad1 = null;
-      }
-      if ($this->input->post('civil') != ''){
-        $civil = $this->input->post('civil');
-      }else{
-        $civil = null;
-      }
-      if ($this->input->post('persona') != ''){
-        $persona = $this->input->post('persona');
-      }else{
-        $persona = null;
-      }
+        $cod_persona = $this->input->post('cod_persona');
+        $nombres = $this->input->post('nombres');
+        $apellido_paterno = $this->input->post('apellido_paterno');
+        $apellido_materno = $this->input->post('apellido_materno');
+        $ruc = $this->input->post('ruc');
+        $email = $this->input->post('email');
+        $genero = $this->input->post('genero');
+        $tel_movil = $this->input->post('tel_movil');
 
-      $data = array(
-        'cod_persona' => $cod_persona,
-        'nombres' => $nombres,
-        'apellido_paterno' => $apellido_paterno,
-        'apellido_materno' => $apellido_materno,
-        'ruc' => $ruc,
-        'email' => $email,
-        'genero' => $genero,
-        'tel_movil' => $tel_movil,
-        'direccion' => $direccion,
-        'nro_cuenta_bancaria' => $bancaria,
-        'nombre_banco' => $banco,
-        'tel_domicilio' => $telefono_domicilio,
-        'operador_movil' => $operador,
-        'fecha_nacimiento' => $nacimiento,
-        'profesion' => $profesion,
-        'num_hijos' => $hijos,
-        'estatura_cm' => $estatura,
-        'peso_kg' => $peso,
-        'tipo_sangre' => $sangre,
-        'hobby' => $hobby,
-        'deporte_favorito' => $deporte,
-        'cod_ciudad_nacimiento' => $ciudad,
-        'cod_ciudad_direccion' =>  $ciudad1,
-        'cod_estado_civil' => $civil,
-        'cod_tipo_persona' => $persona,
-        'estado' => '0',
-      );
-      if($this->Clientes_model->guardar($data) == true){
-        echo '1';
-      }else{
-        echo '0';
-      }
+        if ($this->input->post('cod_persona') != ''){
+            $cod_persona = $this->input->post('cod_persona');
+        }else{
+            $cod_persona = null;
+        }
+        if ($this->input->post('ciudad') != ''){
+            $ciudad = $this->input->post('ciudad');
+        }else{
+            $ciudad = null;
+        }
+
+        $data = array(
+            'cod_persona' => $cod_persona,
+            'nombres' => $nombres,
+            'apellido_paterno' => $apellido_paterno,
+            'apellido_materno' => $apellido_materno,
+            'ruc' => $ruc,
+            'email' => $email,
+            'genero' => $genero,
+            'tel_movil' => $tel_movil,
+            'cod_ciudad_direccion' => $ciudad,
+            'estado' => '0',
+        );
+
+        if($this->Clientes_model->guardar($data) == true){
+            echo '1';
+        }else{
+            echo '0';
+        }
+    }
+
+    function almacenar(){
+        $cod_persona = $this->input->post('cod_persona');
+        $nombres = $this->input->post('nombres');
+        $apellido_paterno = $this->input->post('apellido_paterno');
+        $apellido_materno = $this->input->post('apellido_materno');
+        $ruc = $this->input->post('ruc');
+        $email = $this->input->post('email');
+        $genero = $this->input->post('genero');
+        $tel_movil = $this->input->post('tel_movil');
+        $direccion = $this->input->post('direccion');
+        $bancaria = $this->input->post('bancaria');
+        $banco = $this->input->post('banco');
+        $telefono_domicilio = $this->input->post('telefono_domicilio');
+        $operador = $this->input->post('operador');
+        $nacimiento = $this->input->post('nacimiento');
+        $profesion = $this->input->post('profesion');
+        $hijos = $this->input->post('hijos');
+        $estatura = $this->input->post('estatura');
+        $peso = $this->input->post('peso');
+        $sangre = $this->input->post('sangre');
+        $hobby = $this->input->post('hobby');
+        $deporte = $this->input->post('deporte');
+
+        if ($this->input->post('cod_persona') != ''){
+            $cod_persona = $this->input->post('cod_persona');
+        }else{
+            $cod_persona = null;
+        }
+        if ($this->input->post('hijos') != ''){
+            $hijos = $this->input->post('hijos');
+        }else{
+            $hijos = null;
+        }
+        if ($this->input->post('sangre') != ''){
+            $sangre = $this->input->post('sangre');
+        }else{
+            $sangre = null;
+        }
+        if ($this->input->post('tel_movil') != ''){
+            $tel_movil = $this->input->post('tel_movil');
+        }else{
+            $tel_movil = null;
+        }
+        if ($this->input->post('telefono_domicilio') != ''){
+            $telefono_domicilio = $this->input->post('telefono_domicilio');
+        }else{
+            $telefono_domicilio = null;
+        }
+        if ($this->input->post('nacimiento') != ''){
+            $nacimiento = $this->input->post('nacimiento');
+        }else{
+            $nacimiento == null;
+        }
+        if ($this->input->post('estatura') != ''){
+            $estatura = $this->input->post('estatura');
+        }else{
+            $estatura = null;
+        }
+        if ($this->input->post('peso') != ''){
+            $peso = $this->input->post('peso');
+        }else{
+            $peso = null;
+        }
+        if ($this->input->post('ciudad') != ''){
+            $ciudad = $this->input->post('ciudad');
+        }else{
+            $ciudad = null;
+        }
+        if ($this->input->post('ciudad1') != ''){
+            $ciudad1 = $this->input->post('ciudad1');
+        }else{
+            $ciudad1 = null;
+        }
+        if ($this->input->post('civil') != ''){
+            $civil = $this->input->post('civil');
+        }else{
+            $civil = null;
+        }
+        if ($this->input->post('persona') != ''){
+            $persona = $this->input->post('persona');
+        }else{
+            $persona = null;
+        }
+
+        $data = array(
+            'cod_persona' => $cod_persona,
+            'nombres' => $nombres,
+            'apellido_paterno' => $apellido_paterno,
+            'apellido_materno' => $apellido_materno,
+            'ruc' => $ruc,
+            'email' => $email,
+            'genero' => $genero,
+            'tel_movil' => $tel_movil,
+            'direccion' => $direccion,
+            'nro_cuenta_bancaria' => $bancaria,
+            'nombre_banco' => $banco,
+            'tel_domicilio' => $telefono_domicilio,
+            'operador_movil' => $operador,
+            'fecha_nacimiento' => $nacimiento,
+            'profesion' => $profesion,
+            'num_hijos' => $hijos,
+            'estatura_cm' => $estatura,
+            'peso_kg' => $peso,
+            'tipo_sangre' => $sangre,
+            'hobby' => $hobby,
+            'deporte_favorito' => $deporte,
+            'cod_ciudad_nacimiento' => $ciudad,
+            'cod_ciudad_direccion' =>  $ciudad1,
+            'cod_estado_civil' => $civil,
+            'cod_tipo_persona' => $persona,
+            'estado' => '0',
+        );
+
+        if($this->Clientes_model->guardar($data) == true){
+            echo '1';
+        }else{
+            echo '0';
+        }
     }
   }

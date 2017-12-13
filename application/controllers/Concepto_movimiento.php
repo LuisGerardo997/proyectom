@@ -1,10 +1,10 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Marca extends CI_Controller {
+class Concepto_movimiento extends CI_Controller {
   function __construct(){
     parent::__construct();
-    $this->load->model('Marca_model');
+    $this->load->model('Concepto_movimiento_model');
     $this->load->model('Login_model');
     $this->load->model('Modulo_model');
   }
@@ -19,8 +19,8 @@ class Marca extends CI_Controller {
             }elseif ($driverdb == 'postgre') {
                 $db_name = 'PostgreSQL';
             }elseif ($driverdb == 'sqlsrv') {
-                      $db_name = 'MS SQL Server';
-                  }
+                $db_name = 'MS SQL Server';
+            }
             $db_data = array(
                 'motor_db' => $db_name,
             );
@@ -33,7 +33,9 @@ class Marca extends CI_Controller {
             $data = array(
                 'nombre' => $nombre,
                 'apellido_p' => $apellido_p,
+                'apellido_m' => $apellido_m,
                 'email' => $email,
+                'foto_p' => $foto_p,
             );
             $this->load->view('home/head',$data);
             $perfil = $this->session->userdata['perfil'];
@@ -85,8 +87,13 @@ class Marca extends CI_Controller {
               }if  (in_array('4',$arr)){
                 $this->load->view('home/mod_reportes');
               }
+
       $this->load->view('home/main',$db_data);
-      $this->load->view('home/productos/marca');
+      $data1 = $this->Concepto_movimiento_model->select1();
+      $resulta = array(
+        'tipo_movimiento' => $data1,
+      );
+      $this->load->view('home/movimientos/concepto_movimiento',$resulta);
       $this->load->view('home/footer_dt');
 
     }else{
@@ -94,47 +101,47 @@ class Marca extends CI_Controller {
     }
   }
   public function consultar(){
-        echo json_encode($this->Marca_model->consultar());
+        echo json_encode($this->Concepto_movimiento_model->consultar());
   }
 
   function actualizar(){
-      $selector = $this->input->post('cod_marca');
-      $cod_marca = $selector;
-      $marca = $this->input->post('marca');
-      $descripcion = $this->input->post('descripcion');
+      $selector = $this->input->post('cod_concepto_movimiento');
+      $cod_concepto_movimiento = $selector;
+      $concepto_movimiento = $this->input->post('concepto_movimiento');
+      $cod_tipo_movimiento = $this->input->post('tipo_movimiento');
       $data = array(
-        'cod_marca' => $cod_marca,
-        'marca' => $marca,
-        'descripcion' => $descripcion,
+        'cod_concepto_movimiento' => $cod_concepto_movimiento,
+        'concepto_movimiento' => $concepto_movimiento,
+        'cod_tipo_movimiento' => $cod_tipo_movimiento,
       );
-      if($this->Marca_model->actualizar($selector, $data) == true){
+      if($this->Concepto_movimiento_model->actualizar($selector, $data) == true){
         echo '1';
       }else{
         echo '0';
       }
   }
   function eliminar(){
-      $idselect = $this->input->post('cod_marca');
+      $idselect = $this->input->post('cod_concepto_movimiento');
       $data = array(
         'estado' => '0',
       );
-      if($this->Marca_model->eliminar($idselect, $data) == true){
+      if($this->Concepto_movimiento_model->eliminar($idselect, $data) == true){
         echo '1';
       }else{
         echo '0';
       }
     }
     function guardar(){
-      $cod_marca = $this->input->post('cod_marca');
-      $marca = $this->input->post('marca');
-      $descripcion = $this->input->post('descripcion');
+      $cod_concepto_movimiento = $this->input->post('cod_concepto_movimiento');
+      $concepto_movimiento = $this->input->post('concepto_movimiento');
+      $cod_tipo_movimiento = $this->input->post('tipo_movimiento');
       $data = array(
-        'cod_marca' => $cod_marca,
-        'marca' => $marca,
-        'descripcion' => $descripcion,
+        'cod_concepto_movimiento' => $cod_concepto_movimiento,
+        'concepto_movimiento' => $concepto_movimiento,
+        'cod_tipo_movimiento' => $cod_tipo_movimiento,
         'estado' => '1',
       );
-      if($this->Marca_model->guardar($data) == true){
+      if($this->Concepto_movimiento_model->guardar($data) == true){
         echo '1';
       }else{
         echo '0';

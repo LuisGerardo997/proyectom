@@ -6,7 +6,7 @@ class Forma_pago_model extends CI_Model{
   }
   function consultar(){
     $this->db->select('fp.cod_forma_pago, fp.forma_pago, fp.descripcion');
-    $this->db->where('fp.estado',null,false);
+    $this->db->where('fp.estado','1');
     $this->db->from('forma_pago fp');
     $data = $this->db->get();
     return $data->result();

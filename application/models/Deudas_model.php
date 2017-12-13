@@ -28,6 +28,7 @@ class Deudas_model extends CI_Model{
 
     function select4(){
         $this->db->select('cod_concepto_movimiento, concepto_movimiento');
+        $this->db->where('cod_tipo_movimiento', '2');
         $this->db->order_by('concepto_movimiento', 'asc');
         $resultado= $this->db->get('concepto_movimiento');
         return $resultado -> result_array();
@@ -144,8 +145,8 @@ class Deudas_model extends CI_Model{
         }
       }
 
-    function actualizar_cronograma($cod,$hab){
-      $this->db->where('cod_cronograma_compras',$cod);
+    function actualizar_cronograma($cod, $hab){
+      $this->db->where('cod_cronograma_compras', $cod);
       $this->db->update('cronograma_compras',$hab);
       if($this->db->affected_rows()>0){
         return true;

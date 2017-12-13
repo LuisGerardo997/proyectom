@@ -6,7 +6,7 @@ class Tipo_documento_model extends CI_Model{
   }
   function consultar(){
     $this->db->select('td.cod_tipo_documento, td.descripcion, td.nro_serie, td.nro_correlativo');
-    $this->db->where('td.estado',null,false);
+    $this->db->where('td.estado','1');
     $this->db->from('tipo_documento td');
     $data = $this->db->get();
     return $data->result();

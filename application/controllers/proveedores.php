@@ -6,6 +6,7 @@ class Proveedores extends CI_Controller {
     parent::__construct();
     $this->load->model('Proveedores_model');
     $this->load->model('Login_model');
+    $this->load->model('Modulo_model');
   }
 
 
@@ -97,41 +98,41 @@ class Proveedores extends CI_Controller {
     }
   }
   public function consultar(){
-    //if ($this->input->is_ajax_request()){
     echo json_encode($this->Proveedores_model->consultar());
+  }
 
-    //}
-  }
-  function actualizar(){
-    $selector = $this->input->post('cod_proveedor');
-    $cod_proveedor = $selector;
-    $nombres = $this->input->post('nombres');
-    $apellido_paterno = $this->input->post('apellido_paterno');
-    $apellido_materno = $this->input->post('apellido_materno');
-    $dni = $this->input->post('dni');
-    $ciudad = $this->input->post('ciudad');
-    $razon_social = $this->input->post('razon_social');
-    $descripcion = $this->input->post('descripcion');
-    $data = array(
-      'cod_proveedor' => $cod_proveedor,
-      'nombres' => $nombres,
-      'apellido_paterno' => $apellido_paterno,
-      'apellido_materno' => $apellido_materno,
-      'dni' => $dni,
-      'cod_ciudad' => $ciudad,
-      'razon_social' => $razon_social,
-      'descripcion' => $descripcion,
-    );
-    if($this->Proveedores_model->actualizar($selector, $data) == true){
-      echo '1';
-    }else{
-      echo '0';
+    function actualizar(){
+        $selector = $this->input->post('cod_proveedor');
+        $cod_proveedor = $selector;
+        $nombres = $this->input->post('nombres');
+        $apellido_paterno = $this->input->post('apellido_paterno');
+        $apellido_materno = $this->input->post('apellido_materno');
+        $dni = $this->input->post('dni');
+        $ciudad = $this->input->post('ciudad');
+        $razon_social = $this->input->post('razon_social');
+        $descripcion = $this->input->post('descripcion');
+
+        $data = array(
+            'cod_proveedor' => $cod_proveedor,
+            'razon_social' => $razon_social,
+            'dni' => $dni,
+            'nombres' => $nombres,
+            'apellido_paterno' => $apellido_paterno,
+            'apellido_materno' => $apellido_materno,
+            'cod_ciudad' => $ciudad,
+            'descripcion' => $descripcion,
+        );
+
+        if($this->Proveedores_model->actualizar($selector, $data) == true){
+            echo '1';
+        }else{
+            echo '0';
+        }
     }
-  }
   function eliminar(){
     $idselect = $this->input->post('cod_proveedor');
     $data = array(
-      'estado' => null,
+      'estado' => '0',
     );
     if($this->Proveedores_model->eliminar($idselect, $data) == true){
       echo '1';
@@ -157,7 +158,7 @@ class Proveedores extends CI_Controller {
       'cod_ciudad' => $ciudad,
       'razon_social' => $razon_social,
       'descripcion' => $descripcion,
-      'estado' => '0',
+      'estado' => '1',
     );
     if($this->Proveedores_model->guardar($data) == true){
       echo '1';

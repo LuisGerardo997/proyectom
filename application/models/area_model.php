@@ -6,7 +6,7 @@ class Area_model extends CI_Model{
 
     function consultar(){
         $this->db->select('a.cod_area, a.area, a.descripcion');
-        $this->db->where('a.estado','0');
+        $this->db->where('a.estado','1');
         $this->db->from('area a');
         $data = $this->db->get();
         return $data->result();

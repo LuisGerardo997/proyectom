@@ -90,6 +90,14 @@
                                                         </div>
                                                         <div class="row clearfix">
                                                             <div class="body">
+                                                            <div class="col-md-3" id="fecha_credito_div">
+                                                                <div class="form-group form-float">
+                                                                    <div class="form-line focused">
+                                                                        <label class="form-label">Fecha del primer pago</label>
+                                                                        <input type="text" id="fecha_credito" class="datepicker form-control">
+                                                                    </div>
+                                                                </div>
+                                                            </div>
                                                                 <div class="col-md-3" id="forma_pago_div">
                                                                     <div class="form-group form-float">
                                                                         <div class="form-line focused">
@@ -183,19 +191,26 @@
                                                                         </div>
                                                                     </div>
                                                                 </div>
-                                                                <div class="col-md-2" id="fecha_contado_div">
+                                                                <div class="col-md-2" id="monto_contado_div" style="display:none">
+                                                                    <div class="form-group form-float">
+                                                                        <div class="form-line focused">
+                                                                            <label class="form-label">Monto</label>
+                                                                            <input disabled type="number" id="monto_contado" class="form-control" step="0.01" onkeydown="return( event.ctrlKey || event.altKey
+                                                                            || (event.keyCode>47 && event.keyCode<58 && event.shiftKey==false)
+                                                                            || (event.keyCode>95 && event.keyCode<106)
+                                                                            || (event.keyCode>34 && event.keyCode<40)
+                                                                            || (event.keyCode==8)
+                                                                            || (event.keyCode==9)
+                                                                            || (event.keyCode==46)
+                                                                            || (event.keyCode==188))">
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-2" id="fecha_contado_div" style="display:none">
                                                                     <div class="form-group form-float">
                                                                         <div class="form-line focused">
                                                                             <label class="form-label">Fecha de pago</label>
                                                                             <input type="text" id="fecha_contado" class="datepicker form-control">
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="col-md-3" id="fecha_credito_div">
-                                                                    <div class="form-group form-float">
-                                                                        <div class="form-line focused">
-                                                                            <label class="form-label">Fecha del primer pago</label>
-                                                                            <input type="text" id="fecha_credito" class="datepicker form-control">
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -299,7 +314,7 @@
                                                         <div class="form-group form-float">
                                                             <div class="form-line focused">
                                                                 <label class="form-label">Monto</label>
-                                                                <input type="text" id="monto_cronograma" class="form-control" step="0.01" onkeydown="return( event.ctrlKey || event.altKey
+                                                                <input disabled type="text" id="monto_cronograma" class="form-control" step="0.01" onkeydown="return( event.ctrlKey || event.altKey
                                                                 || (event.keyCode>47 && event.keyCode<58 && event.shiftKey==false)
                                                                 || (event.keyCode>95 && event.keyCode<106)
                                                                 || (event.keyCode>34 && event.keyCode<40)

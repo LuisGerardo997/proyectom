@@ -6,7 +6,7 @@ class Marca_model extends CI_Model{
   }
   function consultar(){
     $this->db->select('m.cod_marca , m.marca, m.descripcion');
-    $this->db->where('m.estado',null,false);
+    $this->db->where('m.estado','1');
     $this->db->from('marca m');
     $data = $this->db->get();
     return $data->result();

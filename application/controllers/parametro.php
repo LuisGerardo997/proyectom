@@ -6,6 +6,7 @@ class Parametro extends CI_Controller {
     parent::__construct();
     $this->load->model('Parametro_model');
     $this->load->model('Login_model');
+    $this->load->model('Modulo_model');
   }
 
     public function index(){

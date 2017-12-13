@@ -1,15 +1,13 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 date_default_timezone_set('America/Lima');
-class Deudas extends CI_Controller {
+class Pagos extends CI_Controller {
     function __construct(){
         parent::__construct();
         $this->load->model('Login_model');
-        //$this->load->model('Deudas_model');
-        $this->load->model('Deudas_model');
+        $this->load->model('Pagos_model');
         $this->load->model('Modulo_model');
     }
-
     public function index(){
         if($this->session->userdata('username')){
             $driverdb = $this->db->dbdriver;
@@ -22,6 +20,7 @@ class Deudas extends CI_Controller {
             elseif ($driverdb == 'sqlsrv') {
                 $db_name = 'MS SQL Server';
             }
+
             $db_data = array(
                 'motor_db' => $db_name,
             );
@@ -97,7 +96,7 @@ class Deudas extends CI_Controller {
                 if (in_array('20',$arr)){
                     $this->load->view('home/mod_seguridad');
                 }
-                $this->load->view('home/mod_mantenimiento_fin');
+                    $this->load->view('home/mod_mantenimiento_fin');
             }
             if (in_array('2',$arr)){
                 $this->load->view('home/mod_reservacion');
@@ -107,15 +106,15 @@ class Deudas extends CI_Controller {
                 $this->load->view('home/mod_almacen');
             }
             if  (in_array('4',$arr)){
-                //$this->load->view('home/mod_pago');
+                $this->load->view('home/mod_pago');
                 $this->load->view('home/mod_deuda');
                 $this->load->view('home/mod_reportes');
             }
 
-            $data1 = $this->Deudas_model->select1();
-            $data2 = $this->Deudas_model->select2();
-            $data3 = $this->Deudas_model->select3();
-            $data4 = $this->Deudas_model->select4();
+            $data1 = $this->Pagos_model->select1();
+            $data2 = $this->Pagos_model->select2();
+            $data3 = $this->Pagos_model->select3();
+            $data4 = $this->Pagos_model->select4();
             $resulta = array(
                 'tipo_transaccion' => $data1,
                 'forma_pago' => $data2,
@@ -123,160 +122,148 @@ class Deudas extends CI_Controller {
                 'concepto_movimiento' => $data4,
             );
             $this->load->view('home/main',$db_data);
-            $this->load->view('deudas/deudas',$resulta);
+            $this->load->view('home/pagos/pagos',$resulta);
             $this->load->view('home/footer_dt');
+
         }
         else{
             header('Location:login');
         }
     }
 
-    public function consultar_tarjeta(){
-        $cliente = $this->input->post('cliente');
-        echo json_encode($this->Deudas_model->consultar_tarjeta($cliente));
-    }
-
-    public function consultar_proveedor(){
-        echo json_encode($this->Deudas_model->consultar_proveedor());
-    }
-
-    public function consultar_amortizacion(){
-        $cod_cron = $this->input->post('cod_cron');
-        echo json_encode($this->Deudas_model->consultar_amortizacion($cod_cron));
-    }
-
     public function consultar_fecha_caja(){
         $empleado = $this->input->post('empleado');
-        echo json_encode($this->Deudas_model->consultar_fecha_caja($empleado));
+        echo json_encode($this->Pagos_model->consultar_fecha_caja($empleado));
     }
 
-    public function consultar_deudas(){
-        echo json_encode($this->Deudas_model->consultar_deudas());
+    public function consultar_tarjeta(){
+        $cliente = $this->input->post('cliente');
+        echo json_encode($this->Pagos_model->consultar_tarjeta($cliente));
     }
 
-    public function consultar_proveedor_compra(){
-        $proveedor = $this->input->post('proveedor');
-        echo json_encode($this->Deudas_model->consultar_proveedor_compra($proveedor));
+    public function consultar_cliente_producto(){
+        $cliente = $this->input->post('cliente');
+        echo json_encode($this->Pagos_model->consultar_cliente_producto($cliente));
     }
 
     public function consultar_cliente_estadia(){
         $cliente = $this->input->post('cliente');
-        echo json_encode($this->Deudas_model->consultar_cliente_estadia($cliente));
-    }
-
-    public function detalle_proveedor_producto(){
-        $cod_compra = $this->input->post('cod_compra');
-        echo json_encode($this->Deudas_model->detalle_proveedor_producto($cod_compra));
+        echo json_encode($this->Pagos_model->consultar_cliente_estadia($cliente));
     }
 
     public function detalle_cliente_producto(){
         $cliente = $this->input->post('cod_cliente');
         $venta = $this->input->post('cod_venta');
-        echo json_encode($this->Deudas_model->detalle_cliente_producto($cliente, $venta));
+        echo json_encode($this->Pagos_model->detalle_cliente_producto($cliente, $venta));
     }
-    // public function procesar_deuda(){
-    //     $tipo_t = $this->input->post('tipo_t');
-    //     $proveedor_deuda = $this->input->post('proveedor_deuda');
-    //     $compras = $this->input->post('compras');
-    //     $forma_pago = $this->input->post('forma_pago');
-    //     $tipo_documento = $this->input->post('tipo_documento');
-    //     $serie = $this->input->post('serie');
-    //     $correlativo = $this->input->post('correlativo');
-    //     $periodo = $this->input->post('periodo');
-    //     $cuota = $this->input->post('cuota');
-    //     $monto_inicial = $this->input->post('monto_inicial');
-    //     $monto_contado = $this->input->post('monto_contado');
-    //     $fecha_contado = $this->input->post('fecha_contado');
-    //     $fecha_credito = $this->input->post('fecha_credito');
-    //     $concepto_movimiento = $this->input->post('concepto_movimiento');
-    //     if ($tipo_t == '1'){
-    //         $interaciones = sizeof($compras);
-    //         for ($a=0; $a<$iteraciones, $a++){
-    //             $cod_cronograma = $this->Deudas_model->num_cron();
-    //             $datos_c = array(
-    //                 'cod_cronograma_compras' => $cod_cronograma,
-    //                 'cod_compra' => $compras[$a],
-    //                 'fecha_vencimiento' => $fecha_contado,
-    //                 'nro_cuota' => '1',
-    //                 'monto' =>
-    //             )
-    //         }
-    //     }
-    //     if ($tipo_t == '2'){
-    //         foreach($compras as $elemento){
-    //             $num_cron = $this->Deudas_model->num_cron();
-    //             $datos1 = array(
-    //                 'cod_cronograma_compras' => ($num_cron+1),
-    //                 'cod_compra' => $elemento,
-    //                 'fecha_vencimiento' => $fecha_contado,
-    //                 'nro_cuota' => '1',
-    //                 'monto' => 'asdsa',
-    //                 'estado' => '0',
-    //             );
-    //
-    //         }
-    //     }
-    //     //echo json_encode($this->Deudas_model->detalle_cliente_producto($cliente, $venta));
-    // }
 
-    function guardar_pago(){
-        $empleado= $this->input->post('empleado');
-        $caja= $this->input->post('caja');
+    public function detalle_cliente_estadia(){
+        $estadia = $this->input->post('cod_estadia');
+        echo json_encode($this->Pagos_model->detalle_cliente_estadia($estadia));
+    }
+
+    public function cronograma_ventas(){
+        echo json_encode($this->Pagos_model->cronograma_ventas());
+    }
+
+    public function consultar_amortizacion_venta(){
+        $cod_cron = $this->input->post('cod_cron');
+        echo json_encode($this->Pagos_model->consultar_amortizacion_venta($cod_cron));
+    }
+
+    function guardar_cobro(){
+        $cod_persona= $this->input->post('cod_persona');
+        $cod_caja= $this->input->post('cod_caja');
         $fecha_inicio= $this->input->post('fecha_inicio');
-        $forma_pago= $this->input->post('forma_pago');
-        $tipo_documento= $this->input->post('tipo_documento');
-        $concepto_movimiento= $this->input->post('concepto_movimiento');
+        $forma_pago_cronograma= $this->input->post('forma_pago_cronograma');
+        $tipo_documento_cronograma= $this->input->post('tipo_documento_cronograma');
+        $concepto_movimiento_cronograma= $this->input->post('concepto_movimiento_cronograma');
         $monto_cronograma= $this->input->post('monto_cronograma');
-        $serie= $this->input->post('serie');
-        $correlativo= $this->input->post('correlativo');
-        $compras= $this->input->post('compras');
+        $ventas= $this->input->post('ventas');
         $monto= $this->input->post('monto');
         $monto_cronogramas= $this->input->post('monto_cronogramas');
-        $cod_mov = $this->Deudas_model->num_mov();
+        $cod_mov= $this->Pagos_model->num_mov();
+        $nro_serie = $this->Pagos_model->nro_serie($tipo_documento_cronograma);
+        $nro_correlativo = $this->Pagos_model->nro_correlativo($tipo_documento_cronograma);
         $hora = date('G:i');
         $data0 = array(
             'cod_movimiento' => $cod_mov,
-            'cod_persona' => $empleado,
-            'cod_caja' => $caja,
+            'cod_persona' => $cod_persona,
+            'cod_caja' => $cod_caja,
             'fecha_inicio' => $fecha_inicio,
-            'cod_forma_pago' => $forma_pago,
-            'cod_tipo_documento' => $tipo_documento,
-            'cod_concepto_movimiento' => $concepto_movimiento,
+            'cod_forma_pago' => $forma_pago_cronograma,
+            'cod_tipo_documento' => $tipo_documento_cronograma,
+            'cod_concepto_movimiento' => $concepto_movimiento_cronograma,
             'monto_movimiento' => $monto_cronograma,
-            'nro_serie' => $serie,
-            'nro_correlativo' => $correlativo,
+            'nro_serie' => $nro_serie->nro_serie,
+            'nro_correlativo' => $nro_correlativo->nro_correlativo,
             'hora' => $hora,
             'estado' => '1',
         );
-        $this->Deudas_model->guardar_movimiento($data0);
-        $iteraciones = sizeof($compras);
+        $this->Pagos_model->guardar_movimiento($data0);
+        $iteraciones = sizeof($ventas);
         for ($j = 0; $j < $iteraciones; $j++){
             if ($monto[$j] == $monto_cronogramas[$j]){
                 $data2 = array(
                     'estado' => '0',
                 );
-                $this->Deudas_model->actualizar_cronograma($compras[$j], $data2);
+                $this->Pagos_model->actualizar_cronograma($ventas[$j], $data2);
             }
             $data = array(
                 'cod_movimiento' => $cod_mov,
-                'cod_cronograma_compras' => $compras[$j],
+                'cod_cronograma_ventas' => $ventas[$j],
                 'monto' => $monto[$j],
             );
-            $this->Deudas_model->guardar_amortizacion($data);
+            $this->Pagos_model->guardar_amortizacion($data);
         }
         echo '1';
     }
+/*
+    public function procesar_pago(){
+        $compras = $this->input->post('compras');
+        $tipo_t = $this->input->post('tipo_t');
+        $monto_contado = $this->input->post('monto_contado');
+        $dni_cliente = $this->input->post('dni_cliente');
+        if ($tipo_t == '1'){
+            $tipo_documento = $this->input->post('tipo_documento');
+            $ruc = $this->input->post('ruc');
+            if($ruc != ''){
+                $actualizar_ruc = array(
+                    'ruc' => $ruc,
+                );
+                $this->Cliente_model->actualizar($dni_cliente, $actualizar_ruc)
 
+            }
+            $forma_pago = $this->input->post('forma_pago');
+            //$tarjeta = $this->input->post('tarjeta');
+            $fecha_contado = $this->input->post('fecha_contado');
+            $concepto_movimiento = $this->input->post('concepto_movimiento');
+            foreach($compras as $fila){
+                $nro_cronograma = $this->Pagos_model->num_cron();
+                $registrar_contado = array(
+                    'cod_cronograma_venta' => $nro_cronograma,
+                    'cod_venta' => $fila,
+                    'fecha_vencimiento' => $fecha_contado,
+                    'monto' => $monto_contado,
+                    'nro_cuota' => '1',
+                );
+                $this->Pagos_model->guardar($registrar_contado);
+            }
+        }elseif($registrar_contado == '2'){
 
-    function guardar_tipo_transaccion(){
-        $cod_tipo_transaccion= $this->input->post('cod_tipo_transaccion');
-        $data = array(
-            'cod_tipo_transaccion' => $cod_tipo_transaccion,
-        );
-        if($this->Deudas_model->guardar_tipo_transaccion($cod_tipo_transaccion, $data) == true){
-            echo '1';
-        }else{
-            echo '0';
         }
+        $estadias = $this->input->post('estadias');
+        $forma_pago = $this->input->post('forma_pago');
+        $tipo_documento = $this->input->post('tipo_documento');
+        $tarjeta = $this->input->post('tarjeta');
+        $ruc = $this->input->post('ruc');
+        $periodo = $this->input->post('periodo');
+        $cuota = $this->input->post('cuota');
+        $inicial = $this->input->post('inicial');
+        $fecha_contado = $this->input->post('fecha_contado');
+        $fecha_credito = $this->input->post('fecha_credito');
+        $concepto_movimiento = $this->input->post('concepto_movimiento');
+        echo json_encode($this->Pagos_model->procesar_pago($estadia));
     }
+    */
 }

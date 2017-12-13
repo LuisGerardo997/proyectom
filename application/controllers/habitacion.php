@@ -6,6 +6,7 @@ class Habitacion extends CI_Controller {
     parent::__construct();
     $this->load->model('Habitacion_model');
     $this->load->model('Login_model');
+    $this->load->model('Modulo_model');
   }
 
     public function index(){
@@ -153,10 +154,5 @@ function actualizar(){
       }else{
         echo '0';
       }
-    }
-    function habitaciones_reservadas(){
-      $cliente = $this->input->post('cliente_estadia');
-      $resultado = $this->Habitacion_model->habitaciones_reservadas($cliente);
-      echo json_encode($resultado);
     }
 }

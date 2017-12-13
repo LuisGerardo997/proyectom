@@ -1,13 +1,11 @@
-
 <section class="content">
     <div class="container-fluid">
-        <!-- Basic Examples -->
         <div class="row clearfix">
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                 <div class="card">
                     <div class="header">
                         <h2>
-                            Marca
+                            Marcas
                         </h2>
                         <ul class="header-dropdown m-r--5">
                             <li class="dropdown">
@@ -25,10 +23,10 @@
                             <table id="dt_table" class="table table-bordered table-striped table-hover dataTable" width="100%">
                                 <thead>
                                     <tr>
-                                        <th width="15%">Codigo</th>
+                                        <th>Código</th>
                                         <th>Marca</th>
-                                        <th>Descricion</th>
-                                        <th width="1px">Accion</th>
+                                        <th>Descrición</th>
+                                        <th>Acción</th>
                                     </tr>
                                 </thead>
                                 <tbody></tbody>
@@ -38,16 +36,17 @@
                 </div>
             </div>
         </div>
+        
         <div class="modal fade" id="editar" tabindex="-1" role="dialog">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h2 class="modal-title" id="largeModalLabel">Edición de datos</h2>
+                        <h2 class="modal-title text-center" id="largeModalLabel">Edición de datos</h2>
                     </div>
                     <div class="modal-body">
                         <div class="row clearfix">
                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                <div class="col-md-4">
+                                <div class="col-md-2">
                                     <div class="form-group form-float">
                                         <div class="form-line focused">
                                             <label class="form-label">Código</label>
@@ -63,10 +62,10 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-4">
+                                <div class="col-md-6">
                                     <div class="form-group form-float">
                                         <div class="form-line focused">
-                                            <label class="form-label">Descripcion</label>
+                                            <label class="form-label">Descripción</label>
                                             <input type="text" name="descripcion" id="descripcion" class="form-control">
                                         </div>
                                     </div>
@@ -81,16 +80,17 @@
                 </div>
             </div>
         </div>
+        
         <div class="modal fade" id="crear" tabindex="-1" role="dialog">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h2 class="modal-title" id="largeModalLabel">Registrar Marca</h2>
+                        <h2 class="modal-title text-center" id="largeModalLabel">Registro de Marcas</h2>
                     </div>
                     <div class="modal-body">
                         <div class="row clearfix">
                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                              <div class="col-md-4">
+                              <div class="col-md-2">
                                   <div class="form-group form-float">
                                       <div class="form-line">
                                           <label class="form-label">Código</label>
@@ -106,7 +106,7 @@
                                       </div>
                                   </div>
                               </div>
-                              <div class="col-md-4">
+                              <div class="col-md-6">
                                   <div class="form-group form-float">
                                       <div class="form-line">
                                           <label class="form-label">Descripción</label>
@@ -124,7 +124,5 @@
                 </div>
             </div>
         </div>
-        <!-- #END# Basic Examples -->
-
     </div>
 </section>

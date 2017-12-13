@@ -1,13 +1,12 @@
 
 <section class="content">
     <div class="container-fluid">
-        <!-- Basic Examples -->
         <div class="row clearfix">
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                 <div class="card">
                     <div class="header">
                         <h2>
-                            Tipo de Movimiento
+                            Tipos de Movimiento
                         </h2>
                         <ul class="header-dropdown m-r--5">
                             <li class="dropdown">
@@ -25,12 +24,11 @@
                             <table id="dt_table" class="table table-bordered table-striped table-hover dataTable">
                                 <thead>
                                     <tr>
-                                        <th>Codigo</th>
-                                        <th>Tipo de Movimiento</th>
-                                        <th> Accion</th>
+                                        <th>Código</th>
+                                        <th>Tipo de movimiento</th>
+                                        <th>Acción</th>
                                     </tr>
                                 </thead>
-                                <tbody></tbody>
                             </table>
                         </div>
                     </div>
@@ -41,24 +39,24 @@
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h2 class="modal-title" id="largeModalLabel">Edición de datos</h2>
+                        <h2 class="modal-title text-center" id="largeModalLabel">Edición de datos</h2>
                     </div>
                     <div class="modal-body">
-                        <div class="row clearfix">
-                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                <div class="col-md-4">
+                       <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            <div class="row clearfix">
+                                <div class="col-md-3">
                                     <div class="form-group form-float">
                                         <div class="form-line focused">
                                           <label class="form-label">Código</label>
-                                            <input disabled type="text" name="cod_tipo_movimiento" id="cod_tipo_movimiento" class="form-control">
+                                            <input disabled type="number" name="cod_tipo_movimiento" id="cod_tipo_movimiento" class="form-control">
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-4">
+                                <div class="col-md-9">
                                     <div class="form-group form-float">
                                         <div class="form-line focused">
                                           <label class="form-label">Tipo de Movimiento</label>
-                                            <input type="text" name="tipo_movimiento" id="tipo_movimiento" class="form-control">
+                                            <input type="text" name="tipo_movimiento" id="tipo_movimiento" class="form-control" maxlength="30">
                                         </div>
                                     </div>
                                 </div>
@@ -76,12 +74,12 @@
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h2 class="modal-title" id="largeModalLabel">Registro de Tipo Movimiento</h2>
+                        <h2 class="modal-title text-center" id="largeModalLabel">Registro de Tipos de Movimiento</h2>
                     </div>
                     <div class="modal-body">
-                        <div class="row clearfix">
-                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                              <div class="col-md-4">
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">   
+                            <div class="row clearfix">
+                              <div class="col-md-3">
                                   <div class="form-group form-float">
                                       <div class="form-line">
                                         <label class="form-label">Código</label>
@@ -89,7 +87,7 @@
                                       </div>
                                   </div>
                               </div>
-                              <div class="col-md-4">
+                              <div class="col-md-9">
                                   <div class="form-group form-float">
                                       <div class="form-line">
                                         <label class="form-label">Tipo de Movimiento</label>

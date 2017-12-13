@@ -38,11 +38,14 @@ class Caja_persona_model extends CI_Model{
 
     function select1(){
         $this->db->select('cod_caja, nro_caja');
+        $this->db->where('estado','1');
         $resultado= $this->db->get('caja');
         return $resultado -> result_array();
     }
     function select2(){
         $this->db->select('cod_persona, apellido_paterno, apellido_materno, nombres');
+        $this->db->where('estado','1');
+        $this->db->order_by('apellido_paterno','asc');
         $resultado= $this->db->get('persona');
         return $resultado -> result_array();
     }

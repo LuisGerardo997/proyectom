@@ -108,6 +108,12 @@ class Modulo extends CI_Controller {
         echo json_encode($this->Modulo_model->consultar_padres());
     //}
     }
+    public function consultar_modulo_padre(){
+    //if ($this->input->is_ajax_request()){
+        $cod_modulo = $this->input->post('cod_modulo');
+        echo json_encode($this->Modulo_model->consultar_modulo_padre($cod_modulo));
+    //}
+    }
     public function consultar_submodulos(){
     //if ($this->input->is_ajax_request()){
         $cod_modulo = $this->input->post('cod_modulo');

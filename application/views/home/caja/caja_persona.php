@@ -21,10 +21,10 @@
                                     <tr>
                                         <th>Fecha de inicio</th>
                                         <th>Código de caja</th>
-                                        <th>Número de caja</th>
+                                        <th>Nº de caja</th>
                                         <th>DNI</th>
-                                        <th>Apellido Paterno</th>
-                                        <th>Apellido Materno</th>
+                                        <th>Apellido paterno</th>
+                                        <th>Apellido materno</th>
                                         <th>Nombres</th>
                                         <th>Acción</th>
                                     </tr>
@@ -56,20 +56,28 @@
                                     </div>
                                 </div>
                                <div class="col-sm-6">
-                                    <select name="cod_caja" id="cod_caja" class="form-control">
-                                        <option value="">Selecione por favor</option>
-                                        <?php foreach($caja as $fila):?>
-                                        <option value='<?= $fila["cod_caja"] ?>'><?= $fila['nro_caja'] ?></option>
-                                        <?php endforeach; ?>
-                                    </select>
+                                   <div class="form-group form-float">
+                                        <div class="form-line focused">
+                                            <select name="cod_caja" id="cod_caja" class="form-control">
+                                                <option value="">Seleccione el Nº de caja</option>
+                                                <?php foreach($caja as $fila):?>
+                                                <option value='<?= $fila["cod_caja"] ?>'><?= $fila['nro_caja'] ?></option>
+                                                <?php endforeach; ?>
+                                            </select>
+                                       </div>
+                                   </div>
                                 </div>
                                 <div class="col-sm-6">
-                                    <select name="cod_persona" id="cod_persona" class="form-control">
-                                        <option value="">Selecione por favor</option>
-                                        <?php foreach($persona as $fila):?>
-                                        <option value='<?= $fila["cod_persona"] ?>'><?= $fila['apellido_paterno'].' '.$fila['apellido_materno'].' '.$fila['nombres']?></option>
-                                        <?php endforeach; ?>
-                                    </select>
+                                    <div class="form-group form-float">
+                                        <div class="form-line focused">
+                                            <select name="cod_persona" id="cod_persona" class="form-control">
+                                                <option value="">Seleccione al encargado</option>
+                                                <?php foreach($persona as $fila):?>
+                                                <option value='<?= $fila["cod_persona"] ?>'><?= $fila['apellido_paterno'].' '.$fila['apellido_materno'].' '.$fila['nombres']?></option>
+                                                <?php endforeach; ?>
+                                            </select>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -88,11 +96,11 @@
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h2 class="modal-title" id="largeModalLabel">Registro de Encargado</h2>
+                        <h2 class="modal-title text-center" id="largeModalLabel">Registro de Encargados</h2>
                     </div>
                     <div class="modal-body">
-                        <div class="row clearfix">
-                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            <div class="row clearfix">
                                 <div class="col-sm-6">
                                     <div class="form-group form-float">
                                         <div class="form-line">
@@ -100,24 +108,32 @@
                                         </div>
                                     </div>
                                 </div>
-                               <div class="col-sm-6">
-                                    <select name="cod_caja_c" id="cod_caja_c" class="form-control">
-                                        <option value="">Selecione por favor</option>
-                                        <?php foreach($caja as $fila):?>
-                                        <option value='<?= $fila["cod_caja"] ?>'><?= $fila['nro_caja'] ?></option>
-                                        <?php endforeach; ?>
-                                    </select>
-                                </div>
-                          </div>
                                 <div class="col-sm-6">
-                                    <select name="cod_persona_c" id="cod_persona_c" class="form-control">
-                                        <option value="">Selecione por favor</option>
-                                        <?php foreach($persona as $fila):?>
-                                        <option value='<?= $fila["cod_persona"] ?>'><?= $fila['apellido_paterno'].' '.$fila['apellido_materno'].' '.$fila['nombres']?></option>
-                                        <?php endforeach; ?>
-                                    </select>
+                                   <div class="form-group form-float">
+                                        <div class="form-line">
+                                            <select name="cod_caja_c" id="cod_caja_c" class="form-control">
+                                                <option value="">Seleccione el Nº de caja</option>
+                                                <?php foreach($caja as $fila):?>
+                                                <option value='<?= $fila["cod_caja"] ?>'><?= $fila['nro_caja'] ?></option>
+                                                <?php endforeach; ?>
+                                            </select>
+                                       </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="form-group form-float">
+                                        <div class="form-line">
+                                            <select name="cod_persona_c" id="cod_persona_c" class="form-control">
+                                                <option value="">Seleccione al encargado</option>
+                                                <?php foreach($persona as $fila):?>
+                                                <option value='<?= $fila["cod_persona"] ?>'><?= $fila['apellido_paterno'].' '.$fila['apellido_materno'].' '.$fila['nombres']?></option>
+                                                <?php endforeach; ?>
+                                            </select>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
+                        </div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-link waves-effect" onclick="insertdat();">Guardar cambios</button>
@@ -126,6 +142,5 @@
                 </div>
             </div>
         </div>
-
     </div>
 </section>

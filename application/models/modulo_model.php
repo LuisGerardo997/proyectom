@@ -5,7 +5,7 @@ class Modulo_model extends CI_Model{
     }
 
     function consultar(){
-        $this->db->select('m.cod_modulo, mo.modulo pmodulo, m.modulo');
+        $this->db->select('m.cod_modulo, mo.modulo pmodulo, mo.cod_modulo cod_pmodulo, m.modulo, m.ruta, m.icono');
         $this->db->where('m.estado','1');
         $this->db->join('modulos m', 'm.parent_cod_modulo = mo.cod_modulo', 'right');
         $data = $this->db->get('modulos mo');
@@ -13,18 +13,27 @@ class Modulo_model extends CI_Model{
 
     }
     function consultar_padres(){
-        $this->db->select('cod_modulo, modulo, icono');
+        $this->db->select('cod_modulo, modulo, icono, ruta');
         $this->db->where('estado','1');
         $this->db->where('parent_cod_modulo',null, true);
         $data = $this->db->get('modulos');
         return $data->result_array();
 
     }
+    function consultar_modulo_padre($arg){
+        $this->db->select('parent_cod_modulo, modulo');
+        $this->db->where('estado','1');
+        $this->db->where('cod_modulo',$arg);
+        $data = $this->db->get('modulos');
+        return $data->result_array();
+
+    }
     function consultar_hijos($argu){
         $this->db->select('cod_modulo, modulo, ruta');
+        $this->db->from('modulos');
         $this->db->where('estado','1');
         $this->db->where('parent_cod_modulo', $argu);
-        $data = $this->db->get('modulos');
+        $data = $this->db->get();
         return $data->result_array();
 
     }

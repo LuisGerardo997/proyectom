@@ -6,6 +6,7 @@ class Caja_persona extends CI_Controller {
     parent::__construct();
     $this->load->model('Caja_persona_model');
     $this->load->model('Login_model');
+    $this->load->model('Modulo_model');
   }
 
     public function index(){

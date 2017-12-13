@@ -6,7 +6,7 @@ class Tipo_movimiento_model extends CI_Model{
   }
   function consultar(){
     $this->db->select('tm.cod_tipo_movimiento, tm.tipo_movimiento');
-    $this->db->where('tm.estado',null,false);
+    $this->db->where('tm.estado','1');
     $this->db->from('tipo_movimiento tm');
     $data = $this->db->get();
     return $data->result();

@@ -1,16 +1,31 @@
 $(document).on('ready',function(){
+    var d = new Date();
+
+    var month = d.getMonth()+1;
+    var day = d.getDate();
+
+    var output = d.getFullYear()+1 + '/' +
+    (month<10 ? '0' : '') + month + '/' +
+    (day<10 ? '0' : '') + day;
+    var output1 = d.getFullYear() + '/' +
+    (month<10 ? '0' : '') + month + '/' +
+    (day<10 ? '0' : '') + day;
     $('.modal').on('hidden.bs.modal', function(){
 		$(this).find('form')[0].reset();
 		$("label.error").remove();
 	});
     $('.datepicker').bootstrapMaterialDatePicker({
-        format: 'YYYY-MM-DD',
+        format: 'YYYY/MM/DD',
         clearButton: true,
         weekStart: 1,
-        time: false
+        time: false,
+        minDate: output1,
+        maxDate: output,
     });
 
     var seleccionadop = new Array();
+    var monto_c = new Array();
+    var proveedor_deuda = '';
 
     var detalle_cliente_producto = document.getElementById('detalle_cliente_producto');
     $('#tabla_proveedor').DataTable({
@@ -53,6 +68,7 @@ $('#fecha_credito_div').attr('style','display:none');
 $('#concepto_movimiento_div').attr('style','display:none');
 
 proveedor_c = function(data1){
+    proveedor_deuda = data1;
     seleccionadop.length=0;
     var cod_pr = data1;
     $.post(base_url+'deudas/consultar_proveedor_compra',
@@ -66,95 +82,76 @@ proveedor_c = function(data1){
             '<td>'+datos[i]['cod_proveedor']+'</td>'+
             '<td>'+datos[i]['razon_social']+'</td>'+
             '<td>'+datos[i]['fecha_compra']+'</td>'+
-            '<td><input type="checkbox" name="listado_pc" value="'+datos[i]['cod_compra']+'" id="p'+datos[i]['cod_compra']+'"><label for="p'+datos[i]['cod_compra']+'"></label></td>'+
+            '<td><input type="checkbox" name="listado_pc" onClick="check_compras('+datos[i]['cod_compra']+')" value="'+datos[i]['cod_compra']+'" id="p'+datos[i]['cod_compra']+'"><label for="p'+datos[i]['cod_compra']+'"></label></td>'+
             '</tr>';
         }
         $('#consultar_proveedor_compra').html(html);
-        $('input[type=checkbox]').click(function(){
-            var elemento = $(this).val();
-            if (seleccionadop.includes(elemento)){
-                var pos = seleccionadop.indexOf(elemento);
-                seleccionadop.splice(pos,1);
-                console.log(seleccionadop);
-            }
-            $('input[name="listado_pc"]:checked').each(function(){
-                if (seleccionadop.includes($(this).val()) == false){
-                    seleccionadop.push($(this).val());
-                    console.log(seleccionadop);
-                }
-            })
-            arraydetuqlo = seleccionadop.sort()
-            $('#detalle_proveedor_producto').html('');
-            seleccionadop.forEach(function(e){
-                $.post(base_url+'deudas/detalle_proveedor_producto',
-                {
-                    cod_compra:e,
-                },
-                function(data){
-                    var html = '';
-                    var datos = eval(data);
-                    console.log(datos);
-                    for (i = 0; i<datos.length; i++){
-                        html+='<tr>'+
-                        '<td>'+datos[i]['cod_compra']+'</td>'+
-
-                        '<td>'+datos[i]['cod_producto']+'</td>'+
-                        '<td>'+datos[i]['cantidad']+'</td>'+
-                        '<td>'+datos[i]['producto']+'</td>'+
-                        '<td>'+datos[i]['precio']+'</td>'+
-                        '<td>'+datos[i]['descuento']+'</td>'+
-                        '<td>'+datos[i]['cod_parametro']+'</td>'+
-                        '</tr>';
-                    }
-                    $('#detalle_proveedor_producto').append(html);
-                }
-            )
-        })
-    })
+    //     $('input[type=checkbox]').click(function(){
+        //     var elemento = $(this).val();
+        //     if (seleccionadop.includes(elemento)){
+        //         var pos = seleccionadop.indexOf(elemento);
+        //         seleccionadop.splice(pos,1);
+        //         console.log(seleccionadop);
+        //     }
+        //     $('input[name="listado_pc"]:checked').each(function(){
+        //         if (seleccionadop.includes($(this).val()) == false){
+        //             seleccionadop.push($(this).val());
+        //             console.log(seleccionadop);
+        //         }
+        //     })
+        //     arraydetuqlo = seleccionadop.sort()
+        //     $('#detalle_proveedor_producto').html('');
+        //     seleccionadop.forEach(function(e){
+        //         $.post(base_url+'deudas/detalle_proveedor_producto',
+        //         {
+        //             cod_compra:e,
+        //         },
+        //         function(data){
+        //             var html = '';
+        //             var datos = eval(data);
+        //             console.log(datos);
+        //             for (i = 0; i<datos.length; i++){
+        //                 html+='<tr>'+
+        //                 '<td>'+datos[i]['cod_compra']+'</td>'+
+        //
+        //                 '<td>'+datos[i]['cod_producto']+'</td>'+
+        //                 '<td>'+datos[i]['cantidad']+'</td>'+
+        //                 '<td>'+datos[i]['producto']+'</td>'+
+        //                 '<td>'+datos[i]['precio']+'</td>'+
+        //                 '<td>'+datos[i]['descuento']+'</td>'+
+        //                 '<td>'+datos[i]['cod_parametro']+'</td>'+
+        //                 '</tr>';
+        //             }
+        //             $('#detalle_proveedor_producto').append(html);
+        //         }
+        //     )
+        // })
+    // })
 }
 )
 }
 
-$('#tipo_t').change(function(){
-    if($('#tipo_t').val() !=  ''){
-        console.log($('#tipo_t').val())
-        if($('#tipo_t').val() == '1'){                          //Contado
-            $('#forma_pago_div').attr('style','display:block');
-            $('#tipo_documento_div').attr('style','display:block');
-            $('#serie_div').attr('style','display:block');
-            $('#correlativo_div').attr('style','display:block');
-            $('#fecha_contado_div').attr('style','display:block');
-            $('#concepto_movimiento_div').attr('style','display:block');
-            $('#cuota_div').attr('style','display:none');
-            $('#periodo_div').attr('style','display:none');
-            $('#fecha_credito_div').attr('style','display:none');
-
-        }
-
-        if($('#tipo_t').val() == '2'){                          //Crédito
-            $('#forma_pago_div').attr('style','display:block');
-            $('#tipo_documento_div').attr('style','display:block');
-            $('#serie_div').attr('style','display:block');
-            $('#correlativo_div').attr('style','display:block');
-            $('#cuota_div').attr('style','display:block');
-            $('#periodo_div').attr('style','display:block');
-            $('#fecha_credito_div').attr('style','display:block');
-            $('#concepto_movimiento_div').attr('style','display:block');
-            $('#fecha_contado_div').attr('style','display:none');
-        }
-
-
-        //$('#modal_general').modal({backdrop:"static"})
+check_compras = function(arg){
+    var elemento = arg;
+    if (seleccionadop.includes(elemento)){
+        var pos = seleccionadop.indexOf(elemento);
+        seleccionadop.splice(pos,1);
+        monto_c.splice(pos,1);
+        console.log(seleccionadop);
+        console.log(monto_c);
+    }else{
+        seleccionadop.push(elemento);
+        console.log(seleccionadop);
         $('#detalle_proveedor_producto').html('');
-        console.log(seleccionadop)
-        arraydetuqlo = seleccionadop.sort()
-        arraydetuqlo.forEach(function(e){
+        seleccionadop.forEach(function(e){
+            var precio_compra = 0;
             $.post(base_url+'deudas/detalle_proveedor_producto',
             {
                 cod_compra:e,
             },
             function(data){
                 var html = '';
+                var sub_total = 0;
                 var datos = eval(data);
                 console.log(datos);
                 for (i = 0; i<datos.length; i++){
@@ -168,7 +165,100 @@ $('#tipo_t').change(function(){
                     '<td>'+datos[i]['descuento']+'</td>'+
                     '<td>'+datos[i]['cod_parametro']+'</td>'+
                     '</tr>';
+                    sub_total += parseInt(datos[i]['cantidad'])*parseFloat(datos[i]['precio'])
                 }
+                precio_compra += sub_total;
+                $('#detalle_proveedor_producto').append(html);
+                if (monto_c.includes(precio_compra)==false){
+                    monto_c.push(precio_compra);                    
+                }
+                console.log(monto_c);
+            })
+        })
+    }
+}
+$('#fecha_credito').change(function(){
+    if ($(this).val() == output1){
+        $('#forma_pago_div').attr('style','display:block');
+        $('#tipo_documento_div').attr('style','display:block');
+        $('#serie_div').attr('style','display:block');
+        $('#correlativo_div').attr('style','display:block');
+        $('#monto_inicial_div').attr('style','display:block');
+    }else{
+        $('#forma_pago_div').attr('style','display:none');
+        $('#tipo_documento_div').attr('style','display:none');
+        $('#serie_div').attr('style','display:none');
+        $('#correlativo_div').attr('style','display:none');
+        $('#monto_inicial_div').attr('style','display:none');
+    }
+})
+
+$('#tipo_t').change(function(){
+    if($('#tipo_t').val() !=  ''){
+        console.log($('#tipo_t').val())
+        if($('#tipo_t').val() == '1'){                          //Contado
+            $('#forma_pago_div').attr('style','display:block');
+            $('#tipo_documento_div').attr('style','display:block');
+            $('#serie_div').attr('style','display:block');
+            $('#correlativo_div').attr('style','display:block');
+            // $('#fecha_contado_div').attr('style','display:no');
+            $('#fecha_contado').val(output1);
+            $('#concepto_movimiento_div').attr('style','display:block');
+            $('#monto_contado_div').attr('style','display:block');
+            $('#monto_inicial_div').attr('style','display:none');
+            $('#cuota_div').attr('style','display:none');
+            $('#periodo_div').attr('style','display:none');
+            $('#fecha_credito_div').attr('style','display:none');
+
+        }
+
+        if($('#tipo_t').val() == '2'){                          //Crédito
+            $('#forma_pago_div').attr('style','display:none');
+            $('#tipo_documento_div').attr('style','display:none');
+            $('#serie_div').attr('style','display:none');
+            $('#correlativo_div').attr('style','display:none');
+            $('#monto_inicial_div').attr('style','display:none');
+            $('#monto_contado_div').attr('style','display:block');
+            $('#cuota_div').attr('style','display:block');
+            $('#periodo_div').attr('style','display:block');
+            $('#fecha_credito_div').attr('style','display:block');
+            $('#concepto_movimiento_div').attr('style','display:block');
+            $('#fecha_contado_div').attr('style','display:none');
+        }
+
+
+        //$('#modal_general').modal({backdrop:"static"})
+        subtotal = 0;
+        $('#detalle_proveedor_producto').html('');
+        console.log(seleccionadop)
+        arraydetuqlo = seleccionadop.sort()
+        arraydetuqlo.forEach(function(e){
+            $.post(base_url+'deudas/detalle_proveedor_producto',
+            {
+                cod_compra:e,
+            },
+            function(data){
+                var html = '';
+                var precio_pr = 0;
+                var datos = eval(data);
+                console.log(datos);
+                for (i = 0; i<datos.length; i++){
+                    html+='<tr>'+
+                    '<td>'+datos[i]['cod_compra']+'</td>'+
+
+                    '<td>'+datos[i]['cod_producto']+'</td>'+
+                    '<td>'+datos[i]['cantidad']+'</td>'+
+                    '<td>'+datos[i]['producto']+'</td>'+
+                    '<td>'+datos[i]['precio']+'</td>'+
+                    '<td>'+datos[i]['descuento']+'</td>'+
+                    '<td>'+datos[i]['cod_parametro']+'</td>'+
+                    '</tr>';
+                    var precio = parseFloat(datos[i]['precio'])*parseInt(datos[i]['cantidad']);
+                    precio_pr += precio;
+                }
+                subtotal +=  precio_pr;
+                console.log(subtotal)
+                $('#monto_contado').val(parseFloat(subtotal));
                 $('#detalle_proveedor_producto').append(html);
             }
         )
@@ -180,6 +270,7 @@ $('a[href="#finish"]').click(function(){
     {
         tipo_t:$('#tipo_t').val(),
         compras:seleccionadop,
+        proveedor_deuda:proveedor_deuda,
         forma_pago:$('#forma_pago').val(),
         tipo_documento:$('#tipo_documento').val(),
         serie:$('#serie').val(),
@@ -187,6 +278,7 @@ $('a[href="#finish"]').click(function(){
         periodo:$('#periodo').val(),
         cuota:$('#cuota').val(),
         monto_inicial:$('#monto_inicial').val(),
+        monto_contado:$('#monto_contado').val(),
         fecha_contado:$('#fecha_contado').val(),
         fecha_credito:$('#fecha_credito').val(),
         concepto_movimiento:$('#concepto_movimiento').val(),
@@ -243,11 +335,11 @@ $('#pagos_pendientes_table').DataTable({
 var cronogramas_seleccionados = Array();
 var cronogramas_amortizacion = Array();
 var monto_cronogramas = Array();
-var monto_total = 0;
+var monto_total = Array();
+var subtotal = 0;
 ingresar_datos = function(data1, data2){
     var cod_cronograma_compras = data1;
     var monto_crono = data2;
-    monto_cronogramas.push(monto_crono);
     console.log(monto_cronogramas)
     if (cronogramas_seleccionados.includes(cod_cronograma_compras)==false){
         $('#pagar_deuda').modal({backdrop: "static", keyboard: false})
@@ -264,8 +356,10 @@ ingresar_datos = function(data1, data2){
                     })
                     var monto_restante = parseFloat(monto_crono) - parseFloat(suma_monto)
                     $('#monto_restante').val(monto_restante);
+                    monto_cronogramas.push(monto_restante);
                 }else{
                     $('#monto_restante').val(monto_crono);
+                    monto_cronogramas.push(monto_crono);
                     console.log(monto_crono)
                 }
 
@@ -275,7 +369,18 @@ ingresar_datos = function(data1, data2){
     }else{
         var pos = cronogramas_seleccionados.indexOf(cod_cronograma_compras);
         cronogramas_seleccionados.splice(pos,1);
+        monto_cronogramas.splice(pos,1);
+        cronogramas_amortizacion.splice(pos,1);
+        monto_total.splice(pos,1);
         console.log(cronogramas_seleccionados);
+        console.log(monto_cronogramas);
+        console.log(cronogramas_amortizacion);
+        var monto_virtual = 0;
+        cronogramas_amortizacion.forEach(function(i){
+            monto_virtual+=parseFloat(i);
+        })
+        $('#monto_cronograma').val(monto_virtual);
+        // console.log(monto_total);
     }
 }
 cancelar = function(){
@@ -286,9 +391,13 @@ cancelar = function(){
 confirmar = function(){
     cronogramas_amortizacion.push($('#monto_amortizar').val())
     console.log(cronogramas_amortizacion)
-    monto_total += parseFloat($('#monto_amortizar').val());
-    console.log(monto_total)
-    $('#monto_cronograma').val(monto_total);
+    //
+    // monto_total.push($('#monto_amortizar').val());
+    var monto_virtual = 0;
+    cronogramas_amortizacion.forEach(function(i){
+        monto_virtual+=parseFloat(i);
+    })
+    $('#monto_cronograma').val(monto_virtual);
     $('#pagar_deuda').modal('hide');
     $.post(base_url+'deudas/consultar_fecha_caja',
     {
@@ -303,6 +412,10 @@ confirmar = function(){
             console.log($('#caja').val())
         })
     })
+    console.log(cronogramas_seleccionados);
+    console.log(monto_cronogramas);
+    console.log(cronogramas_amortizacion);
+    // console.log(monto_total);
 
 }
 pagar = function(){
@@ -323,6 +436,7 @@ pagar = function(){
     },function(dat1){
         alert('Paolo chivo');
     })
+    location.reload();
 }
 })
 /*

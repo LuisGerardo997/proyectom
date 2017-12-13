@@ -35,16 +35,19 @@ class Clientes_model extends CI_Model{
   }
   function select1(){
     $this->db->select('cod_ciudad, ciudad');
+    $this->db->order_by('ciudad','asc');
     $resultado= $this->db->get('ubigeo');
     return $resultado -> result_array();
   }
   function select2(){
     $this->db->select('cod_estado_civil, estado_civil');
+      $this->db->order_by('estado_civil','asc');
     $resultado= $this->db->get('estado_civil');
     return $resultado -> result_array();
   }
   function select3(){
     $this->db->select('cod_tipo_persona, tipo_persona');
+      $this->db->order_by('tipo_persona','asc');
     $resultado= $this->db->get('tipo_persona');
     return $resultado -> result_array();
   }

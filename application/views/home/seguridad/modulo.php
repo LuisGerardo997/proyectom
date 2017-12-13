@@ -48,10 +48,21 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-4">
+                                <div class="col-md-4" >
                                     <div class="form-group">
                                         <div class="form-line">
-                                            <input type="text" name="pmodulo" id="pmodulo" class="form-control" placeholder="Dependencia">
+                                            <select name="pmodulo" id="pmodulo" class="form-control">
+                                                <option value="">-- Please select --</option>
+                                                <?php foreach($modulo as $fila):?>
+                                                    <option value='<?= $fila["cod_modulo"] ?>'><?= $fila['modulo'] ?></option>
+                                                <?php endforeach; ?>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4" id="submodulo_div_e" style="display:none">
+                                    <div class="form-group">
+                                        <div class="form-line" id="contenedor_sub_e">
                                         </div>
                                     </div>
                                 </div>
@@ -59,6 +70,14 @@
                                     <div class="form-group">
                                         <div class="form-line">
                                             <input type="text" name="modulo" id="modulo" class="form-control" placeholder="Nombre del módulo" maxlength="20">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group form-float">
+                                        <div class="form-line focused">
+                                            <label class="form-label">Controlador</label>
+                                            <input type="text" name="ruta" id="ruta" class="form-control" maxlength="50">
                                         </div>
                                     </div>
                                 </div>
@@ -83,9 +102,10 @@
                         <div class="row clearfix">
                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                 <div class="col-md-4">
-                                    <div class="form-group">
-                                        <div class="form-line">
-                                            <input type="number" disabled value="<?base_url() ?><?php echo $this->Modulo_model->num_rows() ?>" name="cod_modulo" id="cod_modulo_c" class="form-control" placeholder="Código">
+                                    <div class="form-group form-float">
+                                        <div class="form-line focused">
+                                            <label class="form-label">Código</label>
+                                            <input type="number" disabled value="<?base_url() ?><?php echo $this->Modulo_model->num_rows() ?>" name="cod_modulo" id="cod_modulo_c" class="form-control">
                                         </div>
                                     </div>
                                 </div>
@@ -108,9 +128,18 @@
                                     </div>
                                 </div>
                                 <div class="col-md-4">
-                                    <div class="form-group">
-                                        <div class="form-line">
-                                            <input type="text" name="modulo" id="modulo_c" class="form-control" placeholder="Nombre del módulo" maxlength="20">
+                                    <div class="form-group form-float">
+                                        <div class="form-line focused">
+                                            <label class="form-label">Nombre del módulo</label>
+                                            <input type="text" name="modulo" id="modulo_c" class="form-control" maxlength="20">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group form-float">
+                                        <div class="form-line focused">
+                                            <label class="form-label">Controlador</label>
+                                            <input type="text" name="ruta" id="ruta_c" class="form-control" maxlength="50">
                                         </div>
                                     </div>
                                 </div>

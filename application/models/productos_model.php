@@ -6,7 +6,7 @@ class Productos_model extends CI_Model{
   }
   function consultar(){
     $this->db->select('p.cod_producto, m.marca, tp.tipo_producto, p.producto, p.descripcion, p.precio_producto, p.stock_producto, p.stock_minimo, p.stock_maximo');
-    $this->db->where('p.estado','0');
+    $this->db->where('p.estado','1');
     $this->db->from('productos p');
     $this->db->join('marca m','m.cod_marca  = p.cod_marca');
     $this->db->join('tipo_producto tp','tp.cod_tipo_producto  = p.cod_tipo_producto');
@@ -21,11 +21,6 @@ class Productos_model extends CI_Model{
     }else{
       return false;
     }
-  }
-  function buscar_producto($cod_p){
-    $this->db->where('cod_producto', $cod_p);
-    $resultado = $this->db->get('productos');
-    return $resultado -> result_array();
   }
   function select1(){
     $this->db->select('cod_marca, marca');
@@ -52,5 +47,15 @@ class Productos_model extends CI_Model{
     }else{
       return false;
     }
+  }
+    function num_rows(){
+            $num = $this->db->count_all('proveedores');
+            $num = $num+1;
+            return $num;
+        }
+  function buscar_producto($cod_p){
+    $this->db->where('cod_producto', $cod_p);
+    $resultado = $this->db->get('productos');
+    return $resultado -> result_array();
   }
 }

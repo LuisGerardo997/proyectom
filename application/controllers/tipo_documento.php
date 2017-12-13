@@ -6,6 +6,7 @@ class Tipo_documento extends CI_Controller {
     parent::__construct();
     $this->load->model('Tipo_documento_model');
     $this->load->model('Login_model');
+    $this->load->model('Modulo_model');
   }
 
 
@@ -94,11 +95,9 @@ class Tipo_documento extends CI_Controller {
     }
   }
   public function consultar(){
-    //if ($this->input->is_ajax_request()){
         echo json_encode($this->Tipo_documento_model->consultar());
-
-    //}
   }
+
   function actualizar(){
       $selector = $this->input->post('cod_tipo_documento');
       $cod_tipo_documento = $selector;
@@ -138,7 +137,7 @@ class Tipo_documento extends CI_Controller {
         'descripcion' => $descripcion,
         'nro_serie' => $nro_serie,
         'nro_correlativo' => $nro_correlativo,
-        'estado' => null,
+        'estado' => '1',
       );
       if($this->Tipo_documento_model->guardar($data) == true){
         echo '1';

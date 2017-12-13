@@ -6,7 +6,7 @@ class Cargo_model extends CI_Model{
   }
   function consultar(){
     $this->db->select('c.cod_cargo, a.area, c.descripcion, c.cargo');
-    $this->db->where('c.estado','0');
+    $this->db->where('c.estado','1');
     $this->db->from('cargo c');
     $this->db->join('area a','a.cod_area = c.cod_area', 'left');
     $data = $this->db->get();

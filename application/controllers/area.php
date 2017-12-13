@@ -6,6 +6,7 @@ class Area extends CI_Controller {
     parent::__construct();
     $this->load->model('Area_model');
     $this->load->model('Login_model');
+    $this->load->model('Modulo_model');
   }
 
     public function index(){
@@ -97,9 +98,7 @@ class Area extends CI_Controller {
     }
 
     public function consultar(){
-    //if ($this->input->is_ajax_request()){
         echo json_encode($this->Area_model->consultar());
-    //}
     }
 
 
@@ -123,7 +122,7 @@ class Area extends CI_Controller {
     function eliminar(){
       $idselect = $this->input->post('cod_area');
       $data = array(
-        'estado' => null,
+        'estado' => '0',
       );
       if($this->Area_model->eliminar($idselect, $data) == true){
         echo '1';
@@ -139,7 +138,7 @@ class Area extends CI_Controller {
         'cod_area' => $cod_area,
         'area' => $area,
         'descripcion' => $descripcion,
-        'estado' => '0',
+        'estado' => '1',
         );
       if($this->Area_model->guardar($data) == true){
         echo '1';

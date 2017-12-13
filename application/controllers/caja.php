@@ -6,6 +6,7 @@ class Caja extends CI_Controller {
     parent::__construct();
     $this->load->model('Caja_model');
     $this->load->model('Login_model');
+    $this->load->model('Modulo_model');
   }
 
     public function index(){
@@ -118,7 +119,7 @@ class Caja extends CI_Controller {
     function eliminar(){
         $idselect = $this->input->post('cod_caja');
         $data = array(
-            'estado' => null,
+            'estado' => '0',
         );
 
         if($this->Caja_model->eliminar($idselect, $data) == true){

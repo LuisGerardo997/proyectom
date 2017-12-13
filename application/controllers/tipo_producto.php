@@ -6,6 +6,7 @@ class Tipo_producto extends CI_Controller {
     parent::__construct();
     $this->load->model('Tipo_producto_model');
     $this->load->model('Login_model');
+    $this->load->model('Modulo_model');
   }
 
 
@@ -94,11 +95,9 @@ class Tipo_producto extends CI_Controller {
     }
   }
   public function consultar(){
-    //if ($this->input->is_ajax_request()){
     echo json_encode($this->Tipo_producto_model->consultar());
-
-    //}
   }
+
   function actualizar(){
     $selector = $this->input->post('cod_tipo_producto');
     $cod_tipo_producto = $selector;
@@ -134,7 +133,7 @@ class Tipo_producto extends CI_Controller {
       'cod_tipo_producto' => $cod_tipo_producto,
       'tipo_producto' => $tipo_producto,
       'descripcion' => $descripcion,
-      'estado' => null,
+      'estado' => '1',
     );
     if($this->Tipo_producto_model->guardar($data) == true){
       echo '1';

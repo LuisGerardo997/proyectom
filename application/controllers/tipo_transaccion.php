@@ -6,6 +6,7 @@ class Tipo_transaccion extends CI_Controller {
     parent::__construct();
     $this->load->model('Tipo_transaccion_model');
     $this->load->model('Login_model');
+    $this->load->model('Modulo_model');
   }
 
     public function index(){
@@ -119,7 +120,7 @@ class Tipo_transaccion extends CI_Controller {
     function eliminar(){
         $idselect = $this->input->post('cod_tipo_transaccion');
         $data = array(
-            'estado' => null,
+            'estado' => '0',
         );
 
         if($this->Tipo_transaccion_model->eliminar($idselect, $data) == true){
@@ -134,7 +135,7 @@ class Tipo_transaccion extends CI_Controller {
     function guardar(){
         $cod_tipo_transaccion = $this->input->post('cod_tipo_transaccion');
         $tipo_transaccion = $this->input->post('tipo_transaccion');
-        $descripcion = $this->input->post('apellido_paterno');
+        $descripcion = $this->input->post('descripcion');
         $data = array(
             'cod_tipo_transaccion' => $cod_tipo_transaccion,
             'tipo_transaccion' => $tipo_transaccion,

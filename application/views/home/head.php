@@ -329,4 +329,45 @@
                       <span>Home</span>
                   </a>
               </li>
-              
+              <?php $modulos = $this->Modulo_model->consultar_padres(); ?>
+              <?php foreach($modulos as $key): ?>
+                <?php $modulos1 = $this->Modulo_model->consultar_hijos($key['cod_modulo']); ?>
+                <?php if($modulos1 != null){ ?>
+                    <li>
+                        <a href="javascript:void(0);" class="menu-toggle">
+                            <i class="material-icons"><?= $key['icono'] ?></i>
+                            <span><?= $key['modulo'] ?></span>
+                        </a>
+                        <ul class="ml-menu">
+                          <?php foreach($modulos1 as $key1): ?>
+                            <?php $modulos2 = $this->Modulo_model->consultar_hijos($key1['cod_modulo']); ?>
+                            <?php if($modulos2 != null){ ?>
+                                <li>
+                                  <a href="javascript:void(0);" class="menu-toggle">
+                                      <span><?= $key1['modulo'] ?></span>
+                                  </a>
+                                  <ul class="ml-menu">
+                                      <?php foreach($modulos2 as $key2): ?>
+                                        <li>
+                                            <a href="<?= base_url(); ?><?= $key2['ruta'] ?>"><?= $key2['modulo'] ?></a>
+                                        </li>
+                                      <?php endforeach; ?>
+                                  </ul>
+                                </li>
+                            <?php }else{ ?>
+                              <li>
+                                  <a href="<?= base_url(); ?><?= $key1['ruta'] ?>"><?= $key1['modulo'] ?></a>
+                              </li>
+                            <?php }; ?>
+                          <?php endforeach; ?>
+                        </ul>
+                <?php }else{ ?>
+                  <li>
+                      <a href="<?= base_url(); ?><?= $key['ruta']; ?>">
+                          <i class="material-icons"><?= $key['icono'] ?></i>
+                          <span><?= $key['modulo'] ?></span>
+                      </a>
+                  </li>
+                <?php }; ?>
+                  </li>
+              <?php endforeach; ?>

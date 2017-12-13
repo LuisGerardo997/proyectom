@@ -6,6 +6,7 @@ class Detalle_persona_perfil extends CI_Controller {
     parent::__construct();
     $this->load->model('Detalle_persona_perfil_model');
     $this->load->model('Login_model');
+    $this->load->model('Modulo_model');
   }
 
     public function index(){

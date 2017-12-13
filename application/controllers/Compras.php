@@ -10,6 +10,7 @@ class Compras extends CI_Controller {
         $this->load->model('Ventas_model');
         $this->load->model('Productos_model');
         $this->load->model('Login_model');
+        $this->load->model('Modulo_model');
     }
 
 

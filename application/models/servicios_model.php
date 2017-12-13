@@ -6,7 +6,7 @@ class Servicios_model extends CI_Model{
 
     function consultar(){
         $this->db->select('s.cod_servicio, s.servicio, s.precio');
-        $this->db->where('s.estado',null,false);
+        $this->db->where('s.estado','1');
         $this->db->from('servicio s');
         $data = $this->db->get();
         return $data->result();

@@ -6,7 +6,7 @@ class Ubigeo_model extends CI_Model{
     
     function consultar(){
         $this->db->select('u.cod_ciudad, u.ciudad, u.provincia, u.departamento');
-        $this->db->where('u.estado',null,false);
+        $this->db->where('u.estado','1');
         $this->db->from('ubigeo u');
         $data = $this->db->get();
         return $data->result();

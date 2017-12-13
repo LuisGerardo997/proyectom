@@ -4,7 +4,7 @@
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                 <div class="card">
                     <div class="header">
-                        <h2>Caja</h2>
+                        <h2>Cajas</h2>
                         <ul class="header-dropdown m-r--5">
                             <li class="dropdown">
                                 <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="material-icons">more_vert</i></a>
@@ -38,12 +38,12 @@
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h2 class="modal-title" id="largeModalLabel">Edición de datos</h2>
+                        <h2 class="modal-title text-center" id="largeModalLabel">Edición de datos</h2>
                     </div>
                     <div class="modal-body">
-                        <div class="row clearfix">
-                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                <div class="col-md-4">
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            <div class="row clearfix">
+                                <div class="col-md-2">
                                     <div class="form-group form-float">
                                         <div class="form-line focused">
                                           <label class="form-label">Código</label>
@@ -54,12 +54,12 @@
                                 <div class="col-md-4">
                                     <div class="form-group form-float">
                                         <div class="form-line focused">
-                                          <label class="form-label">Número de Caja</label>
+                                          <label class="form-label">Nº de Caja</label>
                                             <input type="text" name="nro_caja" id="nro_caja" class="form-control"/>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-4">
+                                <div class="col-md-6">
                                     <div class="form-group form-float">
                                         <div class="form-line focused">
                                           <label class="form-label">Descripción</label>
@@ -84,12 +84,12 @@
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h2 class="modal-title" id="largeModalLabel">Registro de datos</h2>
+                        <h2 class="modal-title text-center" id="largeModalLabel">Registro de Cajas</h2>
                     </div>
                     <div class="modal-body">
-                        <div class="row clearfix">
-                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                <div class="col-md-4">
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            <div class="row clearfix">
+                                <div class="col-md-2">
                                     <div class="form-group form-float">
                                         <div class="form-line">
                                           <label class="form-label">Código</label>
@@ -100,12 +100,12 @@
                                 <div class="col-md-4">
                                     <div class="form-group form-float">
                                         <div class="form-line">
-                                          <label class="form-label">Número de Caja</label>
+                                          <label class="form-label">Nº de Caja</label>
                                             <input type="text" name="nro_caja_c" id="nro_caja_c" class="form-control"/>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-4">
+                                <div class="col-md-6">
                                     <div class="form-group form-float">
                                         <div class="form-line">
                                           <label class="form-label">Descripción</label>

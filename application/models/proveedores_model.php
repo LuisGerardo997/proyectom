@@ -6,7 +6,7 @@ class Proveedores_model extends CI_Model{
   }
   function consultar(){
     $this->db->select('pr.cod_proveedor, pr.nombres, pr.apellido_paterno, pr.apellido_materno, pr.dni, u.ciudad, pr.razon_social,pr.descripcion');
-    $this->db->where('pr.estado','0');
+    $this->db->where('pr.estado','1');
     $this->db->from('proveedores pr');
     $this->db->join('ubigeo u','u.cod_ciudad = pr.cod_ciudad');
     $data = $this->db->get();
@@ -23,6 +23,7 @@ class Proveedores_model extends CI_Model{
   }
   function select1(){
     $this->db->select('cod_ciudad, ciudad');
+    $this->db->order_by('ciudad','asc');
     $resultado= $this->db->get('ubigeo');
     return $resultado -> result_array();
   }

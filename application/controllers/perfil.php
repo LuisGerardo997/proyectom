@@ -6,6 +6,7 @@ class Perfil extends CI_Controller {
     parent::__construct();
     $this->load->model('Perfil_model');
     $this->load->model('Login_model');
+    $this->load->model('Modulo_model');
   }
 
     public function index(){

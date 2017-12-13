@@ -1,13 +1,11 @@
-
 <section class="content">
     <div class="container-fluid">
-        <!-- Basic Examples -->
         <div class="row clearfix">
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                 <div class="card">
                     <div class="header">
                         <h2>
-                            Forma de Pago
+                            Formas de Pago
                         </h2>
                         <ul class="header-dropdown m-r--5">
                             <li class="dropdown">
@@ -25,13 +23,12 @@
                             <table id="dt_table" class="table table-bordered table-striped table-hover dataTable">
                                 <thead>
                                     <tr>
-                                        <th>Codigo</th>
-                                        <th>Forma de Pago</th>
-                                        <th> Descricion</th>
-                                        <th> Accion</th>
+                                        <th>Código</th>
+                                        <th>Tipo de pago</th>
+                                        <th>Descripción</th>
+                                        <th>Acción</th>
                                     </tr>
                                 </thead>
-                                <tbody></tbody>
                             </table>
                         </div>
                     </div>
@@ -42,31 +39,31 @@
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h2 class="modal-title" id="largeModalLabel">Edición de datos</h2>
+                        <h2 class="modal-title text-center" id="largeModalLabel">Edición de datos</h2>
                     </div>
                     <div class="modal-body">
                         <div class="row clearfix">
                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                <div class="col-md-4">
+                                <div class="col-md-2">
                                     <div class="form-group form-float">
                                         <div class="form-line focused">
                                           <label class="form-label">Código</label>
-                                            <input disabled type="text" name="cod_forma_pago" id="cod_forma_pago" class="form-control">
+                                            <input disabled type="number" name="cod_forma_pago" id="cod_forma_pago" class="form-control">
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-4">
+                                <div class="col-md-5">
                                     <div class="form-group form-float">
                                         <div class="form-line focused">
-                                          <label class="form-label">Forma de Pago</label>
+                                          <label class="form-label">Nombre de la forma de pago</label>
                                             <input type="text" name="forma_pago" id="forma_pago" class="form-control">
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-4">
+                                <div class="col-md-5">
                                     <div class="form-group form-float">
                                         <div class="form-line focused">
-                                          <label class="form-label">Descripcion</label>
+                                          <label class="form-label">Descripción</label>
                                             <input type="text" name="descripcion" id="descripcion" class="form-control">
                                         </div>
                                     </div>
@@ -85,32 +82,32 @@
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h2 class="modal-title" id="largeModalLabel">Registrar Tipo Pago</h2>
+                        <h2 class="modal-title text-center" id="largeModalLabel">Registro de Formas de Pago</h2>
                     </div>
                     <div class="modal-body">
                         <div class="row clearfix">
                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                              <div class="col-md-4">
+                              <div class="col-md-2">
                                   <div class="form-group form-float">
                                       <div class="form-line">
                                         <label class="form-label">Código</label>
-                                          <input type="number" disabled value="<?base_url() ?><?php echo $this->Forma_pago_model->num_rows() ?>" name="cod_forma_pago" id="cod_forma_pago_c" class="form-control">
+                                          <input type="number" disabled value="<?base_url() ?><?php echo $this->Forma_pago_model->num_rows() ?>" name="cod_forma_pago_c" id="cod_forma_pago_c" class="form-control">
                                       </div>
                                   </div>
                               </div>
-                              <div class="col-md-4">
+                              <div class="col-md-5">
                                   <div class="form-group form-float">
                                       <div class="form-line">
-                                        <label class="form-label">Forma de Pago</label>
-                                          <input type="text" name="forma_pago" id="forma_pago_c" class="form-control">
+                                        <label class="form-label">Nombre de la forma de pago</label>
+                                          <input type="text" name="forma_pago_c" id="forma_pago_c" class="form-control">
                                       </div>
                                   </div>
                               </div>
-                              <div class="col-md-4">
+                              <div class="col-md-5">
                                   <div class="form-group form-float">
                                       <div class="form-line">
-                                        <label class="form-label">Descripcion</label>
-                                          <input type="text" name="descripcion" id="descripcion_c" class="form-control">
+                                        <label class="form-label">Descripción</label>
+                                          <input type="text" name="descripcion_c" id="descripcion_c" class="form-control">
                                       </div>
                                   </div>
                               </div>

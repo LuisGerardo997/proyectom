@@ -9,6 +9,7 @@ class Ventas extends CI_Controller {
         $this->load->model('Productos_model');
         $this->load->model('Reservaciones_model');
         $this->load->model('Login_model');
+        $this->load->model('Modulo_model');
     }
 
 

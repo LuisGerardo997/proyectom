@@ -6,6 +6,7 @@ class Servicios extends CI_Controller {
     parent::__construct();
     $this->load->model('Servicios_model');
     $this->load->model('Login_model');
+    $this->load->model('Modulo_model');
   }
 
     public function index(){
@@ -98,9 +99,7 @@ class Servicios extends CI_Controller {
     }
 
     public function consultar(){
-    //if ($this->input->is_ajax_request()){
         echo json_encode($this->Servicios_model->consultar());
-    //}
     }
 
 function actualizar(){
@@ -139,7 +138,7 @@ function actualizar(){
         'cod_servicio' => $cod_servicio,
         'servicio' => $servicio,
         'precio' => $precio,
-        'estado' => null,
+        'estado' => '1',
         );
       if($this->Servicios_model->guardar($data) == true){
         echo '1';

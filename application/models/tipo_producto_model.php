@@ -6,7 +6,7 @@ class Tipo_producto_model extends CI_Model{
   }
   function consultar(){
     $this->db->select('tp.cod_tipo_producto , tp.tipo_producto, tp.descripcion');
-    $this->db->where('tp.estado',null,false);
+    $this->db->where('tp.estado','1');
     $this->db->from('tipo_producto tp');
     $data = $this->db->get();
     return $data->result();

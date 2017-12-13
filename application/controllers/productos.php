@@ -6,6 +6,7 @@ class Productos extends CI_Controller {
     parent::__construct();
     $this->load->model('Productos_model');
     $this->load->model('Login_model');
+    $this->load->model('Modulo_model');
   }
 
 
@@ -100,11 +101,9 @@ class Productos extends CI_Controller {
     }
   }
   public function consultar(){
-    //if ($this->input->is_ajax_request()){
     echo json_encode($this->Productos_model->consultar());
-
-    //}
   }
+
   function actualizar(){
     $selector = $this->input->post('cod_producto');
     $cod_producto = $selector;
@@ -136,7 +135,7 @@ class Productos extends CI_Controller {
   function eliminar(){
     $idselect = $this->input->post('cod_producto');
     $data = array(
-      'estado' => null,
+      'estado' => '0',
     );
     if($this->Productos_model->eliminar($idselect, $data) == true){
       echo '1';
@@ -164,7 +163,7 @@ class Productos extends CI_Controller {
       'stock_producto' => $stock_producto,
       'stock_minimo' => $stock_minimo,
       'stock_maximo' => $stock_maximo,
-      'estado' => '0',
+      'estado' => '1',
     );
     if($this->Productos_model->guardar($data) == true){
       echo '1';

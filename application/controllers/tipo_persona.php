@@ -6,6 +6,7 @@ class Tipo_persona extends CI_Controller {
     parent::__construct();
     $this->load->model('Tipo_persona_model');
     $this->load->model('Login_model');
+    $this->load->model('Modulo_model');
   }
 
   public function index(){
@@ -98,10 +99,9 @@ class Tipo_persona extends CI_Controller {
   }
 
   public function consultar(){
-    //if ($this->input->is_ajax_request()){
     echo json_encode($this->Tipo_persona_model->consultar());
-    //}
   }
+
   function actualizar(){
     $selector = $this->input->post('cod_tipo_persona');
     $cod_tipo_persona = $selector;
@@ -134,7 +134,7 @@ class Tipo_persona extends CI_Controller {
     $data = array(
       'cod_tipo_persona' => $cod_tipo_persona,
       'tipo_persona' => $tipo_persona,
-      'estado' => null,
+      'estado' => '1',
     );
     if($this->Tipo_persona_model->guardar($data) == true){
       echo '1';

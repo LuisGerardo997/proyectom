@@ -4,7 +4,7 @@
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                 <div class="card">
                     <div class="header">
-                        <h2>Estados de la habitación</h2>
+                        <h2>Estados de la Habitación</h2>
                         <ul class="header-dropdown m-r--5">
                             <li class="dropdown">
                                 <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="material-icons">more_vert</i></a>
@@ -20,7 +20,7 @@
                                 <thead>
                                     <tr>
                                         <th>Código</th>
-                                        <th>Nombre del estado</th>
+                                        <th>Estado de la Habitación</th>
                                         <th>Acción</th>
                                     </tr>
                                 </thead>
@@ -37,11 +37,11 @@
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h2 class="modal-title" id="largeModalLabel">Edición de datos</h2>
+                        <h2 class="modal-title text-center" id="largeModalLabel">Edición de datos</h2>
                     </div>
                     <div class="modal-body">
-                        <div class="row clearfix">
-                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            <div class="row clearfix">
                                 <div class="col-md-4">
                                     <div class="form-group form-float">
                                         <div class="form-line focused">
@@ -75,11 +75,11 @@
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h2 class="modal-title" id="largeModalLabel">Registro de Estados de la habitación</h2>
+                        <h2 class="modal-title text-center" id="largeModalLabel">Registro de Estados de la Habitación</h2>
                     </div>
                     <div class="modal-body">
-                        <div class="row clearfix">
-                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            <div class="row clearfix">
                                 <div class="col-md-4">
                                     <div class="form-group form-float">
                                         <div class="form-line">

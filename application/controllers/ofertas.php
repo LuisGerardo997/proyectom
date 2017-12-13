@@ -6,6 +6,7 @@ class Ofertas extends CI_Controller {
     parent::__construct();
     $this->load->model('Ofertas_model');
     $this->load->model('Login_model');
+    $this->load->model('Modulo_model');
   }
 
     public function index(){

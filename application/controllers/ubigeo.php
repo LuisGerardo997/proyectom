@@ -6,6 +6,7 @@ class Ubigeo extends CI_Controller {
     parent::__construct();
     $this->load->model('Ubigeo_model');
     $this->load->model('Login_model');
+    $this->load->model('Modulo_model');
   }
 
     public function index(){
@@ -98,28 +99,27 @@ class Ubigeo extends CI_Controller {
     }
 
     public function consultar(){
-    //if ($this->input->is_ajax_request()){
         echo json_encode($this->Ubigeo_model->consultar());
-    //}
   }
-function actualizar(){
-      $selector = $this->input->post('cod_ciudad');
-      $cod_ciudad = $selector;
-      $ciudad= $this->input->post('ciudad');
-      $provincia= $this->input->post('provincia');
-      $departamento= $this->input->post('departamento');
-      $data = array(
-        'cod_ciudad' => $cod_ciudad,
-        'ciudad' => $ciudad,
-        'provincia' => $provincia,
-        'departamento' => $departamento,
-      );
-      if($this->Ubigeo_model->actualizar($selector,$data) == true){
-        echo '1';
-      }else{
-        echo '0';
-      }
-   }
+
+    function actualizar(){
+        $selector = $this->input->post('cod_ciudad');
+        $cod_ciudad = $selector;
+        $ciudad= $this->input->post('ciudad');
+        $provincia= $this->input->post('provincia');
+        $departamento= $this->input->post('departamento');
+        $data = array(
+            'cod_ciudad' => $cod_ciudad,
+            'ciudad' => $ciudad,
+            'provincia' => $provincia,
+            'departamento' => $departamento,
+        );
+        if($this->Ubigeo_model->actualizar($selector,$data) == true){
+            echo '1';
+        }else{
+            echo '0';
+        }
+    }
 
     function eliminar(){
       $idselect = $this->input->post('cod_ciudad');
@@ -142,7 +142,7 @@ function actualizar(){
         'ciudad' => $ciudad,
         'provincia' => $provincia,
         'departamento' => $departamento,
-        'estado' => null,
+        'estado' => '1',
         );
       if($this->Ubigeo_model->guardar($data) == true){
         echo '1';
