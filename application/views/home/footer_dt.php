@@ -2,6 +2,7 @@
 <!-- Select Plugin Js
 <script src="<?= base_url() ?>plugins/bootstrap-select/js/bootstrap-select.js"></script>
 -->
+<script src="<?= base_url() ?>js/system.js"></script>
 <!-- Jquery DataTable Plugin Js -->
 <script src="<?= base_url() ?>plugins/jquery-datatable/jquery.dataTables.js"></script>
 <script src="<?= base_url() ?>plugins/jquery-datatable/skin/bootstrap/js/dataTables.bootstrap.js"></script>
@@ -71,6 +72,17 @@
 <?php if($this->uri->segment(1)=='tipo_documento') {?>
     <script src="<?= base_url() ?>js/tipo_documento.js"></script>
 <?php };?>
+<?php if($this->uri->segment(1)=='reportes_1') {?>
+      <script src="<?= base_url() ?>js/reportes.js"></script>
+<?php }; ?>
+
+<?php if($this->uri->segment(1)=='reportes_2') {?>
+      <script src="<?= base_url() ?>js/reportes.js"></script>
+<?php }; ?>
+
+<?php if($this->uri->segment(1)=='reportes_3') {?>
+      <script src="<?= base_url() ?>js/reportes.js"></script>
+<?php }; ?>
 <?php if($this->uri->segment(1)=='marca') {?>
     <script src="<?= base_url() ?>js/marca.js"></script>
 <?php };?>
@@ -160,7 +172,7 @@
 <script src="<?= base_url() ?>plugins/jquery-inputmask/jquery.inputmask.bundle.js"></script>
 
 <!-- Demo Js -->
-<script src="<?= base_url() ?>js/demo.js"></script>
+<!-- <script src="<?= base_url() ?>js/demo.js"></script> -->
 <!-- <script src="<? base_url() ?>js/pages/widgets/infobox/infobox-4.js"></script> -->
 </body>
 

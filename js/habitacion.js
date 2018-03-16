@@ -35,7 +35,7 @@ $('#dt_table').DataTable({
 
 editClient = function(cod_habitacion, tipo_habitacion, piso, nombre){
     $('#cod_habitacion').val(cod_habitacion);
-    $("#tipo_habitacion option:contains('"+tipo_habitacion+"')").attr("selected",true);
+    $("#tipo_habitacion_e option:contains('"+tipo_habitacion+"')").attr("selected",true);
     $('#piso').val(piso);
     $("#nombre option:contains('"+nombre+"')").attr("selected",true);
 
@@ -43,7 +43,7 @@ editClient = function(cod_habitacion, tipo_habitacion, piso, nombre){
         $.post(base_url+"habitacion/actualizar",
         {
             cod_habitacion:$('#cod_habitacion').val(),
-            tipo_habitacion:$('#tipo_habitacion').val(),
+            tipo_habitacion:$('#tipo_habitacion_e').val(),
             piso:$('#piso').val(),
             nombre:$('#nombre').val(),
         },

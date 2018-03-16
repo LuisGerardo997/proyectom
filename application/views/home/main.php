@@ -3,9 +3,9 @@
                 </div>
                 <!-- #Menu -->
                 <!-- Footer -->
-                <div class="legal">
+                <div class="legal text-center">
                     <div class="copyright">
-                        &copy; 2016 - 2017 <a href="javascript:void(0);">&nbsp;&nbsp;UNSM - FISI</a>.
+                        &copy; 2015 - 2018 <a href="javascript:void(0);">&nbsp;&nbsp;DSITECH Solutions</a>.
                     </div>
                     <div class="version">
                         <b>Version: </b> 2.0.5 &nbsp;
@@ -17,11 +17,11 @@
             </aside>
             <!-- #END# Left Sidebar -->
             <!-- Right Sidebar -->
-            <aside id="rightsidebar" class="right-sidebar">
+            <!-- <aside id="rightsidebar" class="right-sidebar">
                 <ul class="nav nav-tabs tab-nav-right" role="tablist">
-                    <li role="presentation" class="active"><a href="#skins" data-toggle="tab">SKINS</a></li>
+                    <li role="presentation" class="active"><a href="#skins" data-toggle="tab">SKINS</a></li> -->
                     <!-- <li role="presentation"><a href="#settings" data-toggle="tab">SETTINGS</a></li> -->
-                </ul>
+                <!-- </ul>
                 <div class="tab-content">
                     <div role="tabpanel" class="tab-pane fade in active in active" id="skins">
                         <ul class="demo-choose-skin">
@@ -106,7 +106,7 @@
                                 <span>Black</span>
                             </li>
                         </ul>
-                    </div>
+                    </div> -->
                     <!-- <div role="tabpanel" class="tab-pane fade" id="settings">
                         <div class="demo-settings">
                             <p>GENERAL SETTINGS</p>
@@ -156,15 +156,15 @@
                             </ul>
                         </div>
                     </div> -->
-                </div>
-            </aside>
+                <!-- </div>
+            </aside> -->
             <!-- #END# Right Sidebar -->
         </section>
     </div>
 </div>
 </section>
 
-<script>
+<!-- <script>
 var empleado = '<?php echo $this->session->userdata('cod_p'); ?>';
   $('li[name=colors]').click(function(){
     console.log($(this).attr('data-theme'));
@@ -175,4 +175,4 @@ var empleado = '<?php echo $this->session->userdata('cod_p'); ?>';
             empleado:empleado,
 });
   })
-</script>
+</script> -->

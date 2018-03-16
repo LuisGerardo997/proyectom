@@ -36,8 +36,8 @@ var empleado = '<?php echo $this->session->userdata('cod_p') ?>';
         <!-- Tab panes -->
         <div class="tab-content">
           <div role="tabpanel" class="tab-pane animated flipInX active" id="home_animation_1">
-            <div class="col-md-12 col-xs-12 col-sm-12">
-              <div class="table-responsive col-md-12">
+            <!-- <div class="col-md-12 col-xs-12"> -->
+              <div class="table-responsive">
 
                 <b>Historial de reservaciones</b>
                 <table id="dt_table" class="table table-bordered table-striped table-hover dataTable" width="100%">
@@ -45,7 +45,7 @@ var empleado = '<?php echo $this->session->userdata('cod_p') ?>';
                     <tr>
                       <th>#</th>
                       <th>Cliente</th>
-                      <th>Empleado</th>
+                      <th>Estado</th>
                       <th>Fecha de reservación</th>
                       <th>Fecha de ingreso</th>
                       <th>Fecha de salida</th>
@@ -55,7 +55,7 @@ var empleado = '<?php echo $this->session->userdata('cod_p') ?>';
                 </table>
               </div>
 
-            </div>
+            <!-- </div> -->
           </div>
           <div role="tabpanel" class="tab-pane animated flipInX" id="profile_animation_1">
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -80,14 +80,41 @@ var empleado = '<?php echo $this->session->userdata('cod_p') ?>';
                     <h2>Habitación</h2>
                     <section>
                       <div class="body">
-                        <div class="col-md-6 col-md-offset-3">
+                        <div class="row clearfix col-md-12 col-lg-12 col-xs-12">
+                          <div class="col-md-3 col-md-offset-3">
+                            <div class="form-group">
+                              <div class="demo-radio-button">
+                                <input name="tipo_r" value="M" type="radio" id="ahora" />
+                                <label for="ahora">Hospedarse ahora</label>
+                                <input name="tipo_r" value="F" type="radio" id="despues" />
+                                <label for="despues">Hospedarse después</label>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-md-3" id='estadia_div'>
+                            <div class="form-group form-float">
+                              <div class="form-line focused">
+                                <label class="form-label">Fecha de ingreso</label>
+                                <input type="text" name="fecha_estadia" id="fecha_estadia" class="form-control">
+                              </div>
+                            </div>
+                            <div class="form-group form-float">
+                              <div class="form-line focused">
+                                <label class="form-label">Fecha de salida</label>
+                                <input type="text" name="fecha_salida" id="fecha_salida" class="form-control">
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                       <!--  <div class="col-md-6 col-md-offset-3">
                           <div class="form-group form-float">
-                            <div class="form-line">
+                            <div class="form-line focused">
                               <label class="form-label">Buscar:</label>
                               <input type="text" name="buscar_h" id="buscar_h" class="form-control" >
                             </div>
                           </div>
-                        </div>
+                        </div> -->
+                        <div class="col-md-3" id="tipo_r_div"></div>
                       </div>
                       <div class="body">
                         <div class="table-responsive col-md-10 col-md-offset-1">
@@ -114,6 +141,7 @@ var empleado = '<?php echo $this->session->userdata('cod_p') ?>';
                         <span>En los campos que se colocan a continuación, coloque los datos pertenecientes a la reservación.</span>
                       </div>
                       <br>
+                      <form name="reservation_form">
                       <div class="col-md-1 col-md-offset-1">
                         <div class="form-group form-float">
                           <div class="form-line focused">
@@ -122,17 +150,20 @@ var empleado = '<?php echo $this->session->userdata('cod_p') ?>';
                           </div>
                         </div>
                       </div>
+                      <form name="cliente_form" id="cliente_form">
                       <div class="col-md-3">
                         <div class="form-group form-float">
                           <div class="form-line focused">
                             <label class="form-label">Cliente (DNI)</label>
-                            <input maxlength="3" type="number" value="" name="cliente" id="cliente" class="form-control">
+                            <input maxlength="3" type="number" value="" name="cliente" id="cliente" class="form-control client_field">
                           </div>
                         </div>
                       </div>
                       <div id="nom_client"></div>
                       <div id="app_client"></div>
                       <div id="apm_client"></div>
+                      <div id="btn_registrar" style='display:none'><button class="btn btn-primary">Registrar</button></div>
+                      </form>
                       <!--<div class="col-md-3" style='display:none' id='empleado_div'>
                       <div class="form-group form-float">
                       <div class="form-line focused">
@@ -149,24 +180,7 @@ var empleado = '<?php echo $this->session->userdata('cod_p') ?>';
                   <!--</div>
                 </div>
               </div>-->
-              <div class="col-md-3" id="tipo_r_div">
-                <div class="form-group">
-                  <div class="demo-radio-button">
-                    <input name="tipo_r" value="M" type="radio" id="ahora" />
-                    <label for="ahora">Hospedarse ahora</label>
-                    <input name="tipo_r" value="F" type="radio" id="despues" />
-                    <label for="despues">Hospedarse después</label>
-                  </div>
-                </div>
-              </div>
-              <div class="col-md-3" id='estadia_div'>
-                <div class="form-group form-float">
-                  <div class="form-line focused">
-                    <label class="form-label">Fecha de estadía</label>
-                    <input type="text" name="fecha_estadia" id="fecha_estadia" class="datepicker form-control">
-                  </div>
-                </div>
-              </div>
+              
               <!-- <div class="col-md-12 text-center"><h4>¿Desea especificar los huespedes de cada habitación?</h4></div>
               <div class="col-md-3 col-md-offset-3 text-center">
                 <div class="form-group">
@@ -187,6 +201,7 @@ var empleado = '<?php echo $this->session->userdata('cod_p') ?>';
               <div class="col-md-12">
                 <hr>
               </div>
+              </form>
               <div id='detalle_body'></div>
             </section>
           </div>
@@ -214,29 +229,31 @@ var empleado = '<?php echo $this->session->userdata('cod_p') ?>';
         <h2 class="modal-title" id="largeModalLabel">Panel de edición de reservaciones</h2>
       </div>
       <div class="modal-body">
-        <div class="row clearfix">
-          <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-            <br>
-            <div class="row clearfix">
-              <div class="col-md-3 col-md-offset-3">
-                <div class="form-group form-float">
-                  <div class="form-line focused">
-                    <label class="form-label">Fecha de ingreso</label>
-                    <input type="text" name="fecha_ingreso" id="fecha_ingreso" class="datepicker form-control">
+        <form id="form_reservaciones">
+          <div class="row clearfix">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+              <br>
+              <div class="row clearfix">
+                <div class="col-md-3 col-md-offset-3">
+                  <div class="form-group form-float">
+                    <div class="form-line focused">
+                      <label class="form-label">Fecha de ingreso</label>
+                      <input type="text" name="fecha_ingreso" id="fecha_ingreso" class="datepicker form-control">
+                    </div>
                   </div>
                 </div>
-              </div>
-              <div class="col-md-3">
-                <div class="form-group form-float">
-                  <div class="form-line focused">
-                    <label class="form-label">Fecha de reservación</label>
-                    <input type="text" name="fecha_reservacion" id="fecha_reservacion" class="datepicker form-control">
+                <div class="col-md-3">
+                  <div class="form-group form-float">
+                    <div class="form-line focused">
+                      <label class="form-label">Fecha de reservación</label>
+                      <input type="text" name="fecha_reservacion" id="fecha_reservacion" class="datepicker form-control">
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
+        </form>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-link waves-effect" onclick="insertdat();">Guardar cambios</button>
@@ -274,6 +291,43 @@ var empleado = '<?php echo $this->session->userdata('cod_p') ?>';
               </table>
             </div>
 
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">Cerrar</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="show_clients" tabindex="-1" role="dialog">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title text-center">Clientes</h2>
+          <button class="btn btn-default waves-effect"><i class="material-icons">add</i>Nuevo cliente</button>
+      </div>
+      <div class="modal-body">
+        <div class="row clearfix">
+          <div id="clients_list" class="table-responsive col-lg-12 col-md-12 col-sm-12 col-xs-12">
+          <table id="client_dt" class="table table-hover" width="100%">
+            <thead>
+              <tr>
+                <!-- <th></th>               -->
+                <th >DNI</th>
+                <th >Nombres</th>
+                <th >Apellido Paterno</th>
+                <!-- <th >Apellido Materno</th> -->
+                <th ></th>
+              </tr>
+            </thead>
+            <tbody id="client_dt_body">
+              <!-- <tr>
+                <td>r[i]['cod_persona']</td>
+                <td>r[i]['nombres']</td>
+              </tr> -->
+            </tbody>
+          </table>
           </div>
         </div>
       </div>

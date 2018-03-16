@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Selección de perfiles</title>
-  <link rel="icon" href="<?=base_url() ?>images/logo1.ico" type="image/x-icon">
+  <link rel="icon" href="<?=base_url() ?>images/icon/logo_material.ico" type="image/x-icon">
 
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&subset=latin,cyrillic-ext" rel="stylesheet" type="text/css">
@@ -33,7 +33,7 @@
 <body class="bg-indigo">
   <div class="centrado">
     <div class="block-header">
-      <div class="text-center"><img src="<?= base_url() ?>images/Rio1.png">
+      <!-- <div class="text-center"><img src="<?= base_url() ?>images/Rio1.png"> -->
       <h1 class="text-center">Bienvenido <?php echo $this->session->userdata('username'); ?></h1>
       <h4 class="text-center">Por favor, seleccione su perfil</h4>
     </div>
@@ -91,6 +91,12 @@
 </div>
 <script>
 $(document).ready(function(){
+  $('a').mouseover(function(){
+    document.body.style.cursor="pointer";
+  });
+  $('a').mouseout(function(){
+    document.body.style.cursor = 'auto';
+  });
   $('a').click(function(e){
     e.preventDefault();
     var cod = $(this).attr('id');

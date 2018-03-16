@@ -57,7 +57,7 @@
                                 <div class="col-md-8">
                                     <div class="form-group form-float">
                                         <div class="form-line focused">
-                                            <select name="tipo_habitacion" id="tipo_habitacion" class="form-control">
+                                            <select name="tipo_habitacion" id="tipo_habitacion_e" class="form-control">
                                                 <option value="">Tipo de habitación</option>
                                                     <?php foreach($tipo_habitacion as $fila):?>
                                                 <option value='<?= $fila["cod_tipo_habitacion"] ?>'><?= $fila['tipo_habitacion'] ?></option>

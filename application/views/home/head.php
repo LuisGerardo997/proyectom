@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=Edge">
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-  <title>Residencial Rio</title>
+  <title>Costa Azul</title>
   <script>
     var base_url = '<?php echo base_url() ?>';
   </script>
@@ -13,11 +13,15 @@
   <script src="<?= base_url() ?>plugins/jquery/jquery.min.js"></script>
   <script src="<?= base_url() ?>js/idioma.js"></script>
   <!-- Favicon-->
-  <link rel="icon" href="<?= base_url() ?>images/logo1.ico">
+  <link rel="icon" href="<?= base_url() ?>images/icon/logo_material.ico">
 
   <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&subset=latin,cyrillic-ext" rel="stylesheet" type="text/css">
+  <!-- <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&subset=latin,cyrillic-ext" rel="stylesheet" type="text/css">
+   -->
+   <link href="<?= base_url() ?>css/roboto-font.css" rel="stylesheet" type="text/css">
+   <link href="<?= base_url() ?>css/poppins.min.css" rel="stylesheet" type="text/css">
   <link href="<?= base_url() ?>css/material-icons.css" rel="stylesheet" type="text/css">
+  <link href="<?= base_url() ?>css/materialize.css" rel="stylesheet" type="text/css">
 
   <!-- Bootstrap Material Datetime Picker Css -->
   <link href="<?= base_url() ?>plugins/bootstrap-material-datetimepicker/css/bootstrap-material-datetimepicker.css" rel="stylesheet" />
@@ -55,7 +59,7 @@
 <!-- AdminBSB Themes. You can choose a theme from css/themes instead of get all themes -->
 <link href="<?= base_url() ?>css/themes/all-themes.css" rel="stylesheet" />
 </head>
-<body class="theme-<?php echo $this->session->userdata('color_p'); ?>">
+<body class="theme-indigo">
   <!-- Page Loader -->
   <div class="page-loader-wrapper">
     <div class="loader">
@@ -93,7 +97,7 @@
       <div class="navbar-header">
         <a href="javascript:void(0);" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="false"></a>
         <a href="javascript:void(0);" class="bars"></a>
-        <a class="navbar-brand" href="<?= base_url() ?>">Residencial Rio</a>
+        <a class="navbar-brand" href="<?= base_url() ?>home">Costa Azul</a>
       </div>
       <div class="collapse navbar-collapse" id="navbar-collapse">
         <ul class="nav navbar-nav navbar-right">
@@ -287,7 +291,7 @@
             </ul>
           </li> -->
           <!-- #END# Tasks -->
-          <li class="pull-right"><a href="javascript:void(0);" class="js-right-sidebar" data-close="true"><i class="material-icons">more_vert</i></a></li>
+          <!-- <li class="pull-right"><a href="javascript:void(0);" class="js-right-sidebar" data-close="true"><i class="material-icons">more_vert</i></a></li> -->
         </ul>
       </div>
     </div>
@@ -329,7 +333,183 @@
                       <span>Home</span>
                   </a>
               </li>
-              <?php $modulos = $this->Modulo_model->consultar_padres(); ?>
+              <li>
+                  <a class="menu-toggle" href="javascript:void(0);">
+                      <i class="material-icons">build</i>
+                      <span>Mantenimientos</span>
+                  </a>
+                  <ul class="ml-menu">
+                    <li>
+                      <a href="javascript:void(0);" class="menu-toggle">
+                        <span>Personas</span>
+                      </a>
+                        <ul class="ml-menu">
+                          <li id='clientes'>
+                            <a href="<?= base_url(); ?>clientes"> Clientes</a>
+                          </li>
+                          <li id='empleados'>
+                            <a href="<?= base_url(); ?>empleados">Empleados</a>
+                          </li>
+                          <li id='tipo_persona'>
+                            <a href="<?= base_url(); ?>tipo_persona"> Tipos de personas</a>
+                          </li>
+                        </ul>
+                    </li>
+                    <li>
+                      <a href="javascript:void(0);" class="menu-toggle">
+                        <span>Habitaciones</span>
+                      </a>
+                      <ul class="ml-menu">
+                        <li id='tipo_habitacion'>
+                          <a href="<?= base_url(); ?>tipo_habitacion">Tipos de habitación</a>
+                        </li>
+                        <li id='habitacion'>
+                          <a href="<?= base_url(); ?>habitacion">Habitaciones</a>
+                        </li>
+                      </ul>
+                    </li>
+                    <li id='ubigeo'>
+                      <a href="<?= base_url(); ?>ubigeo" class="toggled waves-effect waves-block">
+                        <span>Ubigeo</span>
+                      </a>
+                    </li>
+                    <li id='servicios'>
+                      <a href="<?= base_url(); ?>servicios" class="toggled waves-effect waves-block">
+                        <span>Servicios</span>
+                      </a>
+                    </li>
+                    <li id='ofertas'>
+                      <a href="<?= base_url(); ?>ofertas" class="toggled waves-effect waves-block">
+                        <span>Ofertas</span>
+                      </a>
+                    </li>
+                    <li><!-- 
+                      <a href="<?= base_url(); ?>area" class="toggled waves-effect waves-block">
+                        <span>Áreas</span>
+                      </a>
+                    </li> -->
+                    <li id='cargo'>
+                      <a href="<?= base_url(); ?>cargo" class="toggled waves-effect waves-block">
+                        <span>Cargo</span>
+                      </a>
+                    </li>
+                    <!-- <li>
+                      <a href="<?= base_url(); ?>proveedores" class="toggled waves-effect waves-block">
+                        <span>Proveedor</span>
+                      </a>
+                    </li> -->
+                    <!-- <li>
+                      <a href="javascript:void(0);" class="menu-toggle">
+                        <span>Productos</span>
+                      </a>
+                      <ul class="ml-menu">
+                        <li>
+                          <a href="<?= base_url(); ?>tipo_producto">Tipos de producto</a>
+                        </li>
+                        <li>
+                          <a href="<?= base_url(); ?>marca">Marcas</a>
+                        </li>
+                        <li>
+                          <a href="<?= base_url(); ?>productos">Productos</a>
+                        </li>
+                      </ul>
+                    </li> -->
+                    <li>
+                      <a href="forma_pago" class="toggled waves-effect waves-block">
+                        <span>Tipos de pago</span>
+                      </a>
+                    </li>  
+                    <li>
+                      <a href="javascript:void(0);" class="menu-toggle">
+                        <span>Movimientos</span>
+                      </a>
+                      <ul class="ml-menu">
+                        <li>
+                          <a href="<?= base_url(); ?>tipo_movimiento">Tipos de movimiento</a>
+                        </li>
+                        <li>
+                          <a href="<?= base_url(); ?>concepto_movimiento">Conceptos de movimiento</a>
+                        </li>
+                      </ul>
+                    </li>
+                    <li>
+                      <a href="tipo_documento" class="toggled waves-effect waves-block">
+                        <span>Tipos de documento</span>
+                      </a>
+                    </li>
+                    <li>
+                      <a href="javascript:void(0);" class="menu-toggle">
+                        <span>Caja</span>
+                      </a>
+                      <ul class="ml-menu">
+                        <li>
+                          <a href="<?= base_url(); ?>caja">Caja</a>
+                        </li>
+                        <li>
+                          <a href="<?= base_url(); ?>caja_persona">Encargado</a>
+                        </li>
+                      </ul>
+                    </li>
+                    <li>
+                      <a href="<?= base_url(); ?>tipo_transaccion" class="toggled waves-effect waves-block">
+                        <span>Tipos de transacción</span>
+                      </a>
+                    </li>
+                    <li>
+                      <a href="<?= base_url(); ?>parametro" class="toggled waves-effect waves-block">
+                        <span>Parámetros</span>
+                      </a>
+                    </li>
+                  </ul>
+              </li>
+              <li>
+                  <a class="toggled waves-effect waves-block" href="<?= base_url() ?>ventas">
+                      <i class="material-icons">attach_money</i>
+                      <span>Ventas</span>
+                  </a>
+              </li>
+              <li>
+                  <a class="toggled waves-effect waves-block" href="<?= base_url() ?>reservaciones">
+                      <i class="material-icons">hotel</i>
+                      <span>Reservaciones</span>
+                  </a>
+              </li>
+              <li>
+                  <a class="toggled waves-effect waves-block" href="<?= base_url() ?>compras">
+                      <i class="material-icons">shopping_cart</i>
+                      <span>Compras</span>
+                  </a>
+              </li>
+              <li>
+                  <a class="toggled waves-effect waves-block" href="<?= base_url() ?>pagos">
+                      <i class="material-icons">timer</i>
+                      <span>Cobros</span>
+                  </a>
+              </li> 
+              <li>
+                <a href="javascript:void(0);" class="menu-toggle">
+                <i class="material-icons">security</i>
+                  <span>Seguridad</span>
+                </a>
+                <ul class="ml-menu">
+                  <li>
+                    <a href="<?= base_url(); ?>modulo">Módulos</a>
+                  </li>
+                  <li>
+                    <a href="<?= base_url(); ?>perfil">Perfiles</a>
+                  </li>
+                  <li>
+                    <a href="<?= base_url(); ?>acceso">Accesos</a>
+                  </li>
+                  <li>
+                    <a href="<?= base_url(); ?>detalle_persona_perfil">Privilegios</a>
+                  </li>
+                  <li>
+                    <a href="<?= base_url(); ?>usuarios">Usuarios</a>
+                  </li>
+                </ul>
+              </li>
+              <!-- <?php $modulos = $this->Modulo_model->consultar_padres(); ?>
               <?php foreach($modulos as $key): ?>
                 <?php $modulos1 = $this->Modulo_model->consultar_hijos($key['cod_modulo']); ?>
                 <?php if($modulos1 != null){ ?>
@@ -370,4 +550,4 @@
                   </li>
                 <?php }; ?>
                   </li>
-              <?php endforeach; ?>
+              <?php endforeach; ?> -->

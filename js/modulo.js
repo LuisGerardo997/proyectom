@@ -35,7 +35,6 @@ $('#dt_table').DataTable({
 editClient = function(cod_modulo, pmodulo, cod_pmodulo, modulo, ruta, icono){
     $('#cod_modulo').val(cod_modulo);
     if (cod_pmodulo == 'null'){
-        alert('padre')
         $('#ruta').val(ruta);
         $('#modulo').val(modulo);
 
@@ -91,40 +90,13 @@ editClient = function(cod_modulo, pmodulo, cod_pmodulo, modulo, ruta, icono){
     }
     $('#ruta').val(ruta);
     $('#modulo').val(modulo);
-    // var generacion = 0;
-    // $.post(base_url+'modulo/consultar_modulo_padre',
-    // {
-    //   cod_modulo: cod_modulo,
-    // },
-    // function(data){
-    //     var datos = eval(data);
-    //   if (datos != ''){
-    //       var padre = datos['parent_cod_modulo'];
-    //       $.post(base_url+'modulo/consultar_modulo_padre',
-    //       {
-    //           cod_modulo: padre,
-    //       },
-    //       function(data1){
-    //           var datos1 = eval(data1);
-    //           if (datos1['cod_modulo'] != ''){
-    //               generacion = 3;
-    //               alert('nieto')
-    //           }else{
-    //               generacion = 2;
-    //               alert('hijo')
-    //           }
-    //       })
-    //   }else{
-    //       generacion = 1;
-    //       alert('padre')
-    //   }
-    // })
     $('#submodulo').val(modulo);
     enviar = function(){
         $.post(base_url+"modulo/actualizar",{
             cod_modulo:$('#cod_modulo').val(),
             pmodulo:$('#pmodulo').val(),
             modulo:$('#modulo').val(),
+            submodulo:$('#modulo').val(),
         },
 
         function(data){

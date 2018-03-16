@@ -56,7 +56,7 @@
                                     <div class="form-group form-float">
                                         <div class="form-line focused">
                                             <label class="form-label">Nombre del cargo</label>
-                                            <input type="text" name="cargo" id="cargo" class="form-control" maxlength="50">
+                                            <input type="text" name="cargo" id="cargo_e" class="form-control" maxlength="50">
                                         </div>
                                     </div>
                                 </div>
@@ -112,7 +112,7 @@
                                     <div class="form-group form-float">
                                         <div class="form-line">
                                             <label class="form-label">Nombre del cargo</label>
-                                            <input type="text" name="cargo" id="cargo" class="form-control" maxlength="50">
+                                            <input type="text" name="cargo" id="cargo_c" class="form-control" maxlength="50">
                                         </div>
                                     </div>
                                 </div>

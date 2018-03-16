@@ -13,8 +13,8 @@
                                 <!-- Nav tabs -->
                                 <ul class="nav nav-tabs tab-nav-right text-right" role="tablist">
                                     <li role="presentation" id="realizar_venta" class="active"><a href="#carta_1" data-toggle="tab">Cobros por procesar</a></li>
-                                    <li role="presentation" id="realizar_venta"><a href="#carta_2" data-toggle="tab">Cobros pendientes</a></li>
-                                    <li role="presentation" id="ventas_realizadas"><a href="#carta_3" data-toggle="tab">Cobros realizados</a></li>
+                                    <li role="presentation" id="cobros_pendientes"><a href="#carta_2" data-toggle="tab">Cobros pendientes</a></li>
+                                    <li role="presentation" id="cobros_realizados"><a href="#carta_3" data-toggle="tab">Cobros realizados</a></li>
                                 </ul>
 
                                 <!-- Tab panes -->
@@ -51,13 +51,13 @@
                                                     <section>
                                                         <!-- Nav tabs -->
                                                         <ul class="nav nav-tabs tab-nav-right text-right" role="tablist">
-                                                            <li role="presentation" class="active" id="realizar_venta"><a href="#cliente_producto" data-toggle="tab">Productos</a></li>
-                                                            <li role="presentation" id="realizar_venta1"><a href="#cliente_estadia" data-toggle="tab">Estadías</a></li>
+                                                            <!-- <li role="presentation" class="active" id="realizar_venta"><a href="#cliente_producto" data-toggle="tab">Productos</a></li> -->
+                                                            <li role="presentation" class="active" id="realizar_venta1"><a href="#cliente_estadia" data-toggle="tab">Estadías</a></li>
                                                         </ul>
 
                                                         <!-- Tab panes -->
                                                         <div class="tab-content">
-                                                            <div role="tabpanel" class="tab-pane animated flipInX active" id="cliente_producto">
+                                                            <!-- <div role="tabpanel" class="tab-pane animated flipInX active" id="cliente_producto">
                                                                 <div class="body">
                                                                     <div class="col-md-12 col-xs-12 col-sm-12">
                                                                         <div class="table-responsive">
@@ -78,8 +78,8 @@
                                                                         </div>
                                                                     </div>
                                                                 </div>
-                                                            </div>
-                                                            <div role="tabpanel" class="tab-pane animated flipInX" id="cliente_estadia">
+                                                            </div> -->
+                                                            <div role="tabpanel" class="tab-pane animated flipInX active" id="cliente_estadia">
                                                                 <div class="body">
                                                                     <div class="col-md-12 col-xs-12 col-sm-12">
                                                                         <div class="table-responsive">
@@ -129,7 +129,15 @@
                                                         </div>
 
                                                         <div class="row clearfix">
-                                                           <div class="col-md-3" id="forma_pago_div">
+                                                           <div class="col-md-2" id="fecha_credito_div">
+                                                                <div class="form-group form-float">
+                                                                    <div class="form-line focused">
+                                                                        <label class="form-label">Fecha del 1er pago</label>
+                                                                        <input id="fecha_credito" type="text" class="datepicker form-control">
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-3" id="forma_pago_div">
                                                                 <div class="form-group form-float">
                                                                     <div class="form-line focused">
                                                                         <select id="forma_pago" class="form-control">
@@ -141,7 +149,7 @@
                                                                     </div>
                                                                 </div>
                                                             </div>
-                                                           <div class="col-md-3" id="tipo_documento_div">
+                                                            <div class="col-md-3" id="tipo_documento_div">
                                                                 <div class="form-group form-float">
                                                                     <div class="form-line focused">
                                                                         <select id="tipo_documento" class="form-control">
@@ -153,21 +161,7 @@
                                                                     </div>
                                                                 </div>
                                                             </div>
-                                                            <div class="col-md-3" id="tarjeta_div">
-                                                                <div class="form-group form-float">
-                                                                    <div class="form-line focused">
-                                                                        <label class="form-label">Tarjeta de crédito</label>
-                                                                        <input id="tarjeta" type="text" class="form-control" step="0.01" maxlength="16" onkeydown="return( event.ctrlKey || event.altKey
-                                                                        || (event.keyCode>47 && event.keyCode<58 && event.shiftKey==false)
-                                                                        || (event.keyCode>95 && event.keyCode<106)
-                                                                        || (event.keyCode>34 && event.keyCode<40)
-                                                                        || (event.keyCode==8)
-                                                                        || (event.keyCode==9)
-                                                                        || (event.keyCode==46))">
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-md-3" id="ruc_div">
+                                                            <!-- <div class="col-md-3" id="ruc_div">
                                                                 <div class="form-group form-float">
                                                                     <div class="form-line focused">
                                                                         <label class="form-label">RUC</label>
@@ -180,7 +174,7 @@
                                                                         || (event.keyCode==46))">
                                                                     </div>
                                                                 </div>
-                                                            </div>
+                                                            </div> -->
                                                             <div class="col-md-2" id="periodo_div">
                                                                 <div class="form-group form-float">
                                                                     <div class="form-line focused">
@@ -207,11 +201,11 @@
                                                                     </div>
                                                                 </div>
                                                             </div>
-                                                            <div class="col-md-2" id="inicial_div">
+                                                            <div class="col-md-2" id="monto_credito_div">
                                                                 <div class="form-group form-float">
                                                                     <div class="form-line focused">
                                                                         <label class="form-label">Monto inicial</label>
-                                                                        <input id="inicial" type="text" class="form-control" step="0.01" maxlength="8" onkeydown="return( event.ctrlKey || event.altKey
+                                                                        <input id="monto_credito" type="text" class="form-control" step="0.01" maxlength="8" onkeydown="return( event.ctrlKey || event.altKey
                                                                         || (event.keyCode>47 && event.keyCode<58 && event.shiftKey==false)
                                                                         || (event.keyCode>95 && event.keyCode<106)
                                                                         || (event.keyCode>34 && event.keyCode<40)
@@ -225,8 +219,8 @@
                                                             <div class="col-md-2" id="monto_contado_div">
                                                                 <div class="form-group form-float">
                                                                     <div class="form-line focused">
-                                                                        <label class="form-label">Monto</label>
-                                                                        <input id="monto_contado" type="number" class="form-control" step="0.01" maxlength="8" onkeydown="return( event.ctrlKey || event.altKey
+                                                                        <label class="form-label">Total</label>
+                                                                        <input disabled id="monto_contado" type="number" class="form-control" step="0.01" maxlength="8" onkeydown="return( event.ctrlKey || event.altKey
                                                                         || (event.keyCode>47 && event.keyCode<58 && event.shiftKey==false)
                                                                         || (event.keyCode>95 && event.keyCode<106)
                                                                         || (event.keyCode>34 && event.keyCode<40)
@@ -242,14 +236,6 @@
                                                                     <div class="form-line focused">
                                                                         <label class="form-label">Fecha de pago</label>
                                                                         <input id="fecha_contado" type="text"  class="datepicker form-control">
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-md-2" id="fecha_credito_div">
-                                                                <div class="form-group form-float">
-                                                                    <div class="form-line focused">
-                                                                        <label class="form-label">Fecha del 1er pago</label>
-                                                                        <input id="fecha_credito" type="text" class="datepicker form-control">
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -270,13 +256,13 @@
                                                         <div class="row clearfix">
                                                             <!-- Nav tabs -->
                                                             <ul class="nav nav-tabs tab-nav-right text-right" role="tablist">
-                                                                <li role="presentation" class="active"><a href="#productos1" data-toggle="tab">Productos</a></li>
-                                                                <li role="presentation"><a href="#estadias1" data-toggle="tab">Estadías</a></li>
+                                                                <!-- <li role="presentation" class="active"><a href="#productos1" data-toggle="tab">Productos</a></li> -->
+                                                                <li role="presentation" class="active"><a href="#estadias1" data-toggle="tab">Estadías</a></li>
                                                             </ul>
 
                                                             <!-- Tab panes -->
                                                             <div class="tab-content">
-                                                                <div role="tabpanel" class="tab-pane animated flipInX active" id="productos1">
+                                                                <!-- <div role="tabpanel" class="tab-pane animated flipInX active" id="productos1">
                                                                     <div class="body">
                                                                         <div class="table-responsive">
                                                                             <table id="slct_table" class="table table-bordered table-striped table-hover dataTable" width="100%">
@@ -297,19 +283,19 @@
                                                                             </table>
                                                                         </div>
                                                                     </div>
-                                                                </div>
+                                                                </div> -->
 
-                                                                <div role="tabpanel" class="tab-pane animated flipInX" id="estadias1">
+                                                                <div role="tabpanel" class="tab-pane animated flipInX active" id="estadias1">
                                                                     <div class="body">
                                                                         <div class="table-responsive">
                                                                             <table class="table table-bordered table-striped table-hover" width="100%">
                                                                                 <thead>
                                                                                     <tr>
+                                                                                        <th>Estadía</th>
                                                                                         <th>Habitación</th>
                                                                                         <th>Tipo</th>
                                                                                         <th>Precio</th>
-                                                                                        <th>Servicio</th>
-                                                                                        <th>Precio</th>
+                                                                                        <th>Días</th>
                                                                                     </tr>
                                                                                 </thead>
                                                                                 <tbody id='detalle_cliente_estadia'></tbody>
@@ -369,14 +355,7 @@
                                                         <div class="form-group form-float">
                                                             <div class="form-line focused">
                                                                 <label class="form-label">Monto</label>
-                                                                <input disabled id="monto_cronograma" type="text" class="form-control" step="0.01" maxlength="8" onkeydown="return( event.ctrlKey || event.altKey 
-                                                                || (event.keyCode>47 && event.keyCode<58 && event.shiftKey==false)
-                                                                || (event.keyCode>95 && event.keyCode<106)
-                                                                || (event.keyCode>34 && event.keyCode<40)
-                                                                || (event.keyCode==8)
-                                                                || (event.keyCode==9)
-                                                                || (event.keyCode==46)
-                                                                || (event.keyCode==188))">
+                                                                <input disabled id="monto_cronograma" type="number" class="form-control" step="0.01">
                                                             </div>
                                                         </div>
                                                     </div>
@@ -385,46 +364,121 @@
                                                     <input disabled type="hidden" id="caja" class="form-control">
                                                     <input disabled type="hidden" id="fecha_inicio" class="form-control">
 
-                                                    <button type="button" class="btn bg-red waves-effect" onclick="cobrar();">Cobrar</button>
+                                                    <button type="button" id="cobrar" class="btn bg-red waves-effect" onclick="cobrar();">Cobrar</button>
 
                                                 </div>
                                             </div>
-                                            <div class="table-responsive">
-                                                <table id="cobros_2" class="table table-bordered table-striped table-hover dataTable" width="100%">
-                                                    <thead>
-                                                        <tr>
-                                                            <th>Nº</th>
-                                                            <th>Venta</th>
-                                                            <th>Cuota</th>
-                                                            <th>DNI</th>
-                                                            <th>Nombres</th>
-                                                            <th>Apellido paterno</th>
-                                                            <th>Apellido materno</th>
-                                                            <th>Vencimiento</th>
-                                                            <th>Monto</th>
-                                                            <th width="1px"><i class="material-icons">check</i></th>
-                                                        </tr>
-                                                    </thead>
-                                                </table>
+
+                                            <!-- Nav tabs -->
+                                            <ul class="nav nav-tabs tab-nav-right text-right" role="tablist">
+                                                <li role="presentation" id="productos_li" class="active"><a href="#cobro_productos" data-toggle="tab">Productos</a></li>
+                                                <li role="presentation" id="estadias_li"><a href="#cobro_estadias" data-toggle="tab">Estadías</a></li>
+                                            </ul>
+
+                                            <!-- Tab panes -->
+                                            <div class="tab-content">
+                                                <div role="tabpanel" class="tab-pane animated flipInX active" id="cobro_productos">
+                                                    <div class="body">
+                                                        <div class="col-md-12 col-xs-12 col-sm-12">
+                                                            <div class="table-responsive">
+                                                                <table id="cobros_2" class="table table-bordered table-striped table-hover dataTable" width="100%">
+                                                                    <thead>
+                                                                        <tr>
+                                                                            <th>Nº</th>
+                                                                            <th>Venta</th>
+                                                                            <th>Cuota</th>
+                                                                            <th>DNI</th>
+                                                                            <th>Nombres</th>
+                                                                            <th>Apellido paterno</th>
+                                                                            <th>Apellido materno</th>
+                                                                            <th>Vencimiento</th>
+                                                                            <th>Monto</th>
+                                                                            <th width="1px"><i class="material-icons">check</i></th>
+                                                                        </tr>
+                                                                    </thead>
+                                                                </table>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div role="tabpanel" class="tab-pane animated flipInX" id="cobro_estadias">
+                                                    <div class="col-md-12 col-xs-12 col-sm-12">
+                                                        <div class="table-responsive">
+                                                            <table id="cobros_3" class="table table-bordered table-striped table-hover dataTable" width="100%">
+                                                                <thead>
+                                                                    <tr>
+                                                                        <th>CCE</th>
+                                                                        <th>CE</th>
+                                                                        <th>Cuota</th>
+                                                                        <th>DNI</th>
+                                                                        <th>Nombres</th>
+                                                                        <th>Apellido paterno</th>
+                                                                        <th>Apellido materno</th>
+                                                                        <th>Vencimiento</th>
+                                                                        <th>Monto</th>
+                                                                        <th width="1px"><i class="material-icons">check</i></th>
+                                                                    </tr>
+                                                                </thead>
+                                                            </table>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
 
                                     <div role="tabpanel" class="tab-pane animated flipInX" id="carta_3">
-                                        <div class="col-md-12 col-xs-12 col-sm-12">
-                                            <div class="table-responsive">
-                                                <table id="cobros_3" class="table table-bordered table-striped table-hover dataTable" width="100%">
-                                                    <thead>
-                                                        <tr>
-                                                            <th>DNI</th>
-                                                            <th>Cliente</th>
-                                                            <th>Apellido paterno</th>
-                                                            <th>Apellido materno</th>
-                                                            <th>Fecha</th>
-                                                            <th>Acción</th>
-                                                        </tr>
-                                                    </thead>
-                                                </table>
+                                        <!-- Nav tabs -->
+                                        <ul class="nav nav-tabs tab-nav-right text-right" role="tablist">
+                                            <li role="presentation" id="productos_li" class="active"><a href="#ventas_realizado" data-toggle="tab">Productos</a></li>
+                                            <li role="presentation" id="estadias_li"><a href="#estadia_realizado" data-toggle="tab">Estadías</a></li>
+                                        </ul>
+
+                                        <!-- Tab panes -->
+                                        <div class="tab-content">
+                                            <div role="tabpanel" class="tab-pane animated flipInX active" id="ventas_realizado">
+                                                <div class="body">
+                                                    <div class="col-md-12 col-xs-12 col-sm-12">
+                                                        <div class="table-responsive col-md-12">
+                                                            <table id="realizado_1" class="table table-bordered table-striped table-hover dataTable" width="100%">
+                                                                <thead>
+                                                                    <tr>
+                                                                        <th>Mov.</th>
+                                                                        <th>CCV</th>
+                                                                        <th>DNI</th>
+                                                                        <th>Nombres</th>
+                                                                        <th>Apellido paterno</th>
+                                                                        <th>Apellido materno</th>
+                                                                        <th>Amortizó</th>
+                                                                        <th width="1px">Detalles</th>
+                                                                    </tr>
+                                                                </thead>
+                                                            </table>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div role="tabpanel" class="tab-pane animated flipInX" id="estadia_realizado">
+                                                <div class="col-md-12 col-xs-12 col-sm-12">
+                                                    <div class="table-responsive col-md-12">
+                                                        <table id="realizado_2" class="table table-bordered table-striped table-hover dataTable" width="100%">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th>Mov.</th>
+                                                                    <th>CCE.</th>
+                                                                    <th>DNI</th>
+                                                                    <th>Nombres</th>
+                                                                    <th>Apellido paterno</th>
+                                                                    <th>Apellido materno</th>
+                                                                    <th>Amortizó</th>
+                                                                    <th width="1px">Detalles</i></th>
+                                                                </tr>
+                                                            </thead>
+                                                        </table>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -443,16 +497,38 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header text-center">
-                <h3 class="title" id="largeModalLabel">Introduzca la cantidad deseada</h3>
+                <h3 class="title" id="largeModalLabel">Introduzca el monto a amortizar</h3>
             </div>
             <div class="modal-body">
                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 p-t-20" id="contenedor_detalle">
                     <form action="#">
-                        <div class="col-md-4 col-md-offset-2">
+                        <div class="col-md-4 col-md-offset-2" id="monto_a_amortizar_div">
                             <div class="form-group form-float">
                                 <div class="form-line focused">
                                     <label class="form-label">Monto a amortizar</label>
-                                    <input type="number" id="monto_a_amortizar" class="form-control">
+                                    <input type="number" id="monto_a_amortizar" class="form-control" min="0" step="0.01" onkeydown="return( event.ctrlKey || event.altKey
+                                    || (event.keyCode>47 && event.keyCode<58 && event.shiftKey==false)
+                                    || (event.keyCode>95 && event.keyCode<106)
+                                    || (event.keyCode>34 && event.keyCode<40)
+                                    || (event.keyCode==8)
+                                    || (event.keyCode==9)
+                                    || (event.keyCode==46)
+                                    || (event.keyCode==188))">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-md-offset-2" id="monto_a_amortizar_e_div">
+                            <div class="form-group form-float">
+                                <div class="form-line focused">
+                                    <label class="form-label">Monto a amortizar</label>
+                                    <input type="number" id="monto_a_amortizar_e" class="form-control" min="0" step="0.01" onkeydown="return( event.ctrlKey || event.altKey
+                                    || (event.keyCode>47 && event.keyCode<58 && event.shiftKey==false)
+                                    || (event.keyCode>95 && event.keyCode<106)
+                                    || (event.keyCode>34 && event.keyCode<40)
+                                    || (event.keyCode==8)
+                                    || (event.keyCode==9)
+                                    || (event.keyCode==46)
+                                    || (event.keyCode==188))">
                                 </div>
                             </div>
                         </div>

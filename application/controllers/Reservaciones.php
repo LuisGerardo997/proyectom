@@ -9,8 +9,16 @@ class Reservaciones extends CI_Controller {
         $this->load->model('Login_model');
         $this->load->model('Clientes_model');
         $this->load->model('Habitacion_model');
+        $this->load->model('Modulo_model');
+        // INICIO: CONCLUIR ESTADIAS
+        $estadia = $this->input->post('cod_estadia');
+        $habitaciones_reservadas = $this->Reservaciones_model->habitaciones_reservadas($estadia, '2');
+        $data = array('cod_estado_habitacion' => '3');
+        foreach ($habitaciones_reservadas as $habitacion_reservada) {
+            $this->Habitacion_model->actualizar($habitacion_reservada->cod_habitacion, $data);
+        };
+        // FIN: CONCLUIR ESTADIAS
     }
-
 
 	public function index()
 	{
@@ -106,10 +114,10 @@ class Reservaciones extends CI_Controller {
         }
     }
     public function consultar(){
-      //if ($this->input->is_ajax_request()){
+      if ($this->input->is_ajax_request()){
           echo json_encode($this->Reservaciones_model->consultar());
 
-      //}
+      }
     }
     public function consultar_estadia(){
         $estadia = $this->input->post('cod_estadia');
@@ -148,12 +156,9 @@ class Reservaciones extends CI_Controller {
         }
     }
     function room_list(){
-        if($this->input->post('hab')==''){
-            $habitacion = '';
-        }else{
-            $habitacion = $this->input->post('hab');
-        }
-        $resultado = $this->Reservaciones_model->room_list($habitacion);
+        $fecha_estadia = $this->input->post('fecha_estadia');
+        $fecha_salida = $this->input->post('fecha_salida');
+        $resultado = $this->Reservaciones_model->room_list($fecha_estadia, $fecha_salida);
         echo json_encode($resultado);
     }
     function detalle_habitacion(){
@@ -194,48 +199,76 @@ class Reservaciones extends CI_Controller {
         $empleado = $this->input->post('empleado');
         $fecha_r = $this->input->post('fecha_r');
         $fecha_estadia = $this->input->post('fecha_estadia');
+        $fecha_salida = $this->input->post('fecha_salida');
         $lista_hab = $this->input->post('lista_hab');
+        $flag = 0;
         if ($nombres != ''){
             $cliente_datos = array(
                 'cod_persona' => $cliente,
                 'nombres' => $nombres,
                 'apellido_paterno' => $apellido_p,
                 'apellido_materno' => $apellido_m,
-                'apellido_materno' => $apellido_m,
                 'estado' => '0',
             );
-            $this->Clientes_model->guardar($cliente_datos);
+            if(!$this->Clientes_model->guardar($cliente_datos))
+            {
+                $flag++;
+            }
 
         };
-        $datos = array(
-            'cod_estadia' => $nro_res,
-            'cod_cliente' => $cliente,
-            'cod_empleado' => $empleado,
-            'fecha_reserva' => $fecha_r,
-            'fecha_ingreso' => $fecha_estadia,
-            'estado' => 1,
-        );
-        $c = 0;
-        foreach($lista_hab as $fila){
-            $data_hab = array(
-                'cod_habitacion' => $fila,
-                'cod_estado_habitacion' => '2',
-            );
-            $this->Habitacion_model->actualizar($fila,$data_hab);
-        }
-        $resultado1 = $this->Reservaciones_model->registrar1($datos);
-        //$resultado2 = $this->Reservaciones_model->registrar2($nro_res, $cliente, $fecha_estadia, $lista_hab, $huespedes);
-      if($resultado1 == true)/*&&($resultado2 == true)*/{
-            echo 'Registro correcto';
+        if($flag == 0)
+        {
+            if ($fecha_estadia != $fecha_r){
+                $datos = array(
+                    'cod_estadia' => $nro_res,
+                    'cod_cliente' => $cliente,
+                    'cod_empleado' => $empleado,
+                    'fecha_reserva' => $fecha_r,
+                    'fecha_ingreso' => $fecha_estadia,
+                    'fecha_salida' => $fecha_salida,
+                    'estado' => 2,
+                );            
+            }else{
+                $datos = array(
+                    'cod_estadia' => $nro_res,
+                    'cod_cliente' => $cliente,
+                    'cod_empleado' => $empleado,
+                    'fecha_reserva' => $fecha_r,
+                    'fecha_ingreso' => $fecha_estadia,
+                    'fecha_salida' => $fecha_salida,
+                    'estado' => 1,
+                );
+            };
+            $c = 0;
+            foreach($lista_hab as $fila){
+                if ($fecha_estadia != $fecha_r){
+                    $data_hab = array(
+                        'cod_habitacion' => $fila,
+                        'cod_estado_habitacion' => '1',
+                    );
+                }else{
+                    $data_hab = array(
+                        'cod_habitacion' => $fila,
+                        'cod_estado_habitacion' => '2',
+                    );
+
+                };
+                $this->Habitacion_model->actualizar($fila,$data_hab);
+            }
+            $resultado1 = $this->Reservaciones_model->registrar1($datos);
+           
+            if($resultado1 == true)/*&&($resultado2 == true)*/{
+                echo 'Registro correcto';
+            }else{
+                echo 'Registro fallido';
+            }
         }else{
-            echo 'Registro fallido';
-        }
+            echo 'Error';
+        };
     }
     function registrar_detalle_estadia(){
         $nro_res = $this->input->post('nro_res');
-        if ($this->input->post('huesped') == ''){
-            $huesped = '0';
-        }else{
+        if ($this->input->post('huesped') != ''){
             $huesped = $this->input->post('huesped');
         }
         if ($this->Reservaciones_model->existencia($huesped) == false){
@@ -248,14 +281,14 @@ class Reservaciones extends CI_Controller {
             );
             $this->Clientes_model->guardar($data);
         }
-        $empleado = $this->input->post('fecha_r');
-        $fecha_r = $this->input->post('tipo_r');
         $fecha_estadia = $this->input->post('fecha_estadia');
+        $fecha_salida = $this->input->post('fecha_salida');
         $habitacion = $this->input->post('habitacion');
         $datos = array(
             'cod_estadia' => $nro_res,
             'cod_persona' => $huesped,
             'fecha_ingreso' => $fecha_estadia,
+            'fecha_salida' => $fecha_salida,
             'cod_habitacion' => $habitacion,
             'estado' => 1,
         );
@@ -269,6 +302,69 @@ class Reservaciones extends CI_Controller {
     function existencia(){
         $persona = $this->input->post('cod_persona');
         if ($this->Reservaciones_model->existencia($persona)==false){
+            echo 0;
+        }else{
+            echo 1;
+        }
+    }
+    function eliminar(){
+        $arg = $this->input->post('cod_estadia');
+        $habitaciones_reservadas = $this->Reservaciones_model->habitaciones_reservadas($arg, '2');
+        // print_r($habitaciones_reservadas);
+        $data = array(
+            'estado' => '0'
+        );
+        $flag = 0;
+        if(!$this->Reservaciones_model->eliminar($arg, $data)){
+            $flag++;
+        }
+        $data1 = array('cod_estado_habitacion' => '3');
+        foreach ($habitaciones_reservadas as $habitacion_reservada) {
+            if(!$this->Habitacion_model->actualizar($habitacion_reservada->cod_habitacion, $data1)){
+                $flag++;
+            }
+        };
+        if($flag = 0){
+            echo 1;
+        }else{
+            echo 0;
+        }
+    }
+    function confirmar_estadia(){
+        $estadia = $this->input->post('cod_estadia');
+        $habitaciones_reservadas = $this->Reservaciones_model->habitaciones_reservadas($estadia, '1');
+        $data = array('cod_estado_habitacion' => '2');
+        $flag = 0;
+        $data1 = array('estado' => '1');
+        if(!$this->Reservaciones_model->actualizar($estadia, $data1)){
+            $flag ++;
+        }
+        foreach ($habitaciones_reservadas as $habitacion_reservada) {
+            if(!$this->Habitacion_model->actualizar($habitacion_reservada->cod_habitacion, $data))
+            {
+                $flag++;
+            };
+        };
+        if ($flag == 0){
+            echo 1;
+        }else{
+            echo 0;
+        }
+    }
+    function registrar_cliente()
+    {
+        $cod_cliente = $this->input->post('cliente');
+        $nombres = $this->input->post('nombres');
+        $apellido_paterno = $this->input->post('apellido_p');
+        $apellido_materno = $this->input->post('apellido_m');
+        $detalle = array(
+            'cod_persona' => $cod_cliente,
+            'nombres' => $nombres,
+            'apellido_paterno' => $apellido_paterno,
+            'apellido_materno' => $apellido_materno
+        );
+        if($this->Clientes_model->guardar($detalle))
+        {
             echo 0;
         }else{
             echo 1;

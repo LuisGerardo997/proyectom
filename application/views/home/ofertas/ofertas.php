@@ -23,7 +23,7 @@
                 <tr>
                   <th>Código</th>
                   <th>Oferta</th>
-                  <th>Descuento (s/.)</th>
+                  <th>Descuento (%)</th>
                   <th>Fecha inicial</th>
                   <th>Fecha de finalización</th>
                   <th>Acción</th>

@@ -6,12 +6,12 @@ $query_builder=TRUE;
 
 $db['default']=array(
 'dsn'=>'',
-'port'=>'3306',
+'port'=>'5432',
 'hostname'=>'localhost',
-'username'=>'rep',
-'password' =>'12345',
-'database' =>'residencial_rio_db',
-'dbdriver' =>'mysqli',
+'username'=>'postgres',
+'password' =>'gcode',
+'database' =>'hotel_db',
+'dbdriver' =>'postgre',
 'dbprefix' =>'',
 'pconnect' =>FALSE,
 'db_debug'=>(ENVIRONMENT !== 'production'),

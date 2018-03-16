@@ -582,6 +582,7 @@ $('a[href="#finish"]').click(function(){
         }else{
             console.log('INCORRECTO');
         }
+        location.reload()
     })
 })
 cancelar = function(){

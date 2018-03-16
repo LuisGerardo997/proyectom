@@ -1,4 +1,34 @@
+function calcularPrecios(arg1, arg2, arg3)
+{
+    var fecha_ingreso = new Date(arg1);
+    var fecha_salida= new Date(arg2);
+    var dias = (fecha_salida - fecha_ingreso)/86400000;
+    var precio_total = parseFloat(arg3)*dias;
+    return precio_total;
+}
+function calcularDias(arg1, arg2)
+{
+    var fecha_ingreso = new Date(arg1);
+    var fecha_salida = new Date(arg2);
+    var dias = (fecha_salida - fecha_ingreso)/86400000;
+    // console.log(fecha_ingreso, fecha_salida, dias);
+    // console.log()
+    return dias;
+}
+
 $(document).on('ready',function(){
+    var d = new Date();
+
+    var month = d.getMonth()+1;
+    var day = d.getDate();
+
+    var output = d.getFullYear()+1 + '-' +
+    (month<10 ? '0' : '') + month + '-' +
+    (day<10 ? '0' : '') + day;
+    var output1 = d.getFullYear() + '-' +
+    (month<10 ? '0' : '') + month + '-' +
+    (day<10 ? '0' : '') + day;
+
     $('.modal').on('hidden.bs.modal', function(){
 		$(this).find('form')[0].reset();
 		$("label.error").remove();
@@ -8,7 +38,65 @@ $(document).on('ready',function(){
         format: 'YYYY-MM-DD',
         clearButton: true,
         weekStart: 1,
-        time: false
+        time: false,
+        maxDate: output,
+        minDate: output1,
+    });
+
+    $('#realizado_1').DataTable({
+        'paging':true,
+        'info':true,
+        'filter':true,
+        'stateSave':true,
+        'ajax':{
+            "url": base_url+"pagos/ventas_realizadas",
+            "type":"POST",
+            dataSrc: ''
+        },
+        'columns':[
+            {data: 'cod_movimiento'},
+            {data: 'cod_cronograma_ventas'},
+            {data: 'cod_cliente'},
+            {data: 'nombres'},
+            {data: 'apellido_paterno'},
+            {data: 'apellido_materno'},
+            {data: 'monto'},
+            {"orderable":true,
+                render:function(data, type, row){
+                return '<type="button" class="btn bg-green btn-circle waves-effect waves-circle waves-float">'+'<i class="material-icons">details</i>'
+                }
+            }
+        ],
+        "order":[[0, "asc"]],
+        'language':español
+    });
+
+    $('#realizado_2').DataTable({
+        'paging':true,
+        'info':true,
+        'filter':true,
+        'stateSave':true,
+        'ajax':{
+            "url": base_url+"pagos/estadias_realizadas",
+            "type":"POST",
+            dataSrc: ''
+        },
+        'columns':[
+            {data: 'cod_movimiento'},
+            {data: 'cod_cronograma_estadia'},
+            {data: 'cod_cliente'},
+            {data: 'nombres'},
+            {data: 'apellido_paterno'},
+            {data: 'apellido_materno'},
+            {data: 'monto'},
+            {"orderable":true,
+                render:function(data, type, row){
+                return '<type="button" class="btn bg-green btn-circle waves-effect waves-circle waves-float">'+'<i class="material-icons">details</i>'
+                }
+            }
+        ],
+        "order":[[0, "asc"]],
+        'language':español
     });
 
     $('#cobros_2').DataTable({
@@ -41,10 +129,61 @@ $(document).on('ready',function(){
         'language':español
     });
 
+    $('#cobros_3').DataTable({
+        'paging':true,
+        'info':true,
+        'filter':true,
+        'stateSave':true,
+        'ajax':{
+            "url": base_url+"pagos/cronograma_estadia",
+            "type":"POST",
+            dataSrc: ''
+        },
+        'columns':[
+            {data: 'cod_cronograma_estadia'},
+            {data: 'cod_estadia'},
+            {data: 'nro_cuota'},
+            {data: 'cod_cliente'},
+            {data: 'nombres'},
+            {data: 'apellido_paterno'},
+            {data: 'apellido_materno'},
+            {data: 'fecha'},
+            {data: 'monto'},
+            {"orderable":true,
+                render:function(data, type, row){
+                return '<input type="checkbox" name="cronograma_estadia" onClick="ingresar_datos_e(\''+row.cod_cronograma_estadia+'\',\''+row.monto+'\')" id="ce'+row.cod_cronograma_estadia+'" value="\''+row.cod_cronograma_estadia+'\'"/>'+'<label for="ce'+row.cod_cronograma_estadia+'"></label>'
+                }
+            }
+        ],
+        "order":[[0, "asc"]],
+        'language':español
+    });
+
     var cronogramas_seleccionados = Array();
+    var cronogramas_seleccionados_e = Array();
     var amortizacion_venta = Array();
+    var amortizacion_venta_e = Array();
     var monto_cronogramas = Array();
+    var monto_cronogramas_e = Array();
     var monto_total = Array();
+
+    $('#cobros_realizados').click(function(){
+        $('#cobros_pendientes').click(function(){
+            $('#monto_a_amortizar_e_div').attr('style', 'display:block')
+        })
+    })
+    $('#cobros_pendientes').click(function(){
+        $('#monto_a_amortizar_e_div').attr('style', 'display:none')
+    })
+    $('#productos_li').click(function(){
+        $('#monto_a_amortizar_div').attr('style', 'display:block')
+        $('#monto_a_amortizar_e_div').attr('style', 'display:none')
+    })
+    $('#estadias_li').click(function(){
+        $('#monto_a_amortizar_div').attr('style', 'display:none')
+        $('#monto_a_amortizar_e_div').attr('style', 'display:block')
+    })
+
 
     ingresar_datos = function(data1,data2){
         var cod_cronograma_ventas = data1;
@@ -80,50 +219,131 @@ $(document).on('ready',function(){
             monto_cronogramas.splice(pos,1);
             amortizacion_venta.splice(pos,1);
             monto_total.splice(pos,1);
-            console.log(cronogramas_seleccionados)
-            console.log(monto_cronogramas)
-            console.log(amortizacion_venta)
+            console.log(cronogramas_seleccionados);
+            console.log(monto_cronogramas);
+            console.log(amortizacion_venta);
             var monto_virtual = 0;
-            amortizacion_venta.forEach(function(i){
-                monto_virtual+=parseFloat(i);
+            var valor1 = amortizacion_venta.slice();
+            var valor2 = amortizacion_venta_e.slice();
+            valor2.concat(valor1);
+            valor2.forEach(function(y){
+                monto_virtual+=parseFloat(y);
+                console.log(monto_virtual)
             })
+            console.log(monto_virtual)
+            console.log(monto_cronogramas_e)
+            console.log(amortizacion_venta_e)
             $('#monto_cronograma').val(monto_virtual);
-            // console.log(monto_total);
+        }
+    }
 
+    ingresar_datos_e = function(data3, data4){
+        var cod_cronograma_estadia = data3
+        var monto_crono = parseFloat(data4);
+        console.log(monto_cronogramas_e)
+        if (cronogramas_seleccionados_e.includes(cod_cronograma_estadia)==false){
+            $('#amortizacion_venta').modal({backdrop: "static", keyboard: false})
+            $.post(base_url+'pagos/consultar_amortizacion_cronograma_movimiento',{
+                cod_cron: cod_cronograma_estadia,
+            },
+            function(data){
+                var datos = eval(data);
+                var suma_monto = 0;
+                if (datos != ''){
+                    for (var a=0; a<datos.length; a++){
+                        suma_monto += parseFloat(datos[a]['monto'])
+                        console.log(suma_monto, datos[a]['monto']);
+                    }
+                    var monto_restante = parseFloat(monto_crono) - parseFloat(suma_monto)
+                    console.log(monto_crono, suma_monto, monto_crono);
+                    $('#monto_restante').val(monto_restante);
+                    monto_cronogramas_e.push(monto_restante);
+                }
+                else{
+                    $('#monto_restante').val(monto_crono);
+                    monto_cronogramas_e.push(monto_crono);
+                }
+            })
+            cronogramas_seleccionados_e.push(cod_cronograma_estadia);
+            console.log(cronogramas_seleccionados_e);
+        }
+        else{
+            var pos = cronogramas_seleccionados_e.indexOf(cod_cronograma_estadia);
+            cronogramas_seleccionados_e.splice(pos,1);
+            monto_cronogramas_e.splice(pos,1);
+            amortizacion_venta_e.splice(pos,1);
+            monto_total.splice(pos,1);
+            console.log(cronogramas_seleccionados_e);
+            console.log(monto_cronogramas_e);
+            console.log(amortizacion_venta_e);
+            var monto_virtual = 0;
+            var valor1 = amortizacion_venta.slice();
+            var valor2 = amortizacion_venta_e.slice();
+            valor1.concat(valor2);
+            valor1.forEach(function(x){
+                monto_virtual+=parseFloat(x);
+                console.log(monto_virtual)
+            })
+            console.log(monto_virtual)
+            $('#monto_cronograma').val(monto_virtual);
         }
     }
 
     cancelar = function(){
+        var copia_cs = cronogramas_seleccionados.slice();
+        var copia_cs_e = cronogramas_seleccionados_e.slice();
         var cron = cronogramas_seleccionados.pop();
+        var cron_e = cronogramas_seleccionados_e.pop();
+        var pos = copia_cs.indexOf(cron);
+        var pos_e = copia_cs.indexOf(cron_e);
+        monto_cronogramas.splice(pos, 1)
+        monto_cronogramas_e.splice(pos_e, 1)
         $('#cv'+cron+'').prop('checked', false);
+        $('#ce'+cron_e+'').prop('checked', false);
         $('#amortizacion_venta').modal('hide');
     }
 
     confirmar = function(){
-        amortizacion_venta.push($('#monto_a_amortizar').val())
-        console.log(amortizacion_venta)
-        // monto_total.push($('#monto_amortizar').val());
-        var monto_virtual = 0;
-        amortizacion_venta.forEach(function(i){
-            monto_virtual+=parseFloat(i);
-        })
-        $('#monto_cronograma').val(monto_virtual);
-        $('#amortizacion_venta').modal('hide');
-        $.post(base_url+'pagos/consultar_fecha_caja',
-        {
-            empleado:$('#empleado').val()
-        },
-        function(dataa){
-            var datosa = eval(dataa);
-            datosa.forEach(function(b){
-                $('#fecha_inicio').val(b['fecha_inicio'])
-                $('#caja').val(b['cod_caja'])
-                console.log($('#fecha_inicio').val())
-                console.log($('#caja').val())
+        if ($('#monto_a_amortizar_e').val() || $('#monto_a_amortizar').val() != ''){
+            if ($('#monto_a_amortizar_e').val() != ''){
+            amortizacion_venta_e.push($('#monto_a_amortizar_e').val())
+            }else{
+               amortizacion_venta.push($('#monto_a_amortizar').val())
+            }
+            console.log(amortizacion_venta)
+            console.log(amortizacion_venta_e)
+            var monto_virtual = 0;
+            var monto_virtual_e = 0;
+            amortizacion_venta.forEach(function(i){
+                monto_virtual+=parseFloat(i);
+                console.log(monto_virtual)
             })
-        })
+            amortizacion_venta_e.forEach(function(j){
+                monto_virtual_e+=parseFloat(j);
+                console.log(monto_virtual_e)
+            })
+            var monto_suma = parseFloat(monto_virtual) + parseFloat(monto_virtual_e)
+            $('#monto_cronograma').val(parseFloat(monto_suma));
+            $('#amortizacion_venta').modal('hide');
+            $.post(base_url+'pagos/consultar_fecha_caja',
+            {
+                empleado:$('#empleado').val()
+            },
+            function(dataa){
+                var datosa = eval(dataa);
+                datosa.forEach(function(b){
+                    $('#fecha_inicio').val(b['fecha_inicio'])
+                    $('#caja').val(b['cod_caja'])
+                    console.log($('#fecha_inicio').val())
+                    console.log($('#caja').val())
+                })
+            })
+        }else{
+            alert('¡Introduzca el monto a amortizar por favor!')
+        }
     }
 
+    $('#cobrar').attr
     cobrar = function(){
         $.post(base_url+'pagos/guardar_cobro',
         {
@@ -135,39 +355,51 @@ $(document).on('ready',function(){
             concepto_movimiento_cronograma:$('#concepto_movimiento_cronograma').val(),
             monto_cronograma:$('#monto_cronograma').val(),
             ventas:cronogramas_seleccionados,
+            ventas_e:cronogramas_seleccionados_e,
             monto:amortizacion_venta,
+            monto_e:amortizacion_venta_e,
             monto_cronogramas:monto_cronogramas,
+            monto_cronogramas_e:monto_cronogramas_e,
         })
-        location.reload();
+        alert('El cobro se efectuó correctamente');
+        locate.reload();
     }
+
+    //Generador
 
     var seleccionadop = new Array();
     var seleccionadoe = new Array();
-    var precio_preliminar = new Array();
+    var monto_ventas = new Array();
+    var monto_estadia = new Array();
     var subtotal = 0;
 
-    var buscar_cliente_producto = document.getElementById('buscar_cliente_producto');
-    var buscar_cliente_estadia = document.getElementById('buscar_cliente_estadia');
+    var buscar_cliente_producto = $('#buscar_cliente_producto');
+    var buscar_cliente_estadia = $('#buscar_cliente_estadia');
 
-    var detalle_cliente_producto = document.getElementById('detalle_cliente_producto');
-    var detalle_cliente_estadia = document.getElementById('detalle_cliente_estadia');
+    var detalle_cliente_producto = $('#detalle_cliente_producto');
+    var detalle_cliente_estadia = $('#detalle_cliente_estadia');
 
     $('#forma_pago_div').attr('style','display:none');
     $('#tipo_documento_div').attr('style','display:none');
-    $('#tarjeta_div').attr('style','display:none');
     $('#ruc_div').attr('style','display:none');
     $('#periodo_div').attr('style','display:none');
     $('#cuota_div').attr('style','display:none');
     $('#inicial_div').attr('style','display:none');
     $('#monto_contado_div').attr('style','display:none');
     $('#fecha_contado_div').attr('style','display:none');
+    $('#fecha_contado').val(output1);
     $('#fecha_credito_div').attr('style','display:none');
     $('#concepto_movimiento_div').attr('style','display:none');
 
     $('a[href="#next"]').click(function(){
+    $('#monto_credito_div').attr('style','display:none');
         $('a[href="#wizard_horizontal-h-1"]').click(function(){
             seleccionadop.forEach(function(i){
-            $('#p'+i+'').prop('checked', true);
+                $('#p'+i+'').prop('checked', true);
+                $('#cp'+i+'').prop('checked', true);
+            });
+            seleccionadoe.forEach(function(i){
+                $('#ce'+i+'').prop('checked', true);
             });
         });
         $.post(base_url+'pagos/consultar_cliente_producto',
@@ -182,14 +414,15 @@ $(document).on('ready',function(){
                         '<td>'+datos[i]['nombres']+'</td>'+
                         '<td>'+datos[i]['apellido_paterno']+'</td>'+
                         '<td>'+datos[i]['apellido_materno']+'</td>'+
-                        '<td>'+datos[i]['fecha_venta']+'</td>'+
-                        '<td><input type="checkbox" name="listado_p" value="'+datos[i]['cod_venta']+'" id="p'+datos[i]['cod_venta']+'"><label for="p'+datos[i]['cod_venta']+'"></label></td>'+
+                        '<td>'+datos[i]['fecha_venta']+'</td(>'+
+                        '<td><input type="checkbox" onClick="check_ventas('+datos[i]['cod_venta']+')" name="listado_p" value="'+datos[i]['cod_venta']+'" id="cp'+datos[i]['cod_venta']+'"><label for="cp'+datos[i]['cod_venta']+'"></label></td>'+
                         '</tr>';
                     if ($('#ruc').val()==''){
                         $('#ruc').val(datos[i]['ruc'])
                     }
                 }
-                buscar_cliente_producto.innerHTML = html;
+                buscar_cliente_producto.html(html);
+                /*
                 $('input[type=checkbox]').click(function(){
                     var elemento = $(this).val();
                     if (seleccionadop.includes(elemento)){
@@ -204,6 +437,7 @@ $(document).on('ready',function(){
                         }
                     })
                 })
+                */
             }
         )
 
@@ -212,7 +446,7 @@ $(document).on('ready',function(){
             function(data){
                 var html = '';
                 var datos = eval(data);
-                for (i = 0; i<datos.length; i++){
+                for (var i = 0; i<datos.length; i++){
                     html+='<tr>'+
                         '<td>'+datos[i]['cod_estadia']+'</td>'+
                         '<td>'+datos[i]['cod_cliente']+'</td>'+
@@ -222,10 +456,11 @@ $(document).on('ready',function(){
                         '<td>'+datos[i]['fecha_reserva']+'</td>'+
                         '<td>'+datos[i]['fecha_ingreso']+'</td>'+
                         '<td>'+datos[i]['fecha_salida']+'</td>'+
-                        '<td><input type="checkbox" name="listado_e" value="'+datos[i]['cod_estadia']+'" id="e'+datos[i]['cod_estadia']+'"><label for="e'+datos[i]['cod_estadia']+'"></label></td>'+
+                        '<td><input type="checkbox" name="listado_e" onClick="check_estadia('+datos[i]['cod_estadia']+')" value="'+datos[i]['cod_estadia']+'" id="ce'+datos[i]['cod_estadia']+'"><label for="ce'+datos[i]['cod_estadia']+'"></label></td>'+
                         '</tr>';
                 }
-                buscar_cliente_estadia.innerHTML = html;
+                buscar_cliente_estadia.html(html);
+                /*
                 $('input[type=checkbox]').click(function(){
                     var elemento = $(this).val();
                     if (seleccionadoe.includes(elemento)){
@@ -240,8 +475,144 @@ $(document).on('ready',function(){
                         }
                     })
                 })
+                */
             }
         )
+    })
+
+        $('a[href="#previous"]').click(function(){
+            $('a[href="#wizard_horizontal-h-1"]').click(function(){
+                seleccionadop.forEach(function(i){
+                    $('#cp'+i+'').prop('checked', true);
+                });
+                seleccionadoe.forEach(function(i){
+                    $('#ce'+i+'').prop('checked', true);
+                });
+            });
+        })
+    check_ventas = function(arg){
+        var elemento = arg;
+        if (seleccionadop.includes(elemento)){
+            var pos = seleccionadop.indexOf(elemento);
+            seleccionadop.splice(pos,1);
+            monto_ventas.splice(pos,1);
+            console.log(seleccionadop);
+            console.log(monto_ventas);
+        }else{
+            seleccionadop.push(elemento);
+            console.log(seleccionadop);
+            $('#detalle_cliente_producto').html('');
+            seleccionadop.forEach(function(e){
+                var precio_venta = 0;
+                $.post(base_url+'pagos/detalle_cliente_producto',
+                    {
+                        cod_cliente:$('#dni_cliente').val(),
+                        cod_venta:e,
+                    },
+                    function(data){
+                        var html = '';
+                        var sub_total = 0;
+                        var datos = eval(data);
+                        console.log(datos);
+                        for (i = 0; i<datos.length; i++){
+                            html+='<tr>'+
+                                '<td>'+datos[i]['cod_venta']+'</td>'+
+                                '<td>'+datos[i]['cod_persona']+'</td>'+
+                                '<td>'+datos[i]['nombres']+'</td>'+
+                                '<td>'+datos[i]['apellido_paterno']+'</td>'+
+                                '<td>'+datos[i]['cantidad']+'</td>'+
+                                '<td>'+datos[i]['producto']+'</td>'+
+                                '<td>'+datos[i]['precio']+'</td>'+
+                                '<td>'+datos[i]['descuento']+'</td>'+
+                                '<td>'+datos[i]['cod_parametro']+'</td>'+
+                                '</tr>';
+                            sub_total += parseFloat(datos[i]['precio'])*parseInt(datos[i]['cantidad']);
+                        }
+                        precio_venta +=  sub_total;
+                        $('#detalle_cliente_producto').append(html);
+                        if(monto_ventas.includes(precio_venta)==false){
+                           monto_ventas.push(precio_venta);
+                        }
+                        console.log(monto_ventas);
+                    }
+                )
+            })
+        }
+    }
+    var precios_servicios = Array();
+    var precios_habitaciones = Array();
+    var precios_habitacion_servicio = Array();
+    check_estadia = function(arg1){
+        var elemento = arg1;
+        if (seleccionadoe.includes(elemento)){
+            var pos = seleccionadoe.indexOf(elemento);
+            seleccionadoe.splice(pos,1);
+            monto_estadia.splice(pos,1);
+            precios_habitaciones.splice(pos,1);
+            precios_servicios.splice(pos,1);
+            console.log(seleccionadoe);
+            console.log(monto_estadia);
+        }else{
+            seleccionadoe.push(elemento);
+            console.log(seleccionadoe);
+            $('#detalle_cliente_estadia').html('');
+            seleccionadoe.forEach(function(u){
+                var precio_estadia = 0;
+                $.post(base_url+'pagos/detalle_cliente_estadia',
+                    {
+                        cod_estadia:u,
+                    },
+                    function(data){
+                        var html = '';
+                        var precio_habitacion = 0;
+                        var habitacion = '';
+                        var sub_total1 = 0;
+                        var datos = eval(data);
+                        // console.log(datos);
+                        for (var l = 0; l<datos.length; l++){
+                            html+='<tr>'+
+                                '<td>'+datos[l]['cod_estadia']+'</td>'+
+                                '<td>'+datos[l]['cod_habitacion']+'</td>'+
+                                '<td>'+datos[l]['tipo_habitacion']+'</td>'+
+                                '<td>'+datos[l]['precio_tipo_habitacion']+'</td>'+
+                                '<td>'+calcularDias(datos[l]['fecha_ingreso'], datos[l]['fecha_salida'])+' días</td>'+
+                                '</tr>';
+                        }
+                        $('#detalle_cliente_estadia').append(html);
+                       // monto_estadia.push(precio_estadia);
+                       //  console.log(monto_estadia);
+                })
+                $.post(base_url+'pagos/precio_servicios',
+                {
+                    cod_estadia: u,
+                },
+                function(datax){
+                    var datosx = eval(datax);
+                    var suma_precios_s = 0;
+                    datosx.forEach(function(xy){
+                        suma_precios_s += parseFloat(xy['precio'])
+                    })
+                    if (precios_servicios.includes(suma_precios_s)==false){
+                        precios_servicios.push(suma_precios_s)
+                        console.log(precios_servicios)
+                    }
+                })
+
+            })
+
+        }
+    }
+
+    $('#fecha_credito').change(function(){
+        // if ($(this).val() == output1){
+        //     $('#forma_pago_div').attr('style','display:block');
+        //     $('#tipo_documento_div').attr('style','display:block');
+        //     $('#monto_inicial_div').attr('style','display:block');
+        // }else{
+        //     $('#forma_pago_div').attr('style','display:none');
+        //     $('#tipo_documento_div').attr('style','display:none');
+        //     $('#monto_inicial_div').attr('style','display:none');
+        // }
     })
 
     $('#tipo_t').change(function(){
@@ -249,29 +620,28 @@ $(document).on('ready',function(){
             if($('#tipo_t').val() == '1'){
                $('#forma_pago_div').attr('style','display:block');
                 $('#tipo_documento_div').attr('style','display:block');
-                $('#tarjeta_div').attr('style','display:block');
                 $('#ruc_div').attr('style','display:block');
                 $('#periodo_div').attr('style','display:none');
                 $('#cuota_div').attr('style','display:none');
-                $('#inicial_div').attr('style','display:none');
+                $('#monto_credito_div').attr('style','display:none');
                 $('#monto_contado_div').attr('style','display:block');
-                $('#fecha_contado_div').attr('style','display:block');
+                //$('#fecha_contado_div').attr('style','display:none');
                 $('#fecha_credito_div').attr('style','display:none');
                 $('#concepto_movimiento_div').attr('style','display:block');
             }
 
             if($('#tipo_t').val() == '2'){
-                $('#forma_pago_div').attr('style','display:block');
-                $('#tipo_documento_div').attr('style','display:block');
-                $('#tarjeta_div').attr('style','display:block');
-                $('#ruc_div').attr('style','display:block');
+
+                $('#forma_pago_div').attr('style','display:none');
+                $('#tipo_documento_div').attr('style','display:none');
+                $('#ruc_div').attr('style','display:none');
                 $('#periodo_div').attr('style','display:block');
                 $('#cuota_div').attr('style','display:block');
-                $('#inicial_div').attr('style','display:block');
+                $('#monto_credito_div').attr('style','display:none');
                 $('#monto_contado_div').attr('style','display:block');
                 $('#fecha_contado_div').attr('style','display:none');
                 $('#fecha_credito_div').attr('style','display:block');
-                $('#concepto_movimiento_div').attr('style','display:block');
+                $('#concepto_movimiento_div').attr('style','display:none');
             }
 
             $('#detalle_cliente_producto').html('');
@@ -301,18 +671,23 @@ $(document).on('ready',function(){
                                 '</tr>';
                             var precio = parseFloat(datos[i]['precio'])*parseInt(datos[i]['cantidad']);
                             precio_pr += precio;
-
                         }
                         subtotal +=  precio_pr;
                         console.log(subtotal)
-                        $('#monto_contado').val(parseFloat(subtotal));
+                        var total = 0;
+                        monto_ventas.concat(precios_habitacion_servicio).forEach(function(q){
+                            total+=parseFloat(q);
+                        })
+                        $('#monto_contado').val(parseFloat(total));
                         $('#detalle_cliente_producto').append(html);
                     }
                 )
             })
 
             $('#detalle_cliente_estadia').html('');
-            console.log(seleccionadoe)
+            console.log(seleccionadoe);
+            var precio_total = 0;
+            precios_habitaciones.length=0;
             seleccionadoe.forEach(function(u){
                 $.post(base_url+'pagos/detalle_cliente_estadia',
                     {
@@ -321,17 +696,28 @@ $(document).on('ready',function(){
                     function(data1){
                         var html = '';
                         var datos1 = eval(data1);
+                        var total = 0;
                         console.log(datos1);
                         for (i = 0; i<datos1.length; i++){
+                            precios_habitaciones.push(calcularPrecios(datos1[i]['fecha_ingreso'], datos1[i]['fecha_salida'], datos1[i]['precio_tipo_habitacion']));
+                            console.log(precios_habitaciones);
+                            total += calcularPrecios(datos1[i]['fecha_ingreso'], datos1[i]['fecha_salida'], datos1[i]['precio_tipo_habitacion']);
+                            console.log(total, calcularPrecios(datos1[i]['fecha_ingreso'], datos1[i]['fecha_salida'], datos1[i]['precio_tipo_habitacion']));
                             html+='<tr>'+
+                                '<td>'+datos1[i]['cod_estadia']+'</td>'+
                                 '<td>'+datos1[i]['cod_habitacion']+'</td>'+
                                 '<td>'+datos1[i]['tipo_habitacion']+'</td>'+
                                 '<td>'+datos1[i]['precio_tipo_habitacion']+'</td>'+
-                                '<td>'+datos1[i]['servicio']+'</td>'+
-                                '<td>'+datos1[i]['precio']+'</td>'+
+                                '<td>'+calcularDias(datos1[i]['fecha_ingreso'], datos1[i]['fecha_salida'])+' días</td>'+
                                 '</tr>';
                         }
                         $('#detalle_cliente_estadia').append(html);
+                        precio_total+=total;
+                        // var total = 0;
+                        // precios_habitacion_servicio.concat(monto_ventas).forEach(function(t){
+                        //     total+=parseFloat(t);
+                        // })
+                        $('#monto_contado').val(parseFloat(precio_total));
                     }
                 )
             })
@@ -339,28 +725,158 @@ $(document).on('ready',function(){
     })
 
     $('a[href="#finish"]').click(function(){
-        $.post(base_url+'pagos/procesar_pago',
-            {
-                tipo_t:$('#tipo_t').val(),
-                compras:seleccionadop,
-                dni_cliente:$('#dni_cliente'),
-                estadias:seleccionadoe,
-                forma_pago:$('#forma_pago').val(),
-                tipo_documento:$('#tipo_documento').val(),
-                tarjeta:$('#tarjeta').val(),
-                ruc:$('#ruc').val(),
-                periodo:$('#periodo').val(),
-                cuota:$('#cuota').val(),
-                inicial:$('#inicial').val(),
-                monto_contado:$('#monto_contado').val(),
-                fecha_contado:$('#fecha_contado').val(),
-                fecha_credito:$('#fecha_credito').val(),
-                concepto_movimiento:$('#concepto_movimiento').val(),
-        },
-              function(data1){
-                if (data1  == true){
-                    alert(':v')
-                }
-        })
+        // alert($('#tipo_t').val())
+        registrar_cronogramas();
     })
+
+    restaFechas = function(f1,f2)
+    {
+        var aFecha1 = f1.split('-');
+        var aFecha2 = f2.split('-');
+        var fFecha1 = Date.UTC(aFecha1[0],aFecha1[1]-1,aFecha1[2]);
+        var fFecha2 = Date.UTC(aFecha2[0],aFecha2[1]-1,aFecha2[2]);
+        var dif = fFecha2-fFecha1;
+        var dias = Math.floor(dif / (1000 * 60 * 60 * 24));
+        return dias;
+    }
+    function editar_fecha(fecha, intervalo, dma, simbolo) {
+
+      var simbolo = simbolo || "-";
+      var arrayFecha = fecha.split(simbolo);
+      var dia = arrayFecha[2];
+      var mes = arrayFecha[1];
+      var anio = arrayFecha[0];
+
+      var fechaInicial = new Date(anio, mes - 1, dia);
+      var fechaFinal = fechaInicial;
+      if(dma=="m" || dma=="M"){
+        fechaFinal.setMonth(fechaInicial.getMonth()+parseInt(intervalo));
+      }else if(dma=="y" || dma=="Y"){
+        fechaFinal.setFullYear(fechaInicial.getFullYear()+parseInt(intervalo));
+      }else if(dma=="d" || dma=="D"){
+        fechaFinal.setDate(fechaInicial.getDate()+parseInt(intervalo));
+      }else{
+        return fecha;
+      }
+      dia = fechaFinal.getDate();
+      mes = fechaFinal.getMonth() + 1;
+      anio = fechaFinal.getFullYear();
+
+      dia = (dia.toString().length == 1) ? "0" + dia.toString() : dia;
+      mes = (mes.toString().length == 1) ? "0" + mes.toString() : mes;
+
+      return anio + "-" + mes + "-" + dia;
+    }
+    registrar_cronogramas = function(){
+        console.log(seleccionadoe)
+        if ($('#tipo_t').val() == '2'){
+            if (seleccionadop.length > 0){
+                for(var v = 0; v<seleccionadop.length; v++){
+                    for (var p=0; p<$('#cuota').val(); p++){
+                        var monto_cronograma = parseFloat(monto_ventas[v])/parseFloat($('#cuota').val())
+                        fecha_credito = $('#fecha_credito').val();
+                        if ($('#periodo').val() == 1){
+                            fecha_crono = editar_fecha($('#fecha_credito').val(), p, 'd', '-');
+                        }
+                        if ($('#periodo').val() == 2){
+                            var dias = parseInt(p)*7
+                            fecha_crono = editar_fecha($('#fecha_credito').val(), dias, 'd', '-');
+                        }
+                        if ($('#periodo').val() == 3){
+                            fecha_crono = editar_fecha($('#fecha_credito').val(), p, 'm', '-');
+                        }
+                        console.log(fecha_crono);
+                        var nro_cuota = parseInt(p)+1
+                        $.post(base_url+'pagos/ventas_credito',
+                            {
+                                cod_venta: seleccionadop[v],
+                                fecha_vencimiento: fecha_crono,
+                                nro_cuota: nro_cuota,
+                                monto: monto_cronograma,
+                                estado: '1',
+                            },
+                            function(datav){
+                                if (datav == true){
+                                    alert('Cronograma de ventas generado.');
+                                }
+                                location.reload();
+                            }
+                        )
+                    }
+                    $.post(base_url+'pagos/actualizar_venta',
+                    {
+                        cod_venta: seleccionadop[v],
+                    })
+                }
+            }
+            console.log(seleccionadoe.length)
+            if (seleccionadoe.length > 0){
+                for(var e = 0; e<seleccionadoe.length; e++){
+                    var cuota = $('#cuota').val();
+                    for (var s = 0; s<cuota; s++){
+                        console.log('s'+s+'')
+                        var precio_estadia = parseFloat(precios_habitaciones[e])+parseFloat(precios_servicios[e])
+                        var monto_cronograma = parseFloat(precio_estadia)/parseFloat($('#cuota').val())
+                        if ($('#periodo').val() == 1){
+                            fecha_crono = editar_fecha($('#fecha_credito').val(), s, 'd', '-');
+                        }
+                        if ($('#periodo').val() == 2){
+                            fecha_crono = editar_fecha($('#fecha_credito').val(), s, 'm', '-');
+                        }
+                        if ($('#periodo').val() == 3){
+                            fecha_crono = editar_fecha($('#fecha_credito').val(), s, 'y', '-');
+                        }
+                        var nro_cuota = parseInt(s)+1
+                        $.post(base_url+'pagos/estadias_credito',
+                            {
+                                cod_estadia: seleccionadoe[e],
+                                fecha: fecha_crono,
+                                nro_cuota: nro_cuota,
+                                monto: monto_cronograma,
+                                estado: '1',
+                            },
+                            function(datae){
+                                if (datae == true){
+                                    alert('Cronograma de estadía registrado correctamente.')
+
+                                }
+                                location.reload();
+                            }
+                        )
+                    }
+                    $.post(base_url+'pagos/actualizar_estados',
+                        {
+                            cod_estadia: seleccionadoe[e],
+                            fecha_contado: output1,
+                        }
+                    )
+                }
+            }
+        }else
+            {
+                $.post(base_url+'pagos/procesar_pago',
+                    {
+                        dni_cliente:$('#dni_cliente').val(),
+                        empleado:$('#empleado').val(),
+                        tipo_t:$('#tipo_t').val(),
+                        forma_pago:$('#forma_pago').val(),
+                        tipo_documento:$('#tipo_documento').val(),
+                        monto_contado:$('#monto_contado').val(),
+                        fecha_contado:$('#fecha_contado').val(),
+                        concepto_movimiento:$('#concepto_movimiento').val(),
+                        ventas:seleccionadop,
+                        estadias:seleccionadoe,
+                        monto_ventas:monto_ventas,
+                        precios_habitaciones:precios_habitaciones,
+                        precios_servicios:precios_servicios,
+                    },
+                        function(data1){
+                        if (data1  == true){
+                            alert(':v')
+                        }
+                        // location.reload()
+                })
+            }
+    }
+
 })

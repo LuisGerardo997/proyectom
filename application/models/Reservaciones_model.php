@@ -5,9 +5,11 @@ class Reservaciones_model extends CI_Model{
     parent::__construct();
   }
   function consultar(){
-    $this->db->select('cod_estadia, cod_cliente, cod_empleado, fecha_reserva, fecha_ingreso, fecha_salida');
-    $this->db->where('estado','1');
-    $data = $this->db->get('estadia');
+    $this->db->select('r.cod_estadia, r.cod_cliente, e.estado_estadia estado, r.fecha_reserva, r.fecha_ingreso, r.fecha_salida');
+    $this->db->join('estado_estadia e', 'r.estado = e.cod_estado_estadia');
+    $this->db->where('estado', '1');
+    $this->db->or_where('estado', '2');
+    $data = $this->db->get('estadia r');
     return $data->result_array();
   }
   function consultar_estadia($arg){
@@ -28,8 +30,8 @@ class Reservaciones_model extends CI_Model{
     return $data->result_array();
   }
   function actualizar($cod,$hab){
-    $this->db->where('cod_cargo',$cod);
-    $this->db->update('cargo',$hab);
+    $this->db->where('cod_estadia',$cod);
+    $this->db->update('estadia',$hab);
     if($this->db->affected_rows()>0){
       return true;
     }else{
@@ -61,9 +63,9 @@ class Reservaciones_model extends CI_Model{
       return false;
     }
   }
-  function eliminar($cod, $hab){
-    $this->db->where('cod_cargo', $cod);
-    $this->db->update('cargo', $hab);
+  function eliminar($cod, $estado){
+    $this->db->where('cod_estadia', $cod);
+    $this->db->update('estadia', $estado);
     if($this->db->affected_rows()>0){
       return true;
     }else{
@@ -82,12 +84,14 @@ class Reservaciones_model extends CI_Model{
           $num = $num+1;
           return $num;
       }
-  function room_list($arg){
+  function room_list($arg, $arg1){
     $this->db->select('h.cod_habitacion, th.tipo_habitacion, h.piso, th.precio_tipo_habitacion precio');
-    $this->db->group_start();
-    $where = 'h.cod_habitacion like "%'.$arg.'%" OR th.tipo_habitacion LIKE "%'.$arg.'%" OR h.piso LIKE "%'.$arg.'%" OR th.precio_tipo_habitacion LIKE "%'.$arg.'%"';
-    $this->db->where($where);
-    $this->db->group_end();
+    if ($arg != '' or $arg1 !=''){
+      $this->db->group_start();
+      $where = ("h.cod_habitacion NOT IN (SELECT cod_habitacion FROM habitacion_estadia WHERE (fecha_ingreso BETWEEN '".$arg."' AND '".$arg1."') OR (fecha_salida BETWEEN '".$arg."' AND '".$arg1."'))");
+      $this->db->where($where);
+      $this->db->group_end();
+    };
     $this->db->where('h.cod_estado_habitacion', 1);
     $this->db->join('tipo_habitacion th', 'th.cod_tipo_habitacion = h.cod_tipo_habitacion');
     $this->db->from('habitacion h');
@@ -167,5 +171,13 @@ class Reservaciones_model extends CI_Model{
     }else{
       return false;
     }
+  }
+  function habitaciones_reservadas($arg, $status){
+    $this->db->select('he.cod_habitacion');
+    $this->db->join('habitacion h', 'h.cod_habitacion = he.cod_habitacion');
+    $this->db->where('he.cod_estadia', $arg);
+    $this->db->where('h.cod_estado_habitacion', $status);
+    $resultado = $this->db->get('habitacion_estadia he');
+    return $resultado->result();
   }
 }

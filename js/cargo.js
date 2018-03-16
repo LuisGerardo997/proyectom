@@ -38,14 +38,14 @@ editClient = function(cod_cargo, area, descripcion, cargo){
     $('#cod_cargo').val(cod_cargo);
     $("#area option:contains('"+area+"')").attr("selected",true);
     $('#descripcion').val(descripcion);
-    $('#cargo').val(cargo);
+    $('#cargo_e').val(cargo);
     enviar = function(){
         $.post(base_url+"cargo/actualizar",
         {
             cod_cargo:$('#cod_cargo').val(),
             area:$('#area').val(),
             descripcion:$('#descripcion').val(),
-            cargo:$('#cargo').val(),
+            cargo:$('#cargo_e').val(),
         },
         function(data){
             if (data == 1){

@@ -4,9 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-    <title>Log-in | Residencial Río</title>
+    <title>Log-in | Costa Azul</title>
     <!-- Favicon-->
-    <link rel="icon" href="<?=base_url() ?>images/logo1.ico" type="image/x-icon">
+    <link rel="icon" href="<?=base_url() ?>images/icon/logo_material.ico" type="image/x-icon">
 
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&subset=latin,cyrillic-ext" rel="stylesheet" type="text/css">
@@ -31,7 +31,7 @@
 <body class="login-page">
     <div class="login-box">
         <div class="logo">
-            <a href="javascript:void(0);">Residencial<b>Río</b></a>
+            <a href="javascript:void(0);">Costa<b>Azul</b></a>
             <small>Sistema de información para el control de reservas y estadías</small>
         </div>
         <div class="card">
