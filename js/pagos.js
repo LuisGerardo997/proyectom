@@ -1,5 +1,6 @@
 function calcularPrecios(arg1, arg2, arg3)
 {
+    console.log(arg1, arg2, arg3);
     var fecha_ingreso = new Date(arg1);
     var fecha_salida= new Date(arg2);
     var dias = (fecha_salida - fecha_ingreso)/86400000;
@@ -16,6 +17,10 @@ function calcularDias(arg1, arg2)
     return dias;
 }
 
+    var seleccionadop = new Array();
+    var seleccionadoe = new Array();
+    var monto_ventas = new Array();
+    var monto_estadia = new Array();
 $(document).on('ready',function(){
     var d = new Date();
 
@@ -63,7 +68,11 @@ $(document).on('ready',function(){
             {data: 'monto'},
             {"orderable":true,
                 render:function(data, type, row){
-                return '<type="button" class="btn bg-green btn-circle waves-effect waves-circle waves-float">'+'<i class="material-icons">details</i>'
+                  return '<div class="btn-group" role="group">'+
+                  '<button id="btnGroupVerticalDrop1" type="button data-toggle="modal" data-target="#venta_detalles"" class="btn white waves-effect" onClick="VerDetalle(\''+row.cod_cronograma_venta+'\')">'+
+                  'Ver más'+
+                  '</button>'+
+                  '</div>'
                 }
             }
         ],
@@ -167,6 +176,35 @@ $(document).on('ready',function(){
     var monto_cronogramas_e = Array();
     var monto_total = Array();
 
+    VerDetalle = function(cronograma_ventas){
+      $('#venta_detalles').modal();
+      $('#dt_detalle').DataTable({
+          'paging':true,
+          'info':true,
+          'filter':true,
+          'stateSave':true,
+          'destroy':true,
+          'ajax':{
+              "url": base_url+"pagos/detalle_ventas",
+              "type":"POST",
+              "data": {cronograma_ventas:cronograma_ventas},
+              dataSrc: ''
+          },
+          'columns':[
+              {data: 'cod_producto'},
+              {data: 'producto'},
+              {data: 'marca'},
+              {data: 'tipo_producto'},
+              {data: 'precio'},
+              {data: 'descuento'},
+              {data: 'descripcion'},
+              {data: 'cantidad'},
+              ],
+      "order":[[0, "asc"]],
+      'language':español
+  });
+    }
+
     $('#cobros_realizados').click(function(){
         $('#cobros_pendientes').click(function(){
             $('#monto_a_amortizar_e_div').attr('style', 'display:block')
@@ -184,6 +222,53 @@ $(document).on('ready',function(){
         $('#monto_a_amortizar_e_div').attr('style', 'display:block')
     })
 
+    $('#dni_cliente').focus(function(){
+      $('#buscar_cliente').modal();
+      $('#client_dt').DataTable({
+          'paging':true,
+          'info':true,
+          'filter':true,
+          'stateSave':true,
+          'destroy':true,
+          'ajax':{
+              "url": base_url+"clientes/consultar_deudores",
+              "type":"POST",
+              dataSrc: ''
+          },
+          'columns':[
+              {'orderable': false,
+                render:function(data, type, row){
+                  return '<div class="col-md-1 col-lg-1 col-sm-1 col-xs-1">'+
+                          '<div class="form-group">'+
+                            '<div class="radio-button">'+
+                              '<input name="client_ls" onClick="get_value(\''+row.cod_persona+'\');" type="radio" id="'+row.cod_persona+'" />'+
+                              '<label for="'+row.cod_persona+'"</label>'+
+                            '</div>'+
+                          '</div>'+
+                        '</div>';
+                  }
+              },
+              {data: 'cod_persona'},
+              {data: 'nombres'},
+              {data: 'apellido_paterno'},
+              {data: 'apellido_materno'},
+              ],
+          "order":[[0, "asc"]],
+          'language':español
+      });
+      $('#confirm_cliente').click(function(){
+        $('#buscar_cliente').modal('hide');
+      })
+    })
+
+    get_value = function(cod_persona){
+      $('#dni_cliente').val(cod_persona);
+      $('a[href="#next"]').parent().attr('style', 'display:block');
+    };
+    cancelar_cliente = function(){
+      $('#dni_cliente').val('');
+      $('a[href="#next"]').parent().attr('style', 'display:none');
+    };
 
     ingresar_datos = function(data1,data2){
         var cod_cronograma_ventas = data1;
@@ -362,15 +447,11 @@ $(document).on('ready',function(){
             monto_cronogramas_e:monto_cronogramas_e,
         })
         alert('El cobro se efectuó correctamente');
-        locate.reload();
+        location.reload();
     }
 
     //Generador
 
-    var seleccionadop = new Array();
-    var seleccionadoe = new Array();
-    var monto_ventas = new Array();
-    var monto_estadia = new Array();
     var subtotal = 0;
 
     var buscar_cliente_producto = $('#buscar_cliente_producto');
@@ -460,22 +541,22 @@ $(document).on('ready',function(){
                         '</tr>';
                 }
                 buscar_cliente_estadia.html(html);
-                /*
-                $('input[type=checkbox]').click(function(){
-                    var elemento = $(this).val();
-                    if (seleccionadoe.includes(elemento)){
-                        var pos = seleccionadoe.indexOf(elemento);
-                        seleccionadoe.splice(pos,1);
-                        console.log(seleccionadoe);
-                    }
-                    $('input[name=listado_e]:checked').each(function(){
-                        if (seleccionadoe.includes($(this).val()) == false){
-                        seleccionadoe.push($(this).val());
-                        console.log(seleccionadoe);
-                        }
-                    })
-                })
-                */
+
+                // $('input[type=checkbox]').click(function(){
+                //     var elemento = $(this).val();
+                //     if (seleccionadoe.includes(elemento)){
+                //         var pos = seleccionadoe.indexOf(elemento);
+                //         seleccionadoe.splice(pos,1);
+                //         console.log(seleccionadoe);
+                //     }
+                //     $('input[name=listado_e]:checked').each(function(){
+                //         if (seleccionadoe.includes($(this).val()) == false){
+                //         seleccionadoe.push($(this).val());
+                //         console.log(seleccionadoe);
+                //         }
+                //     })
+                // })
+
             }
         )
     })
@@ -865,6 +946,8 @@ $(document).on('ready',function(){
                         fecha_contado:$('#fecha_contado').val(),
                         concepto_movimiento:$('#concepto_movimiento').val(),
                         ventas:seleccionadop,
+                        cantidad_ventas:seleccionadop.length,
+                        cantidad_estadias:seleccionadoe.length,
                         estadias:seleccionadoe,
                         monto_ventas:monto_ventas,
                         precios_habitaciones:precios_habitaciones,
@@ -874,7 +957,7 @@ $(document).on('ready',function(){
                         if (data1  == true){
                             alert(':v')
                         }
-                        // location.reload()
+                        location.reload()
                 })
             }
     }

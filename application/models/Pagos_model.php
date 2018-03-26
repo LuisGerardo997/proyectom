@@ -56,7 +56,7 @@ class Pagos_model extends CI_Model{
     }
 
     function consultar_fecha_caja($arg){
-        $query = 'SELECT * FROM `caja_persona` WHERE cod_persona = '.$arg.' order by fecha_inicio DESC LIMIT 1';
+        $query = 'SELECT * FROM caja_persona WHERE cod_persona = '.$arg.' order by fecha_inicio DESC LIMIT 1';
         $data = $this->db->query($query);
         return $data->result_array();
     }
@@ -95,9 +95,10 @@ class Pagos_model extends CI_Model{
     }
     */
 
-    function consultar_cliente_producto($arg){
+    function consultar_cliente_producto($arg, $array){
         $this->db->select('v.cod_venta, v.cod_cliente, p.nombres, p.apellido_paterno, p.apellido_materno, p.ruc, v.fecha_venta');
         $this->db->from('ventas v');
+        $this->db->where_not_in('v.cod_venta', $array);
         $this->db->where('v.estado','1');
         $this->db->where('v.cod_cliente',$arg);
         $this->db->join('persona p','p.cod_persona = v.cod_cliente');
@@ -105,10 +106,11 @@ class Pagos_model extends CI_Model{
         return $data->result_array();
     }
 
-    function consultar_cliente_estadia($arg){
+    function consultar_cliente_estadia($arg, $array){
         $this->db->select('e.cod_estadia, e.cod_cliente, e.cod_estadia, p.nombres, p.apellido_paterno, p.apellido_materno, e.fecha_reserva, e.fecha_ingreso, e.fecha_salida');
         $this->db->from('estadia e');
-        $this->db->where('e.estado','1');
+        $this->db->where_not_in('e.cod_estadia', $array);
+        $this->db->where('e.estado','2');
         $this->db->where('e.cod_cliente',$arg);
         $this->db->join('persona p','p.cod_persona = e.cod_cliente');
         $data = $this->db->get();
@@ -132,7 +134,7 @@ class Pagos_model extends CI_Model{
         $this->db->distinct();
         $this->db->select('e.cod_estadia,h.cod_habitacion, th.tipo_habitacion, th.precio_tipo_habitacion, e.fecha_ingreso, e.fecha_salida');
         $this->db->from('habitacion_estadia he');
-        $this->db->where('e.estado','1');
+        $this->db->where('e.estado','2');
         $this->db->where('he.cod_estadia',$arg);
         $this->db->order_by('h.cod_habitacion','asc');
         // $this->db->join('servicio s','s.cod_servicio = ds.cod_servicio', 'left');
@@ -332,5 +334,40 @@ class Pagos_model extends CI_Model{
         }else{
             return false;
         }
+    }
+    function estadias_procesadas()
+    {
+      $this->db->select('cod_estadia');
+      $this->db->distinct();
+      $resultado = $this->db->get('cronograma_estadia');
+      $data = array();
+      foreach ($resultado->result() as $result) {
+        array_push($data, $result->cod_estadia);
+      }
+      return $data;
+    }
+    function ventas_procesadas()
+    {
+      $this->db->select('cod_venta');
+      $this->db->distinct();
+      $resultado = $this->db->get('cronograma_ventas');
+      $data = array();
+      foreach ($resultado->result() as $result) {
+        array_push($data, $result->cod_venta);
+      }
+      return $data;
+    }
+    function detalle_ventas($arg1)
+    {
+      $this->db->select('p.cod_producto, p.producto, m.marca, tp.tipo_producto, p.precio_producto precio, dv.descuento, p.descripcion, dv.cantidad');
+      $this->db->from('cronograma_ventas cv');
+      $this->db->join('ventas v', 'v.cod_venta = cv.cod_venta');
+      $this->db->join('detalle_venta dv', 'dv.cod_venta = v.cod_venta');
+      $this->db->join('productos p', 'p.cod_producto = dv.cod_producto');
+      $this->db->join('tipo_producto tp', 'tp.cod_tipo_producto = p.cod_tipo_producto');
+      $this->db->join('marca m', 'm.cod_marca = p.cod_marca');
+      $this->db->where('cv.cod_venta', 1);
+      $resultado = $this->db->get();
+      return $resultado->result();
     }
 }

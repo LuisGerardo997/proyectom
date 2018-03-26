@@ -51,13 +51,13 @@
                                                     <section>
                                                         <!-- Nav tabs -->
                                                         <ul class="nav nav-tabs tab-nav-right text-right" role="tablist">
-                                                            <!-- <li role="presentation" class="active" id="realizar_venta"><a href="#cliente_producto" data-toggle="tab">Productos</a></li> -->
-                                                            <li role="presentation" class="active" id="realizar_venta1"><a href="#cliente_estadia" data-toggle="tab">Estadías</a></li>
+                                                            <li role="presentation" class="active" id="realizar_venta"><a href="#cliente_producto" data-toggle="tab">Productos</a></li>
+                                                            <li role="presentation" id="realizar_venta1"><a href="#cliente_estadia" data-toggle="tab">Estadías</a></li>
                                                         </ul>
 
                                                         <!-- Tab panes -->
                                                         <div class="tab-content">
-                                                            <!-- <div role="tabpanel" class="tab-pane animated flipInX active" id="cliente_producto">
+                                                            <div role="tabpanel" class="tab-pane animated flipInX active" id="cliente_producto">
                                                                 <div class="body">
                                                                     <div class="col-md-12 col-xs-12 col-sm-12">
                                                                         <div class="table-responsive">
@@ -78,8 +78,8 @@
                                                                         </div>
                                                                     </div>
                                                                 </div>
-                                                            </div> -->
-                                                            <div role="tabpanel" class="tab-pane animated flipInX active" id="cliente_estadia">
+                                                            </div>
+                                                            <div role="tabpanel" class="tab-pane animated flipInX" id="cliente_estadia">
                                                                 <div class="body">
                                                                     <div class="col-md-12 col-xs-12 col-sm-12">
                                                                         <div class="table-responsive">
@@ -256,13 +256,13 @@
                                                         <div class="row clearfix">
                                                             <!-- Nav tabs -->
                                                             <ul class="nav nav-tabs tab-nav-right text-right" role="tablist">
-                                                                <!-- <li role="presentation" class="active"><a href="#productos1" data-toggle="tab">Productos</a></li> -->
-                                                                <li role="presentation" class="active"><a href="#estadias1" data-toggle="tab">Estadías</a></li>
+                                                                <li role="presentation" class="active"><a href="#productos1" data-toggle="tab">Productos</a></li>
+                                                                <li role="presentation"><a href="#estadias1" data-toggle="tab">Estadías</a></li>
                                                             </ul>
 
                                                             <!-- Tab panes -->
                                                             <div class="tab-content">
-                                                                <!-- <div role="tabpanel" class="tab-pane animated flipInX active" id="productos1">
+                                                                <div role="tabpanel" class="tab-pane animated flipInX active" id="productos1">
                                                                     <div class="body">
                                                                         <div class="table-responsive">
                                                                             <table id="slct_table" class="table table-bordered table-striped table-hover dataTable" width="100%">
@@ -283,9 +283,9 @@
                                                                             </table>
                                                                         </div>
                                                                     </div>
-                                                                </div> -->
+                                                                </div>
 
-                                                                <div role="tabpanel" class="tab-pane animated flipInX active" id="estadias1">
+                                                                <div role="tabpanel" class="tab-pane animated flipInX" id="estadias1">
                                                                     <div class="body">
                                                                         <div class="table-responsive">
                                                                             <table class="table table-bordered table-striped table-hover" width="100%">
@@ -549,4 +549,67 @@
             </div>
         </div>
     </div>
+</div>
+<div class="modal fade" id="buscar_cliente" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                  <div class="modal-header text-center">
+                    <h3 class="title" id="largeModalLabel">Seleccione al cliente:</h3>
+                  </div>
+                  <div class="modal-body">
+                    <div class="table-responsive">
+                      <table id="client_dt" class="table dataTable table-bordered table-striped table-hover col-md-12 col-sm-12 col-lg-12 col-xs-12" width="100%">
+                        <thead>
+                          <tr>
+                            <th width="10" ></th>
+                            <th>DNI</th>
+                            <th>Nombres</th>
+                            <th>Apellido Paterno</th>
+                            <th>Apellido Materno</th>
+                          </tr>
+                        </thead>
+                      </table>
+                    </div>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-link waves-effect" id="confirm_cliente">Confirmar</button>
+                    <button type="button" class="btn btn-link waves-effect" onClick="cancelar_cliente();" data-dismiss="modal">Cancelar</button>
+                  </div>
+                </div>
+        </div>
+</div>
+<!-- Final de modals -->
+</div>
+<div class="modal fade" id="venta_detalles" tabindex="-1" role="dialog">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h3 class="title" id="largeModalLabel">Detalle de la venta</h3>
+      </div>
+      <div class="modal-body">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" id="contenedor_detalle">
+          <div class="table-responsive col-md-12">
+            <b>Datos de la venta</b>
+            <table id="dt_detalle" class="table table-bordered table-striped table-hover dataTable col-md-12" width="100%">
+              <thead>
+                <tr>
+                  <th>Código</th>
+                  <th>Producto</th>
+                  <th>Marca</th>
+                  <th>Tipo</th>
+                  <th>Precio</th>
+                  <th>Descuento</th>
+                  <th>Descripción</th>
+                  <th>Cantidad</th>
+                </tr>
+              </thead>
+            </table>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">Cerrar</button>
+      </div>
+    </div>
+  </div>
 </div>

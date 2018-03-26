@@ -1,0 +1,1 @@
+[23-Mar-2018 18:28:11 America/New_York] PHP Fatal error:  Can't use method return value in write context in /var/www/html/proyectom/application/controllers/Clientes.php on line 110

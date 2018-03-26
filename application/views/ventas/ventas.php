@@ -143,28 +143,15 @@ var empleado = '<?php echo $this->session->userdata('cod_p') ?>';
                                                                                                 <!-- Nav tabs -->
                                                                                                 <ul class="nav nav-tabs tab-nav-right text-right" role="tablist">
                                                                                                         <li role="presentation" id="productos_trigger" class="active"><a href="#Productos" data-toggle="tab">Productos</a></li>
-                                                                                                        <li role="presentation" id="servicios_trigger"><a href="#Servicios" data-toggle="tab">Servicios</a></li>
+                                                                                                        <!-- <li role="presentation" id="servicios_trigger"><a href="#Servicios" data-toggle="tab">Servicios</a></li> -->
                                                                                                 </ul>
 
                                                                                                 <!-- Tab panes -->
                                                                                                 <div class="tab-content">
                                                                                                         <div role="tabpanel" class="tab-pane animated flipInX active" id="Productos">
                                                                                                                 <div class="body">
-                                                                                                                        <div class="col-md-6 col-md-offset-3">
-                                                                                                                                <div class="form-group form-float">
-                                                                                                                                        <div class="form-line focused">
-                                                                                                                                                <label class="form-label">Buscar:</label>
-                                                                                                                                                <input type="text" name="buscar" id="buscar" class="form-control" >
-                                                                                                                                        </div>
-                                                                                                                                </div>
-                                                                                                                        </div>
-                                                                                                                </div>
-
-
-
-                                                                                                                <div class="body">
                                                                                                                         <div class="table-responsive col-md-10 col-md-offset-1">
-                                                                                                                                <table id="slct_table" class="table table-striped table-bordered table-hover" width="100%">
+                                                                                                                                <table id="products_dt" class="table dataTable table-striped table-bordered table-hover" width="100%">
                                                                                                                                         <thead>
                                                                                                                                                 <tr>
                                                                                                                                                         <th width="15%">Código</th>
@@ -173,7 +160,7 @@ var empleado = '<?php echo $this->session->userdata('cod_p') ?>';
                                                                                                                                                         <th width="30%">Tipo de producto</th>
                                                                                                                                                         <th>Precio</th>
                                                                                                                                                         <th>Stock</th>
-                                                                                                                                                        <th width="1px"><i class="material-icons">check</i></th>
+                                                                                                                                                        <th width="1px"></th>
                                                                                                                                                 </tr>
                                                                                                                                         </thead>
                                                                                                                                         <tbody id='body_pro'></tbody>
@@ -183,7 +170,7 @@ var empleado = '<?php echo $this->session->userdata('cod_p') ?>';
 
 
                                                                                                         </div>
-                                                                                                        <div role="tabpanel" class="tab-pane animated flipInX" id="Servicios">
+                                                                                                        <!-- <div role="tabpanel" class="tab-pane animated flipInX" id="Servicios">
                                                                                                                 <div class="body" id='buscar_servicio_div'>
                                                                                                                         <div class="col-md-6 col-md-offset-3">
                                                                                                                                 <div class="form-group form-float">
@@ -209,7 +196,7 @@ var empleado = '<?php echo $this->session->userdata('cod_p') ?>';
                                                                                                                                         <tbody id='body_est'>
 
                                                                                                                                         </tbody>
-                                                                                                                                </table>
+                                                                                                                                </table> -->
                                                                                                                                 <!-- <table id="sta_slct" class="table table-hover" width="100%">
                                                                                                                                         <thead>
                                                                                                                                                 <tr>
@@ -220,10 +207,10 @@ var empleado = '<?php echo $this->session->userdata('cod_p') ?>';
                                                                                                                                         </thead>
                                                                                                                                         <tbody id='body_srv'></tbody>
                                                                                                                                 </table> -->
-                                                                                                                        </div>
+                                                                                                                        <!-- </div>
                                                                                                                 </div>
                                                                                                                 <div id='nota_servicio_div'></div>
-                                                                                                        </div>
+                                                                                                        </div> -->
                                                                                                 </div>
                                                                                         </div>
                                                                                 </div>
@@ -392,9 +379,37 @@ var empleado = '<?php echo $this->session->userdata('cod_p') ?>';
                                 </div>
                         </div>
                         <div class="modal-footer">
-                                <button type="button" class="btn btn-link waves-effect" id="confirm_cant">Confirmar</button>
+                                <button type="button" class="btn btn-link waves-effect" onClick="insertar_cantidad();" data-dismiss="modal">Confirmar</button>
                                 <button type="button" class="btn btn-link waves-effect" onClick="cancelar();" data-dismiss="modal">Cancelar</button>
                         </div>
+                </div>
+        </div>
+</div>
+<div class="modal fade" id="buscar_cliente" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                  <div class="modal-header text-center">
+                    <h3 class="title" id="largeModalLabel">Seleccione al cliente:</h3>
+                  </div>
+                  <div class="modal-body">
+                    <div class="table-responsive">
+                      <table id="client_dt" class="table dataTable table-bordered table-striped table-hover col-md-12 col-sm-12 col-lg-12 col-xs-12" width="100%">
+                        <thead>
+                          <tr>
+                            <th width="10" ></th>
+                            <th>DNI</th>
+                            <th>Nombres</th>
+                            <th>Apellido Paterno</th>
+                            <th>Apellido Materno</th>
+                          </tr>
+                        </thead>
+                      </table>
+                    </div>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-link waves-effect" id="confirm_cliente">Confirmar</button>
+                    <button type="button" class="btn btn-link waves-effect" onClick="cancelar_cliente();" data-dismiss="modal">Cancelar</button>
+                  </div>
                 </div>
         </div>
 </div>

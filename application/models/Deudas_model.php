@@ -44,7 +44,7 @@ class Deudas_model extends CI_Model{
 
     function consultar_proveedor(){
         $this->db->select('pr.cod_proveedor, pr.razon_social, pr.dni, pr.nombres, pr.apellido_paterno, pr.apellido_materno, u.ciudad');
-        $this->db->where('pr.estado', '0');
+        $this->db->where('pr.estado', '1');
         $this->db->join('ubigeo u','u.cod_ciudad = pr.cod_ciudad');
         $data = $this->db->get('proveedores pr');
         return $data->result_array();

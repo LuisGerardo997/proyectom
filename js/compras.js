@@ -71,12 +71,16 @@ editClient = function(cod_cargo, area, descripcion, cargo){
     },
     function(data){
       if (data == 1){
-        alert('Guardado');
-        $('#cerrar_modal').click();
-
-        location.reload();
+        swal({
+          title: 'Guardado',
+          type: 'info'
+        },
+        function(){
+          $('#cerrar_modal').click();
+          location.reload();
+        });
       }
-      alert(data);
+      // swal(data);
     });
   }
 };
@@ -87,8 +91,13 @@ deldat = function(cod_cargo){
   },
   function(data){
     if (data == 1){
-      alert('Eliminado');
-      location.reload();
+      swal({
+        title: 'Eliminado',
+        type: 'info'
+      },
+      function(){
+        location.reload();
+      });
     }
   });
 };
@@ -102,11 +111,67 @@ insertdat = function(cod_cargo, area, descripcion, cargo){
   },
   function(data){
     if(data == 1){
-      alert('El registro fue almacenado correctamente');
-      location.reload();
+      swal({
+        title: 'El registro fue almacenado correctamente',
+        type: 'info'
+      },
+      function(){
+        location.reload();
+      });
     }
   });
 };
+insertprod = function(){
+  $.post(base_url+'productos/guardar',
+  {
+    cod_producto:$('#cod_producto_c').val(),
+    marca:$('#marca_c').val(),
+    tipo_producto:$('#tipo_producto_c').val(),
+    producto:$('#producto_c').val(),
+    descripcion:$('#descripcion_c').val(),
+    precio_producto:$('#precio_producto_c').val(),
+    stock_producto:$('#stock_producto_c').val(),
+    stock_minimo:$('#stock_minimo_c').val(),
+    stock_maximo:$('#stock_maximo_c').val(),
+  },
+  function(data){
+      if(data == 1){
+          swal({
+              title: 'El registro fue almacenado correctamente',
+              type: 'info'
+          },
+          function(){
+            location.reload();
+          });
+      }
+  });
+};
+
+insertprov = function(){
+  $.post(base_url+'proveedores/guardar',
+  {
+    cod_proveedor:$('#cod_proveedor_c').val(),
+    nombres:$('#nombres_c').val(),
+    apellido_paterno:$('#apellido_paterno_c').val(),
+    apellido_materno:$('#apellido_materno_c').val(),
+    dni:$('#dni_c').val(),
+    ciudad:$('#ciudad_c').val(),
+    razon_social:$('#razon_social_c').val(),
+    descripcion:$('#descripcion_c').val(),
+  },
+  function(data){
+      if(data == 1){
+          swal({
+              title: 'El registro fue almacenado correctamente',
+              type: 'info'    
+          },
+          function(){
+              location.reload();
+          });
+      }
+  });
+};
+
 var proveedor_div = document.getElementById('proveedor_div');
 var proveedor_nombre = document.getElementById('proveedor_nombre');
 var proveedor_app = document.getElementById('proveedor_app');
@@ -148,7 +213,7 @@ $('#realizar_venta').click(function(){
   // $('#proveedor').on('keyup',function(){
   //   comprobar_proveedor($(this).val());
   //   if ($(this).val().length > 11){
-  //     alert('Se exedió el número máximo de caracteres para este campo');
+  //     swal('Se exedió el número máximo de caracteres para este campo');
   //   }
   // })
   // $('input[name=proveedor_cod]').click(function(){
@@ -291,7 +356,7 @@ var valor_maximo;
 //   $('#stock_productox').keyup(function(){
 //     console.log($(this).val());
 //     if ($(this).val() > valor_maximo){
-//       alert('La cantidad ingresada, supera a la capacidad máxima de almacenaje, por favor, ingrese un valor menor a la cantidad máxima expresa.');
+//       swal('La cantidad ingresada, supera a la capacidad máxima de almacenaje, por favor, ingrese un valor menor a la cantidad máxima expresa.');
 //       $(this).val('');
 //     }else if($(this).val()!=0){
 //       monto_total = parseFloat($('#stock_productox').val())*parseFloat(arg4);
@@ -370,8 +435,13 @@ guardar_compra = function(){
   },
   function(data){
     if (data == 1){
-      alert('Registro exitoso');
-      location.reload()
+      swal({
+        title: 'Registro exitoso',
+        type: 'info'
+      },
+      function(){
+        location.reload()
+      });
     }else{
       console.log('Registro fallido');
     }
@@ -385,7 +455,7 @@ comprobar_proveedor = function(arg){
       proveedor:arg,
     },
     function(data){
-      alert(data);
+      swal(data);
       if (data == 'No existe'){
         proveedor_nombre.setAttribute("style","display:block");
         proveedor_app.setAttribute("style","display:block");
@@ -446,12 +516,12 @@ cantidad = function(arg1){
         var cantidad_max = parseInt(datos[0]['stock_maximo']);
         var cantidad_permitida= cantidad_max-cantidad_act
         $('#cant_max').val(cantidad_permitida);
-        $('#cant_prod').keyup(function(){
-            if ($('#cant_prod').val()>parseInt(cantidad_permitida)){
-                alert('La cantidad ingresada, supera a la capacidad del almacen.')
-                $('#cant_prod').val('');
-            }
-        })
+        // $('#cant_prod').keyup(function(){
+        //     if ($('#cant_prod').val()>parseInt(cantidad_permitida)){
+        //         swal('La cantidad ingresada, supera a la capacidad del almacen.')
+        //         $('#cant_prod').val('');
+        //     }
+        // })
     })
     $('#producto_cant').modal({backdrop: "static", keyboard: false})
     $('#confirm_cant').click(function(){
@@ -461,9 +531,9 @@ cantidad = function(arg1){
                $('#producto_cant').modal('hide')
                console.log(valor_p)
              }
-        }else {
-            alert('El campo "cantidad" es requerido.')
-            $(this).focus();
+        // }else {
+        //     swal('El campo "cantidad" es requerido.')
+        //     $(this).focus();
         }
     })
     // var cantidad = prompt('Ingrese la cantidad requerida:');

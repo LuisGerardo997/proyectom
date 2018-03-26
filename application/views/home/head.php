@@ -50,7 +50,7 @@
 <!-- Morris Chart Css-->
 <link href="<?= base_url() ?>plugins/morrisjs/morris.css" rel="stylesheet" />
     <!-- Sweetalert Css -->
-<link href="<? base_url() ?>plugins/sweetalert/sweetalert.css" rel="stylesheet" />
+<link href="<?= base_url() ?>plugins/sweetalert/sweetalert.css" rel="stylesheet" />
 
 <!-- Custom Css -->
 <link href="<?= base_url() ?>css/style.css" rel="stylesheet">
@@ -383,7 +383,7 @@
                         <span>Ofertas</span>
                       </a>
                     </li>
-                    <li><!-- 
+                    <li><!--
                       <a href="<?= base_url(); ?>area" class="toggled waves-effect waves-block">
                         <span>Áreas</span>
                       </a>
@@ -393,12 +393,12 @@
                         <span>Cargo</span>
                       </a>
                     </li>
-                    <!-- <li>
+                    <li>
                       <a href="<?= base_url(); ?>proveedores" class="toggled waves-effect waves-block">
                         <span>Proveedor</span>
                       </a>
-                    </li> -->
-                    <!-- <li>
+                    </li>
+                    <li>
                       <a href="javascript:void(0);" class="menu-toggle">
                         <span>Productos</span>
                       </a>
@@ -413,12 +413,12 @@
                           <a href="<?= base_url(); ?>productos">Productos</a>
                         </li>
                       </ul>
-                    </li> -->
+                    </li>
                     <li>
                       <a href="forma_pago" class="toggled waves-effect waves-block">
                         <span>Tipos de pago</span>
                       </a>
-                    </li>  
+                    </li>
                     <li>
                       <a href="javascript:void(0);" class="menu-toggle">
                         <span>Movimientos</span>
@@ -485,7 +485,7 @@
                       <i class="material-icons">timer</i>
                       <span>Cobros</span>
                   </a>
-              </li> 
+              </li>
               <li>
                 <a href="javascript:void(0);" class="menu-toggle">
                 <i class="material-icons">security</i>

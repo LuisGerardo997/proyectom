@@ -142,13 +142,15 @@ class Pagos extends CI_Controller {
     }
 
     public function consultar_cliente_producto(){
+        $ventas = $this->Pagos_model->ventas_procesadas();
         $cliente = $this->input->post('cliente');
-        echo json_encode($this->Pagos_model->consultar_cliente_producto($cliente));
+        echo json_encode($this->Pagos_model->consultar_cliente_producto($cliente, $ventas));
     }
 
     public function consultar_cliente_estadia(){
+        $estadias = $this->Pagos_model->estadias_procesadas();
         $cliente = $this->input->post('cliente');
-        echo json_encode($this->Pagos_model->consultar_cliente_estadia($cliente));
+        echo json_encode($this->Pagos_model->consultar_cliente_estadia($cliente, $estadias));
     }
 
     public function precio_servicios(){
@@ -299,6 +301,8 @@ class Pagos extends CI_Controller {
         $concepto_movimiento = $this->input->post('concepto_movimiento');
         $ventas = $this->input->post('ventas');
         $estadias = $this->input->post('estadias');
+        $cantidad_ventas = $this->input->post('cantidad_ventas');
+        $cantidad_estadias = $this->input->post('cantidad_estadias');
         $precios_habitaciones = $this->input->post('precios_habitaciones');
         $precios_servicios = $this->input->post('precios_servicios');
         $monto_ventas = $this->input->post('monto_ventas');
@@ -328,7 +332,7 @@ class Pagos extends CI_Controller {
         }
 
         if ($tipo_t == '1'){
-            $iteraciones = sizeof($ventas);
+            $iteraciones = $cantidad_ventas;
             for ($a=0; $a < $iteraciones; $a++){
                 $cod_cronograma=$this->Pagos_model->num_cron();
                 $datos = array(
@@ -347,7 +351,7 @@ class Pagos extends CI_Controller {
                 );
                 $this->Pagos_model->guardar_amortizacion($data);
             }
-            $iteraciones_e = sizeof($estadias);
+            $iteraciones_e = $cantidad_estadias;
             for ($e=0; $e < $iteraciones_e; $e++){
                 $cod_cronograma=$this->Pagos_model->num_cron_e();
                 $monto = (floatval($precios_habitaciones[$e]));
@@ -423,49 +427,9 @@ class Pagos extends CI_Controller {
         );
         $this->Pagos_model->actualizar_venta($cod_venta, $datos1);
     }
-}
-
-
-            /*
-            $tipo_documento = $this->input->post('tipo_documento');
-            $ruc = $this->input->post('ruc');
-            if($ruc != ''){
-                $actualizar_ruc = array(
-                    'ruc' => $ruc,
-                );
-                $this->Cliente_model->actualizar($dni_cliente, $actualizar_ruc)
-
-            }
-            $forma_pago = $this->input->post('forma_pago');
-            //$tarjeta = $this->input->post('tarjeta');
-            $fecha_contado = $this->input->post('fecha_contado');
-            $concepto_movimiento = $this->input->post('concepto_movimiento');
-            foreach($compras as $fila){
-                $nro_cronograma = $this->Pagos_model->num_cron();
-                $registrar_contado = array(
-                    'cod_cronograma_venta' => $nro_cronograma,
-                    'cod_venta' => $fila,
-                    'fecha_vencimiento' => $fecha_contado,
-                    'monto' => $monto_contado,
-                    'nro_cuota' => '1',
-                );
-                $this->Pagos_model->guardar($registrar_contado);
-            }
-
-        }elseif($registrar_contado == '2'){
-
-        }
-        $estadias = $this->input->post('estadias');
-        $forma_pago = $this->input->post('forma_pago');
-        $tipo_documento = $this->input->post('tipo_documento');
-        $tarjeta = $this->input->post('tarjeta');
-        $ruc = $this->input->post('ruc');
-        $periodo = $this->input->post('periodo');
-        $cuota = $this->input->post('cuota');
-        $inicial = $this->input->post('inicial');
-        $fecha_contado = $this->input->post('fecha_contado');
-        $fecha_credito = $this->input->post('fecha_credito');
-        $concepto_movimiento = $this->input->post('concepto_movimiento');
-        echo json_encode($this->Pagos_model->procesar_pago($estadia));
+    function detalle_ventas()
+    {
+      $cod_cronograma_venta = $this->input->post('cod_cronograma_venta');
+      echo json_encode($this->Pagos_model->detalle_ventas($cod_cronograma_venta));
     }
-    */
+}

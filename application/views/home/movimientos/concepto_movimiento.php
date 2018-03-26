@@ -95,7 +95,7 @@
                                     <div class="form-group form-float">
                                         <div class="form-line">
                                             <label class="form-label">Código</label>
-                                            <input disabled type="number" name="cod_concepto_movimiento_c" id="cod_concepto_movimiento_c" class="form-control" value="<?base_url() ?><?php echo $this->Concepto_movimiento_model->num_rows() ?>">
+                                            <input disabled type="number" name="cod_concepto_movimiento_c" id="cod_concepto_movimiento_c" class="form-control" value="<?=base_url() ?><?php echo $this->Concepto_movimiento_model->num_rows() ?>">
                                         </div>
                                     </div>
                                 </div>

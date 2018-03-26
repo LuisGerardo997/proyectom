@@ -21,7 +21,7 @@
                                     <tr>
                                         <th>Código</th>
                                         <th>Descripción</th>
-                                        <th>Valor</th>
+                                        <th>Valor (%)</th>
                                         <th >Acción</th>
                                     </tr>
                                 </thead>
@@ -62,7 +62,7 @@
                                 <div class="col-md-4">
                                     <div class="form-group form-float">
                                         <div class="form-line focused">
-                                          <label class="form-label">Valor (Ej.: 745,65)</label>
+                                          <label class="form-label">Valor (18.00)</label>
                                             <input type="text" name="valor" id="valor" class="form-control" step="0.01" maxlength="6" pattern="d\*">
                                         </div>
                                     </div>
@@ -93,7 +93,7 @@
                                     <div class="form-group form-float">
                                         <div class="form-line">
                                           <label class="form-label">Código</label>
-                                            <input type="number" disabled value="<?base_url() ?><?php echo $this->Parametro_model->num_rows() ?>" name="cod_parametro_c" id="cod_parametro_c" class="form-control">
+                                            <input type="number" disabled value="<?php echo $this->Parametro_model->num_rows() ?>" name="cod_parametro_c" id="cod_parametro_c" class="form-control">
                                         </div>
                                     </div>
                                 </div>
@@ -108,7 +108,7 @@
                                 <div class="col-md-4">
                                     <div class="form-group form-float">
                                         <div class="form-line">
-                                          <label class="form-label">Valor (Ejemplo: 745,65)</label>
+                                          <label class="form-label">Valor (Ejemplo: 18.00)</label>
                                             <input type="text" name="valor_c" id="valor_c" class="form-control" step="0.01" maxlength="6" pattern="d\*">
                                         </div>
                                     </div>

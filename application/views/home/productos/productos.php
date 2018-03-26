@@ -56,40 +56,48 @@
                               <div class="row clearfix">
                                 <div class="col-md-4">
                                     <div class="form-group form-float">
-                                        <div class="form-line form-float">
+                                        <div class="form-line focused">
                                             <label class="form-label">Código</label>
                                             <input type="number" name="cod_producto" id="cod_producto" class="form-control">
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-sm-4">
-                                    <select name="marca" id="marca" class="form-control">
-                                        <option value="">-- Please select --</option>
-                                        <?php foreach($marca as $fila):?>
-                                            <option value='<?= $fila["cod_marca"] ?>'><?= $fila['marca'] ?></option>
-                                        <?php endforeach; ?>
-                                    </select>
+                                   <div class="form-group form-float form_label">
+                                        <div class="form-line focused">
+                                            <select name="marca" id="marca" class="form-control">
+                                                <option value="">-- Please select --</option>
+                                                <?php foreach($marca as $fila):?>
+                                                    <option value='<?= $fila["cod_marca"] ?>'><?= $fila['marca'] ?></option>
+                                                <?php endforeach; ?>
+                                            </select>
+                                        </div>
+                                    </div>
                                 </div>
                                 <div class="col-sm-4">
-                                    <select name="tipo_producto" id="tipo_producto" class="form-control">
-                                        <option value="">-- Please select --</option>
-                                        <?php foreach($tipo_producto as $fila):?>
-                                            <option value='<?= $fila["cod_tipo_producto"] ?>'><?= $fila['tipo_producto'] ?></option>
-                                        <?php endforeach; ?>
-                                    </select>
+                                   <div class="form-group form-float">
+                                        <div class="form-line focused">
+                                            <select name="tipo_producto" id="tipo_producto" class="form-control">
+                                                <option value="">-- Please select --</option>
+                                                <?php foreach($tipo_producto as $fila):?>
+                                                    <option value='<?= $fila["cod_tipo_producto"] ?>'><?= $fila['tipo_producto'] ?></option>
+                                                <?php endforeach; ?>
+                                            </select>
+                                        </div>
+                                    </div>
                                 </div>
                               </div>
                               <div class="row clearfix">
                                 <div class="col-md-4">
                                     <div class="form-group form-float">
-                                        <div class="form-line form-float">
+                                        <div class="form-line focused">
                                             <label class="form-label">Producto</label>
                                             <input type="text" name="producto" id="producto" class="form-control">
                                         </div>
                                     </div>
                                 </div><div class="col-md-4">
                                     <div class="form-group form-float">
-                                        <div class="form-line form-float">
+                                        <div class="form-line focused">
                                             <label class="form-label">Descripcion</label>
                                             <input type="text" name="descripcion" id="descripcion" class="form-control">
                                         </div>
@@ -97,7 +105,7 @@
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group form-float">
-                                        <div class="form-line form-float">
+                                        <div class="form-line focused">
                                             <label class="form-label">Precio (s/.)</label>
                                             <input type="text" name="precio_producto" id="precio_producto" class="form-control">
                                         </div>
@@ -105,7 +113,7 @@
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group form-float">
-                                        <div class="form-line form-float">
+                                        <div class="form-line focused">
                                             <label class="form-label">Stock actual</label>
                                             <input type="text" name="stock_producto" id="stock_producto" class="form-control">
                                         </div>
@@ -113,7 +121,7 @@
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group form-float">
-                                        <div class="form-line form-float">
+                                        <div class="form-line focused">
                                             <label class="form-label">Stock mínimo</label>
                                             <input type="text" name="stock_minimo" id="stock_minimo" class="form-control email">
                                         </div>
@@ -121,7 +129,7 @@
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group form-float">
-                                        <div class="form-line form-float">
+                                        <div class="form-line focused">
                                             <label class="form-label">Stock máximo</label>
                                             <input type="text" name="stock_maximo" id="stock_maximo" class="form-control email">
                                         </div>
@@ -157,20 +165,28 @@
                                   </div>
                               </div>
                               <div class="col-sm-4">
-                                  <select name="marca" id="marca_c" class="form-control">
-                                      <option value="">-- Please select --</option>
-                                      <?php foreach($marca as $fila):?>
-                                          <option value='<?= $fila["cod_marca"] ?>'><?= $fila['marca'] ?></option>
-                                      <?php endforeach; ?>
-                                  </select>
+                                   <div class="form-group">
+                                        <div class="form-line focused">
+                                            <select name="marca" id="marca_c" class="form-control">
+                                                <option value="">-- Please select --</option>
+                                                <?php foreach($marca as $fila):?>
+                                                    <option value='<?= $fila["cod_marca"] ?>'><?= $fila['marca'] ?></option>
+                                                <?php endforeach; ?>
+                                            </select>
+                                        </div>
+                                    </div>
                               </div>
                               <div class="col-sm-4">
-                                  <select name="tipo_producto" id="tipo_producto_c" class="form-control">
-                                      <option value="">-- Please select --</option>
-                                      <?php foreach($tipo_producto as $fila):?>
-                                          <option value='<?= $fila["cod_tipo_producto"] ?>'><?= $fila['tipo_producto'] ?></option>
-                                      <?php endforeach; ?>
-                                  </select>
+                                   <div class="form-group">
+                                        <div class="form-line focused">
+                                            <select name="tipo_producto" id="tipo_producto_c" class="form-control">
+                                                <option value="">-- Please select --</option>
+                                                <?php foreach($tipo_producto as $fila):?>
+                                                    <option value='<?= $fila["cod_tipo_producto"] ?>'><?= $fila['tipo_producto'] ?></option>
+                                                <?php endforeach; ?>
+                                            </select>
+                                        </div>
+                                    </div>
                               </div>
                             </div>
                             <div class="row clearfix">

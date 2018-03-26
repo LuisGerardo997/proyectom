@@ -38,7 +38,7 @@ $('#dt_table').DataTable({
 
 editClient = function(cod_tipo_habitacion, tipo_habitacion, descripcion, precio_tipo_habitacion, max_h){
     $('#cod_tipo_habitacion').val(cod_tipo_habitacion);
-    $('#tipo_habitacion').val(tipo_habitacion);
+    $('#tipo_habitacion_e').val(tipo_habitacion);
     $('#descripcion').val(descripcion);
     $('#precio_tipo_habitacion').val(precio_tipo_habitacion);
     $('#max_h').val(max_h);
@@ -47,34 +47,55 @@ editClient = function(cod_tipo_habitacion, tipo_habitacion, descripcion, precio_
         $.post(base_url+"tipo_habitacion/actualizar",
         {
             cod_tipo_habitacion:$('#cod_tipo_habitacion').val(),
-            tipo_habitacion:$('#tipo_habitacion').val(),
+            tipo_habitacion:$('#tipo_habitacion_e').val(),
             descripcion:$('#descripcion').val(),
             precio_tipo_habitacion:$('#precio_tipo_habitacion').val(),
             max_h:$('#max_h').val(),
         },
         function(data){
             if (data == 1){
-                alert('El registro fue guardado correctamente');
+              swal({
+                title: "El registro fue guardado correctamente",
+                type: "info",
+                closeOnConfirm: false,
+              }, function () {
                 $('#cerrar_modal').click();
-
                 location.reload();
+              });
+
             }
         });
     }
 };
 
     deldat = function(cod_tipo_habitacion){
-    $.post(base_url+'tipo_habitacion/eliminar',
-    {
-        cod_tipo_habitacion:cod_tipo_habitacion,
-    },
-    function(data){
-        if (data == 1){
-            alert('El registro fue eliminado correctamente');
-            location.reload();
+      swal({
+        title: "¿Está seguro?",
+        text: "Una vez eliminado, no volverá a tener acceso a este elemento.",
+        type: "warning",
+        showCancelButton: true,
+        confirmButtonClass: "btn-danger",
+        confirmButtonText: "Si, elimínalo.",
+        closeOnConfirm: false,
+        closeOnCancel: false
+      },
+      function(isConfirm){
+        if(isConfirm){
+          $.post(base_url+'tipo_habitacion/eliminar',
+          {
+              cod_tipo_habitacion:cod_tipo_habitacion,
+          },
+          function(data){
+              if (data == 1){
+                  swal('Eliminado', 'El registro fue eliminado correctamente', 'success');
+                  location.reload();
+              }
+              swal(cod_tipo_habitacion);
+          });
+        } else {
+          swal('Cancelado', "El elemento no fue eliminado.", 'error');
         }
-        alert(cod_tipo_habitacion);
-    });
+      });
 };
 
 insertdat = function(cod_tipo_habitacion, tipo_habitacion, descripcion, precio_tipo_habitacion, max_h){
@@ -88,10 +109,16 @@ insertdat = function(cod_tipo_habitacion, tipo_habitacion, descripcion, precio_t
     },
     function(data){
         if(data == 1){
-            alert('El registro fue almacenado correctamente');
-            location.reload();
+            swal({
+              title: 'El registro fue almacenado correctamente',
+              type: 'info',
+              closeOnConfirm: false,
+            },
+            function(){
+              location.reload();
+            });
         }
-        alert(data);
+        // swal(data);
     });
 };
 

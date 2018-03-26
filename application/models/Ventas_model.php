@@ -107,10 +107,10 @@ class Ventas_model extends CI_Model{
   function productos_slct($arg){
     $this->db->select('p.cod_producto, p.producto, m.marca, tp.tipo_producto, p.precio_producto precio, p.stock_producto');
     $this->db->group_start();
-    $where = 'p.cod_producto like "%'.$arg.'%" OR p.producto LIKE "%'.$arg.'%" OR m.marca LIKE "%'.$arg.'%" OR tp.tipo_producto LIKE "%'.$arg.'%" OR p.precio_producto LIKE "%'.$arg.'%" OR p.stock_producto LIKE "%'.$arg.'%"';
+    $where = "text(p.cod_producto) ~~* '%".$arg."%' OR text(p.producto) ~~* '%".$arg."%' OR text(m.marca) ~~* '%".$arg."%' OR text(tp.tipo_producto) ~~* '%".$arg."%' OR text(p.precio_producto) ~~* '%".$arg."%' OR text(p.stock_producto) ~~* '%".$arg."%'";
     $this->db->where($where);
     $this->db->group_end();
-    //$this->db->where('stock_producto >', 0);
+    $this->db->where('stock_producto >', 0);
     $this->db->join('marca m', 'm.cod_marca = p.cod_marca');
     $this->db->join('tipo_producto tp', 'tp.cod_tipo_producto = p.cod_tipo_producto');
     $this->db->from('productos p');
@@ -119,7 +119,7 @@ class Ventas_model extends CI_Model{
   }
   function servicios_slct($arg){
     $this->db->select('cod_servicio, servicio, precio');
-    $where = 'cod_servicio like "%'.$arg.'%" OR servicio LIKE "%'.$arg.'%" OR precio LIKE "%'.$arg.'%"';
+    $where = "text(cod_servicio) ~~* '%".$arg."%' OR text(servicio) ~~* '%".$arg."%' OR text(precio) ~~* '%".$arg."%'";
     $this->db->where($where);
     $this->db->from('servicio');
     $resultado = $this->db->get();

@@ -117,7 +117,7 @@ var empleado = '<?php echo $this->session->userdata('cod_p') ?>';
                         <div class="col-md-3" id="tipo_r_div"></div>
                       </div>
                       <div class="body">
-                        <div class="table-responsive col-md-10 col-md-offset-1">
+                        <div class="table-responsive col-md-10 col-md-offset-1 col-xs-10 col-xs-offset-1">
                           <table id="slct_table" class="table table-hover" width="100%">
                             <thead>
                               <tr>
@@ -155,13 +155,14 @@ var empleado = '<?php echo $this->session->userdata('cod_p') ?>';
                         <div class="form-group form-float">
                           <div class="form-line focused">
                             <label class="form-label">Cliente (DNI)</label>
-                            <input maxlength="3" type="number" value="" name="cliente" id="cliente" class="form-control client_field">
+                            <input maxlength="3" type="number" value="" name="cliente" id="cliente" class="form-control dni-field">
                           </div>
                         </div>
                       </div>
                       <div id="nom_client"></div>
                       <div id="app_client"></div>
                       <div id="apm_client"></div>
+                      <div id="detalles"></div>
                       <div id="btn_registrar" style='display:none'><button class="btn btn-primary">Registrar</button></div>
                       </form>
                       <!--<div class="col-md-3" style='display:none' id='empleado_div'>
@@ -180,7 +181,7 @@ var empleado = '<?php echo $this->session->userdata('cod_p') ?>';
                   <!--</div>
                 </div>
               </div>-->
-              
+
               <!-- <div class="col-md-12 text-center"><h4>¿Desea especificar los huespedes de cada habitación?</h4></div>
               <div class="col-md-3 col-md-offset-3 text-center">
                 <div class="form-group">
@@ -198,7 +199,7 @@ var empleado = '<?php echo $this->session->userdata('cod_p') ?>';
                   </div>
                 </div>
               </div> -->
-              <div class="col-md-12">
+              <div class="col-md-12 col-xs-12 col-lg-12">
                 <hr>
               </div>
               </form>
@@ -223,7 +224,7 @@ var empleado = '<?php echo $this->session->userdata('cod_p') ?>';
 <!-- Comienzo de modals -->
 
 <div class="modal fade" id="editar" tabindex="-1" role="dialog">
-  <div class="modal-dialog modal-lg" role="document">
+  <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
         <h2 class="modal-title" id="largeModalLabel">Panel de edición de reservaciones</h2>
@@ -234,19 +235,11 @@ var empleado = '<?php echo $this->session->userdata('cod_p') ?>';
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
               <br>
               <div class="row clearfix">
-                <div class="col-md-3 col-md-offset-3">
+                <div class="col-md-6 col-md-offset-3">
                   <div class="form-group form-float">
                     <div class="form-line focused">
-                      <label class="form-label">Fecha de ingreso</label>
-                      <input type="text" name="fecha_ingreso" id="fecha_ingreso" class="datepicker form-control">
-                    </div>
-                  </div>
-                </div>
-                <div class="col-md-3">
-                  <div class="form-group form-float">
-                    <div class="form-line focused">
-                      <label class="form-label">Fecha de reservación</label>
-                      <input type="text" name="fecha_reservacion" id="fecha_reservacion" class="datepicker form-control">
+                      <label class="form-label">Fecha salida</label>
+                      <input type="text" name="fecha_salida_e" id="fecha_salida_e" class="datepicker form-control">
                     </div>
                   </div>
                 </div>
@@ -274,10 +267,10 @@ var empleado = '<?php echo $this->session->userdata('cod_p') ?>';
 
             <div id="Detalle" class="p-t-15"></div>
 
-            <div class="table-responsive col-md-12 p-t-10">
+            <div class="table-responsive col-md-12 p-t-10 col-xs-12 col-lg-12 col-sm-12">
 
               <h5>Huéspedes:</h5>
-              <table class="table table-bordered table-striped table-hover" width="100%">
+              <table id="habitacion_estadia_detalle" class="table table-bordered table-striped dataTable table-hover" width="100%">
                 <thead>
                   <tr>
                     <th width="1px">Habitación</th>
@@ -287,7 +280,7 @@ var empleado = '<?php echo $this->session->userdata('cod_p') ?>';
                     <th>Apellido materno</th>
                   </tr>
                 </thead>
-                <tbody id="habitacion_estadia"></tbody>
+                <tbody></tbody>
               </table>
             </div>
 

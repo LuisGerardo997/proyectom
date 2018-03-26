@@ -10,6 +10,7 @@ $('#dt_table').DataTable({
     'info':true,
     'filter':true,
     'stateSave':true,
+    'destroy': true,
     'ajax':{
         "url":base_url+"usuarios/consultar",
         "type":"POST",

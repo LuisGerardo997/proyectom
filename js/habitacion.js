@@ -49,10 +49,15 @@ editClient = function(cod_habitacion, tipo_habitacion, piso, nombre){
         },
         function(data){
             if (data == 1){
-                alert('El registro fue guardado correctamente');
+                swal({
+                  title: 'El registro fue guardado correctamente',
+                  type: 'info',
+                  closeOnConfirm: false,
+                },
+              function(){
                 $('#cerrar_modal').click();
-
                 location.reload();
+              });
             }
         });
     }
@@ -65,8 +70,14 @@ editClient = function(cod_habitacion, tipo_habitacion, piso, nombre){
     },
     function(data){
         if (data == 1){
-            alert('El registro fue eliminado correctamente');
+            swal({
+              title: 'El registro fue eliminado correctamente',
+              type: 'info',
+              closeOnConfirm: true
+            },
+          function(){
             location.reload();
+          });
         }
     });
 };
@@ -81,8 +92,14 @@ insertdat = function(cod_habitacion, tipo_habitacion, piso, nombre){
     },
     function(data){
         if(data == 1){
-            alert('El registro fue almacenado correctamente');
-            location.reload();
+            swal({
+              title: 'El registro fue almacenado correctamente',
+              type: 'info',
+              closeOnConfirm: true
+            },
+          function(){
+            location.reload();            
+          });
         }
     });
 };

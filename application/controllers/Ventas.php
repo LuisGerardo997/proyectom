@@ -10,6 +10,7 @@ class Ventas extends CI_Controller {
         $this->load->model('Reservaciones_model');
         $this->load->model('Login_model');
         $this->load->model('Modulo_model');
+        $this->load->model('Habitacion_model');
     }
 
 
@@ -171,10 +172,12 @@ class Ventas extends CI_Controller {
         $nro_venta = $this->input->post('nro_venta');
         $cliente_venta = $this->input->post('cliente_venta');
         $empleado = $this->input->post('empleado');
-        $productos = $this->input->post('productos');
-        $producto_precio = $this->input->post('producto_precio');
+        // $productos = $this->input->post('productos');
+        $producto_precio = json_encode($this->input->post('producto_precio'));
+        $cantidad_producto = $this->input->post('cantidad_producto');
         $servicio_precio = $this->input->post('servicio_precio');
         $cantidad = $this->input->post('cantidad');
+        $productos_data =json_decode($producto_precio, true);
         $venta_p = array(
             'cod_venta' => $nro_venta,
             'cod_cliente' => $cliente_venta,
@@ -183,39 +186,42 @@ class Ventas extends CI_Controller {
             'estado' => '1',
         );
         $this->Ventas_model->nueva_venta($venta_p);
-        $iteraciones_p = count($productos);
-        for ($i = 0; $i < $iteraciones_p; $i++){
+        // $iteraciones_p = count($productos_data);
+        $counter = 0;
+        foreach ($productos_data as $producto_data){
             $detalle_p = array(
                 'cod_venta' => $nro_venta,
-                'cod_producto' => $productos[$i],
-                'precio' => $producto_precio[$i],
-                'cantidad' => $cantidad[$i],
+                'cod_producto' => $producto_data['cod_producto'],
+                'precio' => $producto_data['precio_producto'],
+                'cantidad' => $cantidad_producto[$counter],
+                'cod_parametro' => '2',
             );
-            $stock_p = $this->Ventas_model->cantidad_producto($productos[$i]);
-            $stock_actual = (intval($stock_p->stock_producto) - intval($cantidad[$i]));
+            $stock_p = $this->Ventas_model->cantidad_producto($producto_data['cod_producto']);
+            $stock_actual = (intval($stock_p->stock_producto) - intval($cantidad_producto[$counter]));
             $nuevo_stock = array(
                 'stock_producto' => $stock_actual,
             );
             $this->Ventas_model->detalle_venta($detalle_p);
-            $this->Productos_model->actualizar($productos[$i], $nuevo_stock);
+            $this->Productos_model->actualizar($producto_data['cod_producto'], $nuevo_stock);
+            $counter++;
         }
         $habitacion_servicio = $this->input->post('habitacion_servicio');
         $estadias = $this->input->post('estadias');
-        $iteraciones_s = count($estadias);
-        foreach ($habitacion_servicio as $key) {
-            $iteraciones_detalle = count($key[2]);
-            for ($j=0;$j<$iteraciones_detalle; $j++){
-                $detalle_s = array(
-                    'cod_habitacion' => $key[1],
-                    'cod_servicio' => $key[2][$j],
-                    'cod_estadia' => $key[0],
-                    'precio' => $key[3][$j],
-                    'cantidad' => '1',
-                    'estado' => '1',
-                );
-                $this->Ventas_model->detalle_servicio($detalle_s);
-            }
-        }
+        // $iteraciones_s = count($estadias);
+        // foreach ($habitacion_servicio as $key) {
+        //     $iteraciones_detalle = count($key[2]);
+        //     for ($j=0;$j<$iteraciones_detalle; $j++){
+        //         $detalle_s = array(
+        //             'cod_habitacion' => $key[1],
+        //             'cod_servicio' => $key[2][$j],
+        //             'cod_estadia' => $key[0],
+        //             'precio' => $key[3][$j],
+        //             'cantidad' => '1',
+        //             'estado' => '1',
+        //         );
+        //         $this->Ventas_model->detalle_servicio($detalle_s);
+        //     }
+        // }
             // $detalle_s = array(
             //     'cod_habitacion' => $habitaciones[$i],
             //     'cod_servicio' => $servicios[$i],

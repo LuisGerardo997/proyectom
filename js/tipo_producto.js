@@ -46,10 +46,14 @@ editClient = function(cod_tipo_producto,  tipo_producto, descripcion){
         },
         function(data){
             if (data == 1){
-                alert('Guardado');
-                $('#cerrar_modal').click();
-
-                location.reload();
+                swal({
+                    title: 'Guardado',
+                    type: 'info'
+                },
+                function(){
+                    $('#cerrar_modal').click();
+                    location.reload();
+                });
             }
         });
     }
@@ -61,8 +65,13 @@ deldat = function(cod_tipo_producto){
     },
     function(data){
         if (data == 1){
-            alert('Eliminado');
-            location.reload();
+            swal({
+                title: 'Eliminado',
+                type: 'info'
+            },
+            function(){
+                location.reload();
+            });
         }
     });
 };
@@ -75,8 +84,13 @@ insertdat = function(cod_tipo_producto,  tipo_producto, descripcion){
     },
     function(data){
         if(data == 1){
-            alert('El registro fue almacenado correctamente');
-            location.reload();
+            swal({
+                title: 'El registro fue almacenado correctamente',
+                type: 'info'
+            },
+            function(){
+                location.reload();
+            });
         }
     });
 };

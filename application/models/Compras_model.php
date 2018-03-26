@@ -96,6 +96,8 @@ class Compras_model extends CI_Model{
     $this->db->join('marca m', 'm.cod_marca = p.cod_marca');
     $this->db->join('tipo_producto tp', 'tp.cod_tipo_producto = p.cod_tipo_producto');
     $this->db->from('productos p');
+    $where = "p.stock_producto < p.stock_maximo";
+    $this->db->where($where);
     $resultado = $this->db->get();
     return $resultado -> result_array();
   }

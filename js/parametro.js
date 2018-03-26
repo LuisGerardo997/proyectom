@@ -46,9 +46,15 @@ editClient = function(cod_parametro, descripcion, valor){
 
         function(data){
             if (data == 1){
-                alert('Los cambios se han realizado correctamente');
+                swal({
+                  title: 'Los cambios se han realizado correctamente',
+                  type: 'info',
+                  closeOnConfirm: true,
+                },
+              function(){
                 $('#cerrar_modal').click();
                 location.reload();
+              });
             }
         });
     }
@@ -61,7 +67,7 @@ deldat = function(cod_parametro){
     },
     function(data){
         if (data == 1){
-            alert('El registro se ha sido eliminado correctamente');
+            swal('El registro se ha sido eliminado correctamente');
             location.reload();
         }
     });
@@ -76,8 +82,14 @@ insertdat = function(cod_parametro, descripcion, valor){
     },
     function(data){
         if(data == 1){
-            alert('El registro fue almacenado correctamente');
+            swal({
+              title: 'El registro fue almacenado correctamente',
+              type: 'info',
+              closeOnConfirm: true,
+            },
+          function(){
             location.reload();
+          });
         }
     });
 };

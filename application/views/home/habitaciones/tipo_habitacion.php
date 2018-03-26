@@ -35,7 +35,7 @@
       </div>
     </div>
   </div>
-  
+
   <!-- Edición -->
 
     <div class="modal fade" id="editar" tabindex="-1" role="dialog">
@@ -57,8 +57,8 @@
                               <div class="col-md-6">
                                   <div class="form-group form-float">
                                       <div class="form-line focused">
-                                        <label class="form-label">Nombre del tipo de habitación</label>
-                                          <input type="text" name="Tipo_habitacion" id="tipo_habitacion" class="form-control" maxlength="50">
+                                        <label class="form-label">Tipo de habitación</label>
+                                          <input type="text" name="tipo_habitacion" id="tipo_habitacion_e" class="form-control" maxlength="50">
                                       </div>
                                   </div>
                               </div>
@@ -96,7 +96,7 @@
             </div>
         </div>
     </div>
-   
+
   <!-- Creación -->
 
   <div class="modal fade" id="crear" tabindex="-1" role="dialog">
@@ -112,14 +112,14 @@
                             <div class="form-group form-float">
                                 <div class="form-line">
                                   <label class="form-label">Número</label>
-                                    <input type="number" disabled value="<?base_url() ?><?php echo $this->Tipo_habitacion_model->num_rows() ?>" name="cod_tipo_habitacion_c" id="cod_tipo_habitacion_c" class="form-control">
+                                    <input type="number" disabled value="<?php echo $this->Tipo_habitacion_model->num_rows() ?>" name="cod_tipo_habitacion_c" id="cod_tipo_habitacion_c" class="form-control">
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group form-float">
                                 <div class="form-line">
-                                  <label class="form-label">Nombre del tipo de habitación</label>
+                                  <label class="form-label">Tipo de habitación</label>
                                     <input type="text" name="tipo_habitacion_c" id="tipo_habitacion_c" class="form-control" maxlength="50">
                                 </div>
                             </div>

@@ -35,7 +35,7 @@
                                     </div>
                                     <div class="content">
                                         <div class="text">Mantenimiento</div>
-                                        <div class="number"><?= $detalle['mantenimiento']; ?></div>
+                                        <div class="number"><?php echo $detalle['mantenimiento']; ?></div>
                                     </div>
                                 </div>
                             </div>
@@ -46,7 +46,7 @@
                                     </div>
                                     <div class="content">
                                         <div class="text">Ocupadas</div>
-                                        <div class="number"><?= $detalle['ocupado']; ?></div>
+                                        <div class="number"><?php echo $detalle['ocupado']; ?></div>
                                     </div>
                                 </div>
                             </div>
@@ -57,7 +57,7 @@
                 </div>
             </div>
         </div>
-        
+
         <div class="col-lg-3">
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-6">
                 <div class="card">
@@ -72,24 +72,28 @@
                                     <th width="15%"></th>
                                     <th width="25%"></th>
                                     <th width="60%"></th>
-                                </tr>    
+                                </tr>
                             </thead>
                             <tbody>
-                                <? foreach($habitaciones_disponibles as $hd): ?>
+                              <?php if(sizeof($habitaciones_disponibles)== 0){?>
+                                <div class="text-center"><strong>No hay habitaciones disponibles</strong></div>
+                                <?php }else{?>
+                                <?php foreach($habitaciones_disponibles as $hd): ?>
                                 <tr>
                                     <td>
                                             <i class='material-icons'>check</i>
                                     </td>
                                     <td>
-                                            <strong><?= $hd->cod_habitacion ?></strong>
+                                            <strong><?= $hd['cod_habitacion'] ?></strong>
                                     </td>
                                 <!-- </tr>
                                 <tr> -->
                                     <td>
-                                        <?= $hd->tipo_habitacion ?>
+                                        <?= $hd['tipo_habitacion'] ?>
                                     </td>
                                 </tr>
-                                <? endforeach; ?>
+                              <?php endforeach; ?>
+                            <?php }; ?>
                             </tbody>
                         </table>
                     </div>
@@ -133,5 +137,5 @@
     </div>
 </div> -->
 
-       
+
    </section>

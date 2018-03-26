@@ -1,8 +1,8 @@
-
 var seleccionadoh = new Array();
 var seleccionadodh = new Array();
 var huespedes = new Array();
 var objeto = new Object();
+var habitacion_estadia_detalle = $('#habitacion_estadia_detalle');
 // INICIO: OBTENER FECHA
 var d = new Date();
 
@@ -15,17 +15,30 @@ var output = d.getFullYear() + '-' +
 // FIN: OBTENER FECHA
 
 function deldat(cod_estadia){
-    $.post(base_url+'reservaciones/eliminar',
-    {
-        cod_estadia:cod_estadia,
-    },
-    function(data){
-        console.log(data);
-        if (data == 1){
-            alert('Eliminado');
-            location.reload();
-        }
-    });
+  swal({
+    title: "¿Está seguro?",
+    text: "Una vez eliminado, no volverá a tener acceso a este elemento.",
+    icon: "warning",
+    buttons: true,
+    dangerMode: true,
+  })
+  .then((willDelete) => {
+    if (willDelete) {
+      $.post(base_url+'reservaciones/eliminar',
+      {
+          cod_estadia:cod_estadia,
+      },
+      function(data){
+          console.log(data);
+          if (data == 1){
+              swal('El elemento ha sido eliminado.', {icon: "success"});
+              location.reload();
+          }
+      });
+    } else {
+      swal("El elemento no fue eliminado.");
+    }
+  });
 };
 
 function confirmarEstadia(estadia){
@@ -36,13 +49,17 @@ function confirmarEstadia(estadia){
     function(r){
         if (r == 1)
         {
-            alert('Reservación confirmada.');
+            swal('Reservación confirmada.');
             // location.reload();
         }else{
-            alert('Error al confirmar :c');
+            swal('Error al confirmar :c');
         }
     })
-}
+};
+
+function mostrar_detalle(id){
+
+};
 
 $(document).on('ready',function(){
     // INICIO: DEFINICION DE VARIABLES
@@ -54,6 +71,7 @@ $(document).on('ready',function(){
     var fecha_reservacion = $('#fecha_r');
     var fecha_estadia = $('#fecha_estadia');
     var fecha_salida = $('#fecha_salida');
+    var fecha_salida_e = $('#fecha_salida_e');
     var btn_ahora = $('#ahora');
     var detalle_body = $('#detalle_body');
     var body_hab = $('#body_hab');
@@ -74,6 +92,19 @@ $(document).on('ready',function(){
     var btn_registrar = $('#btn_registrar');
     var cliente_form = $('#cliente_form');
     // FIN: DEFINICION DE VARIABLES
+    $('.dni-field').blur(function(){
+        var elemento = $(this);
+        if(elemento.val().length != 8)
+        {
+            swal({
+                title: 'Este campo debe contener 8 caracteres.',
+                type: 'warning'
+            },
+            function(){
+                elemento.focus();
+            })
+        }
+    })
 
     fecha_salida.attr('disabled', 'disabled');
     fecha_estadia.bootstrapMaterialDatePicker({
@@ -89,10 +120,16 @@ $(document).on('ready',function(){
         clearButton: true,
         weekStart: 1,
         time: false,
-    });    
+    });
+    fecha_salida_e.bootstrapMaterialDatePicker({
+        format: 'YYYY-MM-DD',
+        clearButton: true,
+        weekStart: 1,
+        time: false,
+    });
     fecha_estadia.change(function(){
         console.log('hola');
-        inicializar_fecha_salida(fecha_estadia.val());    
+        inicializar_fecha_salida(fecha_estadia.val());
     });
 
     // INICIO: FUNCIONES
@@ -104,7 +141,7 @@ $(document).on('ready',function(){
 
 
     function registrar_cliente(){
-        $.ajax({            
+        $.ajax({
             url: base_url+'reservaciones/registrar_cliente',
             type: 'POST',
             dataType: 'JSON',
@@ -118,7 +155,7 @@ $(document).on('ready',function(){
                 console.log(r);
             }
         }).done(function(){
-            alert('Cliente registrado correctamente.');
+            swal('Cliente registrado correctamente.');
             $('#nombres').val('');
             $('#apellido_p').val('');
             $('#apellido_m').val('');
@@ -128,27 +165,26 @@ $(document).on('ready',function(){
             btn_registrar.css('display', 'none');
 
         }).fail(function(){
-            alert('Error al registrar');
+            swal('Error al registrar');
         });
     }
 
-    function editClient(cod_estadia, cod_cliente, cod_empleado, fecha_reserva, fecha_ingreso, fecha_salida){
-        fecha_ingreso.val(cod_estadia);
-        fecha_reservacion.val(cod_cliente);
-        enviar = function(){
+    editClient = function(cod_estadia, fecha_ingreso, fecha_salida){
+        fecha_salida_e.bootstrapMaterialDatePicker('setMinDate', fecha_ingreso)
+        fecha_salida_e.val(fecha_salida);
+        insertdat = function(){
             $.post(base_url+"reservaciones/actualizar",
             {
                 cod_estadia:cod_estadia,
-                fecha_ingreso:$('#fecha_ingreso').val(),
-                fecha_reservacion:$('#fecha_reservacion').val(),
+                fecha_salida:fecha_salida_e.val(),
             },
             function(data){
                 if (data == 1){
-                    alert('Guardado');
+                    swal('Guardado');
                     $('#cerrar_modal').click();
                     location.reload();
                 }
-                alert(data);
+                swal(data);
             });
         }
     };
@@ -191,6 +227,13 @@ $(document).on('ready',function(){
                 })
     }
     // FIN: FUNCIONES
+    habitacion_estadia_detalle.DataTable({
+        'paging': true,
+        'info': true,
+        'filter': true,
+        'stateSave': true,
+        'language': español
+    })
 
     reservaciones_dt.DataTable({
         'paging':true,
@@ -199,7 +242,7 @@ $(document).on('ready',function(){
         'stateSave':true,
         'ajax':{
             "url": base_url+"reservaciones/consultar",
-            "type":"POST",
+            "type":"get",
             dataSrc: ''
         },
         'columns':[
@@ -225,7 +268,7 @@ $(document).on('ready',function(){
                 '</button>'+
                 '<ul class="dropdown-menu" aria-labelledby="btnGroupVerticalDrop1">'+
                 '<li><a class="waves-effect waves-block" onClick="VerDetalle(\''+row.cod_estadia+'\')">Ver detalles</a></li>'+confirm+
-                '<li><a data-toggle="modal" data-target="#editar" class=" waves-effect waves-block" onClick="editClient(\''+row.cod_estadia+'\',\''+row.cod_cliente+'\',\''+row.cod_empleado+'\',\''+row.fecha_reserva+'\',\''+row.fecha_ingreso+'\',\''+row.fecha_salida+'\');">Editar</a></li>'+
+                '<li><a data-toggle="modal" data-target="#editar" class=" waves-effect waves-block" onClick="editClient(\''+row.cod_estadia+'\',\''+row.fecha_ingreso+'\',\''+row.fecha_salida+'\');">Editar</a></li>'+
                 delete_li+
                 '</ul>'+
                 '</div>'
@@ -252,6 +295,7 @@ $(document).on('ready',function(){
         }
     })
     fecha_salida.change(function(){
+        fecha_estadia.bootstrapMaterialDatePicker('setMaxDate', fecha_salida.val());
         habitaciones_reservar(fecha_estadia.val(), fecha_salida.val());
     })
     btn_ahora.click(function(){
@@ -264,7 +308,9 @@ $(document).on('ready',function(){
         nro_res.val(parseInt(num_reservacion)+1);
         var flag = 0;
         cliente.on('keyup',function(){
+            var cliente_in = $(this);
             if ($(this).val().length == 8){
+            $('#cliente').blur();
                 $.post(base_url+'reservaciones/comprobar_cliente',
                 {
                     cliente:cliente.val(),
@@ -319,15 +365,16 @@ $(document).on('ready',function(){
                         var datos = eval(data);
                         var clnt = '';
                         datos.forEach(function(i){
-                            clnt = 'El cliente es: '+i['nombres']+' '+i['apellido_paterno']+' '+i['apellido_materno'];
+                            clnt = '<strong>El cliente es:</strong><br/>'+i['nombres']+' '+i['apellido_paterno']+' '+i['apellido_materno'];
+                            clnt = '<div class="col-md-12 col-lg-12">'+clnt+'</div>';
                         })
-                        alert(clnt);
-                        $('#cliente').blur();
+                        $('#detalles').html(clnt).addClass('col-md-8');
                     }
                 })
             }
             if ($(this).val().length > 8){
-                alert('Se exedió el número máximo de caracteres para este campo');
+                swal('Se exedió el número máximo de caracteres para este campo');
+                $(this).val().length = 8;
             }
         })
         btn_registrar.click(function(e){
@@ -348,7 +395,7 @@ $(document).on('ready',function(){
         habitaciones_reservar('', '');
         // $.post(base_url+'reservaciones/room_list',
         // {
-            
+
         // },
         // function(data){
         //     var html = '';
@@ -408,7 +455,7 @@ $(document).on('ready',function(){
                 console.log(data);
                 console.log(huespedes);
                 //location.reload();
-            })
+            });
             seleccionadoh.forEach(function(e){
                 $.post(base_url+'reservaciones/detalle_habitacion',
             {
@@ -440,7 +487,7 @@ $(document).on('ready',function(){
                                 function(data){
                                     console.log(data);
                                     console.log(huespedes);
-                                    alert(data);
+                                    swal(data);
                                     location.reload();
                                 })
                             }
@@ -452,41 +499,48 @@ $(document).on('ready',function(){
         })
     })
 comprobar = function(data1){
-    $.post(base_url+'reservaciones/existencia',
+    var field = $('#'+data1+'').val();
+    if (field.length == 8)
     {
-        cod_persona:$('#'+data1+'').val(),
-    },
-    function(data){
-        $('#huesdiv'+data1+'').html('');
-        if (data == 0){
-            if(inputsval.includes($('#cliente').val())==false){
-                var html='';
-                html += '<div class="col-md-3">';
-                html += '<div class="form-group form-float">'+
-                        '<div class="form-line focused">';
-                html += '<label class="form-label">Nombres:</label>';
-                html += '<input class="form-control" type="text" id="nombres'+data1+'" />';
-                html += '</div></div></div>';
-
-                html += '<div class="col-md-3">';
-                html += '<div class="form-group form-float">'+
-                        '<div class="form-line focused">';
-                html += '<label class="form-label">Apellido Paterno:</label>';
-                html += '<input class="form-control" type="text" id="apellido_paterno'+data1+'" />';
-                html += '</div></div></div>';
-
-                html += '<div class="col-md-3">';
-                html += '<div class="form-group form-float">'+
-                        '<div class="form-line focused">';
-                html += '<label class="form-label">Apellido Materno:</label>';
-                html += '<input class="form-control" type="text" id="apellido_materno'+data1+'" />';
-                html += '</div></div></div>';
-                $('#huesdiv'+data1+'').append(html);
-            }
-        }else{
+        $.post(base_url+'reservaciones/existencia',
+        {
+            cod_persona:$('#'+data1+'').val(),
+        },
+        function(data){
             $('#huesdiv'+data1+'').html('');
-        }
-    })
+            if (data == 0){
+                if(inputsval.includes($('#cliente').val())==false){
+                    var html='';
+                    html += '<div class="col-md-3">';
+                    html += '<div class="form-group form-float">'+
+                            '<div class="form-line focused">';
+                    html += '<label class="form-label">Nombres:</label>';
+                    html += '<input class="form-control" type="text" id="nombres'+data1+'" />';
+                    html += '</div></div></div>';
+    
+                    html += '<div class="col-md-3">';
+                    html += '<div class="form-group form-float">'+
+                            '<div class="form-line focused">';
+                    html += '<label class="form-label">Apellido Paterno:</label>';
+                    html += '<input class="form-control" type="text" id="apellido_paterno'+data1+'" />';
+                    html += '</div></div></div>';
+    
+                    html += '<div class="col-md-3">';
+                    html += '<div class="form-group form-float">'+
+                            '<div class="form-line focused">';
+                    html += '<label class="form-label">Apellido Materno:</label>';
+                    html += '<input class="form-control" type="text" id="apellido_materno'+data1+'" />';
+                    html += '</div></div></div>';
+                    $('#huesdiv'+data1+'').append(html);
+                }
+            }else{
+                $('#huesdiv'+data1+'').html('');
+            }
+        })
+    }else{
+        
+        $('#huesdiv'+data1+'').html('');
+    }
 }
   VerDetalle=function(data1){
   $('#habitacion_estadia').html('');
@@ -500,20 +554,21 @@ comprobar = function(data1){
         datos = eval(data);
         var objeto={};
         for (i = 0; i < datos.length; i++){
-            html+= '<div class="col-md-3 align-justify">';
+            html+= '<div class="col-md-3 col-sm-3 col-xs-3 col-lg-3 align-left">';
             html+= '<p><strong>Cliente (DNI): </strong><br />'+datos[i]['cod_persona']+'</p>';
             html+= '<p><strong>Nombres: </strong><br />'+datos[i]['nombres']+'</p></div>';
-            html+= '<div class="col-md-3 align-justify">';
+            html+= '<div class="col-md-3 col-sm-3 col-xs-3 col-lg-3 align-justify">';
             html+= '<p><strong>Apellido paterno: </strong><br />'+datos[i]['apellido_paterno']+'</p>';
             html+= '<p><strong>Apellido materno: </strong><br />'+datos[i]['apellido_materno']+'</p></div>';
-            html+= '<div class="col-md-3 align-justify">';
+            html+= '<div class="col-md-3 col-sm-3 col-xs-3 col-lg-3 align-justify">';
             html+= '<p><strong>Código de estadía: </strong><br />'+datos[i]['cod_estadia']+'</p>';
-            html+= '<p><strong>Fecha de reservación: </strong><br />'+datos[i]['fecha_reserva']+'</p></div>';
-            html+= '<div class="col-md-3 align-justify">';
-            html+= '<p><strong>Fecha de ingreso: </strong><br />'+datos[i]['fecha_ingreso']+'</p>';
-            html+= '<p><strong>Fecha de salida: </strong><br />'+datos[i]['fecha_salida']+'</p></div>';
+            html+= '<p><strong>Reservación: </strong><br />'+datos[i]['fecha_reserva']+'</p></div>';
+            html+= '<div class="col-md-3 col-sm-3 col-xs-3 col-lg-3 align-justify">';
+            html+= '<p><strong>Ingreso: </strong><br />'+datos[i]['fecha_ingreso']+'</p>';
+            html+= '<p><strong>Salida: </strong><br />'+datos[i]['fecha_salida']+'</p></div>';
             $('#Detalle').append(html);
             var html = '';
+            mostrar_detalle(datos[i]['cod_estadia']);
             $.post(base_url+'reservaciones/consultar_habitacion_estadia',
                 {
                     cod_estadia1:datos[i]['cod_estadia'],
@@ -583,13 +638,16 @@ comprobar = function(data1){
                       html += '<div class="form-group form-float">'+
                               '<div class="form-line focused">';
                       html += '<label class="form-label">DNI '+parseInt(j+1)+':</label>';
-                      html += '<input name="dni_huesped" class="form-control" onBlur="comprobar('+indice+');" type="number" id="'+a+j+'" />';
+                      html += '<input name="dni_huesped" class="form-control dni-field" onKeyup="comprobar('+indice+');" type="number" id="'+a+j+'" />';
                       html += '</div></div></div><div id="huesdiv'+a+j+'"></div></div>';
                   }
                   $('#deta'+a+'').html(html);
                   $('input[name=dni_huesped]').blur(function(){
                       if(inputsval.includes($(this).val())){
-                          alert('No se permite valores duplicados en los campos de DNI, por favor coloque valores diferentes.')
+                          swal({
+                              title: 'No se permite valores duplicados en los campos de DNI, por favor coloque valores diferentes.',
+                                type: 'warning'
+                            });
                           $(this).val('');
                           console.log(inputsval);
                           $(this).focus();
@@ -614,7 +672,6 @@ comprobar = function(data1){
           //html += '</div>';
       })
       //console.log(html);
-      //alert(html);
+      //swal(html);
   }
 })
-

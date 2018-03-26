@@ -110,7 +110,7 @@
                                     <div class="form-group form-float">
                                         <div class="form-line">
                                             <label class="form-label">Código</label>
-                                            <input disabled type="number" value="<?base_url() ?><?php echo $this->Ofertas_model->num_rows() ?>" name="cod_oferta_c" id="cod_oferta_c" class="form-control">
+                                            <input disabled type="number" value="<?=base_url() ?><?php echo $this->Ofertas_model->num_rows() ?>" name="cod_oferta_c" id="cod_oferta_c" class="form-control">
                                         </div>
                                     </div>
                                 </div>

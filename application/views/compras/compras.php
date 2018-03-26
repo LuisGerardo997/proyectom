@@ -1,6 +1,7 @@
 <script>
-var num_compra = '<?php echo $this->Compras_model->num_compra() ?>';
-var empleado = '<?php echo $this->session->userdata('cod_p') ?>';
+        var num_compra = '<?php echo $this->Compras_model->num_compra() ?>';
+        var empleado = '<?php echo $this->session->userdata('
+        cod_p ') ?>';
 </script>
 <section class="content">
         <div class="container-fluid">
@@ -17,8 +18,12 @@ var empleado = '<?php echo $this->session->userdata('cod_p') ?>';
                                                         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                                                                 <!-- Nav tabs -->
                                                                 <ul class="nav nav-tabs tab-nav-right text-right" role="tablist">
-                                                                        <li role="presentation" id="ventas_realizadas" class="active"><a href="#home_animation_1" data-toggle="tab">Compras realizadas</a></li>
-                                                                        <li role="presentation" id="realizar_venta"><a href="#profile_animation_1" data-toggle="tab">Realizar compra</a></li>
+                                                                        <li role="presentation" id="ventas_realizadas" class="active">
+                                                                                <a href="#home_animation_1" data-toggle="tab">Compras realizadas</a>
+                                                                        </li>
+                                                                        <li role="presentation" id="realizar_venta">
+                                                                                <a href="#profile_animation_1" data-toggle="tab">Realizar compra</a>
+                                                                        </li>
                                                                 </ul>
 
                                                                 <!-- Tab panes -->
@@ -32,10 +37,17 @@ var empleado = '<?php echo $this->session->userdata('cod_p') ?>';
                                                                                                         <thead>
                                                                                                                 <tr>
                                                                                                                         <th>#</th>
-                                                                                                                        <th>RUC Proveedor</th>
-                                                                                                                        <th>Razón social</th>
-                                                                                                                        <th>Fecha de compra</th>
-                                                                                                                        <th><i class="material-icons">more_vert</i></th>
+                                                                                                                        <th>RUC
+                                                                                                                                Proveedor</th>
+                                                                                                                        <th>Razón
+                                                                                                                                social</th>
+                                                                                                                        <th>Fecha
+                                                                                                                                de
+                                                                                                                                compra</th>
+                                                                                                                        <th>
+                                                                                                                                <i
+                                                                                                                                        class="material-icons">more_vert</i>
+                                                                                                                        </th>
                                                                                                                 </tr>
                                                                                                         </thead>
                                                                                                 </table>
@@ -54,9 +66,15 @@ var empleado = '<?php echo $this->session->userdata('cod_p') ?>';
                                                                                                                                 <i class="material-icons">more_vert</i>
                                                                                                                         </a>
                                                                                                                         <ul class="dropdown-menu pull-right">
-                                                                                                                                <li><a href="javascript:void(0);">Action</a></li>
-                                                                                                                                <li><a href="javascript:void(0);">Another action</a></li>
-                                                                                                                                <li><a href="javascript:void(0);">Something else here</a></li>
+                                                                                                                                <li>
+                                                                                                                                        <a
+                                                                                                                                                href="javascript:void(0);" data-toggle='modal' data-target="#crear" >Añadir producto</a>
+                                                                                                                                </li>
+                                                                                                                                <li>
+                                                                                                                                        <a
+                                                                                                                                                href="javascript:void(0);" data-toggle="modal" data-target="#crear_prov" >Añadir
+                                                                                                                                                proveedor</a>
+                                                                                                                                </li>
                                                                                                                         </ul>
                                                                                                                 </li>
                                                                                                         </ul>
@@ -66,7 +84,9 @@ var empleado = '<?php echo $this->session->userdata('cod_p') ?>';
                                                                                                                 <h2>Proveedor</h2>
                                                                                                                 <section>
                                                                                                                         <div class="text-center">
-                                                                                                                                <h4>Seleccione el proveedor</h4>
+                                                                                                                                <h4>Seleccione
+                                                                                                                                        el
+                                                                                                                                        proveedor</h4>
                                                                                                                         </div>
                                                                                                                         <br>
                                                                                                                         <input type="hidden" disabled value="" name="nro_compra" id="nro_compra" class="form-control">
@@ -75,11 +95,14 @@ var empleado = '<?php echo $this->session->userdata('cod_p') ?>';
                                                                                                                                         <thead>
                                                                                                                                                 <tr>
                                                                                                                                                         <th>RUC</th>
-                                                                                                                                                        <th>Razón social</th>
+                                                                                                                                                        <th>Razón
+                                                                                                                                                                social</th>
                                                                                                                                                         <th>DNI</th>
                                                                                                                                                         <th>Nombres</th>
-                                                                                                                                                        <th>Apellido paterno</th>
-                                                                                                                                                        <th>Apellido materno</th>
+                                                                                                                                                        <th>Apellido
+                                                                                                                                                                paterno</th>
+                                                                                                                                                        <th>Apellido
+                                                                                                                                                                materno</th>
                                                                                                                                                         <th>Ciudad</th>
                                                                                                                                                         <th>Acción</th>
                                                                                                                                                 </tr>
@@ -112,31 +135,39 @@ var empleado = '<?php echo $this->session->userdata('cod_p') ?>';
                                                                                                                                                 <!-- Tab panes -->
                                                                                                                                                 <!-- <div class="tab-content">
                                                                                                                                                         <div role="tabpanel" class="tab-pane animated flipInX active" id="existentes"> -->
-                                                                                                                                                                <div class="body">
-                                                                                                                                                                        <h4 class="text-center">Selección de productos</h4>
-                                                                                                                                                                        <br>
-                                                                                                                                                                        <div class="table-responsive">
-                                                                                                                                                                                <table class="table table-bordered table-striped table-hover">
-                                                                                                                                                                                        <thead>
-                                                                                                                                                                                                <tr>
-                                                                                                                                                                                                        <th>Código</th>
-                                                                                                                                                                                                        <th>Producto</th>
-                                                                                                                                                                                                        <th>Marca</th>
-                                                                                                                                                                                                        <th>Tipo de producto</th>
-                                                                                                                                                                                                        <th>Stock</th>
-                                                                                                                                                                                                        <th>Stock máximo</th>
-                                                                                                                                                                                                        <th>Precio</th>
-                                                                                                                                                                                                        <th><i class="material-icons">check</i></th>
-                                                                                                                                                                                                </tr>
-                                                                                                                                                                                        </thead>
-                                                                                                                                                                                        <tbody id="body_pro"></tbody>
-                                                                                                                                                                                </table>
-                                                                                                                                                                        </div>
-                                                                                                                                                                </div>
+                                                                                                                                                <div class="body">
+                                                                                                                                                        <h4 class="text-center">Selección
+                                                                                                                                                                de
+                                                                                                                                                                productos</h4>
+                                                                                                                                                        <br>
+                                                                                                                                                        <div class="table-responsive">
+                                                                                                                                                                <table class="table table-bordered table-striped table-hover">
+                                                                                                                                                                        <thead>
+                                                                                                                                                                                <tr>
+                                                                                                                                                                                        <th>Código</th>
+                                                                                                                                                                                        <th>Producto</th>
+                                                                                                                                                                                        <th>Marca</th>
+                                                                                                                                                                                        <th>Tipo
+                                                                                                                                                                                                de
+                                                                                                                                                                                                producto</th>
+                                                                                                                                                                                        <th>Stock</th>
+                                                                                                                                                                                        <th>Stock
+                                                                                                                                                                                                máximo</th>
+                                                                                                                                                                                        <th>Precio</th>
+                                                                                                                                                                                        <th>
+                                                                                                                                                                                                <i
+                                                                                                                                                                                                        class="material-icons">check</i>
+                                                                                                                                                                                        </th>
+                                                                                                                                                                                </tr>
+                                                                                                                                                                        </thead>
+                                                                                                                                                                        <tbody id="body_pro"></tbody>
+                                                                                                                                                                </table>
+                                                                                                                                                        </div>
+                                                                                                                                                </div>
 
 
-                                                                                                                                                        <!-- </div> -->
-                                                                                                                                                        <!-- <div role="tabpanel" class="tab-pane animated flipInX" id="nuevos">
+                                                                                                                                                <!-- </div> -->
+                                                                                                                                                <!-- <div role="tabpanel" class="tab-pane animated flipInX" id="nuevos">
                                                                                                                                                                 <h3 class="title text-center">Registro de nuevo producto</h3>
                                                                                                                                                                 <br><br>
                                                                                                                                                                 <div class="row clearfix">
@@ -244,22 +275,23 @@ var empleado = '<?php echo $this->session->userdata('cod_p') ?>';
                         </div>
                 </div>
         </div>
-</div>
-<!-- #END# Tabs With Custom Animations -->
-<!-- Comienzo de modals -->
-<div class="modal fade" id="habitaciones_list" tabindex="-1" role="dialog">
-        <div class="modal-dialog modal-lg" role="document">
-                <div class="modal-content">
-                        <div class="modal-header text-center">
-                                <h2 class="modal-title" id="largeModalLabel">Selección de artículos</h2>
-                        </div>
-                        <div class="modal-body">
-                                <div class="row clearfix">
-                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        </div>
+        <!-- #END# Tabs With Custom Animations -->
+        <!-- Comienzo de modals -->
+        <div class="modal fade" id="habitaciones_list" tabindex="-1" role="dialog">
+                <div class="modal-dialog modal-lg" role="document">
+                        <div class="modal-content">
+                                <div class="modal-header text-center">
+                                        <h2 class="modal-title" id="largeModalLabel">Selección de artículos</h2>
+                                </div>
+                                <div class="modal-body">
+                                        <div class="row clearfix">
+                                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 
-                                                <div class="body">
-                                                        <div id="habitaciones_list1">
+                                                        <div class="body">
+                                                                <div id="habitaciones_list1">
 
+                                                                </div>
                                                         </div>
                                                 </div>
                                         </div>
@@ -267,20 +299,20 @@ var empleado = '<?php echo $this->session->userdata('cod_p') ?>';
                         </div>
                 </div>
         </div>
-</div>
-<div class="modal fade" id="detalle_venta" tabindex="-1" role="dialog">
-        <div class="modal-dialog modal-lg" role="document">
-                <div class="modal-content">
-                        <div class="modal-header text-center">
-                                <h2 class="modal-title" id="largeModalLabel">Selección de artículos</h2>
-                        </div>
-                        <div class="modal-body">
-                                <div class="row clearfix">
-                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="modal fade" id="detalle_venta" tabindex="-1" role="dialog">
+                <div class="modal-dialog modal-lg" role="document">
+                        <div class="modal-content">
+                                <div class="modal-header text-center">
+                                        <h2 class="modal-title" id="largeModalLabel">Selección de artículos</h2>
+                                </div>
+                                <div class="modal-body">
+                                        <div class="row clearfix">
+                                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 
-                                                <div class="body">
-                                                        <div class="row" id="detalle_venta_body">
+                                                        <div class="body">
+                                                                <div class="row" id="detalle_venta_body">
 
+                                                                </div>
                                                         </div>
                                                 </div>
                                         </div>
@@ -288,16 +320,16 @@ var empleado = '<?php echo $this->session->userdata('cod_p') ?>';
                         </div>
                 </div>
         </div>
-</div>
-<div class="modal fade" id="ingresar_cantidad" tabindex="-1" role="dialog">
-        <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                        <div class="modal-header text-center">
-                                <h2 class="modal-title" id="largeModalLabel">Reabastecimiento de producto</h2>
-                        </div>
-                        <div class="modal-body">
+        <div class="modal fade" id="ingresar_cantidad" tabindex="-1" role="dialog">
+                <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                                <div class="modal-header text-center">
+                                        <h2 class="modal-title" id="largeModalLabel">Reabastecimiento de producto</h2>
+                                </div>
+                                <div class="modal-body">
                                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                                <br><br>
+                                                <br>
+                                                <br>
                                                 <div class="row clearfix">
                                                         <div class="col-md-4 col-md-offset-4">
                                                                 <div class="form-group form-float">
@@ -330,50 +362,244 @@ var empleado = '<?php echo $this->session->userdata('cod_p') ?>';
                                                         </div>
                                                 </div>
                                         </div>
-                        </div>
-                        <div class="modal-footer">
-                                <button type="button" onClick='guardar_compra();' class="btn btn-link waves-effect">Aceptar</button>
-                                <button type="button" id="cerrar_modal" class="btn btn-link waves-effect" data-dismiss="modal">Cancelar</button>
-                        </div>
-                </div>
-        </div>
-</div>
-<div class="modal fade" id="producto_cant" tabindex="-1" role="dialog">
-        <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                        <div class="modal-header text-center">
-                                <h3 class="title" id="largeModalLabel">Introduzca la cantidad deseada:</h3>
-                        </div>
-                        <div class="modal-body">
-                                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 p-t-20" id="contenedor_detalle">
-                                        <form action="#">
-                                                <div class="col-md-4 col-md-offset-2">
-                                                        <div class="form-group form-float">
-                                                                <div class="form-line focused">
-                                                                        <label class="form-label">Cantidad</label>
-                                                                        <input maxlength="8" type="number" value="" name="cant_prod" id="cant_prod" class="form-control">
-                                                                </div>
-                                                        </div>
-                                                </div>
-                                                                        <input disabled maxlength="8" type="hidden" value="" name="cant_act" id="cant_act" class="form-control">
-                                                <div class="col-md-4">
-                                                        <div class="form-group form-float">
-                                                                <div class="form-line focused">
-                                                                        <label class="form-label">Máximo permitido</label>
-                                                                        <input disabled maxlength="8" type="number" value="" name="cant_max" id="cant_max" class="form-control">
-                                                                </div>
-                                                        </div>
-                                                </div>
-                                        </form>
+                                </div>
+                                <div class="modal-footer">
+                                        <button type="button" onClick='guardar_compra();' class="btn btn-link waves-effect">Aceptar</button>
+                                        <button type="button" id="cerrar_modal" class="btn btn-link waves-effect" data-dismiss="modal">Cancelar</button>
                                 </div>
                         </div>
-                        <div class="modal-footer">
-                                <button type="button" class="btn btn-link waves-effect" id="confirm_cant">Confirmar</button>
-                                <button type="button" class="btn btn-link waves-effect" onClick="cancelar();" data-dismiss="modal">Cancelar</button>
+                </div>
+        </div>
+        <div class="modal fade" id="producto_cant" tabindex="-1" role="dialog">
+                <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                                <div class="modal-header text-center">
+                                        <h3 class="title" id="largeModalLabel">Introduzca la cantidad deseada:</h3>
+                                </div>
+                                <div class="modal-body">
+                                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 p-t-20" id="contenedor_detalle">
+                                                <form action="#">
+                                                        <div class="col-md-4 col-md-offset-2">
+                                                                <div class="form-group form-float">
+                                                                        <div class="form-line focused">
+                                                                                <label class="form-label">Cantidad</label>
+                                                                                <input maxlength="8" type="number" value="" name="cant_prod" id="cant_prod" class="form-control">
+                                                                        </div>
+                                                                </div>
+                                                        </div>
+                                                        <input disabled maxlength="8" type="hidden" value="" name="cant_act" id="cant_act" class="form-control">
+                                                        <div class="col-md-4">
+                                                                <div class="form-group form-float">
+                                                                        <div class="form-line focused">
+                                                                                <label class="form-label">Máximo permitido</label>
+                                                                                <input disabled maxlength="8" type="number" value="" name="cant_max" id="cant_max" class="form-control">
+                                                                        </div>
+                                                                </div>
+                                                        </div>
+                                                </form>
+                                        </div>
+                                </div>
+                                <div class="modal-footer">
+                                        <button type="button" class="btn btn-link waves-effect" id="confirm_cant">Confirmar</button>
+                                        <button type="button" class="btn btn-link waves-effect" onClick="cancelar();" data-dismiss="modal">Cancelar</button>
+                                </div>
                         </div>
                 </div>
         </div>
-</div>
-<!-- Final de modals -->
-</div>
+        <div class="modal fade" id="crear" tabindex="-1" role="dialog">
+                <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                                <div class="modal-header">
+                                        <h2 class="modal-title" id="largeModalLabel">Registro de Productos</h2>
+                                </div>
+                                <div class="modal-body">
+                                        <div class="row clearfix">
+                                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                                        <div class="row clearfix">
+                                                                <div class="col-md-4">
+                                                                        <div class="form-group form-float">
+                                                                                <div class="form-line">
+                                                                                        <label class="form-label">Código</label>
+                                                                                        <input type="number" name="cod_producto" id="cod_producto_c" class="form-control">
+                                                                                </div>
+                                                                        </div>
+                                                                </div>
+                                                                <div class="col-sm-4">
+                                                                        <div class="form-group">
+                                                                                <div class="form-line focused">
+                                                                                        <select name="marca" id="marca_c" class="form-control">
+                                                                                                <option value="">-- Please select --</option>
+                                                                                                <?php foreach($marca as $fila):?>
+                                                                                                <option value='<?= $fila["cod_marca"] ?>'>
+                                                                                                        <?= $fila['marca'] ?>
+                                                                                                </option>
+                                                                                                <?php endforeach; ?>
+                                                                                        </select>
+                                                                                </div>
+                                                                        </div>
+                                                                </div>
+                                                                <div class="col-sm-4">
+                                                                        <div class="form-group">
+                                                                                <div class="form-line focused">
+                                                                                        <select name="tipo_producto" id="tipo_producto_c" class="form-control">
+                                                                                                <option value="">-- Please select --</option>
+                                                                                                <?php foreach($tipo_producto as $fila):?>
+                                                                                                <option value='<?= $fila["cod_tipo_producto"] ?>'>
+                                                                                                        <?= $fila['tipo_producto'] ?>
+                                                                                                </option>
+                                                                                                <?php endforeach; ?>
+                                                                                        </select>
+                                                                                </div>
+                                                                        </div>
+                                                                </div>
+                                                        </div>
+                                                        <div class="row clearfix">
+                                                                <div class="col-md-4">
+                                                                        <div class="form-group form-float">
+                                                                                <div class="form-line">
+                                                                                        <label class="form-label">Producto</label>
+                                                                                        <input type="text" name="producto" id="producto_c" class="form-control">
+                                                                                </div>
+                                                                        </div>
+                                                                </div>
+                                                                <div class="col-md-4">
+                                                                        <div class="form-group form-float">
+                                                                                <div class="form-line">
+                                                                                        <label class="form-label">Descripción</label>
+                                                                                        <input type="text" name="descripcion" id="descripcion_c" class="form-control">
+                                                                                </div>
+                                                                        </div>
+                                                                </div>
+                                                                <div class="col-md-4">
+                                                                        <div class="form-group form-float">
+                                                                                <div class="form-line">
+                                                                                        <label class="form-label">Precio (s/.)</label>
+                                                                                        <input type="text" name="precio_producto" id="precio_producto_c" class="form-control">
+                                                                                </div>
+                                                                        </div>
+                                                                </div>
+                                                                <div class="col-md-4">
+                                                                        <div class="form-group form-float">
+                                                                                <div class="form-line">
+                                                                                        <label class="form-label">Stock actual</label>
+                                                                                        <input type="text" name="stock_producto" id="stock_producto_c" class="form-control">
+                                                                                </div>
+                                                                        </div>
+                                                                </div>
+                                                                <div class="col-md-4">
+                                                                        <div class="form-group form-float">
+                                                                                <div class="form-line">
+                                                                                        <label class="form-label">Stock mínimo</label>
+                                                                                        <input type="text" name="stock_minimo" id="stock_minimo_c" class="form-control email">
+                                                                                </div>
+                                                                        </div>
+                                                                </div>
+                                                                <div class="col-md-4">
+                                                                        <div class="form-group form-float">
+                                                                                <div class="form-line">
+                                                                                        <label class="form-label">Stock máximo</label>
+                                                                                        <input type="text" name="stock_maximo" id="stock_maximo_c" class="form-control email">
+                                                                                </div>
+                                                                        </div>
+                                                                </div>
+                                                        </div>
+                                                </div>
+                                        </div>
+                                </div>
+                                <div class="modal-footer">
+                                        <button type="button" class="btn btn-link waves-effect" onclick="insertprod();">Guardar cambios</button>
+                                        <button type="button" id="cerrar_modal" class="btn btn-link waves-effect" data-dismiss="modal">Cerrar</button>
+                                </div>
+                        </div>
+                </div>
+        </div>
+        <div class="modal fade" id="crear_prov" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h2 class="modal-title" id="largeModalLabel">Registro de Proveedores</h2>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row clearfix">
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <div class="col-md-3">
+                                    <div class="form-group form-float">
+                                        <div class="form-line focused">
+                                            <label class="form-label">RUC</label>
+                                            <input type="text" name="cod_proveedor_c" id="cod_proveedor_c" class="form-control">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group form-float">
+                                        <div class="form-line focused">
+                                            <label class="form-label">Razón social</label>
+                                            <input type="text" name="razon_social_c" id="razon_social_c" class="form-control">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group form-float">
+                                        <div class="form-line focused">
+                                            <label class="form-label">DNI</label>
+                                            <input type="number" name="dni_c" id="dni_c" class="form-control">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group form-float">
+                                        <div class="form-line focused">
+                                            <label class="form-label">Nombres</label>
+                                            <input type="text" name="nombres_c" id="nombres_c" class="form-control">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group form-float">
+                                        <div class="form-line focused">
+                                            <label class="form-label">Apellido paterno</label>
+                                            <input type="text" name="apellido_paterno_c" id="apellido_paterno_c" class="form-control">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group form-float">
+                                        <div class="form-line focused">
+                                            <label class="form-label">Apellido materno</label>
+                                            <input type="text" name="apellido_materno_c" id="apellido_materno_c" class="form-control">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="form-group form-float">
+                                        <div class="form-line focused">
+                                            <select name="ciudad_c" id="ciudad_c" class="form-control">
+                                                <option value>Ciudad</option>
+                                                <?php foreach($ciudad as $fila):?>
+                                                    <option value='<?= $fila["cod_ciudad"] ?>'><?= $fila['ciudad'] ?></option>
+                                                <?php endforeach; ?>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="form-group form-float">
+                                        <div class="form-line focused">
+                                            <label class="form-label">Descripción</label>
+                                            <input type="text" name="descripcion_c" id="descripcion_c" class="form-control">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-link waves-effect" onclick="insertprov();">Guardar cambios</button>
+                        <button type="button" id="cerrar_modal" class="btn btn-link waves-effect" data-dismiss="modal">Cerrar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Final de modals -->
+        </div>
 </section>

@@ -44,9 +44,9 @@
                     </div>
                 </div>
             </div>
-        
+
         <!-- Edición -->
-        
+
         <div class="modal fade" id="editar" tabindex="-1" role="dialog">
             <div class="modal-dialog modal-lg" role="document">
                 <div class="modal-content">
@@ -60,12 +60,12 @@
                                     <div class="form-group form-float">
                                         <div class="form-line focused">
                                             <label class="form-label focused">DNI</label>
-                                            <input type="number" name="cod_persona_e" id="cod_persona_e" class="form-control" min="0" max="99999999" maxlength="8" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" onkeydown="return( event.ctrlKey || event.altKey 
-                                            || (event.keyCode>47 && event.keyCode<58 && event.shiftKey==false) 
+                                            <input type="number" name="cod_persona_e" id="cod_persona_e" class="form-control" min="0" max="99999999" maxlength="8" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" onkeydown="return( event.ctrlKey || event.altKey
+                                            || (event.keyCode>47 && event.keyCode<58 && event.shiftKey==false)
                                             || (event.keyCode>95 && event.keyCode<106)
                                             || (event.keyCode>34 && event.keyCode<40)
-                                            || (event.keyCode==8) 
-                                            || (event.keyCode==9)  
+                                            || (event.keyCode==8)
+                                            || (event.keyCode==9)
                                             || (event.keyCode==46))">
                                         </div>
                                     </div>
@@ -111,14 +111,6 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-2">
-                                    <div class="form-group form-float">
-                                        <div class="form-line focused">
-                                            <label class="form-label">Profesión</label>
-                                            <input type="text" name="profesion_e" id="profesion_e" class="form-control" maxlength="50">
-                                        </div>
-                                    </div>
-                                </div>
                                 <div class="col-md-3">
                                     <div class="form-group form-float">
                                         <div class="form-line focused">
@@ -147,12 +139,12 @@
                                     <div class="form-group form-float">
                                         <div class="form-line focused">
                                             <label class="form-label">Teléfono</label>
-                                            <input type="number" name="telefono_domicilio_e" id="telefono_domicilio_e" class="form-control" min="0" onkeydown="return( event.ctrlKey || event.altKey 
-                                        || (event.keyCode>47 && event.keyCode<58 && event.shiftKey==false) 
+                                            <input type="number" name="telefono_domicilio_e" id="telefono_domicilio_e" class="form-control" min="0" onkeydown="return( event.ctrlKey || event.altKey
+                                        || (event.keyCode>47 && event.keyCode<58 && event.shiftKey==false)
                                         || (event.keyCode>95 && event.keyCode<106)
                                         || (event.keyCode>34 && event.keyCode<40)
-                                        || (event.keyCode==8) 
-                                        || (event.keyCode==9)  
+                                        || (event.keyCode==8)
+                                        || (event.keyCode==9)
                                         || (event.keyCode==46))">
                                         </div>
                                     </div>
@@ -161,12 +153,12 @@
                                     <div class="form-group form-float">
                                         <div class="form-line focused">
                                             <label class="form-label">Celular</label>
-                                            <input type="number" name="tel_movil_e" id="tel_movil_e" class="form-control" min="0" onkeydown="return( event.ctrlKey || event.altKey 
-                                        || (event.keyCode>47 && event.keyCode<58 && event.shiftKey==false) 
+                                            <input type="number" name="tel_movil_e" id="tel_movil_e" class="form-control" min="0" onkeydown="return( event.ctrlKey || event.altKey
+                                        || (event.keyCode>47 && event.keyCode<58 && event.shiftKey==false)
                                         || (event.keyCode>95 && event.keyCode<106)
                                         || (event.keyCode>34 && event.keyCode<40)
-                                        || (event.keyCode==8) 
-                                        || (event.keyCode==9)  
+                                        || (event.keyCode==8)
+                                        || (event.keyCode==9)
                                         || (event.keyCode==46))">
                                         </div>
                                     </div>
@@ -192,77 +184,6 @@
                                         <div class="form-line focused">
                                             <label class="form-label">Banco</label>
                                             <input type="text" name="banco_e" id="banco_e" class="form-control" maxlength="30">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-2">
-                                    <div class="form-group form-float">
-                                        <div class="form-line focused">
-                                            <label class="form-label">Peso (Kg)</label>
-                                            <input type="number" name="peso_e" id="peso_e" class="form-control" min="0" max="999" maxlength="3" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" onkeydown="return( event.ctrlKey || event.altKey 
-                                        || (event.keyCode>47 && event.keyCode<58 && event.shiftKey==false) 
-                                        || (event.keyCode>95 && event.keyCode<106)
-                                        || (event.keyCode>34 && event.keyCode<40)
-                                        || (event.keyCode==8) 
-                                        || (event.keyCode==9)  
-                                        || (event.keyCode==46)
-                                        || (event.keyCode==188))">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-3">
-                                    <div class="form-group form-float">
-                                        <div class="form-line focused">
-                                            <label class="form-label">Estatura (cm)</label>
-                                            <input type="number" name="estatura_e" id="estatura_e" class="form-control" min="0" max="999" maxlength="3" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" onkeydown="return( event.ctrlKey || event.altKey 
-                                        || (event.keyCode>47 && event.keyCode<58 && event.shiftKey==false) 
-                                        || (event.keyCode>95 && event.keyCode<106)
-                                        || (event.keyCode>34 && event.keyCode<40)
-                                        || (event.keyCode==8) 
-                                        || (event.keyCode==9)  
-                                        || (event.keyCode==46)
-                                        || (event.keyCode==188))">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-2">
-                                    <div class="form-group form-float">
-                                        <div class="form-line focused">
-                                            <label class="form-label">Nº de hijos</label>
-                                            <input type="number" name="hijos_e" id="hijos_e" class="form-control" min="0" max="99" maxlength="2" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-2">
-                                    <div class="form-group form-float">
-                                        <div class="form-line focused">
-                                            <label class="form-label">Hobby</label>
-                                            <input type="text" name="hobby_e" id="hobby_e" class="form-control" maxlength="50">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-3">
-                                    <div class="form-group form-float">
-                                        <div class="form-line focused">
-                                            <label class="form-label">Deporte favorito</label>
-                                            <input type="text" name="deporte_e" id="deporte_e" class="form-control" maxlength="20">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="form-group form-float form_label">
-                                        <div class="form-line focused">
-                                            <select name="sangre_e" id="sangre_e" class="form-control">
-                                                <option value>Grupo sanguíneo</option>
-                                                <option value='O-'>O negativo (O-)</option>
-                                                <option value='O+'>O positivo (O+)</option>
-                                                <option value='A-'>A negativo (A-)</option>
-                                                <option value='A+'>A positivo (A+)</option>
-                                                <option value='B-'>B negativo (B-)</option>
-                                                <option value='B+'>B positivo (B+)</option>
-                                                <option value='AB-'>AB negativo (AB-)</option>
-                                                <option value='AB+'>AB positivo (AB+)</option>
-                                            </select>
                                         </div>
                                     </div>
                                 </div>
@@ -336,9 +257,9 @@
                 </div>
             </div>
         </div>
-            
+
         <!-- Creación (1) -->
-            
+
         <div class="modal fade" id="completo" tabindex="-1" role="dialog">
             <div class="modal-dialog modal-lg" role="document">
                 <div class="modal-content">
@@ -352,12 +273,12 @@
                                     <div class="form-group form-float">
                                         <div class="form-line">
                                             <label class="form-label">DNI</label>
-                                            <input type="number" name="cod_persona_r" id="cod_persona_r" class="form-control" min="0" max="99999999" maxlength="8" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" onkeydown="return( event.ctrlKey || event.altKey 
-                                            || (event.keyCode>47 && event.keyCode<58 && event.shiftKey==false) 
+                                            <input type="number" name="cod_persona_r" id="cod_persona_r" class="form-control" min="0" max="99999999" maxlength="8" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" onkeydown="return( event.ctrlKey || event.altKey
+                                            || (event.keyCode>47 && event.keyCode<58 && event.shiftKey==false)
                                             || (event.keyCode>95 && event.keyCode<106)
                                             || (event.keyCode>34 && event.keyCode<40)
-                                            || (event.keyCode==8) 
-                                            || (event.keyCode==9)  
+                                            || (event.keyCode==8)
+                                            || (event.keyCode==9)
                                             || (event.keyCode==46))">
                                         </div>
                                     </div>
@@ -400,21 +321,13 @@
                                     <div class="form-group form-float">
                                         <div class="form-line">
                                             <label class="form-label">RUC</label>
-                                            <input type="number" name="ruc" id="ruc_r" class="form-control" min="1" max="99999999999" maxlength="11" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" onkeydown="return( event.ctrlKey || event.altKey 
-                                            || (event.keyCode>47 && event.keyCode<58 && event.shiftKey==false) 
+                                            <input type="number" name="ruc" id="ruc_r" class="form-control" min="1" max="99999999999" maxlength="11" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" onkeydown="return( event.ctrlKey || event.altKey
+                                            || (event.keyCode>47 && event.keyCode<58 && event.shiftKey==false)
                                             || (event.keyCode>95 && event.keyCode<106)
                                             || (event.keyCode>34 && event.keyCode<40)
-                                            || (event.keyCode==8) 
-                                            || (event.keyCode==9)  
+                                            || (event.keyCode==8)
+                                            || (event.keyCode==9)
                                             || (event.keyCode==46))">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-2">
-                                    <div class="form-group form-float">
-                                        <div class="form-line">
-                                            <label class="form-label">Profesión</label>
-                                            <input type="text" name="profesion" id="profesion_r" class="form-control" maxlength="50">
                                         </div>
                                     </div>
                                 </div>
@@ -446,12 +359,12 @@
                                     <div class="form-group form-float">
                                         <div class="form-line">
                                             <label class="form-label">Teléfono</label>
-                                            <input type="number" name="telefono_domicilio" id="telefono_domicilio_r" class="form-control" min="0" onkeydown="return( event.ctrlKey || event.altKey 
-                                            || (event.keyCode>47 && event.keyCode<58 && event.shiftKey==false) 
+                                            <input type="number" name="telefono_domicilio" id="telefono_domicilio_r" class="form-control" min="0" onkeydown="return( event.ctrlKey || event.altKey
+                                            || (event.keyCode>47 && event.keyCode<58 && event.shiftKey==false)
                                             || (event.keyCode>95 && event.keyCode<106)
                                             || (event.keyCode>34 && event.keyCode<40)
-                                            || (event.keyCode==8) 
-                                            || (event.keyCode==9)  
+                                            || (event.keyCode==8)
+                                            || (event.keyCode==9)
                                             || (event.keyCode==46))">
                                         </div>
                                     </div>
@@ -460,12 +373,12 @@
                                     <div class="form-group form-float">
                                         <div class="form-line">
                                             <label class="form-label">Celular</label>
-                                            <input type="number" name="tel_movil_r" id="tel_movil_r" class="form-control" min="0" onkeydown="return( event.ctrlKey || event.altKey 
-                                            || (event.keyCode>47 && event.keyCode<58 && event.shiftKey==false) 
+                                            <input type="number" name="tel_movil_r" id="tel_movil_r" class="form-control" min="0" onkeydown="return( event.ctrlKey || event.altKey
+                                            || (event.keyCode>47 && event.keyCode<58 && event.shiftKey==false)
                                             || (event.keyCode>95 && event.keyCode<106)
                                             || (event.keyCode>34 && event.keyCode<40)
-                                            || (event.keyCode==8) 
-                                            || (event.keyCode==9)  
+                                            || (event.keyCode==8)
+                                            || (event.keyCode==9)
                                             || (event.keyCode==46))">
                                         </div>
                                     </div>
@@ -491,76 +404,6 @@
                                         <div class="form-line">
                                             <label class="form-label">Banco</label>
                                             <input type="text" name="banco" id="banco_r" class="form-control" maxlength="30">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-2">
-                                    <div class="form-group form-float">
-                                        <div class="form-line">
-                                            <label class="form-label">Peso (Kg)</label>
-                                            <input type="number" name="peso_r" id="peso_r" class="form-control" min="0" max="999" maxlength="3" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" onkeydown="return( event.ctrlKey || event.altKey 
-                                            || (event.keyCode>47 && event.keyCode<58 && event.shiftKey==false) 
-                                            || (event.keyCode>95 && event.keyCode<106)
-                                            || (event.keyCode>34 && event.keyCode<40)
-                                            || (event.keyCode==8) 
-                                            || (event.keyCode==9)  
-                                            || (event.keyCode==46)
-                                            || (event.keyCode==188))">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-3">
-                                    <div class="form-group form-float">
-                                        <div class="form-line">
-                                            <label class="form-label">Estatura (cm)</label>
-                                            <input type="number" name="estatura_r" id="estatura_r" class="form-control" min="0" max="999" maxlength="3" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" onkeydown="return( event.ctrlKey || event.altKey 
-                                            || (event.keyCode>47 && event.keyCode<58 && event.shiftKey==false) 
-                                            || (event.keyCode>95 && event.keyCode<106)
-                                            || (event.keyCode>34 && event.keyCode<40)
-                                            || (event.keyCode==8) 
-                                            || (event.keyCode==9)  
-                                            || (event.keyCode==46))">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-2">
-                                    <div class="form-group form-float">
-                                        <div class="form-line">
-                                            <label class="form-label">Nº de hijos</label>
-                                            <input type="number" name="hijos_r" id="hijos_r" class="form-control" min="0" max="99" maxlength="2" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-2">
-                                    <div class="form-group form-float">
-                                        <div class="form-line">
-                                            <label class="form-label">Hobby</label>
-                                            <input type="text" name="hobby_r" id="hobby_r" class="form-control" maxlength="50">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-3">
-                                    <div class="form-group form-float">
-                                        <div class="form-line">
-                                            <label class="form-label">Deporte favorito</label>
-                                            <input type="text" name="deporte_r" id="deporte_r" class="form-control" maxlength="20">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="form-group form-float">
-                                        <div class="form-line">
-                                            <select name="sangre_r" id="sangre_r" class="form-control">
-                                                <option value>Grupo sanguíneo</option>
-                                                <option value='O-'>O negativo (O-)</option>
-                                                <option value='O+'>O positivo (O+)</option>
-                                                <option value='A-'>A negativo (A-)</option>
-                                                <option value='A+'>A positivo (A+)</option>
-                                                <option value='B-'>B negativo (B-)</option>
-                                                <option value='B+'>B positivo (B+)</option>
-                                                <option value='AB-'>AB negativo (AB-)</option>
-                                                <option value='AB+'>AB positivo (AB+)</option>
-                                            </select>
                                         </div>
                                     </div>
                                 </div>
@@ -634,9 +477,9 @@
                 </div>
             </div>
         </div>
-        
+
         <!-- Creación (2) -->
-        
+
         <div class="modal fade" id="crear" tabindex="-1" role="dialog">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
@@ -650,12 +493,12 @@
                                     <div class="form-group form-float">
                                         <div class="form-line">
                                             <label class="form-label">DNI</label>
-                                            <input type="text" name="cod_persona_c" id="cod_persona_c" class="form-control" maxlength="8" onkeydown="return( event.ctrlKey || event.altKey 
-                                            || (event.keyCode>47 && event.keyCode<58 && event.shiftKey==false) 
+                                            <input type="text" name="cod_persona_c" id="cod_persona_c" class="form-control" maxlength="8" onkeydown="return( event.ctrlKey || event.altKey
+                                            || (event.keyCode>47 && event.keyCode<58 && event.shiftKey==false)
                                             || (event.keyCode>95 && event.keyCode<106)
                                             || (event.keyCode>34 && event.keyCode<40)
-                                            || (event.keyCode==8) 
-                                            || (event.keyCode==9)  
+                                            || (event.keyCode==8)
+                                            || (event.keyCode==9)
                                             || (event.keyCode==46))">
                                         </div>
                                     </div>
@@ -687,12 +530,12 @@
                                     <div class="form-group form-float">
                                         <div class="form-line">
                                             <label class="form-label">RUC</label>
-                                            <input type="number" name="ruc" id="ruc_c" class="form-control" maxlength="11" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" onkeydown="return( event.ctrlKey || event.altKey 
-                                            || (event.keyCode>47 && event.keyCode<58 && event.shiftKey==false) 
+                                            <input type="number" name="ruc" id="ruc_c" class="form-control" maxlength="11" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" onkeydown="return( event.ctrlKey || event.altKey
+                                            || (event.keyCode>47 && event.keyCode<58 && event.shiftKey==false)
                                             || (event.keyCode>95 && event.keyCode<106)
                                             || (event.keyCode>34 && event.keyCode<40)
-                                            || (event.keyCode==8) 
-                                            || (event.keyCode==9)  
+                                            || (event.keyCode==8)
+                                            || (event.keyCode==9)
                                             || (event.keyCode==46))">
                                         </div>
                                     </div>
@@ -756,6 +599,6 @@
                     </div>
                 </div>
             </div>
-        </div>        
+        </div>
     </div>
 </section>

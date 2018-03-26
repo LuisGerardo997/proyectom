@@ -11,6 +11,7 @@ class Compras extends CI_Controller {
         $this->load->model('Productos_model');
         $this->load->model('Login_model');
         $this->load->model('Modulo_model');
+        $this->load->model('Proveedores_model');
     }
 
 
@@ -94,15 +95,21 @@ class Compras extends CI_Controller {
                 $this->load->view('home/mod_reportes');
               }
             $this->load->view('home/main',$db_data);
+            $data1 = $this->Productos_model->select1();
+            $data2 = $this->Productos_model->select2();
             $t_tran = $this->Compras_model->select1();
             $oferta = $this->Compras_model->select2();
             $tipo_producto = $this->Compras_model->select3();
-            $data1 = array(
+            $data3 = $this->Proveedores_model->select1();
+            $data_msg = array(
                 't_tran' => $t_tran,
                 'oferta' => $oferta,
                 'tp' => $tipo_producto,
+                'marca' => $data1,
+                'tipo_producto' => $data2,
+                'ciudad' => $data3,
             );
-            $this->load->view('compras/compras',$data1);
+            $this->load->view('compras/compras',$data_msg);
             $this->load->view('home/footer_dt');
 
         }else{
@@ -236,6 +243,7 @@ class Compras extends CI_Controller {
                 'cod_producto' => $productos[$i],
                 'precio' => $producto_precio[$i],
                 'cantidad' => $cantidad[$i],
+                'cod_parametro' => '3',
             );
             $stock_p = $this->Ventas_model->cantidad_producto($productos[$i]);
             $stock_actual = (intval($stock_p->stock_producto) + intval($cantidad[$i]));

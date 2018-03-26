@@ -7,8 +7,8 @@ class Reservaciones_model extends CI_Model{
   function consultar(){
     $this->db->select('r.cod_estadia, r.cod_cliente, e.estado_estadia estado, r.fecha_reserva, r.fecha_ingreso, r.fecha_salida');
     $this->db->join('estado_estadia e', 'r.estado = e.cod_estado_estadia');
-    $this->db->where('estado', '1');
-    $this->db->or_where('estado', '2');
+    $this->db->where('r.estado', '1');
+    $this->db->or_where('r.estado', '2');
     $data = $this->db->get('estadia r');
     return $data->result_array();
   }
