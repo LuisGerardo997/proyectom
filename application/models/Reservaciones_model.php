@@ -180,4 +180,14 @@ class Reservaciones_model extends CI_Model{
     $resultado = $this->db->get('habitacion_estadia he');
     return $resultado->result();
   }
+  function detalle_habitacion_estadia($cod_estadia){
+    $this->db->select('e.cod_estadia, th.max_h, th.tipo_habitacion, h.cod_habitacion, th.max_h-(select count(*) from habitacion_estadia where cod_estadia = '.$cod_estadia.') espacios');
+    $this->db->from('habitacion_estadia he');
+    $this->db->join('estadia e', 'e.cod_estadia = he.cod_estadia');
+    $this->db->join('habitacion h', 'h.cod_habitacion = he.cod_habitacion');
+    $this->db->join('tipo_habitacion th', 'th.cod_tipo_habitacion = h.cod_tipo_habitacion');
+    $this->db->where('e.cod_estadia', $cod_estadia);
+    $response = $this->db->get();
+    return $response->result_array();
+  }
 }

@@ -127,7 +127,7 @@ class Reservaciones extends CI_Controller {
       //}
     }
     public function consultar_habitacion_estadia(){
-        $estadia = $this->input->post('cod_estadia1');
+        $estadia = $this->input->get('cod_estadia1');
           echo json_encode($this->Reservaciones_model->consultar_habitacion_estadia($estadia));
     }
   function actualizar(){
@@ -361,5 +361,9 @@ class Reservaciones extends CI_Controller {
         }else{
             echo 1;
         }
+    }
+    function detalle_habitacion_estadia(){
+        $cod_estadia = $this->input->get('cod_estadia');
+        echo json_encode($this->Reservaciones_model->detalle_habitacion_estadia($cod_estadia));
     }
 }

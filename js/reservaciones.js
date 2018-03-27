@@ -58,8 +58,51 @@ function confirmarEstadia(estadia){
 };
 
 function mostrar_detalle(id){
-
+    $.ajax({
+        url: base_url+'reservaciones/consultar_habitacion_estadia',
+        type: 'GET',
+        dataType: 'json',
+        data:{
+            cod_estadia1: id
+        },
+        success: function(r){
+            habitacion_estadia_detalle.DataTable().clear();
+            if(r.length > 0){
+                $.each(r, function(key, value){
+                    habitacion_estadia_detalle.DataTable().row.add([
+                        value.cod_habitacion,
+                        value.cod_persona,
+                        value.nombres,
+                        value.apellido_paterno,
+                        value.apellido_materno,
+                    ]).draw(false);
+                });
+            }else{
+                $('#habitacion_estadia_detalle tbody').empty();
+                habitacion_estadia_detalle.DataTable().draw();
+            };
+        }
+    });
 };
+
+function add_client(estadia){
+    $('#add_client').modal();
+    $.ajax({
+        url: base_url+'reservaciones/detalle_habitacion_estadia',
+        type: 'get',
+        dataType: 'json',
+        data: {cod_estadia: estadia},
+        success: function(response){
+            if(response.length>0){
+                $.each(response,function(key, value){
+                    if (value.espacios > 0){
+                        console.log('mayor');
+                    };
+                });
+            }
+        }
+    })
+}
 
 $(document).on('ready',function(){
     // INICIO: DEFINICION DE VARIABLES
@@ -233,7 +276,7 @@ $(document).on('ready',function(){
         'filter': true,
         'stateSave': true,
         'language': español
-    })
+    });
 
     reservaciones_dt.DataTable({
         'paging':true,
@@ -259,15 +302,18 @@ $(document).on('ready',function(){
                 if(row.estado == 'Pendiente'){
                     confirm = '<li><a class="waves-effect waves-block" onClick="confirmarEstadia(\''+row.cod_estadia+'\')">Confirmar</a></li>';
                 };
-                if(row.estado != 'Confirmado'){
-                    delete_li = '<li><a href="javascript:void(0);" class=" waves-effect waves-block" onClick="deldat(\''+row.cod_estadia+'\')">Eliminar</a></li>';
-                }
+                if(row.estado != 'En curso'){
+                    delete_li = '<li><a href="javascript:void(0);" class=" waves-effect waves-block" onClick="deldat(\''+row.cod_estadia+'\')">Descartar</a></li>';
+                };
+                if (row.estado == 'En curso'){
+                    add_li = '<li><a href="javascript:void(0);" class=" waves-effect waves-block" onClick="add_client(\''+row.cod_estadia+'\')">Añadir huésped</a></li>';
+                };
                 return '<div class="btn-group" role="group">'+
                 '<button id="btnGroupVerticalDrop1" type="button" class="btn white waves-effect dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">'+
                 'Acciones <span class="caret"></span>'+
                 '</button>'+
                 '<ul class="dropdown-menu" aria-labelledby="btnGroupVerticalDrop1">'+
-                '<li><a class="waves-effect waves-block" onClick="VerDetalle(\''+row.cod_estadia+'\')">Ver detalles</a></li>'+confirm+
+                '<li><a class="waves-effect waves-block" onClick="VerDetalle(\''+row.cod_estadia+'\')">Ver detalles</a></li>'+confirm+add_li+
                 '<li><a data-toggle="modal" data-target="#editar" class=" waves-effect waves-block" onClick="editClient(\''+row.cod_estadia+'\',\''+row.fecha_ingreso+'\',\''+row.fecha_salida+'\');">Editar</a></li>'+
                 delete_li+
                 '</ul>'+
@@ -569,27 +615,27 @@ comprobar = function(data1){
             $('#Detalle').append(html);
             var html = '';
             mostrar_detalle(datos[i]['cod_estadia']);
-            $.post(base_url+'reservaciones/consultar_habitacion_estadia',
-                {
-                    cod_estadia1:datos[i]['cod_estadia'],
-                },
-                   function(data1){
-                    datos1 = eval(data1);
-                    var objeto={};
-                    for (j = 0; j < datos1.length; j++){
-                        html+= '<tr>'+
-                                '<td>'+datos1[j]['cod_habitacion']+'</td>'+
-                                '<td>'+datos1[j]['cod_persona']+'</td>'+
-                                '<td>'+datos1[j]['nombres']+'</td>'+
-                                '<td>'+datos1[j]['apellido_paterno']+'</td>'+
-                                '<td>'+datos1[j]['apellido_materno']+'</td>'+
-                        '</tr>';
+            $('#VerDetalle').modal();
+            // $.post(base_url+'reservaciones/consultar_habitacion_estadia',
+            //     {
+            //         cod_estadia1:datos[i]['cod_estadia'],
+            //     },
+            //        function(data1){
+            //         datos1 = eval(data1);
+            //         var objeto={};
+            //         for (j = 0; j < datos1.length; j++){
+            //             html+= '<tr>'+
+            //                     '<td>'+datos1[j]['cod_habitacion']+'</td>'+
+            //                     '<td>'+datos1[j]['cod_persona']+'</td>'+
+            //                     '<td>'+datos1[j]['nombres']+'</td>'+
+            //                     '<td>'+datos1[j]['apellido_paterno']+'</td>'+
+            //                     '<td>'+datos1[j]['apellido_materno']+'</td>'+
+            //             '</tr>';
 
-                    }
-                    $('#habitacion_estadia').append(html);
-                    $('#VerDetalle').modal();
+            //         }
+            //         $('#habitacion_estadia').append(html);
 
-            })
+            // })
         }
     })
   }
@@ -642,26 +688,26 @@ comprobar = function(data1){
                       html += '</div></div></div><div id="huesdiv'+a+j+'"></div></div>';
                   }
                   $('#deta'+a+'').html(html);
-                  $('input[name=dni_huesped]').blur(function(){
-                      if(inputsval.includes($(this).val())){
-                          swal({
-                              title: 'No se permite valores duplicados en los campos de DNI, por favor coloque valores diferentes.',
-                                type: 'warning'
-                            });
-                          $(this).val('');
-                          console.log(inputsval);
-                          $(this).focus();
-                      }else if($(this).val()!=''){
-                          inputsval.push($(this).val());
-                          console.log(inputsval);
-                      }
-                  })
-                  $('input[name=dni_huesped]').focus(function(){
-                      if (inputsval.includes($(this).val())){
-                          var pos = inputsval.indexOf($(this).val());
-                          inputsval.splice(pos,1);
-                      }
-                  })
+                //   $('input[name=dni_huesped]').blur(function(){
+                //       if(inputsval.includes($(this).val())){
+                //           swal({habitacion
+                //               title: 'No se permite valores duplicados en los campos de DNI, por favor coloque valores diferentes.',
+                //                 type: 'warning'
+                //             });
+                //           $(this).val('');
+                //           console.log(inputsval);
+                //           $(this).focus();
+                //       }else if($(this).val()!=''){
+                //           inputsval.push($(this).val());
+                //           console.log(inputsval);
+                //       }
+                //   })
+                //   $('input[name=dni_huesped]').focus(function(){
+                //       if (inputsval.includes($(this).val())){
+                //           var pos = inputsval.indexOf($(this).val());
+                //           inputsval.splice(pos,1);
+                //       }
+                //   })
                   console.log(num_hues);
               }
 
