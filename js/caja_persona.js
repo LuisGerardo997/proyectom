@@ -1,4 +1,5 @@
 $(document).on('ready',function(){
+    activar_menu('caja_persona', true);
 
 $('.datepicker').bootstrapMaterialDatePicker({
     format: 'YYYY-MM-DD',

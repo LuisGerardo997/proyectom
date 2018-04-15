@@ -3,12 +3,12 @@ class Reservaciones_model extends CI_Model{
 
   function __constuct(){
     parent::__construct();
+    date_default_timezone_set('America/Lima');
   }
   function consultar(){
     $this->db->select('r.cod_estadia, r.cod_cliente, e.estado_estadia estado, r.fecha_reserva, r.fecha_ingreso, r.fecha_salida');
     $this->db->join('estado_estadia e', 'r.estado = e.cod_estado_estadia');
-    $this->db->where('r.estado', '1');
-    $this->db->or_where('r.estado', '2');
+    $this->db->where('r.estado !=', '0');
     $data = $this->db->get('estadia r');
     return $data->result_array();
   }
@@ -181,7 +181,8 @@ class Reservaciones_model extends CI_Model{
     return $resultado->result();
   }
   function detalle_habitacion_estadia($cod_estadia){
-    $this->db->select('e.cod_estadia, th.max_h, th.tipo_habitacion, h.cod_habitacion, th.max_h-(select count(*) from habitacion_estadia where cod_estadia = '.$cod_estadia.') espacios');
+    $this->db->distinct();
+    $this->db->select('e.cod_estadia, th.max_h, h.piso, th.tipo_habitacion, h.cod_habitacion, th.max_h-(select count(*) from habitacion_estadia where cod_habitacion = he.cod_habitacion) espacios');
     $this->db->from('habitacion_estadia he');
     $this->db->join('estadia e', 'e.cod_estadia = he.cod_estadia');
     $this->db->join('habitacion h', 'h.cod_habitacion = he.cod_habitacion');
@@ -189,5 +190,38 @@ class Reservaciones_model extends CI_Model{
     $this->db->where('e.cod_estadia', $cod_estadia);
     $response = $this->db->get();
     return $response->result_array();
+  }
+  function get_fechas($cod_estadia){
+    $this->db->select('fecha_ingreso, fecha_salida');
+    $this->db->where('cod_estadia', $cod_estadia);
+    $resultado = $this->db->get('estadia');
+    return $resultado->row();
+  }
+  function habitacion_estadia($cliente, $estadia){
+    $this->db->select('cod_persona');
+    $this->db->where('cod_persona', $cliente);
+    $this->db->where('cod_estadia', $estadia);
+    $resultado = $this->db->get('habitacion_estadia');
+    if ($resultado->num_rows() == 1){
+      return true;
+    }else{
+      return false;
+    }
+
+  }
+  function add_huesped($guardar){
+    if ($this->db->insert('habitacion_estadia',$guardar)){
+      return true;
+    }else{
+      return false;
+    }
+  }
+  function reservaciones_terminadas(){
+    $fecha_actual = date('Y').'-'.date('m').'-'.date('d');
+    $this->db->select('cod_estadia');
+    $this->db->where('fecha_salida <=', $fecha_actual);
+    $this->db->where('estado', '2');
+    $resultado = $this->db->get('estadia');
+    return $resultado->result_array();
   }
 }

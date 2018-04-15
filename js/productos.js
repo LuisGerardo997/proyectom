@@ -1,4 +1,5 @@
 $(document).on('ready',function(){
+    activar_menu('productos', true);
 
 $('#dt_table').DataTable({
     'paging':true,
@@ -93,29 +94,6 @@ deldat = function(cod_producto){
         }
     });
 };
-insertdat = function(cod_producto, marca, tipo_producto, producto, descripcion, precio_producto, stock_producto, stock_minimo, stock_maximo){
-    $.post(base_url+'productos/guardar',
-    {
-      cod_producto:$('#cod_producto_c').val(),
-      marca:$('#marca_c').val(),
-      tipo_producto:$('#tipo_producto_c').val(),
-      producto:$('#producto_c').val(),
-      descripcion:$('#descripcion_c').val(),
-      precio_producto:$('#precio_producto_c').val(),
-      stock_producto:$('#stock_producto_c').val(),
-      stock_minimo:$('#stock_minimo_c').val(),
-      stock_maximo:$('#stock_maximo_c').val(),
-    },
-    function(data){
-        if(data == 1){
-            swal({
-                title: 'El registro fue almacenado correctamente',
-                type: 'info'
-            },
-            function(){
-            location.reload();
-            });
-        }
-    });
-};
+
+    activar_menu('productos', true);
 });

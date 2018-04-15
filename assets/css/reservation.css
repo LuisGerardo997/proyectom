@@ -1,0 +1,40 @@
+/* .tab-panel div.plans-section.active{
+
+} */
+div.plans-section{
+  display: none;
+}
+div.plans-section.active{
+  display:block;
+}
+@media screen and (min-width:1200px){
+  .tab-panel{
+    margin-left: 50px;
+    margin-right: -70px;
+  }
+}
+
+.panel.panel-details{
+  margin-top: 10px;
+  border-radius: 0px;
+  border: solid 1px #e4e4e4;
+  background-color: #efefef;
+}
+.panel.panel-rooms{
+  border-radius: 0px;
+  border-color:#ffffff;
+  background-color: #0f2453;
+}
+.room-list{
+  font-family: 'Lato', sans-serif;
+  font-size: 15px;
+  /* -webkit-text-stroke: 0.1px black; */
+  color: #ffffff;
+}
+span.price-text{
+  font-size: 13px;
+}
+
+hr{
+  border-top: 1px solid #e4e4e4;
+}

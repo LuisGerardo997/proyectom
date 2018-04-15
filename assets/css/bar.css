@@ -1,0 +1,41 @@
+@media (min-width: 768px){
+  .icon_bar{
+    height: 4.2em;
+    width: 9em;
+    position:absolute;
+    background-color: white;
+    margin-top: -.9em;
+    margin-left: -2em;
+    border-right: solid #ffce14 2px;
+    border-left: solid #ffce14 2px;
+  }
+  img.img-icon{
+    position: relative;
+    height: 40px;
+    margin-top: 7px;
+    margin-left: 25px;
+  }
+
+}
+@media (min-width:768px) and (max-width: 1200px) {
+  .icons_bar{
+    height: 47px;
+    width: 120px;
+    position:absolute;
+    background-color: solid white;
+    margin-top: -15px;
+    margin-left: -30px;
+    border-right: solid #ffce14 2px;
+    border-left: solid #ffce14 2px;
+  }
+  img.img-icon{
+    display: block;
+  }
+
+}
+@media (max-width:768px){
+  img.img-icon{
+    display: none;
+  }
+
+}

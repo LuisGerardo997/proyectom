@@ -6,7 +6,7 @@ class Tipo_persona_model extends CI_Model{
 
     function consultar(){
         $this->db->select('tp.cod_tipo_persona, tp.tipo_persona');
-        $this->db->where('tp.estado','1');
+        $this->db->where('tp.estado','0');
         $this->db->from('tipo_persona tp');
         $data = $this->db->get();
         return $data->result();

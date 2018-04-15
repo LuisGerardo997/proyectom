@@ -1,4 +1,5 @@
 $(document).on('ready',function(){
+    activar_menu('cargo', true);
 
 $('#dt_table').DataTable({
     'paging':true,

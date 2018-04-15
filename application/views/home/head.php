@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=Edge">
@@ -18,47 +19,50 @@
   <!-- Google Fonts -->
   <!-- <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&subset=latin,cyrillic-ext" rel="stylesheet" type="text/css">
    -->
-   <link href="<?= base_url() ?>css/roboto-font.css" rel="stylesheet" type="text/css">
-   <link href="<?= base_url() ?>css/poppins.min.css" rel="stylesheet" type="text/css">
+  <link href="<?= base_url() ?>css/roboto-font.css" rel="stylesheet" type="text/css">
+  <link href="<?= base_url() ?>css/poppins.min.css" rel="stylesheet" type="text/css">
   <link href="<?= base_url() ?>css/material-icons.css" rel="stylesheet" type="text/css">
   <link href="<?= base_url() ?>css/materialize.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="<?= base_url() ?>css/auxiliar.css">
 
   <!-- Bootstrap Material Datetime Picker Css -->
-  <link href="<?= base_url() ?>plugins/bootstrap-material-datetimepicker/css/bootstrap-material-datetimepicker.css" rel="stylesheet" />
+  <link href="<?= base_url() ?>plugins/bootstrap-material-datetimepicker/css/bootstrap-material-datetimepicker.css" rel="stylesheet"
+  />
 
 
   <!-- Bootstrap Select Css
   <link href="<?= base_url() ?>plugins/bootstrap-select/css/bootstrap-select.css" rel="stylesheet" />
 -->
-    <!-- Bootstrap Spinner Css -->
-    <link href="<?= base_url() ?>plugins/jquery-spinner/css/bootstrap-spinner.css" rel="stylesheet">
-<!-- Bootstrap Core Css -->
-<link href="<?= base_url() ?>plugins/bootstrap/css/bootstrap.css" rel="stylesheet">
+  <!-- Bootstrap Spinner Css -->
+  <link href="<?= base_url() ?>plugins/jquery-spinner/css/bootstrap-spinner.css" rel="stylesheet">
+  <!-- Bootstrap Core Css -->
+  <link href="<?= base_url() ?>plugins/bootstrap/css/bootstrap.css" rel="stylesheet">
 
-<!-- Waves Effect Css -->
-<link href="<?= base_url() ?>plugins/node-waves/waves.css" rel="stylesheet" />
+  <!-- Waves Effect Css -->
+  <link href="<?= base_url() ?>plugins/node-waves/waves.css" rel="stylesheet" />
 
-    <!-- Bootstrap Tagsinput Css -->
-<link href="<?= base_url() ?>plugins/bootstrap-tagsinput/bootstrap-tagsinput.css" rel="stylesheet">
+  <!-- Bootstrap Tagsinput Css -->
+  <link href="<?= base_url() ?>plugins/bootstrap-tagsinput/bootstrap-tagsinput.css" rel="stylesheet">
 
-<!-- Animation Css -->
-<link href="<?= base_url() ?>plugins/animate-css/animate.css" rel="stylesheet" />
+  <!-- Animation Css -->
+  <link href="<?= base_url() ?>plugins/animate-css/animate.css" rel="stylesheet" />
 
-<!-- JQuery DataTable Css -->
-<link href="<?= base_url() ?>plugins/jquery-datatable/skin/bootstrap/css/dataTables.bootstrap.css" rel="stylesheet">
+  <!-- JQuery DataTable Css -->
+  <link href="<?= base_url() ?>plugins/jquery-datatable/skin/bootstrap/css/dataTables.bootstrap.css" rel="stylesheet">
 
-<!-- Morris Chart Css-->
-<link href="<?= base_url() ?>plugins/morrisjs/morris.css" rel="stylesheet" />
-    <!-- Sweetalert Css -->
-<link href="<?= base_url() ?>plugins/sweetalert/sweetalert.css" rel="stylesheet" />
+  <!-- Morris Chart Css-->
+  <link href="<?= base_url() ?>plugins/morrisjs/morris.css" rel="stylesheet" />
+  <!-- Sweetalert Css -->
+  <link href="<?= base_url() ?>plugins/sweetalert/sweetalert.css" rel="stylesheet" />
 
-<!-- Custom Css -->
-<link href="<?= base_url() ?>css/style.css" rel="stylesheet">
-<link href="<?= base_url() ?>plugins/multi-select/css/multi-select.css" rel="stylesheet">
+  <!-- Custom Css -->
+  <link href="<?= base_url() ?>css/style.css" rel="stylesheet">
+  <link href="<?= base_url() ?>plugins/multi-select/css/multi-select.css" rel="stylesheet">
 
-<!-- AdminBSB Themes. You can choose a theme from css/themes instead of get all themes -->
-<link href="<?= base_url() ?>css/themes/all-themes.css" rel="stylesheet" />
+  <!-- AdminBSB Themes. You can choose a theme from css/themes instead of get all themes -->
+  <link href="<?= base_url() ?>css/themes/all-themes.css" rel="stylesheet" />
 </head>
+
 <body class="theme-indigo">
   <!-- Page Loader -->
   <div class="page-loader-wrapper">
@@ -102,119 +106,31 @@
       <div class="collapse navbar-collapse" id="navbar-collapse">
         <ul class="nav navbar-nav navbar-right">
           <!-- Call Search -->
-          <li><a href="javascript:void(0);" class="js-search" data-close="true"><i class="material-icons">search</i></a></li>
+          <li>
+            <a href="javascript:void(0);" class="js-search" data-close="true">
+              <i class="material-icons">search</i>
+            </a>
+          </li>
           <!-- #END# Call Search -->
           <!-- Notifications -->
           <li class="dropdown">
             <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button">
               <i class="material-icons">notifications</i>
-              <span class="label-count">7</span>
+              <span class="label-count" id="counter"></span>
             </a>
             <ul class="dropdown-menu">
               <li class="header">NOTIFICATIONS</li>
               <li class="body">
-                <ul class="menu">
-                  <li>
-                    <a href="javascript:void(0);">
-                      <div class="icon-circle bg-light-green">
-                        <i class="material-icons">person_add</i>
-                      </div>
-                      <div class="menu-info">
-                        <h4>12 new members joined</h4>
-                        <p>
-                          <i class="material-icons">access_time</i> 14 mins ago
-                        </p>
-                      </div>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="javascript:void(0);">
-                      <div class="icon-circle bg-cyan">
-                        <i class="material-icons">add_shopping_cart</i>
-                      </div>
-                      <div class="menu-info">
-                        <h4>4 sales made</h4>
-                        <p>
-                          <i class="material-icons">access_time</i> 22 mins ago
-                        </p>
-                      </div>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="javascript:void(0);">
-                      <div class="icon-circle bg-red">
-                        <i class="material-icons">delete_forever</i>
-                      </div>
-                      <div class="menu-info">
-                        <h4><b>Nancy Doe</b></h4>
-                        <p>
-                          <i class="material-icons">access_time</i> 3 hours ago
-                        </p>
-                      </div>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="javascript:void(0);">
-                      <div class="icon-circle bg-orange">
-                        <i class="material-icons">mode_edit</i>
-                      </div>
-                      <div class="menu-info">
-                        <h4><b>Nancy</b> changed name</h4>
-                        <p>
-                          <i class="material-icons">access_time</i> 2 hours ago
-                        </p>
-                      </div>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="javascript:void(0);">
-                      <div class="icon-circle bg-blue-grey">
-                        <i class="material-icons">comment</i>
-                      </div>
-                      <div class="menu-info">
-                        <h4><b>John</b> commented your post</h4>
-                        <p>
-                          <i class="material-icons">access_time</i> 4 hours ago
-                        </p>
-                      </div>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="javascript:void(0);">
-                      <div class="icon-circle bg-light-green">
-                        <i class="material-icons">cached</i>
-                      </div>
-                      <div class="menu-info">
-                        <h4><b>John</b> updated status</h4>
-                        <p>
-                          <i class="material-icons">access_time</i> 3 hours ago
-                        </p>
-                      </div>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="javascript:void(0);">
-                      <div class="icon-circle bg-purple">
-                        <i class="material-icons">settings</i>
-                      </div>
-                      <div class="menu-info">
-                        <h4>Settings updated</h4>
-                        <p>
-                          <i class="material-icons">access_time</i> Yesterday
-                        </p>
-                      </div>
-                    </a>
-                  </li>
+                <ul class="menu" id="notificaciones">
+                  
+                  <!-- <li class="footer">
+                <a href="javascript:void(0);">View All Notifications</a>
+              </li> -->
                 </ul>
               </li>
-              <li class="footer">
-                <a href="javascript:void(0);">View All Notifications</a>
-              </li>
-            </ul>
-          </li>
-          <!-- #END# Notifications -->
-          <!-- Tasks -->
-          <!-- <li class="dropdown">
+              <!-- #END# Notifications -->
+              <!-- Tasks -->
+              <!-- <li class="dropdown">
             <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button">
               <i class="material-icons">flag</i>
               <span class="label-count">9</span>
@@ -290,9 +206,9 @@
               </li>
             </ul>
           </li> -->
-          <!-- #END# Tasks -->
-          <!-- <li class="pull-right"><a href="javascript:void(0);" class="js-right-sidebar" data-close="true"><i class="material-icons">more_vert</i></a></li> -->
-        </ul>
+              <!-- #END# Tasks -->
+              <!-- <li class="pull-right"><a href="javascript:void(0);" class="js-right-sidebar" data-close="true"><i class="material-icons">more_vert</i></a></li> -->
+            </ul>
       </div>
     </div>
   </nav>
@@ -306,210 +222,225 @@
           <img src="<?= base_url() ?><?php echo $this->session->userdata('foto_p'); ?>" width="48" height="48" alt="User" />
         </div>
         <div class="info-container">
-          <div class="name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><?php echo ($this->session->userdata['nombres'].' '.$this->session->userdata['apellido_p'].' '.$this->session->userdata['apellido_m']); ?></div>
-          <div class="email"><?php echo $this->session->userdata['nom_perfil'] ?></div>
+          <div class="name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <?php echo ($this->session->userdata['nombres'].' '.$this->session->userdata['apellido_p'].' '.$this->session->userdata['apellido_m']); ?>
+          </div>
+          <div class="email">
+            <?php echo $this->session->userdata['nom_perfil'] ?>
+          </div>
           <div class="btn-group user-helper-dropdown">
             <i class="material-icons" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">keyboard_arrow_down</i>
             <ul class="dropdown-menu pull-right">
-              <li><a href="javascript:void(0);"><i class="material-icons">person</i>Perfil</a></li>
+              <li>
+                <a href="javascript:void(0);">
+                  <i class="material-icons">person</i>Perfil</a>
+              </li>
               <li role="seperator" class="divider"></li>
               <!-- <li><a href="javascript:void(0);"><i class="material-icons">group</i>Followers</a></li>
               <li><a href="javascript:void(0);"><i class="material-icons">shopping_cart</i>Sales</a></li>
               <li><a href="javascript:void(0);"><i class="material-icons">favorite</i>Likes</a></li> -->
               <!-- <li role="seperator" class="divider"></li> -->
-              <li><a href="<?= base_url() ?>login/cerrar_sesion"><i class="material-icons">input</i>Cerrar sesión</a></li>
-              <li><a href="<?= base_url() ?>login/select_perfil"><i class="material-icons">group</i>Cambiar perfil</a></li>
+              <li>
+                <a href="<?= base_url() ?>login/cerrar_sesion">
+                  <i class="material-icons">input</i>Cerrar sesión</a>
+              </li>
+              <li>
+                <a href="<?= base_url() ?>login/select_perfil">
+                  <i class="material-icons">group</i>Cambiar perfil</a>
+              </li>
             </ul>
           </div>
         </div>
       </div>
-      <!-- #User Info --><!-- Menu -->
+      <!-- #User Info -->
+      <!-- Menu -->
       <div class="menu">
-          <ul class="list">
-              <li class="header">Navegación Principal</li>
-              <li class="active">
-                  <a class="toggled waves-effect waves-block" href="<?= base_url() ?>home">
-                      <i class="material-icons">home</i>
-                      <span>Home</span>
-                  </a>
+        <ul class="list">
+          <li class="header">Navegación Principal</li>
+          <li class="active">
+            <a class="toggled waves-effect waves-block" href="<?= base_url() ?>home">
+              <i class="material-icons">home</i>
+              <span>Home</span>
+            </a>
+          </li>
+          <li>
+            <a class="menu-toggle" href="javascript:void(0);">
+              <i class="material-icons">build</i>
+              <span>Mantenimientos</span>
+            </a>
+            <ul class="ml-menu">
+              <li>
+                <a href="javascript:void(0);" class="menu-toggle">
+                  <span>Personas</span>
+                </a>
+                <ul class="ml-menu">
+                  <li id='clientes'>
+                    <a href="<?= base_url(); ?>clientes"> Clientes</a>
+                  </li>
+                  <li id='empleados'>
+                    <a href="<?= base_url(); ?>empleados">Empleados</a>
+                  </li>
+                  <!-- <li id='tipo_persona'>
+                    <a href="<?= base_url(); ?>tipo_persona"> Tipos de personas</a>
+                  </li> -->
+                </ul>
               </li>
               <li>
-                  <a class="menu-toggle" href="javascript:void(0);">
-                      <i class="material-icons">build</i>
-                      <span>Mantenimientos</span>
-                  </a>
-                  <ul class="ml-menu">
-                    <li>
-                      <a href="javascript:void(0);" class="menu-toggle">
-                        <span>Personas</span>
-                      </a>
-                        <ul class="ml-menu">
-                          <li id='clientes'>
-                            <a href="<?= base_url(); ?>clientes"> Clientes</a>
-                          </li>
-                          <li id='empleados'>
-                            <a href="<?= base_url(); ?>empleados">Empleados</a>
-                          </li>
-                          <li id='tipo_persona'>
-                            <a href="<?= base_url(); ?>tipo_persona"> Tipos de personas</a>
-                          </li>
-                        </ul>
-                    </li>
-                    <li>
-                      <a href="javascript:void(0);" class="menu-toggle">
-                        <span>Habitaciones</span>
-                      </a>
-                      <ul class="ml-menu">
-                        <li id='tipo_habitacion'>
-                          <a href="<?= base_url(); ?>tipo_habitacion">Tipos de habitación</a>
-                        </li>
-                        <li id='habitacion'>
-                          <a href="<?= base_url(); ?>habitacion">Habitaciones</a>
-                        </li>
-                      </ul>
-                    </li>
-                    <li id='ubigeo'>
-                      <a href="<?= base_url(); ?>ubigeo" class="toggled waves-effect waves-block">
-                        <span>Ubigeo</span>
-                      </a>
-                    </li>
-                    <li id='servicios'>
-                      <a href="<?= base_url(); ?>servicios" class="toggled waves-effect waves-block">
-                        <span>Servicios</span>
-                      </a>
-                    </li>
-                    <li id='ofertas'>
-                      <a href="<?= base_url(); ?>ofertas" class="toggled waves-effect waves-block">
-                        <span>Ofertas</span>
-                      </a>
-                    </li>
-                    <li><!--
+                <a href="javascript:void(0);" class="menu-toggle">
+                  <span>Habitaciones</span>
+                </a>
+                <ul class="ml-menu">
+                  <li id='tipo_habitacion'>
+                    <a href="<?= base_url(); ?>tipo_habitacion">Tipos de habitación</a>
+                  </li>
+                  <li id='habitacion'>
+                    <a href="<?= base_url(); ?>habitacion">Habitaciones</a>
+                  </li>
+                </ul>
+              </li>
+              <!-- <li id='ubigeo'>
+                <a href="<?= base_url(); ?>ubigeo" class="toggled waves-effect waves-block">
+                  <span>Ubigeo</span>
+                </a>
+              </li> -->
+              <li id='servicios'>
+                <a href="<?= base_url(); ?>servicios" class="toggled waves-effect waves-block">
+                  <span>Servicios</span>
+                </a>
+              </li>
+              <!-- <li id='ofertas'>
+                <a href="<?= base_url(); ?>ofertas" class="toggled waves-effect waves-block">
+                  <span>Ofertas</span>
+                </a>
+              </li> -->
+              <li>
+                <!--
                       <a href="<?= base_url(); ?>area" class="toggled waves-effect waves-block">
                         <span>Áreas</span>
                       </a>
                     </li> -->
-                    <li id='cargo'>
-                      <a href="<?= base_url(); ?>cargo" class="toggled waves-effect waves-block">
-                        <span>Cargo</span>
-                      </a>
+                <!-- <li id='cargo'>
+                  <a href="<?= base_url(); ?>cargo" class="toggled waves-effect waves-block">
+                    <span>Cargo</span>
+                  </a>
+                </li> -->
+                <li id="proveedores">
+                  <a href="<?= base_url(); ?>proveedores" class="toggled waves-effect waves-block">
+                    <span>Proveedor</span>
+                  </a>
+                </li>
+                <li>
+                  <a href="javascript:void(0);" class="menu-toggle">
+                    <span>Productos</span>
+                  </a>
+                  <ul class="ml-menu">
+                    <li id="tipo_producto">
+                      <a href="<?= base_url(); ?>tipo_producto">Tipos de producto</a>
                     </li>
-                    <li>
-                      <a href="<?= base_url(); ?>proveedores" class="toggled waves-effect waves-block">
-                        <span>Proveedor</span>
-                      </a>
+                    <li id="marcas">
+                      <a href="<?= base_url(); ?>marca">Marcas</a>
                     </li>
-                    <li>
-                      <a href="javascript:void(0);" class="menu-toggle">
-                        <span>Productos</span>
-                      </a>
-                      <ul class="ml-menu">
-                        <li>
-                          <a href="<?= base_url(); ?>tipo_producto">Tipos de producto</a>
-                        </li>
-                        <li>
-                          <a href="<?= base_url(); ?>marca">Marcas</a>
-                        </li>
-                        <li>
-                          <a href="<?= base_url(); ?>productos">Productos</a>
-                        </li>
-                      </ul>
-                    </li>
-                    <li>
-                      <a href="forma_pago" class="toggled waves-effect waves-block">
-                        <span>Tipos de pago</span>
-                      </a>
-                    </li>
-                    <li>
-                      <a href="javascript:void(0);" class="menu-toggle">
-                        <span>Movimientos</span>
-                      </a>
-                      <ul class="ml-menu">
-                        <li>
-                          <a href="<?= base_url(); ?>tipo_movimiento">Tipos de movimiento</a>
-                        </li>
-                        <li>
-                          <a href="<?= base_url(); ?>concepto_movimiento">Conceptos de movimiento</a>
-                        </li>
-                      </ul>
-                    </li>
-                    <li>
-                      <a href="tipo_documento" class="toggled waves-effect waves-block">
-                        <span>Tipos de documento</span>
-                      </a>
-                    </li>
-                    <li>
-                      <a href="javascript:void(0);" class="menu-toggle">
-                        <span>Caja</span>
-                      </a>
-                      <ul class="ml-menu">
-                        <li>
-                          <a href="<?= base_url(); ?>caja">Caja</a>
-                        </li>
-                        <li>
-                          <a href="<?= base_url(); ?>caja_persona">Encargado</a>
-                        </li>
-                      </ul>
-                    </li>
-                    <li>
-                      <a href="<?= base_url(); ?>tipo_transaccion" class="toggled waves-effect waves-block">
-                        <span>Tipos de transacción</span>
-                      </a>
-                    </li>
-                    <li>
-                      <a href="<?= base_url(); ?>parametro" class="toggled waves-effect waves-block">
-                        <span>Parámetros</span>
-                      </a>
+                    <li id="productos">
+                      <a href="<?= base_url(); ?>productos">Productos</a>
                     </li>
                   </ul>
-              </li>
-              <li>
-                  <a class="toggled waves-effect waves-block" href="<?= base_url() ?>ventas">
-                      <i class="material-icons">attach_money</i>
-                      <span>Ventas</span>
+                </li>
+                <!-- <li id="forma_pago">
+                  <a href="forma_pago" class="toggled waves-effect waves-block">
+                    <span>Tipos de pago</span>
                   </a>
-              </li>
-              <li>
-                  <a class="toggled waves-effect waves-block" href="<?= base_url() ?>reservaciones">
-                      <i class="material-icons">hotel</i>
-                      <span>Reservaciones</span>
+                </li>
+                <li> -->
+                  <!-- <a href="javascript:void(0);" class="menu-toggle">
+                    <span>Movimientos</span>
                   </a>
-              </li>
-              <li>
-                  <a class="toggled waves-effect waves-block" href="<?= base_url() ?>compras">
-                      <i class="material-icons">shopping_cart</i>
-                      <span>Compras</span>
+                  <ul class="ml-menu">
+                    <li id="tipo_movimiento">
+                      <a href="<?= base_url(); ?>tipo_movimiento">Tipos de movimiento</a>
+                    </li>
+                    <li id="concepto_movimiento">
+                      <a href="<?= base_url(); ?>concepto_movimiento">Conceptos de movimiento</a>
+                    </li>
+                  </ul>
+                </li> -->
+                <!-- <li id="tipo_documento">
+                  <a href="tipo_documento" class="toggled waves-effect waves-block">
+                    <span>Tipos de documento</span>
                   </a>
-              </li>
-              <li>
-                  <a class="toggled waves-effect waves-block" href="<?= base_url() ?>pagos">
-                      <i class="material-icons">timer</i>
-                      <span>Cobros</span>
+                </li> -->
+                <li>
+                  <a href="javascript:void(0);" class="menu-toggle">
+                    <span>Caja</span>
                   </a>
-              </li>
-              <li>
-                <a href="javascript:void(0);" class="menu-toggle">
+                  <ul class="ml-menu">
+                    <li id="caja">
+                      <a href="<?= base_url(); ?>caja">Caja</a>
+                    </li>
+                    <li id="caja_persona">
+                      <a href="<?= base_url(); ?>caja_persona">Encargado</a>
+                    </li>
+                  </ul>
+                </li>
+                <!-- <li id="tipo_transaccion">
+                  <a href="<?= base_url(); ?>tipo_transaccion" class="toggled waves-effect waves-block">
+                    <span>Tipos de transacción</span>
+                  </a>
+                </li> -->
+                <li id="parametro_li">
+                  <a href="<?= base_url(); ?>parametro" class="toggled waves-effect waves-block">
+                    <span>Parámetros</span>
+                  </a>
+                </li>
+            </ul>
+            </li>
+            <li id="ventas">
+              <a class="toggled waves-effect waves-block" href="<?= base_url() ?>ventas">
+                <i class="material-icons">attach_money</i>
+                <span>Ventas</span>
+              </a>
+            </li>
+            <li id="reservaciones">
+              <a class="toggled waves-effect waves-block" href="<?= base_url() ?>reservaciones">
+                <i class="material-icons">hotel</i>
+                <span>Reservaciones</span>
+              </a>
+            </li>
+            <li id="compras_li">
+              <a class="toggled waves-effect waves-block" href="<?= base_url() ?>compras">
+                <i class="material-icons">shopping_cart</i>
+                <span>Compras</span>
+              </a>
+            </li>
+            <li id="cobros">
+              <a class="toggled waves-effect waves-block" href="<?= base_url() ?>pagos">
+                <i class="material-icons">timer</i>
+                <span>Cobros</span>
+              </a>
+            </li>
+            <li>
+              <a href="javascript:void(0);" class="menu-toggle">
                 <i class="material-icons">security</i>
-                  <span>Seguridad</span>
-                </a>
-                <ul class="ml-menu">
-                  <li>
-                    <a href="<?= base_url(); ?>modulo">Módulos</a>
-                  </li>
-                  <li>
-                    <a href="<?= base_url(); ?>perfil">Perfiles</a>
-                  </li>
-                  <li>
-                    <a href="<?= base_url(); ?>acceso">Accesos</a>
-                  </li>
-                  <li>
-                    <a href="<?= base_url(); ?>detalle_persona_perfil">Privilegios</a>
-                  </li>
-                  <li>
-                    <a href="<?= base_url(); ?>usuarios">Usuarios</a>
-                  </li>
-                </ul>
-              </li>
-              <!-- <?php $modulos = $this->Modulo_model->consultar_padres(); ?>
+                <span>Seguridad</span>
+              </a>
+              <ul class="ml-menu">
+                <li>
+                  <a href="<?= base_url(); ?>modulo">Módulos</a>
+                </li>
+                <li>
+                  <a href="<?= base_url(); ?>perfil">Perfiles</a>
+                </li>
+                <li>
+                  <a href="<?= base_url(); ?>acceso">Accesos</a>
+                </li>
+                <li>
+                  <a href="<?= base_url(); ?>detalle_persona_perfil">Privilegios</a>
+                </li>
+                <li>
+                  <a href="<?= base_url(); ?>usuarios">Usuarios</a>
+                </li>
+              </ul>
+            </li>
+            <!-- <?php $modulos = $this->Modulo_model->consultar_padres(); ?>
               <?php foreach($modulos as $key): ?>
                 <?php $modulos1 = $this->Modulo_model->consultar_hijos($key['cod_modulo']); ?>
                 <?php if($modulos1 != null){ ?>

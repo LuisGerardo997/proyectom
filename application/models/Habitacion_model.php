@@ -96,4 +96,18 @@ class Habitacion_model extends CI_Model{
     $resultado = $this->db->get();
     return $resultado->result_array();
   }
+  function lista_actual(){
+    $this->db->select('arreglo');
+    $respuesta = $this->db->get('notificaciones');
+    return $respuesta->row();
+  }
+  function nueva_lista($arreglo){
+    $this->db->where('id', '1');
+    $this->db->update('notificaciones', $arreglo);
+    if($this->db->affected_rows()>0){
+      return true;
+    }else{
+      return false;
+    }
+  }
 }

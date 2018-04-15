@@ -266,4 +266,9 @@ class Compras extends CI_Controller {
         $resultado = $this->Compras_model->get_det_p($codigo);
         echo json_encode($resultado);
     }
+    function eliminar(){
+        $compra = $this->input->post('cod_compra');
+        $estado = array('estado' => '0');
+        echo json_encode($this->Compras_model->eliminar($compra, $estado));
+    }
 }

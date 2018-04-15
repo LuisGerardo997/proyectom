@@ -7,6 +7,7 @@ class Clientes extends CI_Controller {
     $this->load->model('Clientes_model');
     $this->load->model('Login_model');
     $this->load->model('Modulo_model');
+    $this->load->model('Reservaciones_model');
   }
 
   public function index(){
@@ -358,8 +359,14 @@ class Clientes extends CI_Controller {
         $clientes_procesados = $this->Clientes_model->clientes_procesados();
         $array_cp = array();
         foreach($clientes_procesados as $cp){
-            array_push($array_cp, $cp['cod_cliente']);
+            array_push($array_cp, $cp['cod_persona']);
         }
         echo json_encode($this->Clientes_model->consultar_deudores($array_cp));
+    }
+    function consultar_cliente(){
+        $cliente = $this->input->get('cod_persona');
+        if($cliente != ''){
+            echo json_encode($this->Reservaciones_model->comprobar_cliente($cliente));
+        }
     }
   }

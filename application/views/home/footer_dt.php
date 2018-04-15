@@ -20,7 +20,8 @@
 <!-- Moment Plugin Js -->
 <script src="<?= base_url() ?>plugins/momentjs/moment.js"></script>
 <script src="<?= base_url() ?>plugins/sweetalert/sweetalert.min.js"></script>
-<script src="<?= base_url() ?>js/pages/ui/dialogs.js">></script>
+<script src="<?= base_url() ?>js/pages/ui/dialogs.js"></script>
+<script src="<?= base_url() ?>plugins/bootstrap-notify/bootstrap-notify.js"></script>
 
 <!-- Bootstrap Material Datetime Picker Plugin Js -->
 <script src="<?= base_url() ?>plugins/bootstrap-material-datetimepicker/js/bootstrap-material-datetimepicker.js"></script>
@@ -30,6 +31,7 @@
 
 <!-- Waves Effect Plugin Js -->
 <script src="<?= base_url() ?>plugins/node-waves/waves.js"></script>
+<script src="<?= base_url() ?>js/main.js"></script>
 
 <!-- Custom Js -->
 <script src="<?= base_url() ?>js/admin.js"></script>

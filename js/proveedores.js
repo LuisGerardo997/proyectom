@@ -1,5 +1,5 @@
 $(document).on('ready',function(){
-
+activar_menu('proveedores', true);
 $('#dt_table').DataTable({
     'paging':true,
     'info':true,

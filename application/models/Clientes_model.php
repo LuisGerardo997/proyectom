@@ -62,20 +62,33 @@ class Clientes_model extends CI_Model{
   }
   function clientes_procesados()
   {
-    $this->db->select('v.cod_cliente');
-    $this->db->from('cronograma_ventas cv');
-    $this->db->join('ventas v', 'v.cod_venta = cv.cod_venta');
+    $where = 'v.cod_venta not in(select cod_venta from cronograma_ventas) or e.cod_estadia not in(select cod_estadia from cronograma_estadia)';
+    $this->db->select('p.cod_persona');
+    $this->db->from('persona p');
+    $this->db->join('ventas v', 'v.cod_cliente = p.cod_persona', 'left');
+    $this->db->join('estadia e', 'e.cod_cliente = p.cod_persona', 'left');
+    $this->db->where($where);
     $resultado = $this->db->get();
     return $resultado->result_array();
   }
   
   function consultar_deudores($arr)
   {
-    $this->db->select('p.cod_persona, p.nombres, p.apellido_paterno, p.apellido_materno');
-    $this->db->from('ventas v');
-    $this->db->join('persona p', 'p.cod_persona = v.cod_cliente');
-    $this->db->where_not_in('p.cod_persona', $arr);
+    $this->db->distinct();
+    $this->db->select('cod_persona, nombres, apellido_paterno, apellido_materno');
+    $this->db->from('persona');
+    $this->db->where_in('cod_persona', $arr);
     $resultado = $this->db->get();
     return $resultado->result_array();
+  }
+  function consultar_cliente($cliente){
+    $this->db->select('cod_persona');
+    $this->db->where('cod_persona', $cliente);
+    $resultado = $this->db->get('persona');
+    if ($resultado->num_rows() == 1){
+      return true;
+    }else{
+      return false;
+    }
   }
 }

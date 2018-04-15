@@ -1,5 +1,5 @@
 $(document).on('ready',function(){
-
+activar_menu('tipo_habitacion', true);
 
 $('#dt_table').DataTable({
     'paging':true,

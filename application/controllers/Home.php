@@ -128,4 +128,14 @@ class Home extends CI_Controller {
     public function gestionar_db(){
       $this->load->view('panel_control');
     }
+    public function lista_actual(){
+      echo json_encode($this->Habitacion_model->lista_actual());
+    }
+    public function nueva_lista(){
+      $datos = var_dump(json_decode($this->input->post('arreglo')));
+      $nuevo_arreglo = array(
+        'arreglo' => $datos
+      );
+      $this->Habitacion_model->nueva_lista($nuevo_arreglo);
+    }
 }

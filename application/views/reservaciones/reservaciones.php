@@ -353,16 +353,18 @@
           <button class="btn btn-default waves-effect">
             <i class="material-icons">add</i>Nuevo cliente
           </button> -->
-          <h3>Añadir Huespedes</h3>
+          <!-- <h3>Añadir Huespedes</h3> -->
         </div>
         <div class="modal-body">
           <form name="huesped_add">
             <div id="huesped_detail" class="row clearfix">
             </div>
           </form>
+          <input type="hidden" id="codi_estadia" value="">
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">Cerrar</button>
+          <button type="button" class="btn btn-link waves-effect" id="btn-add">Añadir</button>
         </div>
       </div>
     </div>

@@ -1,4 +1,5 @@
 $(document).on('ready',function(){
+  activar_menu('compras_li', false);
     $('.modal').on('hidden.bs.modal', function(){
 		$(this).find('form')[0].reset();
 		$("label.error").remove();
@@ -84,19 +85,25 @@ editClient = function(cod_cargo, area, descripcion, cargo){
     });
   }
 };
-deldat = function(cod_cargo){
-  $.post(base_url+'cargo/eliminar',
+deldat = function(cod_compra){
+  $.post(base_url+'compras/eliminar',
   {
-    cod_cargo:cod_cargo,
+    cod_compra:cod_compra,
   },
   function(data){
-    if (data == 1){
+    if (data == 'true'){
       swal({
         title: 'Eliminado',
         type: 'info'
       },
       function(){
         location.reload();
+      });
+    }else{
+      swal({
+        title: 'Ups!',
+        text: 'Ha ocurrido un error al eliminar',
+        type: 'warning',
       });
     }
   });
@@ -177,6 +184,9 @@ var proveedor_nombre = document.getElementById('proveedor_nombre');
 var proveedor_app = document.getElementById('proveedor_app');
 var proveedor_apm = document.getElementById('proveedor_apm');
 $('#realizar_venta').click(function(){
+  $('a[href="#next"]').click(function(){
+    $('a[href="#finish"]').parent().css('display', 'none');
+  })
   $('a[href="#next"]').parent().attr('style','display:none');
   $('#tabla_proveedor').DataTable({
       'paging':true,
@@ -253,12 +263,22 @@ $('#realizar_venta').click(function(){
                 valor_p.splice(pos,1);
                 seleccionadop.splice(pos,1);
                 producto_precio.splice(pos,1);
+                if(seleccionadop.length>0){
+                  $('a[href="#finish"]').parent().css('display', 'block');
+                }else{
+                  $('a[href="#finish"]').parent().css('display', 'none');
+                }
             }
             //console.log($(this).val());
             $('input[name=listado_p]:checked').each(function(){
                 if (seleccionadop.includes($(this).val()) == false){
-                seleccionadop.push($(this).val());
-                cantidad(elemento);
+                  seleccionadop.push($(this).val());
+                  cantidad(elemento);
+                  if(seleccionadop.length>0){
+                    $('a[href="#finish"]').parent().css('display', 'block');
+                  }else{
+                    $('a[href="#finish"]').parent().css('display', 'none');
+                  }
                 }
             })
             console.log(seleccionadop);
@@ -501,6 +521,11 @@ cancelar = function(){
     producto_precio.pop();
     if($('#producto_cant').val()>0){
         valor_p.pop();
+    }
+    if(seleccionadop.length>0){
+      $('a[href="#finish"]').parent().css('display', 'block');
+    }else{
+      $('a[href="#finish"]').parent().css('display', 'none');
     }
 }
 cantidad = function(arg1){

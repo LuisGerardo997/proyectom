@@ -92,7 +92,9 @@ class Login extends CI_Controller {
         $this->session->set_userdata($data);
         echo 'hecho';
     }
-
+    public function reservaciones_terminadas(){
+        echo json_encode($this->Reservaciones_model->reservaciones_terminadas());
+    }
 
 
     /*

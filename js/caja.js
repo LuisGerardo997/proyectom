@@ -1,4 +1,5 @@
 $(document).on('ready',function(){
+    activar_menu('caja', true);
 
 $('#dt_table').DataTable({
     'destroy':true,

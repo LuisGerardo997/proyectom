@@ -366,4 +366,64 @@ class Reservaciones extends CI_Controller {
         $cod_estadia = $this->input->get('cod_estadia');
         echo json_encode($this->Reservaciones_model->detalle_habitacion_estadia($cod_estadia));
     }
+    function add_huesped(){
+        $datos = array();
+        $datos_ext = array();
+        $cod_estadia = $this->input->get('cod_estadia');
+        $fechas = $this->Reservaciones_model->get_fechas($cod_estadia);
+        $habitaciones = $this->input->get('habitaciones');
+        $espacios = $this->input->get('espacios');
+        parse_str($this->input->get('formData'), $datos);
+        for($i=0; count($habitaciones)>$i; $i++){
+            for($j=0; $espacios[$i]>$j; $j++){
+                if($this->Reservaciones_model->habitacion_estadia($datos[$j.'_dni_'.$habitaciones[$i]], $cod_estadia)==false){
+                    $dat0 = array(
+                        'cod_habitacion' => $habitaciones[$i],
+                        'cod_persona' => $datos[$j.'_dni_'.$habitaciones[$i]],
+                        'cod_estadia' => $cod_estadia,
+                        'fecha_ingreso'=>$fechas->fecha_ingreso,
+                        'fecha_salida'=>$fechas->fecha_salida,
+                        'estado' => '1',
+                    );
+                    if($this->Reservaciones_model->existencia($datos[$j.'_dni_'.$habitaciones[$i]])){
+                        $this->Reservaciones_model->add_huesped($dat0);
+                    }else{
+                        $dat1 = array(
+                            'cod_persona' => $datos[$j.'_dni_'.$habitaciones[$i]],
+                            'nombres' => $datos[$j.'_nombres_'.$habitaciones[$i]],
+                            'apellido_paterno' => $datos[$j.'_ap_'.$habitaciones[$i]],
+                            'apellido_materno' => $datos[$j.'_am_'.$habitaciones[$i]],
+                        );
+                        $this->Clientes_model->guardar($dat1);
+                        $this->Reservaciones_model->add_huesped($dat0);
+                    }
+                };
+                if($datos[$j.'_nombres_'.$habitaciones[$i]] != ''){
+                    $dat = array(
+                        'cod_habitacion' => $habitaciones[$i],
+                        'cod_persona' => $datos[$j.'_dni_'.$habitaciones[$i]],
+                        'nombres' => $datos[$j.'_nombres_'.$habitaciones[$i]],
+                        'apellido_paterno' => $datos[$j.'_ap_'.$habitaciones[$i]],
+                        'apellido_materno' => $datos[$j.'_am_'.$habitaciones[$i]],
+                        'cod_estadia' => $cod_estadia,
+                        'fecha_ingreso'=>$fechas->fecha_ingreso,
+                        'fecha_salida'=>$fechas->fecha_salida,
+
+                    );
+                    array_push($datos_ext, $dat);
+                }
+            }
+        }
+        echo json_encode($datos_ext);
+    }
+    function terminar_estadia(){
+        $estadia = $this->input->get('cod_estadia');
+        $habitaciones_reservadas = $this->Reservaciones_model->habitaciones_reservadas($estadia, '2');
+        $data = array('cod_estado_habitacion' => '3');
+        foreach ($habitaciones_reservadas as $habitacion_reservada) {
+            $this->Habitacion_model->actualizar($habitacion_reservada->cod_habitacion, $data);
+        };
+        $data1 = array('estado' => '4');
+        echo json_encode($this->Reservaciones_model->actualizar($estadia, $data1));
+    }
 }

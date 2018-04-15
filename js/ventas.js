@@ -4,6 +4,11 @@ precio_p = function (arg1, id) {
     cancelar = function () {
         $('#p' +id+ '').prop('checked', false);
         producto_precio.pop();
+        if(producto_precio.length>0){
+            $('a[href="#finish"]').parent().css('display', 'block');
+        }else{
+            $('a[href="#finish"]').parent().css('display', 'none');
+        }
     }
     if (its_in_array(producto_precio, id) == false) {
         cantidad(id);
@@ -12,12 +17,22 @@ precio_p = function (arg1, id) {
             'precio_producto': arg1
         };
         producto_precio.push(dato_respuesta);
+        if(producto_precio.length>0){
+            $('a[href="#finish"]').parent().css('display', 'block');
+        }else{
+            $('a[href="#finish"]').parent().css('display', 'none');
+        }
         console.log(producto_precio);
     } else {
         var index = array_pos(producto_precio, id);
         console.log(index);
         producto_precio.splice(index, 1);
         cantidad_producto.splice(index, 1);
+        if(producto_precio.length>0){
+            $('a[href="#finish"]').parent().css('display', 'block');
+        }else{
+            $('a[href="#finish"]').parent().css('display', 'none');
+        }
         console.log(producto_precio);
     }
 }
@@ -59,6 +74,7 @@ array_pos = function (array, id) {
 
 
 $(document).on('ready', function () {
+    activar_menu('ventas');
     $('#producto_cant').on('hidden.bs.modal', function () {
         $(this).find('form')[0].reset();
         $("label.error").remove();
@@ -251,10 +267,12 @@ $(document).on('ready', function () {
     get_value = function (cod_persona) {
         $('#cliente_input').val(cod_persona);
         $('a[href="#next"]').parent().attr('style', 'display:block');
+        // $('#wizard_horizontal-t-1').parent().removeAttr('class').addClass('done').attr('aria-disabled', 'false');
     };
     cancelar_cliente = function () {
         $('#cliente_input').val('');
         $('a[href="#next"]').parent().attr('style', 'display:none');
+        $('#wizard_horizontal-t-1').parent().removeAttr('class').addClass('disabled').attr('aria-disabled', 'true');
     };
 
     insertdat = function (cod_cargo, area, descripcion, cargo) {
@@ -392,6 +410,7 @@ $(document).on('ready', function () {
         //tabla de seleccion de servicios
 
         $('a[href="#next"]').click(function () {
+            $('a[href="#finish"]').parent().css('display', 'none');
             if ($('#cliente_input').val().length < 8) {
                 $('a[href="#next"]').stopEvent;
             }
@@ -401,8 +420,8 @@ $(document).on('ready', function () {
                 function (data) {
                     // console.log(data);
                     if (data != '') {
-                        buscar_servicio_div.setAttribute('style', 'display:block');
-                        tabla_servicio_div.setAttribute('style', 'display:block');
+                        // buscar_servicio_div.attr('style', 'display:block');
+                        // tabla_servicio_div.attr('style', 'display:block');
                         var html = '';
                         var datos = eval(data);
                         for (i = 0; i < datos.length; i++) {

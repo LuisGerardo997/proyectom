@@ -1,5 +1,5 @@
 $(document).on('ready', function () {
-
+    activar_menu('clientes', true);
     $('.datepicker').bootstrapMaterialDatePicker({
         format: 'YYYY-MM-DD',
         clearButton: true,

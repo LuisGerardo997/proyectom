@@ -58,7 +58,7 @@
             </div>
         </div>
 
-        <div class="col-lg-3">
+        <div class="col-lg-3" id="information_panel">
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-6">
                 <div class="card">
                     <div class="header text-center">

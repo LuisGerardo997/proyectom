@@ -386,4 +386,8 @@ class Empleados extends CI_Controller {
             echo '0';
         }
     }
+    function consultar_clientes(){
+        $persona = $this->input->get('cod_persona');
+        echo json_encode($this->Empleados_model->consultar_clientes($persona));
+    }
 }

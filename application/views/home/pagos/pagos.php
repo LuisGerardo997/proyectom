@@ -51,35 +51,13 @@
                                                     <section>
                                                         <!-- Nav tabs -->
                                                         <ul class="nav nav-tabs tab-nav-right text-right" role="tablist">
-                                                            <li role="presentation" class="active" id="realizar_venta"><a href="#cliente_producto" data-toggle="tab">Productos</a></li>
-                                                            <li role="presentation" id="realizar_venta1"><a href="#cliente_estadia" data-toggle="tab">Estadías</a></li>
+                                                            <li role="presentation" class="active" id="realizar_venta1"><a href="#cliente_estadia" data-toggle="tab">Estadías</a></li>
+                                                            <li role="presentation" id="realizar_venta"><a href="#cliente_producto" data-toggle="tab">Productos</a></li>
                                                         </ul>
 
                                                         <!-- Tab panes -->
                                                         <div class="tab-content">
-                                                            <div role="tabpanel" class="tab-pane animated flipInX active" id="cliente_producto">
-                                                                <div class="body">
-                                                                    <div class="col-md-12 col-xs-12 col-sm-12">
-                                                                        <div class="table-responsive">
-                                                                            <table class="table table-bordered table-striped table-hover" width="100%">
-                                                                                <thead>
-                                                                                    <tr>
-                                                                                        <th>Venta</th>
-                                                                                        <th>DNI</th>
-                                                                                        <th>Nombres</th>
-                                                                                        <th>Apellido paterno</th>
-                                                                                        <th>Apellido materno</th>
-                                                                                        <th>Fecha</th>
-                                                                                        <th width="1px"><i class="material-icons">check</i></th>
-                                                                                    </tr>
-                                                                                </thead>
-                                                                                <tbody id='buscar_cliente_producto'></tbody>
-                                                                            </table>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div role="tabpanel" class="tab-pane animated flipInX" id="cliente_estadia">
+                                                            <div role="tabpanel" class="tab-pane animated flipInX active" id="cliente_estadia">
                                                                 <div class="body">
                                                                     <div class="col-md-12 col-xs-12 col-sm-12">
                                                                         <div class="table-responsive">
@@ -98,6 +76,28 @@
                                                                                     </tr>
                                                                                 </thead>
                                                                                 <tbody id='buscar_cliente_estadia'></tbody>
+                                                                            </table>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div role="tabpanel" class="tab-pane animated flipInX" id="cliente_producto">
+                                                                <div class="body">
+                                                                    <div class="col-md-12 col-xs-12 col-sm-12">
+                                                                        <div class="table-responsive">
+                                                                            <table class="table table-bordered table-striped table-hover" width="100%">
+                                                                                <thead>
+                                                                                    <tr>
+                                                                                        <th>Venta</th>
+                                                                                        <th>DNI</th>
+                                                                                        <th>Nombres</th>
+                                                                                        <th>Apellido paterno</th>
+                                                                                        <th>Apellido materno</th>
+                                                                                        <th>Fecha</th>
+                                                                                        <th width="1px"><i class="material-icons">check</i></th>
+                                                                                    </tr>
+                                                                                </thead>
+                                                                                <tbody id='buscar_cliente_producto'></tbody>
                                                                             </table>
                                                                         </div>
                                                                     </div>
@@ -613,3 +613,41 @@
     </div>
   </div>
 </div>
+<div class="modal fade" id="VerDetalle" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2 class="modal-title text-center" id="largeModalLabel">Detalle de la reservación</h2>
+        </div>
+        <div class="modal-body">
+          <div class="row clearfix">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+
+              <div id="Detalle" class="p-t-15"></div>
+
+              <div class="table-responsive col-md-12 p-t-10 col-xs-12 col-lg-12 col-sm-12">
+
+                <h5>Huéspedes:</h5>
+                <table id="habitacion_estadia_detalle" class="table table-bordered table-striped dataTable table-hover" width="100%">
+                  <thead>
+                    <tr>
+                      <th width="1px">Habitación</th>
+                      <th>DNI</th>
+                      <th>Nombres</th>
+                      <th>Apellido paterno</th>
+                      <th>Apellido materno</th>
+                    </tr>
+                  </thead>
+                  <tbody></tbody>
+                </table>
+              </div>
+
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">Cerrar</button>
+        </div>
+      </div>
+    </div>
+  </div>

@@ -1,5 +1,5 @@
 $(document).on('ready',function(){
-
+    activar_menu('servicios', true);
 
 
 $('#dt_table').DataTable({

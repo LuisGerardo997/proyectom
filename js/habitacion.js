@@ -1,4 +1,5 @@
 $(document).on('ready',function(){
+    activar_menu('habitacion', true);
 $('#dt_table').DataTable({
     'paging':true,
     'info':true,

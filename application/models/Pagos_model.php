@@ -110,7 +110,10 @@ class Pagos_model extends CI_Model{
         $this->db->select('e.cod_estadia, e.cod_cliente, e.cod_estadia, p.nombres, p.apellido_paterno, p.apellido_materno, e.fecha_reserva, e.fecha_ingreso, e.fecha_salida');
         $this->db->from('estadia e');
         $this->db->where_not_in('e.cod_estadia', $array);
+        $this->db->group_start();
         $this->db->where('e.estado','2');
+        $this->db->or_where('e.estado','4');
+        $this->db->group_end();        
         $this->db->where('e.cod_cliente',$arg);
         $this->db->join('persona p','p.cod_persona = e.cod_cliente');
         $data = $this->db->get();
@@ -176,7 +179,7 @@ class Pagos_model extends CI_Model{
     }
 
     function estadias_realizadas(){
-        $this->db->select('acm.cod_movimiento, acm.cod_cronograma_estadia, e.cod_cliente, p.nombres, p.apellido_paterno, p.apellido_materno, acm.monto');
+        $this->db->select('acm.cod_movimiento, acm.cod_cronograma_estadia, e.cod_estadia, e.cod_cliente, p.nombres, p.apellido_paterno, p.apellido_materno, acm.monto');
         $this->db->from('amortizacion_cronograma_movimiento acm');
         $this->db->join('cronograma_estadia ce','ce.cod_cronograma_estadia = acm.cod_cronograma_estadia');
         $this->db->join('estadia e','e.cod_estadia = ce.cod_estadia');

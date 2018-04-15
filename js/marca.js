@@ -1,4 +1,5 @@
 $(document).on('ready',function(){
+    activar_menu('marcas', true);
 
 $('#dt_table').DataTable({
     'paging':true,

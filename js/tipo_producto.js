@@ -1,4 +1,5 @@
 $(document).on('ready',function(){
+    activar_menu('tipo_producto', true);
 
 $('#dt_table').DataTable({
     'paging':true,

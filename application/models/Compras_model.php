@@ -8,6 +8,7 @@ class Compras_model extends CI_Model{
     $this->db->select('c.cod_compra, p.cod_proveedor, p.razon_social, c.fecha_compra');
     $this->db->from('compras c');
     $this->db->join('proveedores p', 'p.cod_proveedor = c.cod_proveedor');
+    $this->db->where('c.estado', '1');
     $resultado = $this->db->get();
     return $resultado->result();
   }
@@ -56,9 +57,9 @@ class Compras_model extends CI_Model{
       return false;
     }
   }
-  function eliminar($cod, $hab){
-    $this->db->where('cod_cargo', $cod);
-    $this->db->update('cargo', $hab);
+  function eliminar($compra, $estado){
+    $this->db->where('cod_compra', $compra);
+    $this->db->update('compras', $estado);
     if($this->db->affected_rows()>0){
       return true;
     }else{

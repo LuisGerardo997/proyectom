@@ -1,6 +1,5 @@
 $(document).on('ready',function(){
-
-
+activar_menu('tipo_persona', true);
 $('#dt_table').DataTable({
     'paging':true,
     'info':true,
