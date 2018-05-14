@@ -65,7 +65,7 @@ function mostrar_notificaciones(){
 };
 function activar_menu(item, nested){
     if(!nested){
-        $('#'+item+'').addClass('active').siblings().removeClass('active');    
+        $('#'+item+'').addClass('active').siblings().removeClass('active');
     }else{
         $('#'+item).addClass('active').children().addClass('toggled').parents('li').addClass('active').siblings().removeClass('active');
         $('#'+item).parents().siblings('a').addClass('toggled');
@@ -74,7 +74,7 @@ function activar_menu(item, nested){
 }
 
 $(document).ready(function(){
-    // setInterval(mostrar_notificaciones, 1000);
+    setInterval(mostrar_notificaciones, 1000);
 });
 function show_notify(){
     $.notify({

@@ -86,11 +86,13 @@ class Usuarios extends CI_Controller {
         if($this->session->userdata('username')){
             $consulta = $this->Usuarios_model->select();
             $consulta1 = $this->Usuarios_model->select1();
+            $consulta2 = $this->Usuarios_model->select2();
             $data3 = $this->Usuarios_model->select3();
             $data4 = $this->Usuarios_model->select4();
             $datos = array(
             'persona' => $consulta,
             'cargo' => $consulta1,
+            'perfil' => $consulta2,
             'ec' => $data3,
             'tp' => $data4,
             );

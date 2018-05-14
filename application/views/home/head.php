@@ -86,9 +86,9 @@
   <!-- #END# Overlay For Sidebars -->
   <!-- Search Bar -->
   <div class="search-bar">
-    <div class="search-icon">
+    <!-- <div class="search-icon">
       <i class="material-icons">search</i>
-    </div>
+    </div> -->
     <input type="text" placeholder="START TYPING...">
     <div class="close-search">
       <i class="material-icons">close</i>
@@ -122,7 +122,7 @@
               <li class="header">NOTIFICATIONS</li>
               <li class="body">
                 <ul class="menu" id="notificaciones">
-                  
+
                   <!-- <li class="footer">
                 <a href="javascript:void(0);">View All Notifications</a>
               </li> -->
@@ -219,7 +219,7 @@
       <!-- User Info -->
       <div class="user-info">
         <div class="image">
-          <img src="<?= base_url() ?><?php echo $this->session->userdata('foto_p'); ?>" width="48" height="48" alt="User" />
+          <img src="<?= base_url() ?>images/gatito.jpg" width="48" height="48" alt="User" />
         </div>
         <div class="info-container">
           <div class="name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -229,26 +229,29 @@
             <?php echo $this->session->userdata['nom_perfil'] ?>
           </div>
           <div class="btn-group user-helper-dropdown">
-            <i class="material-icons" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">keyboard_arrow_down</i>
+            <!-- <i class="material-icons" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">keyboard_arrow_down</i>
             <ul class="dropdown-menu pull-right">
               <li>
                 <a href="javascript:void(0);">
                   <i class="material-icons">person</i>Perfil</a>
-              </li>
-              <li role="seperator" class="divider"></li>
-              <!-- <li><a href="javascript:void(0);"><i class="material-icons">group</i>Followers</a></li>
+              </li> -->
+            <!-- <li role="seperator" class="divider"></li> -->
+            <!-- <li><a href="javascript:void(0);"><i class="material-icons">group</i>Followers</a></li>
               <li><a href="javascript:void(0);"><i class="material-icons">shopping_cart</i>Sales</a></li>
               <li><a href="javascript:void(0);"><i class="material-icons">favorite</i>Likes</a></li> -->
-              <!-- <li role="seperator" class="divider"></li> -->
-              <li>
-                <a href="<?= base_url() ?>login/cerrar_sesion">
-                  <i class="material-icons">input</i>Cerrar sesión</a>
-              </li>
+            <!-- <li role="seperator" class="divider"></li> -->
+            <!-- <li> -->
+            <a href="<?= base_url() ?>login/cerrar_sesion">
+              <button type="button" class="btn btn-default btn-circle waves-effect waves-circle waves-float">
+                <i class="material-icons">power_settings_new</i>
+              </button>
+            </a>
+            <!-- </li>
               <li>
                 <a href="<?= base_url() ?>login/select_perfil">
                   <i class="material-icons">group</i>Cambiar perfil</a>
               </li>
-            </ul>
+            </ul> -->
           </div>
         </div>
       </div>
@@ -351,7 +354,7 @@
                   </a>
                 </li>
                 <li> -->
-                  <!-- <a href="javascript:void(0);" class="menu-toggle">
+                <!-- <a href="javascript:void(0);" class="menu-toggle">
                     <span>Movimientos</span>
                   </a>
                   <ul class="ml-menu">
@@ -423,19 +426,19 @@
                 <span>Seguridad</span>
               </a>
               <ul class="ml-menu">
-                <li>
+                <!-- <li id="modulo">
                   <a href="<?= base_url(); ?>modulo">Módulos</a>
-                </li>
-                <li>
+                </li> -->
+                <!-- <li id="perfil">
                   <a href="<?= base_url(); ?>perfil">Perfiles</a>
-                </li>
-                <li>
+                </li> -->
+                <!-- <li id="acceso">
                   <a href="<?= base_url(); ?>acceso">Accesos</a>
-                </li>
-                <li>
+                </li> -->
+                <!-- <li id="detalle_persona_perfil">
                   <a href="<?= base_url(); ?>detalle_persona_perfil">Privilegios</a>
-                </li>
-                <li>
+                </li> -->
+                <li id="usuarios">
                   <a href="<?= base_url(); ?>usuarios">Usuarios</a>
                 </li>
               </ul>

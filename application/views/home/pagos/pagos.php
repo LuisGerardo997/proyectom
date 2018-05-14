@@ -256,13 +256,32 @@
                                                         <div class="row clearfix">
                                                             <!-- Nav tabs -->
                                                             <ul class="nav nav-tabs tab-nav-right text-right" role="tablist">
-                                                                <li role="presentation" class="active"><a href="#productos1" data-toggle="tab">Productos</a></li>
-                                                                <li role="presentation"><a href="#estadias1" data-toggle="tab">Estadías</a></li>
+                                                            <li role="presentation" class="active"><a href="#estadias1" data-toggle="tab">Estadías</a></li>
+                                                                <li role="presentation"><a href="#productos1" data-toggle="tab">Productos</a></li>
                                                             </ul>
 
                                                             <!-- Tab panes -->
                                                             <div class="tab-content">
-                                                                <div role="tabpanel" class="tab-pane animated flipInX active" id="productos1">
+
+                                                                <div role="tabpanel" class="tab-pane animated flipInX active" id="estadias1">
+                                                                    <div class="body">
+                                                                        <div class="table-responsive">
+                                                                            <table class="table table-bordered table-striped table-hover" width="100%">
+                                                                                <thead>
+                                                                                    <tr>
+                                                                                        <th>Estadía</th>
+                                                                                        <th>Habitación</th>
+                                                                                        <th>Tipo</th>
+                                                                                        <th>Precio</th>
+                                                                                        <th>Días</th>
+                                                                                    </tr>
+                                                                                </thead>
+                                                                                <tbody id='detalle_cliente_estadia'></tbody>
+                                                                            </table>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div role="tabpanel" class="tab-pane animated flipInX" id="productos1">
                                                                     <div class="body">
                                                                         <div class="table-responsive">
                                                                             <table id="slct_table" class="table table-bordered table-striped table-hover dataTable" width="100%">
@@ -280,25 +299,6 @@
                                                                                     </tr>
                                                                                 </thead>
                                                                                 <tbody id='detalle_cliente_producto'></tbody>
-                                                                            </table>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-
-                                                                <div role="tabpanel" class="tab-pane animated flipInX" id="estadias1">
-                                                                    <div class="body">
-                                                                        <div class="table-responsive">
-                                                                            <table class="table table-bordered table-striped table-hover" width="100%">
-                                                                                <thead>
-                                                                                    <tr>
-                                                                                        <th>Estadía</th>
-                                                                                        <th>Habitación</th>
-                                                                                        <th>Tipo</th>
-                                                                                        <th>Precio</th>
-                                                                                        <th>Días</th>
-                                                                                    </tr>
-                                                                                </thead>
-                                                                                <tbody id='detalle_cliente_estadia'></tbody>
                                                                             </table>
                                                                         </div>
                                                                     </div>

@@ -198,7 +198,7 @@ class Clientes extends CI_Controller {
   function eliminar(){
       $idselect = $this->input->post('cod_persona');
       $data = array(
-        'estado' => null,
+        'estado' => 4,
       );
       if($this->Clientes_model->eliminar($idselect, $data) == true){
         echo '1';

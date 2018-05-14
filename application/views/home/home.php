@@ -58,9 +58,9 @@
             </div>
         </div>
 
-        <div class="col-lg-3" id="information_panel">
+        <div class="col-lg-3 col-md-3">
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-6">
-                <div class="card">
+                <div class="card" id="information_panel">
                     <div class="header text-center">
                         <h5>HABITACIONES</h5>
                         <h4>DISPONIBLES</h4>

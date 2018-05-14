@@ -30,18 +30,10 @@ class Login extends CI_Controller {
                     'email' => $datos->email,
                     'foto_p' => $datos->foto_persona,
                 );
-                // INICIO: CONCLUIR ESTADIAS
-                // $estadia = $this->input->post('cod_estadia');
-                // $habitaciones_reservadas = $this->Reservaciones_model->habitaciones_reservadas($estadia, '2');
-                // $data = array('cod_estado_habitacion' => '3');
-                // foreach ($habitaciones_reservadas as $habitacion_reservada) {
-                //     $this->Habitacion_model->actualizar($habitacion_reservada->cod_habitacion, $data);
-                // };
-                // FIN: CONCLUIR ESTADIAS
                 $this->session->set_userdata($dat);
-                if ($num > 1){
-                    header("Location:login/select_perfil");
-                }else{
+                // if ($num > 1){
+                //     header("Location:login/select_perfil");
+                // }else{
                     $perf = $pool[0]['cod_perfil'];
                     $perf1 = $pool[0]['perfil'];
                     $data = array(
@@ -50,7 +42,7 @@ class Login extends CI_Controller {
                     );
                     $this->session->set_userdata($data);
                     redirect('home');
-                }
+                // }
             }else{
                 $respuesta = array(
                     'mensaje' => 'El usuario y/o contraseña son incorrectos, por favor ingréselos correctamente.',

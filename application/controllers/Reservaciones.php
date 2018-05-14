@@ -201,7 +201,7 @@ class Reservaciones extends CI_Controller {
                 'nombres' => $nombres,
                 'apellido_paterno' => $apellido_p,
                 'apellido_materno' => $apellido_m,
-                'estado' => '0',
+                'estado' => 0,
             );
             if(!$this->Clientes_model->guardar($cliente_datos))
             {
@@ -353,7 +353,8 @@ class Reservaciones extends CI_Controller {
             'cod_persona' => $cod_cliente,
             'nombres' => $nombres,
             'apellido_paterno' => $apellido_paterno,
-            'apellido_materno' => $apellido_materno
+            'apellido_materno' => $apellido_materno,
+            'estado' => '0'
         );
         if($this->Clientes_model->guardar($detalle))
         {

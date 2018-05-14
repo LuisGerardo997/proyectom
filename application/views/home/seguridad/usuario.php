@@ -77,7 +77,7 @@
                       <div class="row clearfix">
                           <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                           <div class="row clearfix">
-                                <div class="col-md-4">
+                                <div class="col-md-6">
                                     <div class="form-group form-float">
                                         <div class="form-line">
                                             <select name="cod_persona" id="cod_persona" class="form-control">
@@ -89,7 +89,7 @@
                                       </div>
                                   </div>
                                 </div>
-                                <div class="col-md-4">
+                                <div class="col-md-6">
                                     <div class="form-group form-float">
                                         <div class="form-line">
                                             <label class="form-label">Nombre de usuario</label>
@@ -97,7 +97,15 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-4">
+                                <div class="col-md-6">
+                                    <select name="cod_perfil_c" id="cod_perfil_c" class="form-control">
+                                        <option value="">Selecione por favor</option>
+                                        <?php foreach($perfil as $fila):?>
+                                        <option value='<?= $fila["cod_perfil"] ?>'><?= $fila['perfil'] ?></option>
+                                        <?php endforeach; ?>
+                                    </select>
+                                </div>
+                                <div class="col-md-6">
                                     <div class="form-group form-float">
                                         <div class="form-line">
                                             <label class="form-label">Contraseña</label>

@@ -8,6 +8,7 @@ class Tipo_habitacion_model extends CI_Model{
         $this->db->select('th.cod_tipo_habitacion, th.tipo_habitacion, th.descripcion, th.precio_tipo_habitacion, th.max_h');
         $this->db->where('th.estado','1');
         $this->db->from('tipo_habitacion th');
+        $this->db->order_by('th.precio_tipo_habitacion', 'ASC');
         $data = $this->db->get();
         return $data->result();
     }

@@ -6,7 +6,8 @@ class Clientes_model extends CI_Model{
   }
   function consultar(){
         $this->db->select('p.cod_persona, p.nombres, p.apellido_paterno, p.apellido_materno, p.ruc, p.email, p.genero, p.tel_movil, p.direccion, p.nro_cuenta_bancaria, p.nombre_banco, p.tel_domicilio, p.operador_movil, p.fecha_nacimiento, ub.ciudad ciudad_nacimiento, u.ciudad ciudad_direccion, e.estado_civil, tp.tipo_persona');
-        // $this->db->where('p.estado','0');
+        $this->db->where('p.estado', '1');
+        $this->db->or_where('p.estado', '0');
         $this->db->from('persona p');
         $this->db->join('ubigeo u','u.cod_ciudad = p.cod_ciudad_direccion','left');
         $this->db->join('ubigeo ub','ub.cod_ciudad = p.cod_ciudad_nacimiento','left');

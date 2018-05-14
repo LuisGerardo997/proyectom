@@ -44,6 +44,11 @@ class Usuarios_model extends CI_Model{
     $resultado= $this->db->get('cargo');
     return $resultado -> result_array();
   }
+  function select2(){
+    $this->db->select('cod_perfil, perfil');
+    $resultado= $this->db->get('perfil');
+    return $resultado -> result_array();
+  }
   function select3(){
     $this->db->select('cod_estado_civil, estado_civil');
     $resultado= $this->db->get('estado_civil');

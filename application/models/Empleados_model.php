@@ -87,7 +87,8 @@ class Empleados_model extends CI_Model{
     function consultar_clientes($persona){
         $this->db->select('p.cod_persona, p.nombres, p.apellido_paterno, p.apellido_materno, c.cargo, p.ruc, p.email,p.direccion, p.genero, p.tel_movil, u.ciudad ciudad_direccion, ub.ciudad ciudad_nacimiento, p.nro_cuenta_bancaria, p.nombre_banco, p.tel_domicilio, p.tel_movil, p.operador_movil, p.fecha_nacimiento, e.estado_civil, tp.tipo_persona');
         $this->db->where('p.cod_persona', $persona);
-        $this->db->where('p.estado',NULL, FALSE);
+        $this->db->where('p.estado', '0');
+        $this->db->or_where('p.estado', '1');
         $this->db->from('persona p');
         $this->db->join('ubigeo u','u.cod_ciudad = p.cod_ciudad_direccion','left');
         $this->db->join('ubigeo ub','ub.cod_ciudad = p.cod_ciudad_nacimiento','left');

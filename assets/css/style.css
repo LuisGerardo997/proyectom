@@ -904,6 +904,7 @@ li.menu__item:nth-child(6) {
 ._grid_effect {
     padding: 2em;
     background: rgba(52, 74, 113, 0.09);
+		height: 255px;
 }
 
 /* anchor style */
@@ -1130,6 +1131,7 @@ p.about-para-ls {
     padding:2em 2em;
     background: rgba(0, 0, 0, 0.52);
     text-align: center;
+		height: 310px;
 }
 .advantage-block:hover {
     background: rgba(255, 255, 255, 0.22);

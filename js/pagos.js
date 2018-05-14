@@ -718,8 +718,8 @@ $(document).on('ready',function(){
                         '<td><input type="checkbox" name="listado_e" onClick="check_estadia('+datos[i]['cod_estadia']+')" value="'+datos[i]['cod_estadia']+'" id="ce'+datos[i]['cod_estadia']+'"><label for="ce'+datos[i]['cod_estadia']+'"></label></td>'+
                         '</tr>';
                 }
-                seleccionadop.length = 0;
-                seleccionadoe.length = 0;
+                // seleccionadop.length = 0;
+                // seleccionadoe.length = 0;
                 buscar_cliente_estadia.html(html);
 
                 // $('input[type=checkbox]').click(function(){

@@ -4,5 +4,5 @@ li{
 
 #information_panel{
     position: fixed;
-    margin-left: 50.4em;
+    float: right;
 }
