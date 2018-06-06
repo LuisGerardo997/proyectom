@@ -84,7 +84,7 @@ class Reservaciones_model extends CI_Model{
           $num = $num+1;
           return $num;
       }
-  function room_list($arg, $arg1){
+  function room_list($arg, $arg1, $arg2){
     $this->db->select('h.cod_habitacion, th.tipo_habitacion, h.piso, th.precio_tipo_habitacion precio');
     if ($arg != '' or $arg1 !=''){
       $this->db->group_start();
@@ -92,11 +92,32 @@ class Reservaciones_model extends CI_Model{
       $this->db->where($where);
       $this->db->group_end();
     };
+    if ($arg2!=''){
+      $this->db->where('th.cod_tipo_habitacion', $arg2);
+    }
     $this->db->where('h.cod_estado_habitacion', 1);
     $this->db->join('tipo_habitacion th', 'th.cod_tipo_habitacion = h.cod_tipo_habitacion');
     $this->db->from('habitacion h');
     $resultado = $this->db->get();
     return $resultado->result_array();
+  }
+  function type_room_list($arg, $arg1, $arg2){
+    $this->db->distinct();
+    $this->db->select('th.cod_tipo_habitacion, th.tipo_habitacion, th.precio_tipo_habitacion precio, th.max_h');
+    if ($arg != '' or $arg1 !=''){
+      $this->db->group_start();
+      $where = ("h.cod_habitacion NOT IN (SELECT cod_habitacion FROM habitacion_estadia WHERE (fecha_ingreso BETWEEN '".$arg."' AND '".$arg1."') OR (fecha_salida BETWEEN '".$arg."' AND '".$arg1."'))");
+      $this->db->where($where);
+      $this->db->group_end();
+    };
+    if ($arg2!=''){
+      $this->db->where('th.cod_tipo_habitacion', $arg2);
+    }
+    $this->db->where('h.cod_estado_habitacion', 1);
+    $this->db->join('tipo_habitacion th', 'th.cod_tipo_habitacion = h.cod_tipo_habitacion');
+    $this->db->from('habitacion h');
+    $resultado = $this->db->get();
+    return $resultado->result();
   }
   function detalle_habitacion($arg){
     $this->db->select('h.cod_habitacion, th.tipo_habitacion, h.piso, th.max_h');

@@ -74,7 +74,7 @@ function activar_menu(item, nested){
 }
 
 $(document).ready(function(){
-    setInterval(mostrar_notificaciones, 1000);
+    // setInterval(mostrar_notificaciones, 1000);
 });
 function show_notify(){
     $.notify({

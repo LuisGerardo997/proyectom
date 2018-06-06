@@ -1,0 +1,170 @@
+[03-06-2018 17:31:13] PayPal\Core\PayPalHttpConnection : INFO: POST https://api.sandbox.paypal.com/v1/oauth2/token
+[03-06-2018 17:31:15] PayPal\Core\PayPalHttpConnection : INFO: Response Status 	: 200
+[03-06-2018 17:31:41] PayPal\Core\PayPalHttpConnection : INFO: POST https://api.sandbox.paypal.com/v1/oauth2/token
+[03-06-2018 17:31:42] PayPal\Core\PayPalHttpConnection : INFO: Response Status 	: 200
+[03-06-2018 17:31:42] PayPal\Core\PayPalHttpConnection : INFO: POST https://api.sandbox.paypal.com/v1/payments/payment
+[03-06-2018 17:31:43] PayPal\Core\PayPalHttpConnection : INFO: Response Status 	: 400
+[03-06-2018 17:31:43] PayPal\Core\PayPalHttpConnection : ERROR: Got Http response code 400 when accessing https://api.sandbox.paypal.com/v1/payments/payment. {"name":"VALIDATION_ERROR","details":[{"field":"transactions.amount","issue":"Currency amount must be non-negative number, may optionally contain exactly 2 decimal places separated by '.', optional thousands separator ',', limited to 7 digits before the decimal point and currency which is a valid ISO Currency Code"}],"message":"Invalid request - see details","information_link":"https://developer.paypal.com/docs/api/payments/#errors","debug_id":"4a69f4703f70c"}
+[03-06-2018 17:33:38] PayPal\Core\PayPalHttpConnection : INFO: POST https://api.sandbox.paypal.com/v1/payments/payment
+[03-06-2018 17:33:39] PayPal\Core\PayPalHttpConnection : INFO: Response Status 	: 400
+[03-06-2018 17:33:39] PayPal\Core\PayPalHttpConnection : ERROR: Got Http response code 400 when accessing https://api.sandbox.paypal.com/v1/payments/payment. {"name":"VALIDATION_ERROR","details":[{"field":"transactions.amount","issue":"Currency amount must be non-negative number, may optionally contain exactly 2 decimal places separated by '.', optional thousands separator ',', limited to 7 digits before the decimal point and currency which is a valid ISO Currency Code"}],"message":"Invalid request - see details","information_link":"https://developer.paypal.com/docs/api/payments/#errors","debug_id":"3cc107e7f3178"}
+[03-06-2018 18:14:00] PayPal\Core\PayPalHttpConnection : INFO: POST https://api.sandbox.paypal.com/v1/payments/payment
+[03-06-2018 18:14:01] PayPal\Core\PayPalHttpConnection : INFO: Response Status 	: 400
+[03-06-2018 18:14:01] PayPal\Core\PayPalHttpConnection : ERROR: Got Http response code 400 when accessing https://api.sandbox.paypal.com/v1/payments/payment. {"name":"VALIDATION_ERROR","details":[{"field":"transactions.amount","issue":"Currency amount must be non-negative number, may optionally contain exactly 2 decimal places separated by '.', optional thousands separator ',', limited to 7 digits before the decimal point and currency which is a valid ISO Currency Code"}],"message":"Invalid request - see details","information_link":"https://developer.paypal.com/docs/api/payments/#errors","debug_id":"84e6ecaedc650"}
+[03-06-2018 18:14:07] PayPal\Core\PayPalHttpConnection : INFO: POST https://api.sandbox.paypal.com/v1/payments/payment
+[03-06-2018 18:14:08] PayPal\Core\PayPalHttpConnection : INFO: Response Status 	: 400
+[03-06-2018 18:14:08] PayPal\Core\PayPalHttpConnection : ERROR: Got Http response code 400 when accessing https://api.sandbox.paypal.com/v1/payments/payment. {"name":"VALIDATION_ERROR","details":[{"field":"transactions.amount","issue":"Currency amount must be non-negative number, may optionally contain exactly 2 decimal places separated by '.', optional thousands separator ',', limited to 7 digits before the decimal point and currency which is a valid ISO Currency Code"}],"message":"Invalid request - see details","information_link":"https://developer.paypal.com/docs/api/payments/#errors","debug_id":"5b9c97e9b2abe"}
+[03-06-2018 20:00:41] PayPal\Core\PayPalHttpConnection : INFO: POST https://api.sandbox.paypal.com/v1/payments/payment
+[03-06-2018 20:00:42] PayPal\Core\PayPalHttpConnection : INFO: Response Status 	: 400
+[03-06-2018 20:00:42] PayPal\Core\PayPalHttpConnection : ERROR: Got Http response code 400 when accessing https://api.sandbox.paypal.com/v1/payments/payment. {"name":"VALIDATION_ERROR","details":[{"field":"transactions.amount","issue":"Currency amount must be non-negative number, may optionally contain exactly 2 decimal places separated by '.', optional thousands separator ',', limited to 7 digits before the decimal point and currency which is a valid ISO Currency Code"}],"message":"Invalid request - see details","information_link":"https://developer.paypal.com/docs/api/payments/#errors","debug_id":"c43ee0e930c18"}
+[03-06-2018 20:00:44] PayPal\Core\PayPalHttpConnection : INFO: POST https://api.sandbox.paypal.com/v1/payments/payment
+[03-06-2018 20:00:45] PayPal\Core\PayPalHttpConnection : INFO: Response Status 	: 400
+[03-06-2018 20:00:45] PayPal\Core\PayPalHttpConnection : ERROR: Got Http response code 400 when accessing https://api.sandbox.paypal.com/v1/payments/payment. {"name":"VALIDATION_ERROR","details":[{"field":"transactions.amount","issue":"Currency amount must be non-negative number, may optionally contain exactly 2 decimal places separated by '.', optional thousands separator ',', limited to 7 digits before the decimal point and currency which is a valid ISO Currency Code"}],"message":"Invalid request - see details","information_link":"https://developer.paypal.com/docs/api/payments/#errors","debug_id":"8d15333c8dfe8"}
+[03-06-2018 20:00:45] PayPal\Core\PayPalHttpConnection : INFO: POST https://api.sandbox.paypal.com/v1/payments/payment
+[03-06-2018 20:00:46] PayPal\Core\PayPalHttpConnection : INFO: Response Status 	: 400
+[03-06-2018 20:00:46] PayPal\Core\PayPalHttpConnection : ERROR: Got Http response code 400 when accessing https://api.sandbox.paypal.com/v1/payments/payment. {"name":"VALIDATION_ERROR","details":[{"field":"transactions.amount","issue":"Currency amount must be non-negative number, may optionally contain exactly 2 decimal places separated by '.', optional thousands separator ',', limited to 7 digits before the decimal point and currency which is a valid ISO Currency Code"}],"message":"Invalid request - see details","information_link":"https://developer.paypal.com/docs/api/payments/#errors","debug_id":"17b934b0b60bf"}
+[03-06-2018 20:01:19] PayPal\Core\PayPalHttpConnection : INFO: POST https://api.sandbox.paypal.com/v1/payments/payment
+[03-06-2018 20:01:20] PayPal\Core\PayPalHttpConnection : INFO: Response Status 	: 400
+[03-06-2018 20:01:20] PayPal\Core\PayPalHttpConnection : ERROR: Got Http response code 400 when accessing https://api.sandbox.paypal.com/v1/payments/payment. {"name":"VALIDATION_ERROR","details":[{"field":"transactions.amount","issue":"Currency amount must be non-negative number, may optionally contain exactly 2 decimal places separated by '.', optional thousands separator ',', limited to 7 digits before the decimal point and currency which is a valid ISO Currency Code"}],"message":"Invalid request - see details","information_link":"https://developer.paypal.com/docs/api/payments/#errors","debug_id":"ce5cbe24c4d13"}
+[03-06-2018 20:01:21] PayPal\Core\PayPalHttpConnection : INFO: POST https://api.sandbox.paypal.com/v1/payments/payment
+[03-06-2018 20:01:22] PayPal\Core\PayPalHttpConnection : INFO: Response Status 	: 400
+[03-06-2018 20:01:22] PayPal\Core\PayPalHttpConnection : ERROR: Got Http response code 400 when accessing https://api.sandbox.paypal.com/v1/payments/payment. {"name":"VALIDATION_ERROR","details":[{"field":"transactions.amount","issue":"Currency amount must be non-negative number, may optionally contain exactly 2 decimal places separated by '.', optional thousands separator ',', limited to 7 digits before the decimal point and currency which is a valid ISO Currency Code"}],"message":"Invalid request - see details","information_link":"https://developer.paypal.com/docs/api/payments/#errors","debug_id":"7a65bc0ee5d8c"}
+[03-06-2018 20:09:48] PayPal\Core\PayPalHttpConnection : INFO: POST https://api.sandbox.paypal.com/v1/payments/payment
+[03-06-2018 20:09:50] PayPal\Core\PayPalHttpConnection : INFO: Response Status 	: 400
+[03-06-2018 20:09:50] PayPal\Core\PayPalHttpConnection : ERROR: Got Http response code 400 when accessing https://api.sandbox.paypal.com/v1/payments/payment. {"name":"VALIDATION_ERROR","details":[{"field":"transactions[0].amount","issue":"Amount cannot be zero"},{"field":"transactions[0].item_list.items[0].price","issue":"Required field missing"}],"message":"Invalid request - see details","information_link":"https://developer.paypal.com/docs/api/payments/#errors","debug_id":"44d6e81813ca1"}
+[03-06-2018 20:12:34] PayPal\Core\PayPalHttpConnection : INFO: POST https://api.sandbox.paypal.com/v1/payments/payment
+[03-06-2018 20:12:35] PayPal\Core\PayPalHttpConnection : INFO: Response Status 	: 400
+[03-06-2018 20:12:35] PayPal\Core\PayPalHttpConnection : ERROR: Got Http response code 400 when accessing https://api.sandbox.paypal.com/v1/payments/payment. {"name":"VALIDATION_ERROR","details":[{"field":"transactions[0].amount","issue":"Amount cannot be zero"},{"field":"transactions[0].item_list.items[0].price","issue":"Required field missing"}],"message":"Invalid request - see details","information_link":"https://developer.paypal.com/docs/api/payments/#errors","debug_id":"b169d9f5c2ba5"}
+[03-06-2018 20:27:05] PayPal\Core\PayPalHttpConnection : INFO: POST https://api.sandbox.paypal.com/v1/payments/payment
+[03-06-2018 20:27:06] PayPal\Core\PayPalHttpConnection : INFO: Response Status 	: 201
+[03-06-2018 20:37:29] PayPal\Core\PayPalHttpConnection : INFO: POST https://api.sandbox.paypal.com/v1/payments/payment
+[03-06-2018 20:37:30] PayPal\Core\PayPalHttpConnection : INFO: Response Status 	: 400
+[03-06-2018 20:37:30] PayPal\Core\PayPalHttpConnection : ERROR: Got Http response code 400 when accessing https://api.sandbox.paypal.com/v1/payments/payment. {"name":"VALIDATION_ERROR","details":[{"field":"transactions","issue":"Item currency codes should be same as the transaction currency code in all buckets"}],"message":"Invalid request - see details","information_link":"https://developer.paypal.com/docs/api/payments/#errors","debug_id":"76e6db9078ca5"}
+[03-06-2018 20:38:02] PayPal\Core\PayPalHttpConnection : INFO: POST https://api.sandbox.paypal.com/v1/payments/payment
+[03-06-2018 20:38:04] PayPal\Core\PayPalHttpConnection : INFO: Response Status 	: 201
+[03-06-2018 20:38:17] PayPal\Core\PayPalHttpConnection : INFO: POST https://api.sandbox.paypal.com/v1/payments/payment
+[03-06-2018 20:38:18] PayPal\Core\PayPalHttpConnection : INFO: Response Status 	: 400
+[03-06-2018 20:38:18] PayPal\Core\PayPalHttpConnection : ERROR: Got Http response code 400 when accessing https://api.sandbox.paypal.com/v1/payments/payment. {"name":"VALIDATION_ERROR","details":[{"field":"transactions","issue":"Item currency codes should be same as the transaction currency code in all buckets"}],"message":"Invalid request - see details","information_link":"https://developer.paypal.com/docs/api/payments/#errors","debug_id":"80bd8b652fdb7"}
+[03-06-2018 20:38:23] PayPal\Core\PayPalHttpConnection : INFO: POST https://api.sandbox.paypal.com/v1/payments/payment
+[03-06-2018 20:38:24] PayPal\Core\PayPalHttpConnection : INFO: Response Status 	: 400
+[03-06-2018 20:38:24] PayPal\Core\PayPalHttpConnection : ERROR: Got Http response code 400 when accessing https://api.sandbox.paypal.com/v1/payments/payment. {"name":"VALIDATION_ERROR","details":[{"field":"transactions","issue":"Item currency codes should be same as the transaction currency code in all buckets"}],"message":"Invalid request - see details","information_link":"https://developer.paypal.com/docs/api/payments/#errors","debug_id":"3fe89052a66be"}
+[03-06-2018 20:38:39] PayPal\Core\PayPalHttpConnection : INFO: POST https://api.sandbox.paypal.com/v1/payments/payment
+[03-06-2018 20:38:41] PayPal\Core\PayPalHttpConnection : INFO: Response Status 	: 201
+[03-06-2018 20:50:49] PayPal\Core\PayPalHttpConnection : INFO: POST https://api.sandbox.paypal.com/v1/payments/payment
+[03-06-2018 20:50:51] PayPal\Core\PayPalHttpConnection : INFO: Response Status 	: 201
+[03-06-2018 21:10:59] PayPal\Core\PayPalHttpConnection : INFO: POST https://api.sandbox.paypal.com/v1/payments/payment
+[03-06-2018 21:11:01] PayPal\Core\PayPalHttpConnection : INFO: Response Status 	: 201
+[03-06-2018 21:14:30] PayPal\Core\PayPalHttpConnection : INFO: POST https://api.sandbox.paypal.com/v1/payments/payment
+[03-06-2018 21:14:31] PayPal\Core\PayPalHttpConnection : INFO: Response Status 	: 201
+[03-06-2018 21:16:12] PayPal\Core\PayPalHttpConnection : INFO: POST https://api.sandbox.paypal.com/v1/payments/payment
+[03-06-2018 21:16:14] PayPal\Core\PayPalHttpConnection : INFO: Response Status 	: 201
+[03-06-2018 21:18:23] PayPal\Core\PayPalHttpConnection : INFO: POST https://api.sandbox.paypal.com/v1/payments/payment
+[03-06-2018 21:18:24] PayPal\Core\PayPalHttpConnection : INFO: Response Status 	: 201
+[03-06-2018 22:49:20] PayPal\Core\PayPalHttpConnection : INFO: POST https://api.sandbox.paypal.com/v1/payments/payment
+[03-06-2018 22:49:21] PayPal\Core\PayPalHttpConnection : INFO: Response Status 	: 201
+[05-06-2018 09:45:48] PayPal\Core\PayPalHttpConnection : INFO: POST https://api.sandbox.paypal.com/v1/oauth2/token
+[05-06-2018 09:45:56] PayPal\Core\PayPalHttpConnection : INFO: Response Status 	: 200
+[05-06-2018 09:45:56] PayPal\Core\PayPalHttpConnection : INFO: POST https://api.sandbox.paypal.com/v1/payments/payment
+[05-06-2018 09:45:57] PayPal\Core\PayPalHttpConnection : INFO: Response Status 	: 201
+[05-06-2018 15:19:48] PayPal\Core\PayPalHttpConnection : INFO: POST https://api.sandbox.paypal.com/v1/payments/payment
+[05-06-2018 15:19:49] PayPal\Core\PayPalHttpConnection : INFO: Response Status 	: 400
+[05-06-2018 15:19:49] PayPal\Core\PayPalHttpConnection : ERROR: Got Http response code 400 when accessing https://api.sandbox.paypal.com/v1/payments/payment. {"name":"MALFORMED_REQUEST","message":"Incoming JSON request does not map to API request","information_link":"https://developer.paypal.com/webapps/developer/docs/api/#MALFORMED_REQUEST","debug_id":"619db2f63f6d"}
+[05-06-2018 15:31:11] PayPal\Core\PayPalHttpConnection : INFO: POST https://api.sandbox.paypal.com/v1/payments/payment
+[05-06-2018 15:31:12] PayPal\Core\PayPalHttpConnection : INFO: Response Status 	: 400
+[05-06-2018 15:31:12] PayPal\Core\PayPalHttpConnection : ERROR: Got Http response code 400 when accessing https://api.sandbox.paypal.com/v1/payments/payment. {"name":"MALFORMED_REQUEST","message":"Incoming JSON request does not map to API request","information_link":"https://developer.paypal.com/webapps/developer/docs/api/#MALFORMED_REQUEST","debug_id":"5fe06a8f9a52"}
+[05-06-2018 15:33:24] PayPal\Core\PayPalHttpConnection : INFO: POST https://api.sandbox.paypal.com/v1/payments/payment
+[05-06-2018 15:33:25] PayPal\Core\PayPalHttpConnection : INFO: Response Status 	: 400
+[05-06-2018 15:33:25] PayPal\Core\PayPalHttpConnection : ERROR: Got Http response code 400 when accessing https://api.sandbox.paypal.com/v1/payments/payment. {"name":"MALFORMED_REQUEST","message":"Incoming JSON request does not map to API request","information_link":"https://developer.paypal.com/webapps/developer/docs/api/#MALFORMED_REQUEST","debug_id":"e9553158da932"}
+[05-06-2018 15:33:55] PayPal\Core\PayPalHttpConnection : INFO: POST https://api.sandbox.paypal.com/v1/payments/payment
+[05-06-2018 15:33:56] PayPal\Core\PayPalHttpConnection : INFO: Response Status 	: 400
+[05-06-2018 15:33:56] PayPal\Core\PayPalHttpConnection : ERROR: Got Http response code 400 when accessing https://api.sandbox.paypal.com/v1/payments/payment. {"name":"MALFORMED_REQUEST","message":"Incoming JSON request does not map to API request","information_link":"https://developer.paypal.com/webapps/developer/docs/api/#MALFORMED_REQUEST","debug_id":"f28788d05a443"}
+[05-06-2018 15:34:59] PayPal\Core\PayPalHttpConnection : INFO: POST https://api.sandbox.paypal.com/v1/payments/payment
+[05-06-2018 15:35:00] PayPal\Core\PayPalHttpConnection : INFO: Response Status 	: 400
+[05-06-2018 15:35:00] PayPal\Core\PayPalHttpConnection : ERROR: Got Http response code 400 when accessing https://api.sandbox.paypal.com/v1/payments/payment. {"name":"VALIDATION_ERROR","details":[{"field":"transactions.amount","issue":"Currency amount must be non-negative number, may optionally contain exactly 2 decimal places separated by '.', optional thousands separator ',', limited to 7 digits before the decimal point and currency which is a valid ISO Currency Code"}],"message":"Invalid request - see details","information_link":"https://developer.paypal.com/docs/api/payments/#errors","debug_id":"5d61036e501be"}
+[05-06-2018 15:35:19] PayPal\Core\PayPalHttpConnection : INFO: POST https://api.sandbox.paypal.com/v1/payments/payment
+[05-06-2018 15:35:21] PayPal\Core\PayPalHttpConnection : INFO: Response Status 	: 400
+[05-06-2018 15:35:21] PayPal\Core\PayPalHttpConnection : ERROR: Got Http response code 400 when accessing https://api.sandbox.paypal.com/v1/payments/payment. {"name":"VALIDATION_ERROR","details":[{"field":"transactions.amount","issue":"Currency amount must be non-negative number, may optionally contain exactly 2 decimal places separated by '.', optional thousands separator ',', limited to 7 digits before the decimal point and currency which is a valid ISO Currency Code"}],"message":"Invalid request - see details","information_link":"https://developer.paypal.com/docs/api/payments/#errors","debug_id":"1fe5cfb927db1"}
+[05-06-2018 15:50:45] PayPal\Core\PayPalHttpConnection : INFO: POST https://api.sandbox.paypal.com/v1/payments/payment
+[05-06-2018 15:50:47] PayPal\Core\PayPalHttpConnection : INFO: Response Status 	: 400
+[05-06-2018 15:50:47] PayPal\Core\PayPalHttpConnection : ERROR: Got Http response code 400 when accessing https://api.sandbox.paypal.com/v1/payments/payment. {"name":"VALIDATION_ERROR","details":[{"field":"transactions.amount","issue":"Currency amount must be non-negative number, may optionally contain exactly 2 decimal places separated by '.', optional thousands separator ',', limited to 7 digits before the decimal point and currency which is a valid ISO Currency Code"}],"message":"Invalid request - see details","information_link":"https://developer.paypal.com/docs/api/payments/#errors","debug_id":"e98948095ad18"}
+[05-06-2018 16:01:40] PayPal\Core\PayPalHttpConnection : INFO: POST https://api.sandbox.paypal.com/v1/payments/payment
+[05-06-2018 16:01:41] PayPal\Core\PayPalHttpConnection : INFO: Response Status 	: 400
+[05-06-2018 16:01:41] PayPal\Core\PayPalHttpConnection : ERROR: Got Http response code 400 when accessing https://api.sandbox.paypal.com/v1/payments/payment. {"name":"VALIDATION_ERROR","details":[{"field":"transactions.amount.details","issue":"This field name is not defined for this resource type"}],"message":"Invalid request - see details","information_link":"https://developer.paypal.com/docs/api/payments/#errors","debug_id":"e73ba19ac9284"}
+[05-06-2018 16:01:44] PayPal\Core\PayPalHttpConnection : INFO: POST https://api.sandbox.paypal.com/v1/payments/payment
+[05-06-2018 16:01:45] PayPal\Core\PayPalHttpConnection : INFO: Response Status 	: 400
+[05-06-2018 16:01:45] PayPal\Core\PayPalHttpConnection : ERROR: Got Http response code 400 when accessing https://api.sandbox.paypal.com/v1/payments/payment. {"name":"VALIDATION_ERROR","details":[{"field":"transactions.amount.details","issue":"This field name is not defined for this resource type"}],"message":"Invalid request - see details","information_link":"https://developer.paypal.com/docs/api/payments/#errors","debug_id":"5987d091787a8"}
+[05-06-2018 16:02:10] PayPal\Core\PayPalHttpConnection : INFO: POST https://api.sandbox.paypal.com/v1/payments/payment
+[05-06-2018 16:02:11] PayPal\Core\PayPalHttpConnection : INFO: Response Status 	: 400
+[05-06-2018 16:02:11] PayPal\Core\PayPalHttpConnection : ERROR: Got Http response code 400 when accessing https://api.sandbox.paypal.com/v1/payments/payment. {"name":"VALIDATION_ERROR","details":[{"field":"transactions.amount.details","issue":"This field name is not defined for this resource type"}],"message":"Invalid request - see details","information_link":"https://developer.paypal.com/docs/api/payments/#errors","debug_id":"80c3896ac28bb"}
+[05-06-2018 16:02:22] PayPal\Core\PayPalHttpConnection : INFO: POST https://api.sandbox.paypal.com/v1/payments/payment
+[05-06-2018 16:02:24] PayPal\Core\PayPalHttpConnection : INFO: Response Status 	: 400
+[05-06-2018 16:02:24] PayPal\Core\PayPalHttpConnection : ERROR: Got Http response code 400 when accessing https://api.sandbox.paypal.com/v1/payments/payment. {"name":"VALIDATION_ERROR","details":[{"field":"transactions.amount.details","issue":"This field name is not defined for this resource type"}],"message":"Invalid request - see details","information_link":"https://developer.paypal.com/docs/api/payments/#errors","debug_id":"ebc6c24da4f18"}
+[05-06-2018 16:02:44] PayPal\Core\PayPalHttpConnection : INFO: POST https://api.sandbox.paypal.com/v1/payments/payment
+[05-06-2018 16:02:46] PayPal\Core\PayPalHttpConnection : INFO: Response Status 	: 201
+[05-06-2018 16:05:08] PayPal\Core\PayPalHttpConnection : INFO: POST https://api.sandbox.paypal.com/v1/payments/payment
+[05-06-2018 16:05:09] PayPal\Core\PayPalHttpConnection : INFO: Response Status 	: 201
+[05-06-2018 16:05:48] PayPal\Core\PayPalHttpConnection : INFO: POST https://api.sandbox.paypal.com/v1/payments/payment
+[05-06-2018 16:05:50] PayPal\Core\PayPalHttpConnection : INFO: Response Status 	: 201
+[05-06-2018 17:11:50] PayPal\Core\PayPalHttpConnection : INFO: POST https://api.sandbox.paypal.com/v1/payments/payment
+[05-06-2018 17:11:52] PayPal\Core\PayPalHttpConnection : INFO: Response Status 	: 201
+[05-06-2018 17:14:15] PayPal\Core\PayPalHttpConnection : INFO: POST https://api.sandbox.paypal.com/v1/payments/payment
+[05-06-2018 17:14:16] PayPal\Core\PayPalHttpConnection : INFO: Response Status 	: 201
+[05-06-2018 17:41:25] PayPal\Core\PayPalHttpConnection : INFO: POST https://api.sandbox.paypal.com/v1/payments/payment
+[05-06-2018 17:41:26] PayPal\Core\PayPalHttpConnection : INFO: Response Status 	: 400
+[05-06-2018 17:41:26] PayPal\Core\PayPalHttpConnection : ERROR: Got Http response code 400 when accessing https://api.sandbox.paypal.com/v1/payments/payment. {"name":"MALFORMED_REQUEST","message":"Incoming JSON request does not map to API request","information_link":"https://developer.paypal.com/webapps/developer/docs/api/#MALFORMED_REQUEST","debug_id":"133da06b28c21"}
+[05-06-2018 17:42:07] PayPal\Core\PayPalHttpConnection : INFO: POST https://api.sandbox.paypal.com/v1/payments/payment
+[05-06-2018 17:42:09] PayPal\Core\PayPalHttpConnection : INFO: Response Status 	: 201
+[05-06-2018 17:42:28] PayPal\Core\PayPalHttpConnection : INFO: POST https://api.sandbox.paypal.com/v1/payments/payment
+[05-06-2018 17:42:29] PayPal\Core\PayPalHttpConnection : INFO: Response Status 	: 201
+[05-06-2018 17:44:57] PayPal\Core\PayPalHttpConnection : INFO: POST https://api.sandbox.paypal.com/v1/payments/payment
+[05-06-2018 17:44:59] PayPal\Core\PayPalHttpConnection : INFO: Response Status 	: 400
+[05-06-2018 17:44:59] PayPal\Core\PayPalHttpConnection : ERROR: Got Http response code 400 when accessing https://api.sandbox.paypal.com/v1/payments/payment. {"name":"VALIDATION_ERROR","details":[{"field":"transactions.amount","issue":"Currency amount must be non-negative number, may optionally contain exactly 2 decimal places separated by '.', optional thousands separator ',', limited to 7 digits before the decimal point and currency which is a valid ISO Currency Code"}],"message":"Invalid request - see details","information_link":"https://developer.paypal.com/docs/api/payments/#errors","debug_id":"8e7859e335eb7"}
+[05-06-2018 17:47:28] PayPal\Core\PayPalHttpConnection : INFO: POST https://api.sandbox.paypal.com/v1/payments/payment
+[05-06-2018 17:47:29] PayPal\Core\PayPalHttpConnection : INFO: Response Status 	: 201
+[05-06-2018 17:54:27] PayPal\Core\PayPalHttpConnection : INFO: POST https://api.sandbox.paypal.com/v1/payments/payment
+[05-06-2018 17:54:29] PayPal\Core\PayPalHttpConnection : INFO: Response Status 	: 201
+[05-06-2018 18:25:35] PayPal\Core\PayPalHttpConnection : INFO: POST https://api.sandbox.paypal.com/v1/payments/payment
+[05-06-2018 18:25:37] PayPal\Core\PayPalHttpConnection : INFO: Response Status 	: 400
+[05-06-2018 18:25:37] PayPal\Core\PayPalHttpConnection : ERROR: Got Http response code 400 when accessing https://api.sandbox.paypal.com/v1/payments/payment. {"name":"VALIDATION_ERROR","details":[{"field":"transactions[0]","issue":"Item amount must add up to specified amount subtotal (or total if amount details not specified)"}],"message":"Invalid request - see details","information_link":"https://developer.paypal.com/docs/api/payments/#errors","debug_id":"26e2661fd0a02"}
+[05-06-2018 18:26:44] PayPal\Core\PayPalHttpConnection : INFO: POST https://api.sandbox.paypal.com/v1/payments/payment
+[05-06-2018 18:26:46] PayPal\Core\PayPalHttpConnection : INFO: Response Status 	: 400
+[05-06-2018 18:26:46] PayPal\Core\PayPalHttpConnection : ERROR: Got Http response code 400 when accessing https://api.sandbox.paypal.com/v1/payments/payment. {"name":"VALIDATION_ERROR","details":[{"field":"transactions[0]","issue":"Item amount must add up to specified amount subtotal (or total if amount details not specified)"}],"message":"Invalid request - see details","information_link":"https://developer.paypal.com/docs/api/payments/#errors","debug_id":"de73c58b2adcb"}
+[05-06-2018 18:30:33] PayPal\Core\PayPalHttpConnection : INFO: POST https://api.sandbox.paypal.com/v1/payments/payment
+[05-06-2018 18:30:35] PayPal\Core\PayPalHttpConnection : INFO: Response Status 	: 400
+[05-06-2018 18:30:35] PayPal\Core\PayPalHttpConnection : ERROR: Got Http response code 400 when accessing https://api.sandbox.paypal.com/v1/payments/payment. {"name":"VALIDATION_ERROR","details":[{"field":"transactions[0]","issue":"Item amount must add up to specified amount subtotal (or total if amount details not specified)"}],"message":"Invalid request - see details","information_link":"https://developer.paypal.com/docs/api/payments/#errors","debug_id":"d31973552a89e"}
+[05-06-2018 18:30:43] PayPal\Core\PayPalHttpConnection : INFO: POST https://api.sandbox.paypal.com/v1/payments/payment
+[05-06-2018 18:30:44] PayPal\Core\PayPalHttpConnection : INFO: Response Status 	: 400
+[05-06-2018 18:30:44] PayPal\Core\PayPalHttpConnection : ERROR: Got Http response code 400 when accessing https://api.sandbox.paypal.com/v1/payments/payment. {"name":"VALIDATION_ERROR","details":[{"field":"transactions.amount","issue":"Currency amount must be non-negative number, may optionally contain exactly 2 decimal places separated by '.', optional thousands separator ',', limited to 7 digits before the decimal point and currency which is a valid ISO Currency Code"}],"message":"Invalid request - see details","information_link":"https://developer.paypal.com/docs/api/payments/#errors","debug_id":"824e4d315ddaf"}
+[05-06-2018 18:32:05] PayPal\Core\PayPalHttpConnection : INFO: POST https://api.sandbox.paypal.com/v1/payments/payment
+[05-06-2018 18:32:08] PayPal\Core\PayPalHttpConnection : INFO: Response Status 	: 201
+[06-06-2018 02:26:06] PayPal\Core\PayPalHttpConnection : INFO: POST https://api.sandbox.paypal.com/v1/oauth2/token
+[06-06-2018 02:26:07] PayPal\Core\PayPalHttpConnection : INFO: Response Status 	: 401
+[06-06-2018 02:26:07] PayPal\Core\PayPalHttpConnection : ERROR: Got Http response code 401 when accessing https://api.sandbox.paypal.com/v1/oauth2/token. {"error":"invalid_client","error_description":"Client Authentication failed"}
+[06-06-2018 02:26:13] PayPal\Core\PayPalHttpConnection : INFO: POST https://api.sandbox.paypal.com/v1/oauth2/token
+[06-06-2018 02:26:14] PayPal\Core\PayPalHttpConnection : INFO: Response Status 	: 401
+[06-06-2018 02:26:14] PayPal\Core\PayPalHttpConnection : ERROR: Got Http response code 401 when accessing https://api.sandbox.paypal.com/v1/oauth2/token. {"error":"invalid_client","error_description":"Client Authentication failed"}
+[06-06-2018 02:36:16] PayPal\Core\PayPalHttpConnection : INFO: POST https://api.sandbox.paypal.com/v1/oauth2/token
+[06-06-2018 02:36:17] PayPal\Core\PayPalHttpConnection : INFO: Response Status 	: 401
+[06-06-2018 02:36:17] PayPal\Core\PayPalHttpConnection : ERROR: Got Http response code 401 when accessing https://api.sandbox.paypal.com/v1/oauth2/token. {"error":"invalid_client","error_description":"Client Authentication failed"}
+[06-06-2018 02:37:39] PayPal\Core\PayPalHttpConnection : INFO: POST https://api.sandbox.paypal.com/v1/oauth2/token
+[06-06-2018 02:37:40] PayPal\Core\PayPalHttpConnection : INFO: Response Status 	: 401
+[06-06-2018 02:37:40] PayPal\Core\PayPalHttpConnection : ERROR: Got Http response code 401 when accessing https://api.sandbox.paypal.com/v1/oauth2/token. {"error":"invalid_client","error_description":"Client Authentication failed"}
+[06-06-2018 02:38:41] PayPal\Core\PayPalHttpConnection : INFO: POST https://api.sandbox.paypal.com/v1/oauth2/token
+[06-06-2018 02:38:43] PayPal\Core\PayPalHttpConnection : INFO: Response Status 	: 401
+[06-06-2018 02:38:43] PayPal\Core\PayPalHttpConnection : ERROR: Got Http response code 401 when accessing https://api.sandbox.paypal.com/v1/oauth2/token. {"error":"invalid_client","error_description":"Client Authentication failed"}
+[06-06-2018 02:41:00] PayPal\Core\PayPalHttpConnection : INFO: POST https://api.sandbox.paypal.com/v1/oauth2/token
+[06-06-2018 02:41:01] PayPal\Core\PayPalHttpConnection : INFO: Response Status 	: 401
+[06-06-2018 02:41:01] PayPal\Core\PayPalHttpConnection : ERROR: Got Http response code 401 when accessing https://api.sandbox.paypal.com/v1/oauth2/token. {"error":"invalid_client","error_description":"Client Authentication failed"}
+[06-06-2018 02:43:29] PayPal\Core\PayPalHttpConnection : INFO: POST https://api.sandbox.paypal.com/v1/oauth2/token
+[06-06-2018 02:43:30] PayPal\Core\PayPalHttpConnection : INFO: Response Status 	: 401
+[06-06-2018 02:43:30] PayPal\Core\PayPalHttpConnection : ERROR: Got Http response code 401 when accessing https://api.sandbox.paypal.com/v1/oauth2/token. {"error":"invalid_client","error_description":"Client Authentication failed"}
+[06-06-2018 02:44:42] PayPal\Core\PayPalHttpConnection : INFO: POST https://api.sandbox.paypal.com/v1/oauth2/token
+[06-06-2018 02:44:43] PayPal\Core\PayPalHttpConnection : INFO: Response Status 	: 401
+[06-06-2018 02:44:43] PayPal\Core\PayPalHttpConnection : ERROR: Got Http response code 401 when accessing https://api.sandbox.paypal.com/v1/oauth2/token. {"error":"invalid_client","error_description":"Client Authentication failed"}
+[06-06-2018 02:44:44] PayPal\Core\PayPalHttpConnection : INFO: POST https://api.sandbox.paypal.com/v1/oauth2/token
+[06-06-2018 02:44:45] PayPal\Core\PayPalHttpConnection : INFO: Response Status 	: 401
+[06-06-2018 02:44:45] PayPal\Core\PayPalHttpConnection : ERROR: Got Http response code 401 when accessing https://api.sandbox.paypal.com/v1/oauth2/token. {"error":"invalid_client","error_description":"Client Authentication failed"}
+[06-06-2018 02:46:23] PayPal\Core\PayPalHttpConnection : INFO: POST https://api.paypal.com/v1/oauth2/token
+[06-06-2018 02:46:25] PayPal\Core\PayPalHttpConnection : INFO: Response Status 	: 200
+[06-06-2018 02:46:25] PayPal\Core\PayPalHttpConnection : INFO: POST https://api.paypal.com/v1/payments/payment
+[06-06-2018 02:46:26] PayPal\Core\PayPalHttpConnection : INFO: Response Status 	: 201

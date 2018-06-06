@@ -1,40 +1,4 @@
 
-<body>
-<!-- header -->
-	<div class="_navigation">
-		<div class="container">
-			<nav class="navbar navbar-default">
-				<div class="navbar-header navbar-left">
-					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-						<span class="sr-only">Toggle navigation</span>
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-					</button>
-						<a href="<?= base_url(); ?>">
-					<div class="icon_bar">
-						<img class="img-icon" src="<?= base_url(); ?>assets/images/icons/costa_azul.png" alt="logo">
-					</div>
-					</a>
-				</div>
-				<!-- Collect the nav links, forms, and other content for toggling -->
-				<div class="collapse navbar-collapse navbar-right" id="bs-example-navbar-collapse-1">
-					<nav class="menu menu--iris">
-					<ul class="nav navbar-nav menu__list">
-						<li class="menu__item menu__item--current"><a href="<?= base_url(); ?>" class="menu__link">Inicio</a></li>
-						<li class="menu__item"><a href="#services" class="menu__link scroll">Servicios</a></li>
-						<li class="menu__item"><a href="#rooms" class="menu__link scroll">Habitaciones</a></li>
-						<li class="menu__item"><a href="<?= base_url(); ?>reservaciones" class="menu__link">Reservaciones</a></li>
-						<!-- <li class="menu__item"><a href="#rooms" class="menu__link scroll">Portafolio</a></li> -->
-						<li class="menu__item"><a href="#contact" class="menu__link scroll">Contáctanos</a></li>
-					</ul>
-					</nav>
-				</div>
-			</nav>
-
-		</div>
-	</div>
-<!-- //header -->
 		<!-- banner -->
 	<div id="home" class="ls-banner">
 		<!-- banner-text -->
@@ -69,44 +33,28 @@
 	<!-- //banner -->
 <!--//Header-->
 <!-- //Modal1 -->
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog">
-<!-- Modal1 -->
-	<div class="modal-dialog">
-	<!-- Modal content-->
-		<div class="modal-content">
-			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal">&times;</button>
-				<h4>Resort <span>Inn</span></h4>
-				<img src="<?= base_url(); ?>assets/images/1.jpg" alt=" " class="img-responsive">
-				<h5>We know what you love</h5>
-				<p>Providing guests unique and enchanting views from their rooms with its exceptional amenities, makes Star Hotel one of bests in its kind.Try our food menu, awesome services and friendly staff while you are here.</p>
-			</div>
-		</div>
-	</div>
-</div>
-<!-- //Modal1 -->
 <div id="availability-agileits">
 <div class="col-md-3 book-form-left-layouts">
 	<h2>DISPONIBILIDAD</h2>
 </div>
 <div class="col-md-9 book-form">
-			   <form action="#" method="post">
+			   <form name="reservar_form" action="<?= base_url() ?>reservar" method="post">
 					<div class="fields-ls form-left-agileits-layouts ">
 							<p>Tipo de habitación</p>
-							<select class="form-control">
-								<option>Seleccione el tipo de habitación</option>
+							<select name="cod_th" class="form-control">
+								<option disabled>Seleccione el tipo de habitación</option>
 							<?php foreach($tipos_habitacion as $th){ ?>
-								<option><?= $th->tipo_habitacion;?></option>
+								<option value="<?= $th->cod_tipo_habitacion; ?>"><?= $th->tipo_habitacion;?></option>
 							<?php };?>
 							</select>
 					</div>
 					<div class="fields-ls form-date--agileits">
 			        <p>Fecha de ingreso</p>
-							<input  id="datepicker1" name="Text" type="text" placeholder=""="Seleccione fecha" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'mm/dd/yyyy';}" required="">
+							<input  id="datepicker1" name="fecha_estadia" type="text" placeholder=""="Seleccione fecha" onfocus="this.value = '';" required="">
 					</div>
 					<div class="fields-ls form-date--agileits">
 			        <p>Fecha de salida</p>
-						<input  id="datepicker2" name="Text" type="text" placeholder=""="Seleccione fecha" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'mm/dd/yyyy';}" required="">
+						<input  id="datepicker2" name="fecha_salida" type="text" placeholder=""="Seleccione fecha" onfocus="this.value = '';" required="">
 					</div>
 
 					<div class=" form-left-agileits-submit">

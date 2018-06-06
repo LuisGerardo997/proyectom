@@ -151,7 +151,7 @@ class Reservaciones extends CI_Controller {
     function room_list(){
         $fecha_estadia = $this->input->post('fecha_estadia');
         $fecha_salida = $this->input->post('fecha_salida');
-        $resultado = $this->Reservaciones_model->room_list($fecha_estadia, $fecha_salida);
+        $resultado = $this->Reservaciones_model->room_list($fecha_estadia, $fecha_salida, '');
         echo json_encode($resultado);
     }
     function detalle_habitacion(){
